@@ -1,0 +1,18 @@
+.grid-stack-item-content
+{
+    font-size: 20px;
+
+    text-align: center;
+
+    color: #526069;
+    background: white;
+}
+
+.grid-stack-item-content .fa
+{
+    font-size: 64px;
+
+    display: block;
+
+    margin: 20px 0 10px;
+}

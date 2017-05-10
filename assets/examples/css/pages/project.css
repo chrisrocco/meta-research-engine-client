@@ -1,0 +1,223 @@
+.page-project .card-block
+{
+    padding: 25px;
+
+    border-top: 1px solid #e4eaec;
+}
+
+.page-project .card-block:first-child
+{
+    border-top: none;
+}
+
+.page-project .btn-pure.btn-trash:hover,
+.page-project .btn-pure.btn-trash:focus
+{
+    color: #f96868;
+}
+
+.page-project .btn-pure.btn-edit:hover,
+.page-project .btn-pure.btn-edit:focus
+{
+    color: #46be8a;
+}
+
+.page-project .ui-helper-hidden-accessible
+{
+    display: none;
+}
+
+.project-title .btn-edit
+{
+    display: none;
+
+    margin-left: 5px;
+    padding: 0;
+}
+
+.project-title:hover .btn-edit
+{
+    display: inline-block;
+}
+
+.project-option-title
+{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.project-team-items
+{
+    margin-bottom: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.project-team-items .team-item
+{
+    float: left;
+}
+
+.project-team-items .item-divider
+{
+    line-height: 42px;
+
+    width: 30px;
+
+    text-align: center;
+}
+
+.project-controls .dropdown
+{
+    display: inline-block;
+}
+
+.project-controls .btn
+{
+    margin: 0 10px 10px 0;
+}
+
+.project-checklist .progress
+{
+    position: relative;
+
+    overflow: visible;
+
+    max-width: 350px;
+    margin-right: 40px;
+}
+
+.project-checklist .progress-percent
+{
+    position: absolute;
+    top: -8px;
+    right: -35px;
+}
+
+.project-checklist .project-checklist-add
+{
+    display: none;
+}
+
+.project-checklist.checklist-editable .project-checklist-add
+{
+    display: block;
+}
+
+.project-checklist-title .btn-trash:first-child
+{
+    line-height: 21px;
+
+    float: right;
+
+    margin-right: 0;
+    padding: 0;
+}
+
+.project-checklist-add
+{
+    position: relative;
+
+    margin: 25px -25px -25px;
+    padding: 25px 130px 25px 25px;
+}
+
+.project-checklist-add .operations
+{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+.upload-instructions
+{
+    margin: 30px 20px;
+}
+
+.project-comments .comment-content
+{
+    position: relative;
+
+    padding-right: 50px;
+}
+
+.project-comments .comment-content .btn-edit,
+.project-comments .comment-content .btn-trash
+{
+    position: absolute;
+}
+
+.project-comments .comment-content .btn-trash
+{
+    top: 2px;
+    right: 0;
+}
+
+.project-comments .comment-content .btn-edit
+{
+    top: 2px;
+    right: 25px;
+}
+
+.project-comments .pos-number
+{
+    color: #46be8a;
+}
+
+.project-comments .neg-number
+{
+    color: #f96868;
+}
+
+.project-comments .comments-add .comment-visibility
+{
+    display: inline-block;
+}
+
+.project-comments .comments-add .comment-visibility i
+{
+    margin-right: -5px;
+}
+
+.project-comments .comments-add .comment-attach
+{
+    display: inline-block;
+    float: right;
+}
+
+.project-participators .media > div:first-child
+{
+    min-width: 90px;
+}
+
+.project-dates span
+{
+    display: inline-block;
+
+    min-width: 80px;
+}
+
+.project-agility-view
+{
+    display: block;
+
+    margin-top: 10px;
+}
+
+.project-fast-operation a
+{
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #a3afb7;
+}
+
+.project-fast-operation a:hover,
+.project-fast-operation a:focus
+{
+    text-decoration: none;
+
+    color: #62a8ea;
+}

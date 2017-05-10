@@ -1,0 +1,22 @@
+.visiblity-utilities th small
+{
+    display: block;
+
+    color: #999;
+}
+
+.visiblity-utilities .is-visible
+{
+    text-align: center;
+
+    color: #468847;
+    background-color: #dff0d8 !important;
+}
+
+.visiblity-utilities .is-hidden
+{
+    text-align: center;
+
+    color: #ccc;
+    background-color: #f9f9f9 !important;
+}
