@@ -1,0 +1,12 @@
+<div class="btn-group">
+    <p data-toggle="tooltip" data-placement="top" title="{[{fieldObject.tooltip}]}">{[{fieldObject.description_short}]}</p>
+</div>
+
+<br>
+
+<button type="button" ng-class="{'btn-primary': inputObject.content.value==fieldObject.trueOption}" class="btn"
+        ng-click="inputObject.content.value = fieldObject.trueOption">
+    {[{fieldObject.trueOption}]} </button>
+<button type="button" ng-class="{'btn-primary': inputObject.content.value==fieldObject.falseOption}" class="btn"
+        ng-click="inputObject.content.value = fieldObject.falseOption">
+    {[{fieldObject.falseOption}]} </button>

@@ -1,0 +1,9 @@
+<li class="list-group-item" ng-show="isAlive()" ng-click="editMe()" style="cursor: pointer">
+    <i class="icon {{fieldObject.icon}}" aria-hidden="true" ng-hide="edit"></i>
+
+    <button ng-show="edit" ng-click="toggleScope(fieldObject._key)"
+            type="button" class="btn btn-icon btn-xs btn-warning btn-outline btn-round mr-10">
+        <i class="md md-swap" aria-hidden="true"></i></button>
+
+    {{fieldObject.name}} &nbsp; : &nbsp; <code>{{generatePreview()}}</code>
+</li>

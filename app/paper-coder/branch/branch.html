@@ -1,0 +1,24 @@
+<div>
+    <button ng-hide="edit" ng-click="toggleEditMode()"
+            type="button" class="float-left btn-sm btn btn-floating btn-primary mr-15">
+        <i class="icon wb-pencil" aria-hidden="true"></i>
+    </button>
+    <button ng-show="edit" ng-click="toggleEditMode()"
+            type="button" class="float-left btn-sm btn btn-floating btn-success mr-15">
+        <i class="icon fa-check" aria-hidden="true"></i>
+    </button>
+    <button ng-show="edit" ng-click="deleteMe()"
+            type="button" class="float-right btn-sm btn btn-floating btn-danger">
+        <i class="icon fa fa-close" aria-hidden="true"></i>
+    </button>
+
+    <h3 class="project-checklist-title project-option-title">
+        {{label}}
+    </h3>
+
+    <br>
+
+    <div class="panel-group" id="constants" role="tablist">
+        <ng-transclude></ng-transclude>
+    </div>
+</div>

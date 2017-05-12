@@ -1,0 +1,28 @@
+<div class="panel" ng-show="isAlive()">
+    <div class="panel-heading">
+        <a class="panel-title" data-toggle="collapse"
+           href="" onclick="return false;"
+           data-target="#{{name}}-content-{{domain._key}}">
+            <button ng-hide="edit"
+                    type="button" class="btn btn-pure btn-outline btn-primary btn-round">
+                <i class="icon {{domain.icon}}" aria-hidden="true"></i></button>
+            <button ng-show="edit" ng-click="toggleScope()"
+                    type="button" class="btn btn-icon btn-warning btn-outline btn-round">
+                <i class="icon md md-swap" aria-hidden="true"></i></button>
+            &nbsp;&nbsp;&nbsp;{{domain.name}} <span ng-if="isComplete()" class="badge badge-success">Complete</span>
+        </a>
+    </div>
+    <div class="panel-collapse collapse in" id="{{name}}-content-{{domain._key}}">
+        <div class="panel-body">
+            <!-- Example Gap -->
+            <div class="example-wrap">
+                <h4 class="example-title">{{domain.name}} Fields</h4>
+                <!--<p>Add the <code>.list-group-gap</code> to the wrap for gap the items.</p>-->
+                <ul class="list-group list-group-gap">
+                    <ng-transclude></ng-transclude>
+                </ul>
+            </div>
+            <!-- End Example Gap -->
+        </div>
+    </div>
+</div>

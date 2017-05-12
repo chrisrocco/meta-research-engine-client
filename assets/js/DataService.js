@@ -28,6 +28,14 @@
         });
     }
 
+    function getUsersAssignments(id) {
+        return http({
+            url: "/users/" + id + "/assignments",
+            method: "GET",
+            dataType: "json"
+        });
+    }
+
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
@@ -38,4 +46,5 @@
 
     exports.http = http;
     exports.postUsersLogin = postUsersLogin;
+    exports.getUsersAssignments = getUsersAssignments;
 });

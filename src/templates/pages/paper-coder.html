@@ -1,0 +1,92 @@
+---
+title: Paper Coder
+---
+
+{{#extend "layout-default"}}
+
+{{#content "css" mode="prepend"}}
+<link rel="stylesheet" href="{{assets}}/examples/css/paper-coder.css">
+<link rel="stylesheet" href="{{assets}}/fonts/font-awesome/font-awesome.css">
+<link rel="stylesheet" href="{{assets}}/fonts/material-design/material-design.css">
+{{/content}}
+
+{{#content "js_vendor" mode="append"}}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+{{/content}}
+
+{{#content "scripts" mode="replace"}}
+<script src="{{assets}}/examples/js/paper-coder.js"></script>
+
+<script src="{{html}}../app/paper-coder/paper-coder.module.js"></script>
+<script src="{{html}}../app/paper-coder/editor/editor.service.js"></script>
+<script src="{{html}}../app/paper-coder/editor/editor.directive.js"></script>
+<script src="{{html}}../app/paper-coder/domain/domain.directive.js"></script>
+<script src="{{html}}../app/paper-coder/branch/branch.directive.js"></script>
+<script src="{{html}}../app/paper-coder/field/field.directive.js"></script>
+<script src="{{html}}../app/paper-coder/paper-coder.service.js"></script>
+<script src="{{html}}../app/paper-coder/paper-coder.controller.js"></script>
+{{/content}}
+
+{{#content "body"}}
+
+<!-- Page -->
+<div class="page" ng-controller="PaperCoderController" ng-app="paper-coder">
+
+    <div class="page-header">
+        <h1 class="page-title">{[{assignment.title}]}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
+            <li class="breadcrumb-item active">Paper Coder</li>
+        </ol>
+        <div class="page-header-actions">
+            <button type="button" class="btn btn-sm btn-outline btn-default btn-round">
+                <span class="text hidden-sm-down">View Paper</span>
+                <i class="icon wb-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: {[{calculateCompletion()}]}%" role="progressbar">
+                        <span class="sr-only">90% Complete</span>
+                    </div>
+                </div>
+                <button ng-click="save()"
+                        type="button" class="btn btn-animate btn-animate-side btn-outline btn-success">
+                    <span><i class="icon wb-download" aria-hidden="true"></i>Save</span>
+                </button>
+                <button ng-click="newBranch()"
+                        type="button" class="btn btn-outline btn-primary"><i class="icon md-plus" aria-hidden="true"></i> New Branch</button>
+                <button ng-click="toggleComplete()" ng-if="assignment.done == false"
+                        type="button" class="btn btn-outline btn-success"><i class="icon wb-thumb-up" aria-hidden="true"></i> Mark as Complete</button>
+                <button ng-click="toggleComplete()" ng-if="assignment.done == true"
+                        type="button" class="btn btn-outline btn-danger"><i class="icon wb-thumb-down" aria-hidden="true"></i> Mark as Incomplete</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
+                    <bd-domain ng-repeat="domain in study" domain="domain" >
+                        <bd-field ng-repeat="field in domain.fields" field="field" ></bd-field>
+                    </bd-domain>
+                </bd-branch>
+            </div>
+            <div class="col-lg-6">
+                <bd-branch ng-repeat="branch in assignment.encoding.branches"
+                        branch="branch" name="'branch'+$index" label="'Study Branch '+$index">
+                    <bd-domain ng-repeat="domain in study" domain="domain" >
+                        <bd-field ng-repeat="field in domain.fields" field="field" ></bd-field>
+                    </bd-domain>
+                </bd-branch>
+            </div>
+        </div>
+    </div>
+
+    <bd-editor></bd-editor>
+</div>
+<!-- End Page -->
+
+{{/content}}
+{{/extend}}

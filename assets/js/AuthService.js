@@ -1,32 +1,27 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define('/AuthService', ['exports', 'jquery', 'DataService'], factory);
+        define('/AuthService', ['exports', 'DataService'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('jquery'), require('DataService'));
+        factory(exports, require('DataService'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.jQuery, global.DataService);
+        factory(mod.exports, global.DataService);
         global.AuthService = mod.exports;
     }
-})(this, function (exports, _jquery, _DataService) {
+})(this, function (exports, _DataService) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.getToken = exports.getUser = exports.logout = exports.login = undefined;
+    var DataService = babelHelpers.interopRequireWildcard(_DataService);
 
-    var _jquery2 = babelHelpers.interopRequireDefault(_jquery);
-
-    var ds = babelHelpers.interopRequireWildcard(_DataService);
-    /**
-     * Created by Chris Rocco on 5/10/2017.
-     */
 
     function login(email, password, win, fail) {
-        ds.postUsersLogin(email, password).success(function (data) {
+        DataService.postUsersLogin(email, password).success(function (data) {
             localStorage['api_token'] = data.token;
             localStorage['user'] = JSON.stringify(data.user);
             win();

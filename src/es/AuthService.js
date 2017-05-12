@@ -1,11 +1,7 @@
-/**
- * Created by Chris Rocco on 5/10/2017.
- */
-
-import * as ds from 'DataService';
+import * as DataService from 'DataService';
 
 function login( email, password, win, fail ){
-    ds.postUsersLogin( email, password )
+    DataService.postUsersLogin( email, password )
         .success(function( data ){
             localStorage['api_token']   =   data.token;
             localStorage['user']        =   JSON.stringify(data.user);

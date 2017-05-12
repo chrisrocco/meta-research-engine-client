@@ -1,0 +1,29 @@
+<!-- Form Modal -->
+<div class="modal fade in" id="editor" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document"
+         style="max-width: 500px; margin-top: 200px;">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <!-- Close Button -->
+                <button type="button" class="close"
+                        ng-click="close()"
+                        aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Filling in
+                    <code>{[{fieldObject.name}]}</code>
+                    Information
+                </h4>
+            </div>
+            <div class="modal-body">
+                {[{fieldObject.name}]}
+                <div ng-include="getContent()"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Form Modal -->
