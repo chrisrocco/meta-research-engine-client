@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getToken = exports.getUser = exports.logout = exports.login = undefined;
+    exports.getToken = exports.getUser = exports.logout = exports.register = exports.login = undefined;
     var DataService = babelHelpers.interopRequireWildcard(_DataService);
 
 
@@ -29,6 +29,11 @@
             fail();
         });
     }
+
+    function register(firstName, lastname, email, password) {
+        return DataService.postUsersRegister(firstName, lastname, email, password);
+    }
+
     function logout() {
         delete localStorage['api_token'];
         delete localStorage['user'];
@@ -42,6 +47,7 @@
     }
 
     exports.login = login;
+    exports.register = register;
     exports.logout = logout;
     exports.getUser = getUser;
     exports.getToken = getToken;

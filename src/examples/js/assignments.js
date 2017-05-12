@@ -11,19 +11,32 @@ function loadAssignments(){
     var content = template.content;
     var cells = content.querySelectorAll("td");
 
-
     var promise = DataService.getUsersAssignments( AuthService.getUser()['_key'] );
     promise.success( function( data ){
         // render the assignment data
         for( var i = 0; i < data.length; i++ ){
-            cells[0].querySelector(".paper").textContent = "test";
-            cells[1].querySelector(".completion").style.width = "15%";
-            cells[1].querySelector(".completion").textContent = "15%";
 
-            var clone = document.importNode(content, true);
+            var assignment = data[i];
+
+            cells[0].querySelector(".paper").textContent = assignment._id;
+            cells[1].querySelector(".completion").style.width = assignment.completion + "%";
+            cells[1].querySelector(".completion").textContent = assignment.completion + "%";
+            cells[2].querySelector("button").dataset.assignmentKey = assignment._key;
+
+            console.log( cells[2] );
+
+            var clone = content.cloneNode( true );
             table.appendChild( clone );
         }
 
         console.log( data );
     });
+}
+
+function loadAssignment( element ){
+    localStorage.assignmentKey = element.dataset.assignmentKey;
+
+    alert("Set localStorage.assignmentKey to " + localStorage.assignmentKey );
+
+    window.location = "paper-coder.html";
 }

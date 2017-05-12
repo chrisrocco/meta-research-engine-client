@@ -11,6 +11,11 @@ function login( email, password, win, fail ){
             fail();
         })
 }
+
+function register( firstName, lastname, email, password ){
+    return DataService.postUsersRegister( firstName, lastname, email, password );
+}
+
 function logout(){
     delete localStorage['api_token'];
     delete localStorage['user'];
@@ -25,6 +30,7 @@ function getToken(){
 
 export {
     login,
+    register,
     logout,
     getUser,
     getToken

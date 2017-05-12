@@ -52,26 +52,26 @@
             <img class="brand-img" src="..\assets//images/bd-logo.png" alt="...">
             <h2 class="brand-text font-size-18">Big Data</h2>
           </div>
-          <form method="post" action="#">
+          <form action="#" onsubmit="return register()">
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="text" class="form-control" name="name" />
+              <input type="text" class="form-control" id="name" />
               <label class="floating-label">Full Name</label>
             </div>
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="email" class="form-control" name="email" />
+              <input type="email" class="form-control" id="email" />
               <label class="floating-label">Email</label>
             </div>
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="password" class="form-control" name="password" />
+              <input type="password" class="form-control" id="password" />
               <label class="floating-label">Password</label>
             </div>
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="password" class="form-control" name="PasswordCheck" />
+              <input type="password" class="form-control" id="confirmPassword" />
               <label class="floating-label">Re-enter Password</label>
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign up</button>
           </form>
-          <p>Have account already? Please go to <a href="login-v3.html">Sign In</a></p>
+          <p>Have account already? Please go to <a href="login.html">Sign In</a></p>
         </div>
       </div>
       <footer class="page-copyright page-copyright-inverse">
@@ -133,14 +133,6 @@
   <script src="..\assets/js/Plugin/switchery.js"></script>
   <script src="..\assets/js/Plugin/jquery-placeholder.js"></script>
   <script src="..\assets/js/Plugin/material.js"></script>
-  <script>
-  (function(document, window, $) {
-    'use strict';
-    var Site = window.Site;
-    $(document).ready(function() {
-      Site.run();
-    });
-  })(document, window, jQuery);
-  </script>
+  <script src="..\assets/examples/js/register.js"></script>
 </body>
 </html>

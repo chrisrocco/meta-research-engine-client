@@ -10,6 +10,19 @@ function postUsersLogin( email, password ){
     });
 }
 
+function postUsersRegister( first_name, last_name, email, password ){
+    return http({
+        url: "/users/register",
+        method: "POST",
+        data: {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "password": password
+        }
+    });
+}
+
 function getUsersAssignments( id ){
     return http({
         url:    "/users/"+id+"/assignments",
@@ -29,5 +42,6 @@ function http( config ){
 export {
     http,
     postUsersLogin,
+    postUsersRegister,
     getUsersAssignments
 }
