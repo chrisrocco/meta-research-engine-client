@@ -1,0 +1,138 @@
+---
+title: Treeview
+---
+
+{{#extend "layout-default"}}
+{{#content "css_vendor" mode="append"}}
+<link rel="stylesheet" href="{{assets}}/vendor/toastr/toastr.css">
+<link rel="stylesheet" href="{{assets}}/vendor/bootstrap-treeview/bootstrap-treeview.css">
+<link rel="stylesheet" href="{{assets}}/vendor/jstree/jstree.min.css">
+<link rel="stylesheet" href="{{assets}}/vendor/fontIconPicker-2.0.0/css/jquery.fonticonpicker.css">
+{{/content}}
+
+{{#content "fonts" mode="prepend"}}
+<link rel="stylesheet" href="{{assets}}/fonts/font-awesome/font-awesome.css">
+{{/content}}
+
+{{#content "js_vendor" mode="append"}}
+<script src="{{assets}}/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+<script src="{{assets}}/vendor/toastr/toastr.js"></script>
+<script src="{{assets}}/vendor/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+<script src="{{assets}}/vendor/jstree/jstree.min.js"></script>
+<script src="{{assets}}/vendor/fontIconPicker-2.0.0/jquery.fonticonpicker.js"></script>
+{{/content}}
+
+{{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/jquery-placeholder.js"></script>
+<script src="{{assets}}/js/Plugin/material.js"></script>
+<script src="{{assets}}/js/Plugin/toastr.js"></script>
+<script src="{{assets}}/js/Plugin/bootstrap-treeview.js"></script>
+<script src="{{assets}}/js/Plugin/jstree.js"></script>
+{{/content}}
+
+
+{{#content "scripts" mode="replace"}}
+<script src="{{assets}}/examples/js/define-study.js"></script>
+{{/content}}
+
+{{#content "body"}}
+
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
+            <li class="breadcrumb-item active">Manage Study</li>
+        </ol>
+        <h1 class="page-title">Manage Study</h1>
+        <div class="page-header-actions">
+            <a class="btn btn-sm btn-inverse btn-round" href="https://github.com/jonmiles/bootstrap-treeview"
+               target="_blank">
+                <i class="icon wb-link" aria-hidden="true"></i>
+                <span class="hidden-sm-down">Official Website</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Structure</h3>
+                    </div>
+                    <div class="panel-body container-fluid">
+                        <!-- Example Basic -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <div id="exampleStructure"></div>
+                            </div>
+                        </div>
+                        <!-- End Example Basic -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Node Preview -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Preview</h3>
+                    </div>
+                    <div id="variable-preview" class="panel-body container-fluid">
+                        <div class="example-wrap">
+                            <h4 class="example-title" data-name>    </h4>
+                            <p data-description >Place icon instead of text in add-on on either side of an input.
+                                You may also place one on both sides of an input. </p>
+                            <div class="form-group">
+                                <div class="input-group input-group-icon">
+                                    <span class="input-group-addon">
+                                      <span data-icon class="icon wb-user" aria-hidden="true"></span>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Response">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="domain-preview" class="panel-body container-fluid">
+                        <div class="example-wrap">
+                            <h4 class="example-title" data-name>    </h4>
+                            <p data-description >Place icon instead of text in add-on on either side of an input.
+                                You may also place one on both sides of an input. </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Node Preview -->
+                <!-- Panel Floating Labels -->
+                <div id="addVariablePanel" class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add New Variable</h3>
+                    </div>
+                    <div class="panel-body container-fluid">
+                        <form name="variableForm" autocomplete="off" onsubmit="return parseVariableForm()">
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="text" class="form-control" name="name" required/>
+                                <label class="floating-label">Name</label>
+                            </div>
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="text" class="form-control" name="description" required/>
+                                <label class="floating-label">Description</label>
+                            </div>
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <label class="control-label">icon</label>
+                                <input type="text" name="icon" id="icon-picker" required/>
+                            </div>
+                            <!-- INPUT element -->
+
+                            <button type="submit" class="btn btn-block btn-primary"> Add to Study</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Panel Floating Labels -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+
+{{/content}}
+{{/extend}}
