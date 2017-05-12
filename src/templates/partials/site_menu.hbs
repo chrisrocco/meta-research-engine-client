@@ -1,38 +1,38 @@
 <ul class="site-menu" data-plugin="menu">
-  <li class="site-menu-item has-sub{{#active 'dashboard'}} active open{{/active}}">
-    <a href="javascript:void(0)">
-      <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-      <span class="site-menu-title">Dashboard</span>
-      <div class="site-menu-badge">
-        <span class="badge badge-pill badge-success">3</span>
-      </div>
-    </a>
-    <ul class="site-menu-sub">
-      <li class="site-menu-item{{#active 'index.html'}} active{{/active}}">
-        <a class="animsition-link" href="{{dest 'index.html'}}">
-          <span class="site-menu-title">Dashboard v1</span>
+    <li class="site-menu-item {{#active 'index'}} active open{{/active}}">
+        <a href="{{html}}index.html">
+            <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+            <span class="site-menu-title">Landing</span>
         </a>
-      </li>
-      <li class="site-menu-item{{#active 'dashboard/v2.html'}} active{{/active}}">
-        <a class="animsition-link" href="{{dest 'dashboard/v2.html'}}">
-          <span class="site-menu-title">Dashboard v2</span>
+    </li>
+    <li class="site-menu-item {{#active 'codebook'}} active open{{/active}}">
+        <a href="{{html}}codebook.html">
+            <i class="site-menu-icon wb-book" aria-hidden="true"></i>
+            <span class="site-menu-title">Code Book</span>
         </a>
-      </li>
-      <li class="site-menu-item{{#active 'dashboard/ecommerce.html'}} active{{/active}}">
-        <a class="animsition-link" href="{{dest 'dashboard/ecommerce.html'}}">
-          <span class="site-menu-title">Ecommerce</span>
+    </li>
+    <li class="site-menu-item {{#active 'assignments'}} active open{{/active}}">
+        <a href="{{html}}assignments.html">
+            <i class="site-menu-icon wb-pencil" aria-hidden="true"></i>
+            <span class="site-menu-title">My Assignments</span>
         </a>
-      </li>
-      <li class="site-menu-item{{#active 'dashboard/analytics.html'}} active{{/active}}">
-        <a class="animsition-link" href="{{dest 'dashboard/analytics.html'}}">
-          <span class="site-menu-title">Analytics</span>
+    </li>
+    <li class="site-menu-item {{#active 'paper-coder'}} active open{{/active}}">
+        <a href="{{html}}paper-coder.html">
+            <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+            <span class="site-menu-title">Paper Coder</span>
         </a>
-      </li>
-      <li class="site-menu-item{{#active 'dashboard/team.html'}} active{{/active}}">
-        <a class="animsition-link" href="{{dest 'dashboard/team.html'}}">
-          <span class="site-menu-title">Team</span>
+    </li>
+    <li class="site-menu-item {{#active 'login'}} active open{{/active}}">
+        <a href="{{html}}login.html">
+            <i class="site-menu-icon wb-user" aria-hidden="true"></i>
+            <span class="site-menu-title"> Login </span>
         </a>
-      </li>
-    </ul>
-  </li>
+    </li>
+    <li class="site-menu-item {{#active 'register'}} active open{{/active}}">
+        <a href="{{html}}register.html">
+            <i class="site-menu-icon wb-user-add" aria-hidden="true"></i>
+            <span class="site-menu-title"> Register </span>
+        </a>
+    </li>
 </ul>

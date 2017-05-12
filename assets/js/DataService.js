@@ -17,7 +17,7 @@
         value: true
     });
 
-    var API_BASE_PATH = "http://35.184.147.35";
+    var API_BASE_PATH = "https://35.184.147.35";
 
     function postUsersLogin(email, password) {
         return http({
