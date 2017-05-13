@@ -17,6 +17,7 @@
         value: true
     });
     var TOKEN_PROVIDER = "http://35.184.147.35/users/login";
+    var REGISTER = "http://35.184.147.35/users/register";
 
     function login(email, password, win, fail) {
         $.ajax({
@@ -35,7 +36,7 @@
 
     function register(firstName, lastName, email, password) {
         return $.ajax({
-            url: "/users/register",
+            url: REGISTER,
             method: "POST",
             data: {
                 "first_name": firstName,

@@ -19,7 +19,6 @@
     exports.getUsersAssignments = exports.getAssignment = exports.http = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
-    console.log(AuthService);
 
     var API_BASE_PATH = "http://35.184.147.35";
 
