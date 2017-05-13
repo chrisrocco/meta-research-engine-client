@@ -1,27 +1,30 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define('/AuthService', ['exports', 'DataService'], factory);
+        define("/AuthService", ["exports"], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('DataService'));
+        factory(exports);
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.DataService);
+        factory(mod.exports);
         global.AuthService = mod.exports;
     }
-})(this, function (exports, _DataService) {
-    'use strict';
+})(this, function (exports) {
+    "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getToken = exports.getUser = exports.logout = exports.register = exports.login = undefined;
-    var DataService = babelHelpers.interopRequireWildcard(_DataService);
-
+    var TOKEN_PROVIDER = "http://35.184.147.35/users/login";
 
     function login(email, password, win, fail) {
-        DataService.postUsersLogin(email, password).success(function (data) {
+        $.ajax({
+            url: TOKEN_PROVIDER,
+            method: "POST",
+            data: { "email": email, "password": password },
+            dataType: "json"
+        }).success(function (data) {
             localStorage['api_token'] = data.token;
             localStorage['user'] = JSON.stringify(data.user);
             win();
@@ -30,8 +33,17 @@
         });
     }
 
-    function register(firstName, lastname, email, password) {
-        return DataService.postUsersRegister(firstName, lastname, email, password);
+    function register(firstName, lastName, email, password) {
+        return $.ajax({
+            url: "/users/register",
+            method: "POST",
+            data: {
+                "first_name": firstName,
+                "last_name": lastName,
+                "email": email,
+                "password": password
+            }
+        });
     }
 
     function logout() {

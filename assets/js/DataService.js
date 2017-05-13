@@ -1,49 +1,39 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define("/DataService", ["exports"], factory);
+        define("/DataService", ["exports", "AuthService"], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports);
+        factory(exports, require("AuthService"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports);
+        factory(mod.exports, global.AuthService);
         global.DataService = mod.exports;
     }
-})(this, function (exports) {
+})(this, function (exports, _AuthService) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+    exports.getUsersAssignments = exports.getAssignment = exports.http = undefined;
+    var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
+
+    console.log(AuthService);
 
     var API_BASE_PATH = "http://35.184.147.35";
-
-    function postUsersLogin(email, password) {
-        return http({
-            url: "/users/login",
-            method: "POST",
-            data: { "email": email, "password": password },
-            dataType: "json"
-        });
-    }
-
-    function postUsersRegister(first_name, last_name, email, password) {
-        return http({
-            url: "/users/register",
-            method: "POST",
-            data: {
-                "first_name": first_name,
-                "last_name": last_name,
-                "email": email,
-                "password": password
-            }
-        });
-    }
 
     function getUsersAssignments(id) {
         return http({
             url: "/users/" + id + "/assignments",
+            method: "GET",
+            dataType: "json"
+        });
+    }
+
+    function getAssignment(key) {
+        return http({
+            url: "/assignments/" + key,
             method: "GET",
             dataType: "json"
         });
@@ -58,7 +48,6 @@
     }
 
     exports.http = http;
-    exports.postUsersLogin = postUsersLogin;
-    exports.postUsersRegister = postUsersRegister;
+    exports.getAssignment = getAssignment;
     exports.getUsersAssignments = getUsersAssignments;
 });

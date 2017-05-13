@@ -1,27 +1,7 @@
+import * as AuthService from 'AuthService';
+console.log(AuthService);
 
 const API_BASE_PATH = "http://35.184.147.35";
-
-function postUsersLogin( email, password ){
-    return http({
-        url: "/users/login",
-        method: "POST",
-        data: {"email": email, "password": password},
-        dataType: "json",
-    });
-}
-
-function postUsersRegister( first_name, last_name, email, password ){
-    return http({
-        url: "/users/register",
-        method: "POST",
-        data: {
-            "first_name": first_name,
-            "last_name": last_name,
-            "email": email,
-            "password": password
-        }
-    });
-}
 
 function getUsersAssignments( id ){
     return http({
@@ -29,6 +9,14 @@ function getUsersAssignments( id ){
         method: "GET",
         dataType: "json"
     })
+}
+
+function getAssignment( key ){
+    return http({
+        url: "/assignments/" + key,
+        method: "GET",
+        dataType: "json"
+    });
 }
 
 function http( config ){
@@ -41,7 +29,6 @@ function http( config ){
 
 export {
     http,
-    postUsersLogin,
-    postUsersRegister,
+    getAssignment,
     getUsersAssignments
 }
