@@ -42,7 +42,7 @@
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
-            "Authorization": "Bearer " + "?" // token here
+            "Authorization": "Bearer " + AuthService.getToken() // token here
         };
         return $.ajax(config);
     }

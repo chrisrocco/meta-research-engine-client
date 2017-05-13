@@ -17,7 +17,9 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
     };
 
     DataService.getAssignment( localStorage.assignmentKey ).success( function(data){
-        console.log("From Server: ", data);
+        $scope.$apply( function(){
+            $scope.assignment = data;
+        });
     });
 
     paperCoderService.loadAssignment( $scope.assignment );

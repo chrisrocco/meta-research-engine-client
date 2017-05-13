@@ -1,5 +1,4 @@
 import * as AuthService from 'AuthService';
-console.log(AuthService);
 
 const API_BASE_PATH = "http://35.184.147.35";
 
@@ -22,7 +21,7 @@ function getAssignment( key ){
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
-        "Authorization": "Bearer " + "?" // token here
+        "Authorization": "Bearer " + AuthService.getToken() // token here
     };
     return $.ajax(config);
 }
