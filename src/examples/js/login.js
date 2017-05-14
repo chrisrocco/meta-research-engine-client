@@ -13,7 +13,8 @@ function login(){
     var email = $("#emailInput").val();
     var password = $("#passwordInput").val();
 
-    AuthService.login( email, password, win, fail );
+    var promise = AuthService.login( email, password, win, fail );
+    promise.fail( fail );
 
     return false;
 }
@@ -24,6 +25,15 @@ function win(){
     window.location = "assignments.html";
 }
 
-function fail(){
-    alert("Invalid Login");
+function fail( response ){
+    var json = response.responseText;
+    var data = JSON.parse( json );
+
+    if( data.reason === "inactive" ){
+        alert("You must active your account first");
+    }
+    if( data.reason === "invalid") {
+        // do something else
+        alert("Invalid Credentials");
+    }
 }

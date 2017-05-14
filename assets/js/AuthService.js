@@ -20,7 +20,7 @@
     var REGISTER = "http://35.184.147.35/users/register";
 
     function login(email, password, win, fail) {
-        $.ajax({
+        return $.ajax({
             url: TOKEN_PROVIDER,
             method: "POST",
             data: { "email": email, "password": password },
@@ -29,8 +29,6 @@
             localStorage['api_token'] = data.token;
             localStorage['user'] = JSON.stringify(data.user);
             win();
-        }).error(function () {
-            fail();
         });
     }
 

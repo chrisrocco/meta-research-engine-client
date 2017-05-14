@@ -16,11 +16,12 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getUsersAssignments = exports.getAssignment = exports.http = undefined;
+    exports.getPaperCoderData = exports.getUsersAssignments = exports.getAssignment = exports.http = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
-    var API_BASE_PATH = "http://35.184.147.35";
+    // const API_BASE_PATH = "http://35.184.147.35";
+    var API_BASE_PATH = "http://localhost:8080";
 
     function getUsersAssignments(id) {
         return http({
@@ -38,6 +39,14 @@
         });
     }
 
+    function getPaperCoderData(assignmentKey) {
+        return http({
+            url: "/loadAssignment?key=" + assignmentKey,
+            method: "GET",
+            dataType: "json"
+        });
+    }
+
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
@@ -49,4 +58,5 @@
     exports.http = http;
     exports.getAssignment = getAssignment;
     exports.getUsersAssignments = getUsersAssignments;
+    exports.getPaperCoderData = getPaperCoderData;
 });

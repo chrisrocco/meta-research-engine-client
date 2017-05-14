@@ -6,7 +6,7 @@ PaperCoderController.$inject = ['$scope', '$http', '$log', 'paper-coder.service'
 function PaperCoderController($scope, $http, $log, paperCoderService, editorService) {
 
     $scope.assignment = mockAssignment;
-    $scope.study = study;
+    $scope.structure = mockStructure;
 
     $scope.newBranch = paperCoderService.newBranch;
     $scope.calculateCompletion = paperCoderService.calculateCompletion;
@@ -16,9 +16,39 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
         console.log( $scope.assignment.encoding );
     };
 
-    DataService.getAssignment( localStorage.assignmentKey ).success( function(data){
+    DataService.getPaperCoderData( localStorage.assignmentKey ).success( function(data){
+        console.log( "Data from server", data );
+
+        console.log( "Assignment", data.assignment );
+        console.log( "Questions", data.questions );
+        console.log( "Structure", data.structure );
+
         $scope.$apply( function(){
-            $scope.assignment = data;
+            $scope.assignment = data.assignment;
+            $scope.structure = data.structure;
+
+            if( $scope.assignment.encoding == null ){
+                var encoding = {
+                    constants: [],
+                    branches: [[]]
+                };
+                var assignmentInputs = [];
+
+                for( var i = 0; i < data.questions.length; i++ ){
+                    var input = {
+                        field: data.questions[i],
+                        content: {
+                            value: ""
+                        }
+                    };
+                    assignmentInputs.push( input );
+                }
+
+                encoding.constants.push( assignmentInputs );
+                $scope.assignment.encoding = encoding;
+                alert("initialized blank encoding");
+                console.log( $scope.assignment.encoding );
+            }
         });
     });
 
@@ -363,7 +393,7 @@ const mockAssignment = {
     }
 };
 
-window.study = [
+const mockStructure = [
     {
         "_id": "domains/adaptation",
         "_key": "adaptation",
