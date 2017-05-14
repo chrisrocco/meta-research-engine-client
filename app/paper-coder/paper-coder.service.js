@@ -49,6 +49,7 @@ function paperCoderService() {
     }
 
     function branchContains(branch, fieldName) {
+        console.log( "contains?", branch, fieldName );
         for (var i = 0; i < branch.length; i++) {
             var fieldObject = branch[i];
             if (fieldObject.field === fieldName) return true;

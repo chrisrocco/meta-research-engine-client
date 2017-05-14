@@ -52,7 +52,7 @@ title: Paper Coder
             <div class="panel-body">
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: {[{calculateCompletion()}]}%" role="progressbar">
-                        <span class="sr-only">90% Complete</span>
+                        <span class="sr-only">{[{calculateCompletion()}]}% Complete</span>
                     </div>
                 </div>
                 <button ng-click="save()"
@@ -70,16 +70,16 @@ title: Paper Coder
         <div class="row">
             <div class="col-lg-6">
                 <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
-                    <bd-domain ng-repeat="domain in study" domain="domain" >
-                        <bd-field ng-repeat="field in domain.fields" field="field" ></bd-field>
+                    <bd-domain ng-repeat="domain in structure" domain="domain" >
+                        <bd-field ng-repeat="variable in domain.variables" field="variable" ></bd-field>
                     </bd-domain>
                 </bd-branch>
             </div>
             <div class="col-lg-6">
                 <bd-branch ng-repeat="branch in assignment.encoding.branches"
                         branch="branch" name="'branch'+$index" label="'Study Branch '+$index">
-                    <bd-domain ng-repeat="domain in study" domain="domain" >
-                        <bd-field ng-repeat="field in domain.fields" field="field" ></bd-field>
+                    <bd-domain ng-repeat="domain in structure" domain="domain" >
+                        <bd-field ng-repeat="variable in domain.variables" field="variable" ></bd-field>
                     </bd-domain>
                 </bd-branch>
             </div>

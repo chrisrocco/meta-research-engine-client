@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getPaperCoderData = exports.getUsersAssignments = exports.getAssignment = exports.http = undefined;
+    exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
@@ -39,6 +39,14 @@
         });
     }
 
+    function putAssignment(assignmentObject) {
+        return http({
+            url: "/assignments/" + assignmentObject._key,
+            method: "PUT",
+            data: assignmentObject
+        });
+    }
+
     function getPaperCoderData(assignmentKey) {
         return http({
             url: "/loadAssignment?key=" + assignmentKey,
@@ -57,6 +65,7 @@
 
     exports.http = http;
     exports.getAssignment = getAssignment;
+    exports.putAssignment = putAssignment;
     exports.getUsersAssignments = getUsersAssignments;
     exports.getPaperCoderData = getPaperCoderData;
 });

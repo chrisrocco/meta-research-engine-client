@@ -19,6 +19,14 @@ function getAssignment( key ){
     });
 }
 
+function putAssignment( assignmentObject ){
+    return http({
+        url: "/assignments/" + assignmentObject._key,
+        method: "PUT",
+        data: assignmentObject
+    });
+}
+
 function getPaperCoderData( assignmentKey ){
     return http({
         url: "/loadAssignment?key="+assignmentKey,
@@ -38,6 +46,7 @@ function http( config ){
 export {
     http,
     getAssignment,
+    putAssignment,
     getUsersAssignments,
     getPaperCoderData
 }

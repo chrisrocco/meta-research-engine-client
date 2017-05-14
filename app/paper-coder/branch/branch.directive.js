@@ -66,7 +66,7 @@ function BigDataBranch(paperCoderService) {
              * @param inputObject
              */
             this.toggleScope = function(inputObject){
-                console.log("Branch toggle scope");
+                console.log("Branch toggle scope ", inputObject);
                 paperCoderService.toggleScope(inputObject);
             }
         },

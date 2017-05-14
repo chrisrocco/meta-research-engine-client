@@ -26,8 +26,8 @@ function BigDataDomain(paperCoderService) {
              * @returns {boolean}
              */
             function isAlive(){
-                for(var i = 0; i < $scope.domain.fields.length; i++){
-                    var theField = $scope.domain.fields[i];
+                for(var i = 0; i < $scope.domain.variables.length; i++){
+                    var theField = $scope.domain.variables[i];
                     if($ctrl.isAlive(theField._key)){
                         return true;
                     }
@@ -39,15 +39,15 @@ function BigDataDomain(paperCoderService) {
              * Iterively toggles the scope of all child fields
              */
             function toggleScope(){
-                for(var i = 0; i < $scope.domain.fields.length; i++){
-                    var theField = $scope.domain.fields[i];
+                for(var i = 0; i < $scope.domain.variables.length; i++){
+                    var theField = $scope.domain.variables[i];
                     $ctrl.toggleScope($ctrl.getInput(theField._key));
                 }
             }
 
             function isComplete(){
-                for(var i = 0; i < $scope.domain.fields.length; i++){
-                    var theField = $scope.domain.fields[i];
+                for(var i = 0; i < $scope.domain.variables.length; i++){
+                    var theField = $scope.domain.variables[i];
                     var theInput = $ctrl.getInput(theField._key);
                     if(theInput){
                         if(

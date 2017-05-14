@@ -6,14 +6,18 @@ PaperCoderController.$inject = ['$scope', '$http', '$log', 'paper-coder.service'
 function PaperCoderController($scope, $http, $log, paperCoderService, editorService) {
 
     $scope.assignment = mockAssignment;
-    $scope.structure = mockStructure;
+    // $scope.structure = mockStructure;
+    $scope.structure = [];
 
     $scope.newBranch = paperCoderService.newBranch;
     $scope.calculateCompletion = paperCoderService.calculateCompletion;
     $scope.toggleComplete = paperCoderService.toggleComplete;
 
     $scope.save = function(){
-        console.log( $scope.assignment.encoding );
+        console.log( $scope.assignment );
+        DataService.putAssignment( $scope.assignment ).then( function(res){
+            console.log('save response', res);
+        })
     };
 
     DataService.getPaperCoderData( localStorage.assignmentKey ).success( function(data){
@@ -36,7 +40,7 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
 
                 for( var i = 0; i < data.questions.length; i++ ){
                     var input = {
-                        field: data.questions[i],
+                        field: data.questions[i]['_key'],
                         content: {
                             value: ""
                         }
@@ -44,8 +48,9 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
                     assignmentInputs.push( input );
                 }
 
-                encoding.constants.push( assignmentInputs );
+                encoding.constants = assignmentInputs;
                 $scope.assignment.encoding = encoding;
+                paperCoderService.loadAssignment( $scope.assignment );
                 alert("initialized blank encoding");
                 console.log( $scope.assignment.encoding );
             }
