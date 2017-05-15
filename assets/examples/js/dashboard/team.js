@@ -1,6 +1,6 @@
 /*!
- * remark (http://getbootstrapadmin.com/remark)
- * Copyright 2017 amazingsurge
+ * bigdata (https://uab-energetics.github.io/bigdata-app/html/)
+ * Copyright 2017 chrisrocco
  * Licensed under the Themeforest Standard Licenses
  */
 (function(document, window, $) {

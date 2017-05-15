@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
+    exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
@@ -59,6 +59,23 @@
         });
     }
 
+    function getProjectsData() {
+        return http({
+            url: "/loadProjects",
+            method: "GET",
+            dataType: "json"
+        });
+    }
+
+    function postProject(projectObject) {
+        return http({
+            url: "/studies",
+            method: "POST",
+            data: projectObject,
+            dataType: "json"
+        });
+    }
+
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
@@ -72,4 +89,6 @@
     exports.putAssignment = putAssignment;
     exports.getUsersAssignments = getUsersAssignments;
     exports.getPaperCoderData = getPaperCoderData;
+    exports.getProjectsData = getProjectsData;
+    exports.postProject = postProject;
 });

@@ -1,0 +1,142 @@
+---
+title: Projects
+body_class: app-projects
+---
+
+{{#extend "layout-default"}}
+{{#content "css_vendor" mode="append"}}
+<link rel="stylesheet" href="{{assets}}/vendor/jquery-selective/jquery-selective.css">
+<link rel="stylesheet" href="{{assets}}/vendor/bootstrap-sweetalert/sweetalert.css">
+{{/content}}
+
+{{#content "css" mode="prepend"}}
+<link rel="stylesheet" href="{{assets}}/examples/css/apps/projects.css">
+{{/content}}
+
+
+{{#content "js_vendor" mode="append"}}
+<script src="{{assets}}/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+<script src="{{assets}}/vendor/jquery-selective/jquery-selective.min.js"></script>
+<script src="{{assets}}/vendor/bootbox/bootbox.js"></script>
+<script src="{{assets}}/vendor/peity/jquery.peity.min.js"></script>
+{{/content}}
+
+{{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/animate-list.js"></script>
+<script src="{{assets}}/js/Plugin/bootbox.js"></script>
+<script src="{{assets}}/js/Site.js"></script>
+<script src="{{assets}}/js/App/Projects.js"></script>
+<script src="{{assets}}/js/Plugin/peity.js"></script>
+{{/content}}
+
+{{#content "scripts" mode="replace"}}
+<script src="{{assets}}/examples/js/projects.js"></script>
+{{/content}}
+
+{{#content "body"}}
+
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">Project Center</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
+            <li class="breadcrumb-item active">You are Here</li>
+        </ol>
+        <div class="page-header-actions">
+            <div class="counter inline-block text-right mr-20 hidden-sm-down">
+                <div class="counter-label">New Users</div>
+                <span data-new-users class="counter-number font-weight-medium">[data-injected-here]</span>
+            </div>
+            <span data-plugin="peityBar" data-width="90" data-height="38" data-padding="0.25"
+                  data-skin="blue">5,3,9,6,5,9,7,3,5,2</span>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="projects-wrap">
+            <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
+                data-plugin="animateList" data-child=">li">
+                <!-- Dynamically Populated -->
+            </ul>
+            <template id="projectPanel">
+                <li>
+                    <div class="panel">
+                        <figure class="overlay overlay-hover animation-hover">
+                            <img class="caption-figure overlay-figure" src="{{assets}}/photos/placeholder.png">
+                            <figcaption
+                                    class="overlay-panel overlay-background overlay-fade text-center vertical-align">
+                                <div class="btn-group">
+                                    <div class="dropdown float-left">
+                                        <button type="button" class="btn btn-icon btn-pure btn-default"
+                                                title="Setting"><i class="icon wb-settings" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="">Copy</a>
+                                            <a class="dropdown-item" href="">Rename</a>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
+                                            data-tag="project-delete"><i class="icon wb-trash"
+                                                                         aria-hidden="true"></i></button>
+                                </div>
+                                <button type="button" class="btn btn-outline btn-default project-button">View
+                                    Project
+                                </button>
+                            </figcaption>
+                        </figure>
+                        <div data-date class="time float-right">Feb 22, 2017</div>
+                        <div data-name class="text-truncate">Lorem ipsum</div>
+                    </div>
+                </li>
+            </template>
+        </div>
+    </div>
+</div>
+
+<!-- Site Action -->
+<button class="site-action btn-raised btn btn-success btn-floating" data-target="#addProjectForm"
+        data-toggle="modal" type="button">
+    <i class="icon wb-plus" aria-hidden="true"></i>
+</button>
+<!-- End Site Action -->
+
+<!-- Add Project Form -->
+<div class="modal fade" id="addProjectForm" aria-hidden="true" aria-labelledby="addProjectForm"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-simple">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Create New Project</h4>
+            </div>
+            <div class="modal-body">
+                <form name="createProjectForm" action="" role="form">
+                    <div class="form-group">
+                        <label class="form-control-label mb-15" for="name">Project name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Project name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label mb-15" for="name">Project description:</label>
+                        <textarea name="description" class="form-control mb-sm" placeholder="Project description."
+                                  rows="4"></textarea>
+                    </div>
+                    <!--<div class="form-group">-->
+                    <!--<label class="form-control-label mb-15" for="name">Choice people to your project:</label>-->
+                    <!--<select multiple="multiple" class="plugin-selective"></select>-->
+                    <!--</div>-->
+                </form>
+            </div>
+            <div class="modal-footer text-left">
+                <button class="btn btn-primary" data-dismiss="modal" type="button" onclick="submitNewProjectForm()">
+                    Create
+                </button>
+                <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Add Project Form -->
+
+{{/content}}
+{{/extend}}

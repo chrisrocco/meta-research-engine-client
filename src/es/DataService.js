@@ -39,6 +39,23 @@ function getPaperCoderData( assignmentKey ){
     });
 }
 
+function getProjectsData(){
+    return http({
+        url: "/loadProjects",
+        method: "GET",
+        dataType: "json"
+    });
+}
+
+function postProject( projectObject ){
+    return http({
+        url: "/studies",
+        method: "POST",
+        data: projectObject,
+        dataType: "json"
+    })
+}
+
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
@@ -52,5 +69,7 @@ export {
     getAssignment,
     putAssignment,
     getUsersAssignments,
-    getPaperCoderData
+    getPaperCoderData,
+    getProjectsData,
+    postProject
 }
