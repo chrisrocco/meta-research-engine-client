@@ -7,10 +7,12 @@ body_class: page-login-v3 layout-full
 
   {{#content "css" mode="prepend"}}
     <link rel="stylesheet" href="{{assets}}/examples/css/pages/login-v3.css">
+  <link rel="stylesheet" href="{{assets}}/vendor/bootstrap-sweetalert/sweetalert.css">
   {{/content}}
 
 
   {{#content "js_vendor" mode="append"}}
+    <script src="{{assets}}/vendor/bootstrap-sweetalert/sweetalert.js"></script>
     <script src="{{assets}}/vendor/jquery-placeholder/jquery.placeholder.js"></script>
   {{/content}}
 

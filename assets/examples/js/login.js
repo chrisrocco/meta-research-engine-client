@@ -35,10 +35,25 @@ function fail( response ){
     var data = JSON.parse( json );
 
     if( data.reason === "inactive" ){
-        alert("You must active your account first");
+        swal({
+            title: "Not so Fast!",
+            text: "You need to validate your email first.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        });
     }
     if( data.reason === "invalid") {
-        // do something else
-        alert("Invalid Credentials");
+        swal({
+            title: "Invalid Login",
+            text: "Try Again",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        });
     }
 }

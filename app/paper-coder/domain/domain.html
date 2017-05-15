@@ -1,4 +1,4 @@
-<div class="panel" ng-show="isAlive()">
+<div class="panel" ng-show="isAlive( domain )">
     <div class="panel-heading">
         <a class="panel-title" data-toggle="collapse"
            href="" onclick="return false;"
@@ -6,10 +6,10 @@
             <button ng-hide="edit"
                     type="button" class="btn btn-pure btn-outline btn-primary btn-round">
                 <i class="icon {{domain.icon}}" aria-hidden="true"></i></button>
-            <button ng-show="edit" ng-click="toggleScope()"
+            <button ng-show="edit" ng-click="toggleScope( domain )"
                     type="button" class="btn btn-icon btn-warning btn-outline btn-round">
                 <i class="icon md md-swap" aria-hidden="true"></i></button>
-            &nbsp;&nbsp;&nbsp;{{domain.name}} <span ng-if="isComplete()" class="badge badge-success">Complete</span>
+            &nbsp;&nbsp;&nbsp;{{domain.name}} <span ng-if="isComplete( domain )" class="badge badge-success">Complete</span>
         </a>
     </div>
     <div class="panel-collapse collapse in" id="{{name}}-content-{{domain._key}}">
@@ -21,6 +21,10 @@
                 <ul class="list-group list-group-gap">
                     <ng-transclude></ng-transclude>
                 </ul>
+                <h4 class="example-title">{{domain.name}} Subdomains</h4>
+                <bd-domain ng-repeat="subdomain in domain.subdomains" domain="subdomain" >
+                    <bd-field ng-repeat="variable in subdomain.variables" field="variable" ></bd-field>
+                </bd-domain>
             </div>
             <!-- End Example Gap -->
         </div>

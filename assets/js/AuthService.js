@@ -16,7 +16,8 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    var API_BASE_PATH = "http://localhost:8080";
+    // const API_BASE_PATH = "http://localhost:8080";
+    var API_BASE_PATH = "http://35.184.147.35";
     var TOKEN_PROVIDER = API_BASE_PATH + "/users/login";
     var REGISTER = API_BASE_PATH + "/users/register";
 

@@ -1,4 +1,5 @@
-const API_BASE_PATH = "http://localhost:8080";
+// const API_BASE_PATH = "http://localhost:8080";
+const API_BASE_PATH = "http://35.184.147.35";
 const TOKEN_PROVIDER = API_BASE_PATH + "/users/login";
 const REGISTER = API_BASE_PATH + "/users/register";
 

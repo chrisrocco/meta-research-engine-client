@@ -10,12 +10,43 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
     // functions
     $scope.newBranch = paperCoderService.newBranch;
     $scope.calculateCompletion = paperCoderService.calculateCompletion;
-    $scope.toggleComplete = paperCoderService.toggleComplete;
+    $scope.toggleComplete = function(){
+        if( $scope.assignment.done == true ){
+            swal({
+                title: "Still Working?",
+                text: "We'll hold off on using your data.",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
+        }
+        if( $scope.assignment.done == false ){
+            swal({
+                title: "Assignment Complete!",
+                text: "We'll put your data to good use!",
+                type: "success",
+                showCancelButton: false,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
+        }
+
+        paperCoderService.toggleComplete();
+    }
     $scope.save = function(){
-        console.log( $scope.assignment );
-        console.log( "json", JSON.stringify($scope.assignment));
         DataService.putAssignment( $scope.assignment ).then( function(res){
-            console.log('save response', res);
+            swal({
+                title: "Work Saved!",
+                text: "Your work has been uploaded to the database!",
+                type: "success",
+                showCancelButton: false,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
         })
     };
 
@@ -60,4 +91,7 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
             paperCoderService.loadAssignment( $scope.assignment );
         });
     });
+    window.assignment = function () {
+        return $scope.assignment;
+    }
 }

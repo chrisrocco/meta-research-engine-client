@@ -25,12 +25,16 @@ function BigDataDomain(paperCoderService) {
              * Decides if this domain DOM element should be rendered
              * @returns {boolean}
              */
-            function isAlive(){
-                for(var i = 0; i < $scope.domain.variables.length; i++){
-                    var theField = $scope.domain.variables[i];
+            function isAlive( domainObject ){
+                for(var i = 0; i < domainObject.variables.length; i++){
+                    var theField = domainObject.variables[i];
                     if($ctrl.isAlive(theField._key)){
                         return true;
                     }
+                }
+                for( var sd = 0; sd < domainObject.subdomains.length; sd++ ){
+                    var subdomain = domainObject.subdomains[sd];
+                    if( isAlive(subdomain) ) return true;
                 }
                 return false;
             }
@@ -38,16 +42,20 @@ function BigDataDomain(paperCoderService) {
             /**
              * Iterively toggles the scope of all child fields
              */
-            function toggleScope(){
-                for(var i = 0; i < $scope.domain.variables.length; i++){
-                    var theField = $scope.domain.variables[i];
+            function toggleScope( domainObject ){
+                for(var i = 0; i < domainObject.variables.length; i++){
+                    var theField = domainObject.variables[i];
                     $ctrl.toggleScope($ctrl.getInput(theField._key));
+                }
+                for( var sd = 0; sd < domainObject.subdomains.length; sd++ ){
+                    var subdomain = domainObject.subdomains[sd];
+                    toggleScope(subdomain);
                 }
             }
 
-            function isComplete(){
-                for(var i = 0; i < $scope.domain.variables.length; i++){
-                    var theField = $scope.domain.variables[i];
+            function isComplete( domainObject ){
+                for(var i = 0; i < domainObject.variables.length; i++){
+                    var theField = domainObject.variables[i];
                     var theInput = $ctrl.getInput(theField._key);
                     if(theInput){
                         if(
@@ -55,6 +63,10 @@ function BigDataDomain(paperCoderService) {
                             && !(theInput.content.min && theInput.content.max)
                         ) return false;
                     }
+                }
+                for( var sd = 0; sd < domainObject.subdomains.length; sd++ ){
+                    var subdomain = domainObject.subdomains[sd];
+                    if( isComplete(subdomain) == false ) return false;
                 }
                 return true;
             }

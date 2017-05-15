@@ -78,6 +78,7 @@
             callback: function() {
               toastr.info("Primary button");
             }
+
           }
         }
       });
