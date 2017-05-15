@@ -17,7 +17,7 @@
         value: true
     });
     // const API_BASE_PATH = "http://localhost:8080";
-    var API_BASE_PATH = "http://coursebooks.xyz";
+    var API_BASE_PATH = "https://coursebooks.xyz";
     var TOKEN_PROVIDER = API_BASE_PATH + "/users/login";
     var REGISTER = API_BASE_PATH + "/users/register";
 

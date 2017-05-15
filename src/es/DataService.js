@@ -1,6 +1,6 @@
 import * as AuthService from 'AuthService';
 
-const API_BASE_PATH = "http://coursebooks.xyz";
+const API_BASE_PATH = "https://coursebooks.xyz";
 // const API_BASE_PATH = "http://localhost:8080";
 
 function getUsersAssignments( id ){

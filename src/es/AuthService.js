@@ -1,5 +1,5 @@
 // const API_BASE_PATH = "http://localhost:8080";
-const API_BASE_PATH = "http://coursebooks.xyz";
+const API_BASE_PATH = "https://coursebooks.xyz";
 const TOKEN_PROVIDER = API_BASE_PATH + "/users/login";
 const REGISTER = API_BASE_PATH + "/users/register";
 

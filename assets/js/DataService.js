@@ -20,7 +20,7 @@
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
-    var API_BASE_PATH = "http://coursebooks.xyz";
+    var API_BASE_PATH = "https://coursebooks.xyz";
     // const API_BASE_PATH = "http://localhost:8080";
 
     function getUsersAssignments(id) {
