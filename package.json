@@ -1,10 +1,10 @@
 {
-  "name": "remark",
-  "title": "Remark",
-  "description": "The best backend-end framework for developing responsive, mobile first projects on the web.",
-  "version": "3.2.0",
-  "homepage": "http://getbootstrapadmin.com/remark",
-  "private": true,
+  "name": "bigdata",
+  "title": "Big Data",
+  "description": "The best way to encode scientific papers.",
+  "version": "2.0.0",
+  "homepage": "https://uab-energetics.github.io/bigdata-app/html/",
+  "private": false,
   "keywords": [
     "css",
     "js",
@@ -12,16 +12,14 @@
     "mobile-first",
     "responsive",
     "framework",
-    "web",
-    "admin",
-    "bootstrap"
+    "web"
   ],
   "author": {
-    "name": "amazingsurge",
-    "url": "http://amazingSurge.com"
+    "name": "chrisrocco",
+    "url": "http://chrisroc.co"
   },
   "bugs": {
-    "url": "https://forum.getbootstrapadmin.com/remark"
+    "url": "https://github.com/uab-energetics/bigdata-app/issues"
   },
   "license": "Themeforest Standard Licenses",
   "licenses": [{
