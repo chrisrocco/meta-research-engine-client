@@ -23,7 +23,11 @@ function putAssignment( assignmentObject ){
     return http({
         url: "/assignments/" + assignmentObject._key,
         method: "PUT",
-        data: assignmentObject
+        data: {
+            "done": assignmentObject.done,
+            "completion": assignmentObject.completion,
+            "encoding": assignmentObject.encoding
+        }
     });
 }
 

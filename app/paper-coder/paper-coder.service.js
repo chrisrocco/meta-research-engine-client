@@ -4,7 +4,7 @@ angular
 
 function paperCoderService() {
 
-    var assignment;
+    var assignment = defaultModel;
 
     var service = {
         toggleScope: toggleScope,
@@ -12,7 +12,8 @@ function paperCoderService() {
         loadAssignment: loadAssignment,
         newBranch: newBranch,
         calculateCompletion: calculateCompletion,
-        toggleComplete: toggleComplete
+        toggleComplete: toggleComplete,
+        getAssignment: getAssignment
     };
     return service;
 
@@ -81,6 +82,8 @@ function paperCoderService() {
     }
 
     function calculateCompletion() {
+        if( !assignment ) return 0;
+
         var encoding = assignment.encoding;
         var totalInputs = encoding.constants.length + ( encoding.branches.length * encoding.branches[0].length );
         var filledInputs = 0;
@@ -129,4 +132,18 @@ function paperCoderService() {
     function loadAssignment(assignmentObject) {
         assignment = assignmentObject;
     }
+    function getAssignment(){
+        return assignment;
+    }
 }
+
+
+
+const defaultModel = {
+    done: false,
+    completion: 0,
+    encoding: {
+        constants: [],
+        branches:  [[]]
+    }
+};
