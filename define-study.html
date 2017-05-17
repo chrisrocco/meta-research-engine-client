@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Research Study Encoding System">
   <meta name="author" content="Chris Rocco">
-  <title>Treeview | Big Data UAB</title>
+  <title> | Big Data UAB</title>
   <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="..\assets/images/favicon.ico">
   <!-- Stylesheets -->
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="..\assets/vendor/intro-js/introjs.css">
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
+  <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
   <link rel="stylesheet" href="..\assets/vendor/toastr/toastr.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-treeview/bootstrap-treeview.css">
   <link rel="stylesheet" href="..\assets/vendor/jstree/jstree.min.css">
@@ -293,97 +294,391 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="project-builder" ng-controller="ProjectBuilderController">
     <div class="page-header">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Manage Study</li>
+        <li class="breadcrumb-item active">Edit Projects</li>
       </ol>
-      <h1 class="page-title">Manage Study</h1>
+      <h1 class="page-title">You are editing: <a href="javascript:void(0)">Murine Rigor</a> </h1>
       <div class="page-header-actions">
         <a class="btn btn-sm btn-inverse btn-round" href="https://github.com/jonmiles/bootstrap-treeview"
         target="_blank">
           <i class="icon wb-link" aria-hidden="true"></i>
-          <span class="hidden-sm-down">Official Website</span>
+          <span class="hidden-sm-down"></span>
         </a>
       </div>
     </div>
     <div class="page-content">
       <div class="row">
-        <div class="col-md-6">
-          <div class="panel">
-            <div class="panel-heading">
-              <h3 class="panel-title">Structure</h3>
-            </div>
-            <div class="panel-body container-fluid">
-              <!-- Example Basic -->
-              <div class="example-wrap">
-                <div class="example">
-                  <div id="exampleStructure"></div>
-                </div>
+        <!-- Structure Tree Column -->
+        <div class="col-lg-3 col-md-6">
+          <div class="col">
+            <div class="panel">
+              <div class="panel-heading">
+                <h3 class="panel-title">Current Structure</h3>
               </div>
-              <!-- End Example Basic -->
+              <div class="panel-body container-fluid">
+                <div id="projectStructure"></div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <!-- Node Preview -->
-          <div class="panel">
-            <div class="panel-heading">
-              <h3 class="panel-title">Preview</h3>
+        <!-- End Structure Tree Column -->
+        <!-- Forms Column -->
+        <div class="col-lg-9">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Add New Domain</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                  <form name="domainForm" autocomplete="off" ng-submit="handleSubmitDomain()">
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <h5 class="example-title">Parent Domain</h5>
+                        <select name="parent" class="form-control">
+                          <option value="#"> -- none -- </option>
+                          <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <input name="name" type="text" class="form-control" required/>
+                      <label class="floating-label">Name</label>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <input name="description" type="text" class="form-control" required/>
+                      <label class="floating-label">Description</label>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <input name="tooltip" type="text" class="form-control" required/>
+                      <label class="floating-label">Tool Tip</label>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <label class="control-label">icon</label>
+                      <input name="icon" type="text" id="domain-icon-picker" required/>
+                    </div>
+                    <!-- INPUT element -->
+                    <button type="submit" class="btn btn-block btn-primary"> Add to Project</button>
+                  </form>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Domains</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Domain</th>
+                        <th>Description</th>
+                        <th class="text-nowrap">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="domain in domains track by domain.id">
+                        <td> {[{domain.name}]} </td>
+                        <td> {[{domain.description.substring(0, 25)}]}... </td>
+                        <td class="text-nowrap">
+                          <button ng-click="editDomain( domain )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                          data-toggle="tooltip" data-original-title="Edit">
+                            <i class="icon wb-wrench" aria-hidden="true"></i>
+                          </button>
+                          <button ng-click="handleDeleteDomain( domain )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                          data-toggle="tooltip" data-original-title="Delete">
+                            <i class="icon wb-close" aria-hidden="true"></i>
+                          </button>
+                          <button ng-click="previewDomain( domain )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                          data-toggle="tooltip" data-original-title="Preview">
+                            <i class="icon wb-eye" aria-hidden="true"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-            <div id="variable-preview" class="panel-body container-fluid">
-              <div class="example-wrap">
-                <h4 class="example-title" data-name> </h4>
-                <p data-description>Place icon instead of text in add-on on either side of an input.
-                  You may also place one on both sides of an input. </p>
-                <div class="form-group">
-                  <div class="input-group input-group-icon">
-                    <span class="input-group-addon">
-                      <span data-icon class="icon wb-user" aria-hidden="true"></span>
-                    </span>
-                    <input type="text" class="form-control" placeholder="Response">
+            <div class="col-lg-6">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Add New Question</h3>
+                  <!--<h4 class="example-title">Active</h4>-->
+                  <!--<p></p>-->
+                </div>
+                <div class="panel-body container-fluid">
+                  <form name="questionForm" autocomplete="off" ng-submit="handleSubmitQuestion()">
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <h5 class="example-title">Parent Domain</h5>
+                        <select name="parent" class="form-control">
+                          <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <h5 class="example-title"> Type </h5>
+                        <select ng-model="selectedQuestionType" ng-options="type.id as type.name for type in questionTypes"
+                        name="type" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <input name="name" type="text" class="form-control" required/>
+                      <label class="floating-label">Name</label>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <input name="question" type="text" class="form-control" required/>
+                      <label class="floating-label">The Question</label>
+                    </div>
+                    <!-- Type Conditionals -->
+                    <div ng-if="selectedQuestionType === 'number'" class="row">
+                      <div class="form-group col-md-4">
+                        <label class="floating-label">Min</label>
+                        <input name="min" type="number" class="form-control" placeholder="Lower Bound"
+                        />
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label class="floating-label">Max</label>
+                        <input name="max" type="number" class="form-control" placeholder="Upper Bound"
+                        />
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label class="floating-label">Unit</label>
+                        <input name="unit" type="text" class="form-control" placeholder="grams, celsius, meters"
+                        />
+                      </div>
+                    </div>
+                    <div ng-if="selectedQuestionType === 'boolean'" class="row">
+                      <div class="form-group col-md-6">
+                        <label class="floating-label">True Option</label>
+                        <input name="trueOption" type="text" class="form-control" placeholder="Yes" />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="floating-label">False Option</label>
+                        <input name="falseOption" type="text" class="form-control" placeholder="No" />
+                      </div>
+                    </div>
+                    <div ng-if="selectedQuestionType === 'text'" class="form-group form-material floating"
+                    data-plugin="formMaterial">
+                      <input name="placeholder" type="text" class="form-control" placeholder="This text is a placeholder"
+                      required/>
+                      <label class="floating-label">Placeholder</label>
+                    </div>
+                    <div ng-if="selectedQuestionType === 'range'" class="row">
+                      <div class="form-group col-md-4">
+                        <label class="floating-label">Min</label>
+                        <input name="rangeMin" type="number" class="form-control" placeholder="Lower Bound"
+                        />
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label class="floating-label">Max</label>
+                        <input name="rangeMax" type="number" class="form-control" placeholder="Upper Bound"
+                        />
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label class="floating-label">Unit</label>
+                        <input name="rangeUnit" type="text" class="form-control" placeholder="degrees"
+                        />
+                      </div>
+                    </div>
+                    <!-- End Type Conditionals -->
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <input name="tooltip" type="text" class="form-control" required/>
+                      <label class="floating-label">Tool Tip</label>
+                    </div>
+                    <div class="form-group form-material floating" data-plugin="formMaterial">
+                      <label class="control-label">icon</label>
+                      <input name="icon" type="text" id="variable-icon-picker" required/>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary"> Add to Project</button>
+                  </form>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Questions</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                  <div class="example table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Question</th>
+                          <th>Description</th>
+                          <th class="text-nowrap">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="question in questions track by question.id">
+                          <td> {[{question.name}]} </td>
+                          <td> {[{question.question.substring(0, 25)}]}... </td>
+                          <td class="text-nowrap">
+                            <button ng-click="editQuestion( question )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                            data-toggle="tooltip" data-original-title="Edit">
+                              <i class="icon wb-wrench" aria-hidden="true"></i>
+                            </button>
+                            <button ng-click="handleDeleteQuestion( question )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                            data-toggle="tooltip" data-original-title="Delete">
+                              <i class="icon wb-close" aria-hidden="true"></i>
+                            </button>
+                            <button ng-click="previewQuestion( question )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                            data-toggle="tooltip" data-original-title="Preview">
+                              <i class="icon wb-eye" aria-hidden="true"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="domain-preview" class="panel-body container-fluid">
-              <div class="example-wrap">
-                <h4 class="example-title" data-name> </h4>
-                <p data-description>Place icon instead of text in add-on on either side of an input.
-                  You may also place one on both sides of an input. </p>
-              </div>
-            </div>
           </div>
-          <!-- End Node Preview -->
-          <!-- Panel Floating Labels -->
-          <div id="addVariablePanel" class="panel">
-            <div class="panel-heading">
-              <h3 class="panel-title">Add New Variable</h3>
-            </div>
+        </div>
+        <!-- End Forms Column -->
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editDomainModal" aria-hidden="false" aria-labelledby="editDomainModalLabel"
+    role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-simple">
+        <form class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="editDomainModalLabel">Edit Domain</h4>
+          </div>
+          <div class="modal-body">
             <div class="panel-body container-fluid">
-              <form name="variableForm" autocomplete="off" onsubmit="return parseVariableForm()">
-                <div class="form-group form-material floating" data-plugin="formMaterial">
-                  <input type="text" class="form-control" name="name" required/>
-                  <label class="floating-label">Name</label>
+              <form name="domainForm" autocomplete="off" ng-submit="handleSubmitDomain()">
+                <h5 class="example-title">Parent Domain</h5>
+                <div class="form-group">
+                  <select ng-model="modalDomain.parent" class="form-control">
+                    <option value="#">-- none --</option>
+                    <option ng-repeat="domain in domains track by domain.id" ng-if="modalDomain.id !== domain.id && modalDomain.id !== domain.parent"
+                    value="{[{domain.id}]}">{[{domain.name}]}</option>
+                  </select>
                 </div>
-                <div class="form-group form-material floating" data-plugin="formMaterial">
-                  <input type="text" class="form-control" name="description" required/>
-                  <label class="floating-label">Description</label>
+                <div class="form-group">
+                  <label>Name</label>
+                  <input ng-model="modalDomain.name" type="text" class="form-control" placeholder="placeholder">
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <input ng-model="modalDomain.description" type="text" class="form-control" placeholder="placeholder">
+                </div>
+                <div class="form-group">
+                  <label>Tool Tip</label>
+                  <input ng-model="modalDomain.tooltip" type="text" class="form-control" placeholder="placeholder">
                 </div>
                 <div class="form-group form-material floating" data-plugin="formMaterial">
                   <label class="control-label">icon</label>
-                  <input type="text" name="icon" id="icon-picker" required/>
+                  <input ng-model="modalDomain.icon" type="text" name="icon" id="modal-icon-picker"
+                  required/>
                 </div>
                 <!-- INPUT element -->
-                <button type="submit" class="btn btn-block btn-primary"> Add to Study</button>
+                <button data-dismiss="modal" type="submit" class="btn btn-block btn-primary"> Update </button>
               </form>
             </div>
           </div>
-          <!-- End Panel Floating Labels -->
-        </div>
+        </form>
       </div>
     </div>
+    <div class="modal fade" id="editQuestionModal" aria-hidden="false" aria-labelledby="editQuestionModalLabel"
+    role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-simple">
+        <form class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="editQuestionModalLabel">Edit Question</h4>
+          </div>
+          <div class="modal-body">
+            <div class="panel-body container-fluid">
+              <form name="questionForm" autocomplete="off">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <h5 class="example-title">Parent Domain</h5>
+                    <select ng-model="modalQuestion.parent" name="parent" class="form-control">
+                      <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <h5 class="example-title"> Type </h5>
+                    <select ng-model="modalQuestion.type" ng-options="type.id as type.name for type in questionTypes"
+                    class="form-control">
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Name</label>
+                  <input ng-model="modalQuestion.name" name="name" type="text" class="form-control"
+                  required/>
+                </div>
+                <div class="form-group">
+                  <label class="floating-label">The Question</label>
+                  <input ng-model="modalQuestion.question" name="question" type="text" class="form-control"
+                  required/>
+                </div>
+                <!-- Type Conditionals -->
+                <div ng-if="modalQuestion.type === 'number'" class="row">
+                  <div class="form-group col-md-4">
+                    <label class="floating-label">Min</label>
+                    <input ng-model="modalQuestion.min" name="min" type="number" class="form-control"
+                    placeholder="Lower Bound" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label class="floating-label">Max</label>
+                    <input ng-model="modalQuestion.max" name="max" type="number" class="form-control"
+                    placeholder="Upper Bound" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label class="floating-label">Unit</label>
+                    <input ng-model="modalQuestion.unit" name="unit" type="text" class="form-control"
+                    placeholder="grams, celsius, meters" />
+                  </div>
+                </div>
+                <div ng-if="modalQuestion.type === 'boolean'" class="row">
+                  <div class="form-group col-md-6">
+                    <label class="floating-label">True Option</label>
+                    <input ng-model="modalQuestion.truOption" name="trueOption" type="text" class="form-control"
+                    placeholder="Yes" />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class="floating-label">False Option</label>
+                    <input ng-model="modalQuestion.falseOption" name="falseOption" type="text" class="form-control"
+                    placeholder="No" />
+                  </div>
+                </div>
+                <div ng-if="modalQuestion.type === 'text'" class="form-group">
+                  <label class="floating-label">Placeholder</label>
+                  <input ng-model="modalQuestion.placeholder" name="placeholder" type="text" class="form-control"
+                  required/>
+                </div>
+                <!-- End Type Conditionals -->
+                <div class="form-group">
+                  <label class="floating-label">Tool Tip</label>
+                  <input ng-model="modalQuestion.tooltip" name="tooltip" type="text" class="form-control"
+                  required/>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">icon</label>
+                  <input ng-model="modalQuestion.icon" name="icon" type="text" id="variable-editor-icon-picker"
+                  required/>
+                </div>
+                <button data-dismiss="modal" type="submit" class="btn btn-block btn-primary"> Update </button>
+              </form>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- End Modal -->
   </div>
   <!-- End Page -->
   <!-- Footer -->
@@ -407,6 +702,8 @@
   <script src="..\assets/vendor/intro-js/intro.js"></script>
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
+  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="..\assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
   <script src="..\assets/vendor/toastr/toastr.js"></script>
   <script src="..\assets/vendor/bootstrap-treeview/bootstrap-treeview.min.js"></script>
@@ -436,6 +733,8 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
+  <script src="../app/project-builder/project-builder.module.js"></script>
+  <script src="../app/project-builder/project-builder.controller.js"></script>
   <script src="..\assets/js/Plugin/jquery-placeholder.js"></script>
   <script src="..\assets/js/Plugin/material.js"></script>
   <script src="..\assets/js/Plugin/toastr.js"></script>
