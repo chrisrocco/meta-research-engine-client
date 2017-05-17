@@ -6,40 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Research Study Encoding System">
   <meta name="author" content="Chris Rocco">
-  <title>Sparkline Chart | Big Data UAB</title>
-  <link rel="apple-touch-icon" href="..\..\assets/images/apple-touch-icon.png">
-  <link rel="shortcut icon" href="..\..\assets/images/favicon.ico">
+  <title>Projects | Big Data UAB</title>
+  <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="..\assets/images/favicon.ico">
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="..\..\assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="..\..\assets/css/bootstrap-extend.min.css">
-  <link rel="stylesheet" href="..\..\assets/css/site.min.css">
+  <link rel="stylesheet" href="..\assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="..\assets/css/bootstrap-extend.min.css">
+  <link rel="stylesheet" href="..\assets/css/site.min.css">
   <!-- Plugins -->
-  <link rel="stylesheet" href="..\..\assets/vendor/animsition/animsition.css">
-  <link rel="stylesheet" href="..\..\assets/vendor/asscrollable/asScrollable.css">
-  <link rel="stylesheet" href="..\..\assets/vendor/switchery/switchery.css">
-  <link rel="stylesheet" href="..\..\assets/vendor/intro-js/introjs.css">
-  <link rel="stylesheet" href="..\..\assets/vendor/slidepanel/slidePanel.css">
-  <link rel="stylesheet" href="..\..\assets/vendor/flag-icon-css/flag-icon.css">
-  <link rel="stylesheet" href="..\..\assets/vendor/sparkline/sparkline.css">
-  <link rel="stylesheet" href="..\..\assets/examples/css/charts/sparkline.css">
+  <link rel="stylesheet" href="..\assets/vendor/animsition/animsition.css">
+  <link rel="stylesheet" href="..\assets/vendor/asscrollable/asScrollable.css">
+  <link rel="stylesheet" href="..\assets/vendor/switchery/switchery.css">
+  <link rel="stylesheet" href="..\assets/vendor/intro-js/introjs.css">
+  <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
+  <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
+  <link rel="stylesheet" href="..\assets/vendor/jquery-selective/jquery-selective.css">
+  <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
+  <link rel="stylesheet" href="..\assets/examples/css/apps/projects.css">
   <!-- Fonts -->
-  <link rel="stylesheet" href="..\..\assets/fonts/web-icons/web-icons.min.css">
-  <link rel="stylesheet" href="..\..\assets/fonts/brand-icons/brand-icons.min.css">
+  <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
+  <link rel="stylesheet" href="..\assets/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
   <!--[if lt IE 9]>
-    <script src="..\..\assets/vendor/html5shiv/html5shiv.min.js"></script>
+    <script src="..\assets/vendor/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
   <!--[if lt IE 10]>
-    <script src="..\..\assets/vendor/media-match/media.match.min.js"></script>
-    <script src="..\..\assets/vendor/respond/respond.min.js"></script>
+    <script src="..\assets/vendor/media-match/media.match.min.js"></script>
+    <script src="..\assets/vendor/respond/respond.min.js"></script>
     <![endif]-->
   <!-- Scripts -->
-  <script src="..\..\assets/vendor/breakpoints/breakpoints.js"></script>
+  <script src="..\assets/vendor/breakpoints/breakpoints.js"></script>
   <script>
   Breakpoints();
   </script>
 </head>
-<body class="animsition">
+<body class="animsition app-projects">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -56,7 +57,7 @@
         <i class="icon wb-more-horizontal" aria-hidden="true"></i>
       </button>
       <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-        <img class="navbar-brand-logo" src="..\..\assets/images/logo.png" title="Remark">
+        <img class="navbar-brand-logo" src="..\assets/images/logo.png" title="Remark">
       </div>
       <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
       data-toggle="collapse">
@@ -192,8 +193,8 @@
         </ul>
         <!-- End Navbar Toolbar Right -->
         <div class="navbar-brand navbar-brand-center">
-          <a href="..\index.html">
-            <img class="navbar-brand-logo" src="..\..\assets/images/UAB-logo-white.png" title="Remark">
+          <a href="index.html">
+            <img class="navbar-brand-logo" src="..\assets/images/UAB-logo-white.png" title="Remark">
           </a>
         </div>
       </div>
@@ -217,7 +218,7 @@
   <div class="site-menubar">
     <div class="site-menubar-header">
       <div class="cover overlay">
-        <img class="cover-image" src="..\..\assets//examples/images/dashboard-header.jpg"
+        <img class="cover-image" src="..\assets//examples/images/dashboard-header.jpg"
         alt="...">
         <div class="overlay-panel vertical-align overlay-background">
           <div class="vertical-align-middle">
@@ -256,20 +257,26 @@
             </li>
             <li class="site-menu-item ">
               <a href="paper-coder.html">
-                <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-pie-chart" aria-hidden="true"></i>
                 <span class="site-menu-title">Paper Coder</span>
               </a>
             </li>
-            <li class="site-menu-item ">
-              <a href="projects.html">
-                <i class="site-menu-icon wb-sitemap" aria-hidden="true"></i>
+            <li class="site-menu-item  active open">
+              <a href="project-center.html">
+                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
                 <span class="site-menu-title"> Project Center </span>
               </a>
             </li>
             <li class="site-menu-item ">
-              <a href="define-study.html">
+              <a href="project-builder.html">
                 <i class="site-menu-icon wb-user-add" aria-hidden="true"></i>
-                <span class="site-menu-title"> Define Study </span>
+                <span class="site-menu-title"> Project Builder </span>
+              </a>
+            </li>
+            <li class="site-menu-item ">
+              <a href="example-paper-report.html">
+                <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                <span class="site-menu-title"> Example Paper Report </span>
               </a>
             </li>
             <li class="site-menu-item ">
@@ -292,189 +299,98 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Sparkline Chart</h1>
+      <h1 class="page-title">Project Center</h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="..\index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Charts</a></li>
-        <li class="breadcrumb-item active">Sparkline</li>
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">You are Here</li>
       </ol>
       <div class="page-header-actions">
-        <a class="btn btn-sm btn-default btn-outline btn-round" href="http://omnipotent.net/jquery.sparkline/"
-        target="_blank">
-          <i class="icon wb-link" aria-hidden="true"></i>
-          <span class="hidden-sm-down">Official Website</span>
-        </a>
+        <div class="counter inline-block text-right mr-20 hidden-sm-down">
+          <div class="counter-label">New Users</div>
+          <span data-new-users class="counter-number font-weight-medium">[data-injected-here]</span>
+        </div>
+        <span data-plugin="peityBar" data-width="90" data-height="38" data-padding="0.25"
+        data-skin="blue">5,3,9,6,5,9,7,3,5,2</span>
       </div>
     </div>
     <div class="page-content">
-      <!-- Panel Sparkline Basic -->
-      <div class="panel">
-        <header class="panel-heading">
-          <h3 class="panel-title">Sparkline Basic</h3>
-        </header>
-        <div class="panel-body container-fluid">
-          <div class="row row-lg">
-            <div class="col-md-6 col-xl-3">
-              <!-- Example Sparkline Pie Chart -->
-              <div class="example-wrap m-lg-0">
-                <h4 class="example-title">Sparkline Pie Chart</h4>
-                <div class="example text-center">
-                  <div class="sparkline-pie-chart"></div>
-                </div>
-              </div>
-              <!-- End Example Sparkline Pie Chart -->
+      <div class="projects-wrap">
+        <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
+        data-plugin="animateList" data-child=">li">
+          <!-- Dynamically Populated -->
+        </ul>
+        <template id="projectPanel">
+          <li>
+            <div class="panel">
+              <figure class="overlay overlay-hover animation-hover">
+                <img class="caption-figure overlay-figure" src="..\assets/photos/placeholder.png">
+                <figcaption class="overlay-panel overlay-background overlay-fade text-center vertical-align">
+                  <div class="btn-group">
+                    <div class="dropdown float-left">
+                      <button type="button" class="btn btn-icon btn-pure btn-default" title="Setting"><i class="icon wb-settings" aria-hidden="true"></i>
+                      </button>
+                      <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" href="">Copy</a>
+                        <a class="dropdown-item" href="">Rename</a>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
+                    data-tag="project-delete"><i class="icon wb-trash" aria-hidden="true"></i></button>
+                  </div>
+                  <button data-key onclick="openProject( this )" type="button" class="btn btn-outline btn-default project-button">View Project
+                  </button>
+                </figcaption>
+              </figure>
+              <div data-date class="time float-right">Feb 22, 2017</div>
+              <div data-name class="text-truncate">Lorem ipsum</div>
             </div>
-            <div class="col-md-6 col-xl-3">
-              <!-- Example Sparkline Line -->
-              <div class="example-wrap m-lg-0">
-                <h4 class="example-title">Sparkline Line Chart</h4>
-                <div class="example text-center">
-                  <div class="sparkline-line-chart"></div>
-                </div>
-              </div>
-              <!-- End Example Sparkline Line -->
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <!-- Example Sparkline Bar -->
-              <div class="example-wrap m-sm-0">
-                <h4 class="example-title">Sparkline Bar Chart</h4>
-                <div class="example text-center">
-                  <div class="sparkline-bar-chart"></div>
-                </div>
-              </div>
-              <!-- End Example Sparkline Bar -->
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <!-- Example Sparkline Compositie -->
-              <div class="example-wrap">
-                <h4 class="example-title">Sparkline Compositie Chart</h4>
-                <div class="example text-center">
-                  <div class="sparkline-compositebar-chart">4,6,7,5,4,3,2,4,8,5</div>
-                </div>
-              </div>
-              <!-- End Example Sparkline Compositie -->
-            </div>
-          </div>
-        </div>
+          </li>
+        </template>
       </div>
-      <!-- End Panel Sparkline Basic -->
-      <!-- Panel Sparkline Types -->
-      <div class="panel">
-        <header class="panel-heading">
-          <h3 class="panel-title">Sparkline Types</h3>
-        </header>
-        <table class="table table-striped">
-          <colgroup class="row">
-            <col class="col-sm-2">
-              <col class="col-sm-6">
-          </colgroup>
-          <tr>
-            <td>Inline</td>
-            <td>
-              <span class="sparkline-line">10,8,9,3,5,8,5</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Line graphs</td>
-            <td>
-              <span class="sparkline-line">8,4,0,0,0,0,1,4,4,10,10,10,10,0,0,0,4,6,5,9,10</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Bar charts</td>
-            <td>
-              <span class="sparkline-bar">10,8,9,3,5,8,5</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Negative values</td>
-            <td>
-              <span class="sparkline-bar">-3,1,2,0,3,-1</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Stacked</td>
-            <td>
-              <span class="sparkline-bar">0:2,2:4,4:2,4:1</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Composite inline</td>
-            <td>
-              <span class="sparkline-compositeline">8,4,0,3,0,3,1,4,4,10,4,10,0,1,4,6,5,9,10</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Inline with range</td>
-            <td>
-              <span class="sparkline-normalline">8,4,0,2,8,3,1,9,4,10,5,10,8,0,3,2,4</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Composite bar</td>
-            <td>
-              <span class="sparkline-compositebar">4,6,7,7,4,3,2,1,4</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Discrete</td>
-            <td>
-              <span class="sparkline-discrete1">4,6,7,7,4,3,2,1,4,4,5,6,7,6,6,2,4,5,4,6,7,7,4,3,2,1,4,4,5,6,7,6,6,2,4,5</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Discrete with threshold</td>
-            <td>
-              <span class="sparkline-discrete2">4,6,7,7,4,3,2,1,4,6,7,7,4,3,2,1,4,2,1,4,6,7,7,4,3,4,6,7,7,4,3,2,1,4,2,1,4,6,7,7,4,3</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Bullet charts</td>
-            <td>
-              <span class="sparkline-bullet">10,12,12,9,7</span>
-              <br/>
-              <span class="sparkline-bullet">10,12,14,9,7</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Customize</td>
-            <td>
-              <span class="sparkline-linecustom">10,8,9,3,5,8,5,7</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Tristate charts</td>
-            <td>
-              <span class="sparkline-tristate">1,1,0,1,-1,-1,1,-1,0,0,1,1</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Tristate with colour map</td>
-            <td>
-              <span class="sparkline-tristatecols">1,2,0,2,-1,-4,1,-2,0,0,1,1</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Box Plot</td>
-            <td>
-              <span class="sparkline-boxplot">4,27,34,52,54,59,61,68,78,82,85,87,91,93,100</span>&nbsp;
-              <span class="sparkline-boxplotraw">Loading..</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Pie charts</td>
-            <td>
-              <span class="sparkline-pie-1">5,3</span>&nbsp;&nbsp;
-              <span class="sparkline-pie">1,1,2</span>&nbsp;&nbsp;
-              <span class="sparkline-pie">20,50,80</span>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- End Panel Sparkline Types -->
     </div>
   </div>
-  <!-- End Page -->
+  <!-- Site Action -->
+  <button class="site-action btn-raised btn btn-success btn-floating" data-target="#addProjectForm"
+  data-toggle="modal" type="button">
+    <i class="icon wb-plus" aria-hidden="true"></i>
+  </button>
+  <!-- End Site Action -->
+  <!-- Add Project Form -->
+  <div class="modal fade" id="addProjectForm" aria-hidden="true" aria-labelledby="addProjectForm"
+  role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-simple">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Create New Project</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createProjectForm" action="" role="form">
+            <div class="form-group">
+              <label class="form-control-label mb-15" for="name">Project name:</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Project name">
+            </div>
+            <div class="form-group">
+              <label class="form-control-label mb-15" for="name">Project description:</label>
+              <textarea name="description" class="form-control mb-sm" placeholder="Project description."
+              rows="4"></textarea>
+            </div>
+            <!--<div class="form-group">-->
+            <!--<label class="form-control-label mb-15" for="name">Choice people to your project:</label>-->
+            <!--<select multiple="multiple" class="plugin-selective"></select>-->
+            <!--</div>-->
+          </form>
+        </div>
+        <div class="modal-footer text-left">
+          <button class="btn btn-primary" data-dismiss="modal" type="button" onclick="submitNewProjectForm()">
+            Create
+          </button>
+          <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Add Project Form -->
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer-legal">© 2017 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Big Data</a></div>
@@ -483,44 +399,52 @@
     </div>
   </footer>
   <!-- Core  -->
-  <script src="..\..\assets/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-  <script src="..\..\assets/vendor/jquery/jquery.js"></script>
-  <script src="..\..\assets/vendor/tether/tether.js"></script>
-  <script src="..\..\assets/vendor/bootstrap/bootstrap.js"></script>
-  <script src="..\..\assets/vendor/animsition/animsition.js"></script>
-  <script src="..\..\assets/vendor/mousewheel/jquery.mousewheel.js"></script>
-  <script src="..\..\assets/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-  <script src="..\..\assets/vendor/asscrollable/jquery-asScrollable.js"></script>
+  <script src="..\assets/vendor/babel-external-helpers/babel-external-helpers.js"></script>
+  <script src="..\assets/vendor/jquery/jquery.js"></script>
+  <script src="..\assets/vendor/tether/tether.js"></script>
+  <script src="..\assets/vendor/bootstrap/bootstrap.js"></script>
+  <script src="..\assets/vendor/animsition/animsition.js"></script>
+  <script src="..\assets/vendor/mousewheel/jquery.mousewheel.js"></script>
+  <script src="..\assets/vendor/asscrollbar/jquery-asScrollbar.js"></script>
+  <script src="..\assets/vendor/asscrollable/jquery-asScrollable.js"></script>
   <!-- Plugins -->
-  <script src="..\..\assets/vendor/switchery/switchery.min.js"></script>
-  <script src="..\..\assets/vendor/intro-js/intro.js"></script>
-  <script src="..\..\assets/vendor/screenfull/screenfull.js"></script>
-  <script src="..\..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
-  <script src="..\..\assets/vendor/sparkline/jquery.sparkline.min.js"></script>
+  <script src="..\assets/vendor/switchery/switchery.min.js"></script>
+  <script src="..\assets/vendor/intro-js/intro.js"></script>
+  <script src="..\assets/vendor/screenfull/screenfull.js"></script>
+  <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
+  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="..\assets/vendor/jquery-selective/jquery-selective.min.js"></script>
+  <script src="..\assets/vendor/bootbox/bootbox.js"></script>
+  <script src="..\assets/vendor/peity/jquery.peity.min.js"></script>
   <!-- Scripts -->
-  <script src="..\..\assets/js/State.js"></script>
-  <script src="..\..\assets/js/Component.js"></script>
-  <script src="..\..\assets/js/Plugin.js"></script>
-  <script src="..\..\assets/js/Base.js"></script>
-  <script src="..\..\assets/js/Config.js"></script>
-  <script src="..\..\assets/js/Section/Menubar.js"></script>
-  <script src="..\..\assets/js/Section/Sidebar.js"></script>
-  <script src="..\..\assets/js/Section/PageAside.js"></script>
-  <script src="..\..\assets/js/Plugin/menu.js"></script>
+  <script src="..\assets/js/State.js"></script>
+  <script src="..\assets/js/Component.js"></script>
+  <script src="..\assets/js/Plugin.js"></script>
+  <script src="..\assets/js/Base.js"></script>
+  <script src="..\assets/js/Config.js"></script>
+  <script src="..\assets/js/Section/Menubar.js"></script>
+  <script src="..\assets/js/Section/Sidebar.js"></script>
+  <script src="..\assets/js/Section/PageAside.js"></script>
+  <script src="..\assets/js/Plugin/menu.js"></script>
   <!-- Providers -->
-  <script src="..\..\assets/js/AuthService.js"></script>
-  <script src="..\..\assets/js/DataService.js"></script>
+  <script src="..\assets/js/AuthService.js"></script>
+  <script src="..\assets/js/DataService.js"></script>
   <!-- Config -->
-  <script src="..\..\assets/js/config/colors.js"></script>
-  <script src="..\..\assets/js/config/tour.js"></script>
+  <script src="..\assets/js/config/colors.js"></script>
+  <script src="..\assets/js/config/tour.js"></script>
   <script>
-  Config.set('assets', '..\..\assets');
+  Config.set('assets', '..\assets');
   </script>
   <!-- Page -->
-  <script src="..\..\assets/js/Site.js"></script>
-  <script src="..\..\assets/js/Plugin/asscrollable.js"></script>
-  <script src="..\..\assets/js/Plugin/slidepanel.js"></script>
-  <script src="..\..\assets/js/Plugin/switchery.js"></script>
-  <script src="..\..\assets/examples/js/charts/sparkline.js"></script>
+  <script src="..\assets/js/Site.js"></script>
+  <script src="..\assets/js/Plugin/asscrollable.js"></script>
+  <script src="..\assets/js/Plugin/slidepanel.js"></script>
+  <script src="..\assets/js/Plugin/switchery.js"></script>
+  <script src="..\assets/js/Plugin/animate-list.js"></script>
+  <script src="..\assets/js/Plugin/bootbox.js"></script>
+  <script src="..\assets/js/Site.js"></script>
+  <script src="..\assets/js/App/Projects.js"></script>
+  <script src="..\assets/js/Plugin/peity.js"></script>
+  <script src="..\assets/examples/js/project-center.js"></script>
 </body>
 </html>
