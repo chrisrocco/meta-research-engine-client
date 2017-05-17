@@ -16,12 +16,20 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
+    exports.postProjectStructure = exports.getProjectBuilderData = exports.getAssignmentDashboard = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
     var API_BASE_PATH = "https://coursebooks.xyz";
     // const API_BASE_PATH = "http://localhost:8080";
+
+    function getAssignmentDashboard(key) {
+        return http({
+            url: "/loadAssignmentDashboard" + "?userkey=" + key,
+            method: "GET",
+            dataType: "json"
+        });
+    }
 
     function getUsersAssignments(id) {
         return http({
@@ -67,6 +75,25 @@
         });
     }
 
+    function getProjectBuilderData(studyKey) {
+        return http({
+            url: "/loadProjectBuilder",
+            method: "GET",
+            data: {
+                'studyKey': studyKey
+            },
+            dataType: "json"
+        });
+    }
+
+    function postProjectStructure(projectKey, structure) {
+        return http({
+            url: "/studies/" + projectKey + "/structure",
+            method: "POST",
+            data: structure
+        });
+    }
+
     function postProject(projectObject) {
         return http({
             url: "/studies",
@@ -91,4 +118,7 @@
     exports.getPaperCoderData = getPaperCoderData;
     exports.getProjectsData = getProjectsData;
     exports.postProject = postProject;
+    exports.getAssignmentDashboard = getAssignmentDashboard;
+    exports.getProjectBuilderData = getProjectBuilderData;
+    exports.postProjectStructure = postProjectStructure;
 });

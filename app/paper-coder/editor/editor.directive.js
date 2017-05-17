@@ -3,10 +3,10 @@
  */
 angular
     .module('paper-coder')
-    .directive('bdEditor', EditorDirective)
+    .directive('bdEditor', EditorDirective);
 
-EditorDirective.$inject = ['editor.service', 'paper-coder.service']
-function EditorDirective(editorService, paperCoderService) {
+EditorDirective.$inject = ['editor.service'];
+function EditorDirective(editorService,) {
     return {
         restrict: 'E',
         link: function(scope, element, attrs) {

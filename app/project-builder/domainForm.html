@@ -1,0 +1,31 @@
+<form name="domainForm" autocomplete="off" ng-submit="submitEvent()">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <h5 class="example-title">Parent Domain</h5>
+            <select name="parent" class="form-control">
+                <option value="">-- none --</option>
+                <option ng-repeat="domain in domains" value="{[{domain.id}]}">{[{domain.name}]}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input name="name" type="text" class="form-control"  required/>
+        <label class="floating-label">Name</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input name="description" type="text" class="form-control"  required/>
+        <label class="floating-label">Description</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input name="tooltip" type="text" class="form-control"  required/>
+        <label class="floating-label">Tool Tip</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <label class="control-label">icon</label>
+        <input name="icon" type="text" id="domain-icon-picker" required/>
+    </div>
+    <!-- INPUT element -->
+
+    <button type="submit" class="btn btn-block btn-primary"> Add to Study</button>
+</form>

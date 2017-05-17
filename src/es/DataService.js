@@ -3,6 +3,14 @@ import * as AuthService from 'AuthService';
 const API_BASE_PATH = "https://coursebooks.xyz";
 // const API_BASE_PATH = "http://localhost:8080";
 
+function getAssignmentDashboard( key ){
+    return http({
+        url: "/loadAssignmentDashboard" + "?userkey=" + key,
+        method: "GET",
+        dataType: "json"
+    })
+}
+
 function getUsersAssignments( id ){
     return http({
         url:    "/users/"+id+"/assignments",
@@ -47,6 +55,25 @@ function getProjectsData(){
     });
 }
 
+function getProjectBuilderData( studyKey ){
+    return http({
+        url: "/loadProjectBuilder",
+        method: "GET",
+        data: {
+            'studyKey': studyKey
+        },
+        dataType: "json"
+    })
+}
+
+function postProjectStructure( projectKey, structure ){
+    return http({
+        url: "/studies/"+projectKey+"/structure",
+        method: "POST",
+        data: structure
+    })
+}
+
 function postProject( projectObject ){
     return http({
         url: "/studies",
@@ -71,5 +98,8 @@ export {
     getUsersAssignments,
     getPaperCoderData,
     getProjectsData,
-    postProject
+    postProject,
+    getAssignmentDashboard,
+    getProjectBuilderData,
+    postProjectStructure
 }
