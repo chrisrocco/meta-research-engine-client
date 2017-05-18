@@ -121,6 +121,7 @@
   <!-- Providers -->
   <script src="..\assets/js/AuthService.js"></script>
   <script src="..\assets/js/DataService.js"></script>
+  <script src="..\assets/js/ApplicationService.js"></script>
   <!-- Config -->
   <script src="..\assets/js/config/colors.js"></script>
   <script src="..\assets/js/config/tour.js"></script>
@@ -135,5 +136,12 @@
   <script src="..\assets/js/Plugin/jquery-placeholder.js"></script>
   <script src="..\assets/js/Plugin/material.js"></script>
   <script src="..\assets/examples/js/login.js"></script>
+  <script>
+  (function(document, window, $) {
+    $(document).ready(function() {
+      ApplicationService.renderSession();
+    });
+  })(document, window, jQuery);
+  </script>
 </body>
 </html>

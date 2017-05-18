@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="..\..\assets/vendor/intro-js/introjs.css">
   <link rel="stylesheet" href="..\..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\..\assets/vendor/flag-icon-css/flag-icon.css">
+  <link rel="stylesheet" href="..\..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
   <link rel="stylesheet" href="..\..\assets/vendor/chartist/chartist.css">
   <link rel="stylesheet" href="..\..\assets/vendor/aspieprogress/asPieProgress.css">
   <link rel="stylesheet" href="..\..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
@@ -75,9 +76,9 @@
           <li class="nav-item hidden-float" id="toggleMenubar">
             <a class="nav-link" data-toggle="menubar" href="#" role="button">
               <i class="icon hamburger hamburger-arrow-left">
-                  <span class="sr-only">Toggle menubar</span>
-                  <span class="hamburger-bar"></span>
-                </i>
+                                <span class="sr-only">Toggle menubar</span>
+                                <span class="hamburger-bar"></span>
+                            </i>
             </a>
           </li>
           <li class="nav-item hidden-sm-down" id="toggleFullscreen">
@@ -95,16 +96,24 @@
         <!-- End Navbar Toolbar -->
         <!-- Navbar Toolbar Right -->
         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:ApplicationService.joinStudy()" title="Join Research Project"
+            role="button">
+              <i class="icon wb-plus" aria-hidden="true"></i>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
             data-animation="scale-up" role="button">
               <span class="avatar avatar-online">
-                <img src="http://chrisroc.co/SHARED/headshot.jpg" alt="...">
+                <img src="..\..\assets/avatars/6.png" alt="...">
                 <i></i>
               </span>
             </a>
             <div class="dropdown-menu" role="menu">
-              <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+              <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user"
+                                                                                                  aria-hidden="true"></i>
+                                Profile</a>
               <div class="dropdown-divider" role="presentation"></div>
               <a class="dropdown-item" href="javascript:AuthService.logout(); window.location='login.html'"
               role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
@@ -131,7 +140,8 @@
                         </div>
                         <div class="media-body">
                           <h6 class="media-heading">You have a new assignment</h6>
-                          <time class="media-meta" datetime="2017-06-12T20:50:48+08:00">5 hours ago</time>
+                          <time class="media-meta" datetime="2017-06-12T20:50:48+08:00">5 hours ago
+                          </time>
                         </div>
                       </div>
                     </a>
@@ -141,8 +151,10 @@
                           <i class="icon wb-user bg-green-600 white icon-circle" aria-hidden="true"></i>
                         </div>
                         <div class="media-body">
-                          <h6 class="media-heading">Your assignment was merged without conflict</h6>
-                          <time class="media-meta" datetime="2017-06-11T18:29:20+08:00">2 days ago</time>
+                          <h6 class="media-heading">Your assignment was merged without conflict
+                          </h6>
+                          <time class="media-meta" datetime="2017-06-11T18:29:20+08:00">2 days ago
+                          </time>
                         </div>
                       </div>
                     </a>
@@ -153,7 +165,8 @@
                         </div>
                         <div class="media-body">
                           <h6 class="media-heading">Settings updated</h6>
-                          <time class="media-meta" datetime="2017-06-11T14:05:00+08:00">2 days ago</time>
+                          <time class="media-meta" datetime="2017-06-11T14:05:00+08:00">2 days ago
+                          </time>
                         </div>
                       </div>
                     </a>
@@ -164,7 +177,8 @@
                         </div>
                         <div class="media-body">
                           <h6 class="media-heading">Paper Completed</h6>
-                          <time class="media-meta" datetime="2017-06-10T13:50:18+08:00">3 days ago</time>
+                          <time class="media-meta" datetime="2017-06-10T13:50:18+08:00">3 days ago
+                          </time>
                         </div>
                       </div>
                     </a>
@@ -175,7 +189,8 @@
                         </div>
                         <div class="media-body">
                           <h6 class="media-heading">New Conflict</h6>
-                          <time class="media-meta" datetime="2017-06-10T12:34:48+08:00">3 days ago</time>
+                          <time class="media-meta" datetime="2017-06-10T12:34:48+08:00">3 days ago
+                          </time>
                         </div>
                       </div>
                     </a>
@@ -187,8 +202,8 @@
                   <i class="icon md-settings" aria-hidden="true"></i>
                 </a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                    All notifications
-                  </a>
+                                    All notifications
+                                </a>
               </div>
             </div>
           </li>
@@ -225,11 +240,14 @@
         <div class="overlay-panel vertical-align overlay-background">
           <div class="vertical-align-middle">
             <a class="avatar avatar-lg" href="javascript:void(0)">
-              <img src="http://chrisroc.co/SHARED/headshot.jpg" alt="">
+              <img src="..\..\assets/avatars/6.png" alt="">
             </a>
             <div class="site-menubar-info">
-              <h5 class="site-menubar-user">Chris</h5>
-              <p class="site-menubar-email">chris@gmail.com</p>
+              <h5 class="site-menubar-user">
+                <span class="bdFirstName"></span> &nbsp;
+                <span class="bdLastName"></span>
+              </h5>
+              <p class="bdEmail" class="site-menubar-email">chris@gmail.com</p>
             </div>
           </div>
         </div>
@@ -539,6 +557,7 @@
   <script src="..\..\assets/vendor/intro-js/intro.js"></script>
   <script src="..\..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
+  <script src="..\..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="..\..\assets/vendor/chartist/chartist.min.js"></script>
   <script src="..\..\assets/vendor/aspieprogress/jquery-asPieProgress.js"></script>
   <script src="..\..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js"></script>
@@ -555,6 +574,7 @@
   <!-- Providers -->
   <script src="..\..\assets/js/AuthService.js"></script>
   <script src="..\..\assets/js/DataService.js"></script>
+  <script src="..\..\assets/js/ApplicationService.js"></script>
   <!-- Config -->
   <script src="..\..\assets/js/config/colors.js"></script>
   <script src="..\..\assets/js/config/tour.js"></script>
@@ -568,5 +588,12 @@
   <script src="..\..\assets/js/Plugin/switchery.js"></script>
   <script src="..\..\assets/js/Plugin/aspieprogress.js"></script>
   <script src="..\..\assets/examples/js/dashboard/ecommerce.js"></script>
+  <script>
+  (function(document, window, $) {
+    $(document).ready(function() {
+      ApplicationService.renderSession();
+    });
+  })(document, window, jQuery);
+  </script>
 </body>
 </html>
