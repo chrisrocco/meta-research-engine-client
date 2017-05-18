@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Research Study Encoding System">
   <meta name="author" content="Chris Rocco">
-  <title>Dashboard | Big Data UAB</title>
+  <title>Assignments | Big Data UAB</title>
   <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="..\assets/images/favicon.ico">
   <!-- Stylesheets -->
@@ -21,6 +21,11 @@
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
+  <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
+  <link rel="stylesheet" href="..\assets/vendor/chartist/chartist.css">
+  <link rel="stylesheet" href="..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+  <link rel="stylesheet" href="..\assets/vendor/jquery-selective/jquery-selective.css">
+  <link rel="stylesheet" href="..\assets/examples/css/assignments2.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
   <link rel="stylesheet" href="..\assets/fonts/brand-icons/brand-icons.min.css">
@@ -38,7 +43,7 @@
   Breakpoints();
   </script>
 </head>
-<body class="animsition dashboard">
+<body class="animsition app-work">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -319,53 +324,84 @@
   </div>
   <!-- Page -->
   <div class="page">
-    <div class="page-content container-fluid">
-      <div class="row" data-plugin="matchHeight" data-by-row="true">
-        <div class="col-12">
-          <!-- Countries Vists Card -->
-          <div id="countriesVistsWidget" class="card card-shadow card-md">
-            <div class="card-header card-header-transparent pb-15">
-              <p class="font-size-14 blue-grey-700 mb-0">MY ASSIGNMENTS</p>
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">ASSIGNMENT LIST</h3>
+          <form class="panel-search-form" role="search">
+            <div class="input-search">
+              <i class="input-search-icon wb-search" aria-hidden="true"></i>
+              <input type="text" class="form-control" id="inputSearch" name="search" placeholder="Search List">
+              <i onclick="loadAssignments()" class="icon wb-loop"></i>
             </div>
-            <div class="card-block px-30 pt-0">
-              <div class="table-responsive">
-                <table class="table table-analytics mb-0 text-nowrap">
-                  <thead>
-                    <tr>
-                      <th class="language">Paper</th>
-                      <th class="vists-percent">Completion</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <template id="assignmentRow">
-                      <tr>
-                        <td width="45%">
-                          <img src="https://image.flaticon.com/icons/svg/129/129515.svg" width="50px">
-                          <span class="paper">
-                            <!-- Dynamic -->
-                          </span>
-                        </td>
-                        <td width="45%">
-                          <div class="progress progress-lg">
-                            <div class="completion progress-bar progress-bar-danger" style="width: 60%;" role="progressbar">60%</div>
-                          </div>
-                        </td>
-                        <td width="10%">
-                          <button onclick="loadAssignment( this )" type="button" class="btn btn-block btn-primary">Continue</button>
-                        </td>
-                      </tr>
-                    </template>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!-- End Countries Vists Card -->
+          </form>
+          <ul class="panel-info">
+            <li>
+              <div class="num red-600">[23]</div>
+              <p>Conflicts</p>
+            </li>
+            <li>
+              <div data-numassignments class="num orange-600">[8]</div>
+              <p>Active</p>
+            </li>
+            <li>
+              <div class="num green-600">[5]</div>
+              <p>Completed</p>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Paper</th>
+                <th>Progress</th>
+                <th>Project</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="templateOutlet">
+              <!-- Dynamic -->
+            </tbody>
+            <template id="assignmentTemplate">
+              <tr>
+                <td class="work-status">
+                  <span data-status class="badge badge-primary">Active</span>
+                </td>
+                <td class="subject">
+                  <div class="table-content">
+                    <p data-papername class="blue-grey-500">Lorem ipsum dolor sit amet,consectetur adipsicing elit</p>
+                    <span data-papermeta class="blue-grey-400">11/08/2017</span>
+                    <span class="badge badge-sm badge-primary">Recruiting</span>
+                  </div>
+                </td>
+                <td class="work-progress">
+                  <div class="progress progress-xs table-content">
+                    <div data-progress class="progress-bar progress-bar-primary progress-bar-indicating"
+                    role="progressbar"> </div>
+                  </div>
+                  <span data-progresstext>90%</span>
+                </td>
+                <td class="subject">
+                  <div class="table-content">
+                    <p data-studyname class="blue-grey-500">[Murine Rigor]</p>
+                    <span data-studymeta class="blue-grey-400">11/08/2017</span>
+                  </div>
+                </td>
+                <td class="subject">
+                  <button data-button onclick="load( this )" type="button" class="btn btn-animate btn-animate-vertical btn-success">
+                    <span><i class="icon wb-play" aria-hidden="true"></i> Continue
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            </template>
+          </table>
         </div>
       </div>
     </div>
   </div>
-  <!-- End Page -->
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer-legal">© 2017 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Big Data</a></div>
@@ -388,6 +424,12 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
+  <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
+  <script src="..\assets/vendor/chartist/chartist.min.js"></script>
+  <script src="..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js"></script>
+  <script src="..\assets/vendor/jquery-selective/jquery-selective.min.js"></script>
+  <script src="..\assets/vendor/aspaginator/jquery.asPaginator.min.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -413,6 +455,9 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
+  <!--<script src="../app/assignments/assignments.module.js"></script>-->
+  <!--<script src="../app/assignments/assignments.controller.js"></script>-->
+  <script src="..\assets/js/Plugin/aspaginator.js"></script>
   <script src="..\assets/examples/js/assignments.js"></script>
   <script>
   (function(document, window, $) {
