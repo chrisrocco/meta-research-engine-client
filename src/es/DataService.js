@@ -42,34 +42,34 @@ function getProjectsData(){
         dataType: "json"
     });
 }
-function getProjectBuilderData( studyKey ){
+function getProjectBuilderData( projectKey ){
     return http({
         url: "/loadProjectBuilder",
         method: "GET",
         data: {
-            'studyKey': studyKey
+            'projectKey': projectKey
         },
         dataType: "json"
     })
 }
 function postProjectStructure( projectKey, structure ){
     return http({
-        url: "/studies/"+projectKey+"/structure",
+        url: "/projects/"+projectKey+"/structure",
         method: "POST",
         data: structure
     })
 }
 function postProject( projectObject ){
     return http({
-        url: "/studies",
+        url: "/projects",
         method: "POST",
         data: projectObject,
         dataType: "json"
     })
 }
-function postStudyEnrollments( registrationCode, userKey){
+function postProjectEnrollments( registrationCode, userKey){
     return http({
-        url: "/studies/members",
+        url: "/projects/members",
         method: "POST",
         data: {
             "userKey": userKey,
@@ -116,7 +116,7 @@ export {
     postProject,
     getProjectBuilderData,
     postProjectStructure,
-    postStudyEnrollments,
+    postProjectEnrollments,
     postForgotPassword,
     postResetPassword,
     loadAssignments

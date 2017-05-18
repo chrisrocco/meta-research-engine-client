@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Research Study Encoding System">
   <meta name="author" content="Chris Rocco">
-  <title>Projects | Big Data UAB</title>
+  <title>Conflict Resolution | Big Data UAB</title>
   <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="..\assets/images/favicon.ico">
   <!-- Stylesheets -->
@@ -21,9 +21,7 @@
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
-  <link rel="stylesheet" href="..\assets/vendor/jquery-selective/jquery-selective.css">
-  <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
-  <link rel="stylesheet" href="..\assets/examples/css/apps/projects.css">
+  <link rel="stylesheet" href="..\assets/examples/css/conflict-resolution.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
   <link rel="stylesheet" href="..\assets/fonts/brand-icons/brand-icons.min.css">
@@ -41,7 +39,7 @@
   Breakpoints();
   </script>
 </head>
-<body class="animsition app-projects">
+<body class="animsition">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -285,13 +283,13 @@
                 <span class="site-menu-title">Paper Coder</span>
               </a>
             </li>
-            <li class="site-menu-item ">
+            <li class="site-menu-item  active open">
               <a href="conflict-resolution.html">
                 <i class="site-menu-icon wb-alert" aria-hidden="true"></i>
                 <span class="site-menu-title">Conflict Resolution</span>
               </a>
             </li>
-            <li class="site-menu-item  active open">
+            <li class="site-menu-item ">
               <a href="project-center.html">
                 <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
                 <span class="site-menu-title"> Project Center </span>
@@ -327,99 +325,89 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="conflict-resolution" ng-controller="ConflictResolutionController">
     <div class="page-header">
-      <h1 class="page-title">Project Center</h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">You are Here</li>
-      </ol>
+      <h1 class="page-title"> Conflict Report</h1>
       <div class="page-header-actions">
-        <div class="counter inline-block text-right mr-20 hidden-sm-down">
-          <div class="counter-label">New Users</div>
-          <span data-new-users class="counter-number font-weight-medium">[data-injected-here]</span>
-        </div>
-        <span data-plugin="peityBar" data-width="90" data-height="38" data-padding="0.25"
-        data-skin="blue">5,3,9,6,5,9,7,3,5,2</span>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li>
+          <li class="breadcrumb-item active">Basic</li>
+        </ol>
       </div>
     </div>
     <div class="page-content">
-      <div class="projects-wrap">
-        <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
-        data-plugin="animateList" data-child=">li">
-          <!-- Dynamically Populated -->
-        </ul>
-        <template id="projectPanel">
-          <li>
-            <div class="panel">
-              <figure class="overlay overlay-hover animation-hover">
-                <img class="caption-figure overlay-figure" src="..\assets/photos/placeholder.png">
-                <figcaption class="overlay-panel overlay-background overlay-fade text-center vertical-align">
-                  <div class="btn-group">
-                    <div class="dropdown float-left">
-                      <button type="button" class="btn btn-icon btn-pure btn-default" title="Setting"><i class="icon wb-settings" aria-hidden="true"></i>
-                      </button>
-                      <div class="dropdown-menu" role="menu">
-                        <a data-key class="dropdown-item" onclick="openProject(this)" href="javascript:void(0)">Edit Questions</a>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
-                    data-tag="project-delete"><i class="icon wb-trash" aria-hidden="true"></i></button>
+      <div class="row">
+        <div ng-repeat="conflict in valueConflicts" class="col-md-6">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="panel-heading">
+                <h3 class="panel-title">Responses to
+                  <span ng-bind="conflict.question.name"></span>:
+                  <span class="panel-desc">
+                    <span ng-bind="conflict.question.description_short"></span>
+                  </span>
+                </h3>
+                <div class="panel-actions">
+                  <a class="panel-action icon wb-thumb-down" data-toggle="tooltip" data-original-title="I Tried"
+                  data-container="body" title=""></a>
+                  <a class="panel-action icon wb-user" data-toggle="tooltip" data-original-title="They're Wrong"
+                  data-container="body" title=""></a>
+                </div>
+              </div>
+              <div class="example-wrap">
+                <div class="example">
+                  <div class="table-responsive">
+                    <table class="table table-hover" data-role="content">
+                      <thead class="bg-blue-grey-100">
+                        <tr>
+                          <th>
+                            Data
+                          </th>
+                          <th>
+                            Responders
+                          </th>
+                          <!--<th>-->
+                          <!--Date Created-->
+                          <!--</th>-->
+                          <th> Agree </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="response in conflict.responses" ng-class="{ 'me': response.users.indexOf( myUserKey ) > 0 }">
+                          <td>
+                            <span ng-bind="response.data.value"></span>
+                            <!--<i class="icon wb-help-circle ml-10 red-600" aria-hidden="true"-->
+                            <!--data-toggle="tooltip" data-original-title="help" data-container="body"-->
+                            <!--title=""></i>-->
+                          </td>
+                          <td>
+                            <img ng-repeat="userKey in response.users" class="mr-10 avatar avatar-sm" src="../assets/avatars/7.png"
+                            data-toggle="tooltip" data-original-title="{[{userKey}]}"
+                            data-container="body" title="">
+                          </td>
+                          <!--<td>-->
+                          <!--<span>6 minets ago</span>-->
+                          <!--<i class="icon wb-time ml-10" aria-hidden="true"></i>-->
+                          <!--</td>-->
+                          <td>
+                            <button type="button" class="btn btn-animate btn-animate-side btn-success">
+                              <span><i class="icon wb-thumb-up" aria-hidden="true"></i>Agree</span>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <button data-key onclick="" type="button" class="btn btn-outline btn-default project-button">View Project
-                  </button>
-                </figcaption>
-              </figure>
-              <div data-date class="time float-right">Feb 22, 2017</div>
-              <div data-name class="text-truncate">Lorem ipsum</div>
+                </div>
+              </div>
             </div>
-          </li>
-        </template>
-      </div>
-    </div>
-  </div>
-  <!-- Site Action -->
-  <button class="site-action btn-raised btn btn-success btn-floating" data-target="#addProjectForm"
-  data-toggle="modal" type="button">
-    <i class="icon wb-plus" aria-hidden="true"></i>
-  </button>
-  <!-- End Site Action -->
-  <!-- Add Project Form -->
-  <div class="modal fade" id="addProjectForm" aria-hidden="true" aria-labelledby="addProjectForm"
-  role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-simple">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-          <h4 class="modal-title">Create New Project</h4>
-        </div>
-        <div class="modal-body">
-          <form name="createProjectForm" action="" role="form">
-            <div class="form-group">
-              <label class="form-control-label mb-15" for="name">Project name:</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Project name">
-            </div>
-            <div class="form-group">
-              <label class="form-control-label mb-15" for="name">Project description:</label>
-              <textarea name="description" class="form-control mb-sm" placeholder="Project description."
-              rows="4"></textarea>
-            </div>
-            <!--<div class="form-group">-->
-            <!--<label class="form-control-label mb-15" for="name">Choice people to your project:</label>-->
-            <!--<select multiple="multiple" class="plugin-selective"></select>-->
-            <!--</div>-->
-          </form>
-        </div>
-        <div class="modal-footer text-left">
-          <button class="btn btn-primary" data-dismiss="modal" type="button" onclick="submitNewProjectForm()">
-            Create
-          </button>
-          <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- End Add Project Form -->
+  <!-- End Page -->
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer-legal">© 2017 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Big Data</a></div>
@@ -442,10 +430,8 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/jquery-selective/jquery-selective.min.js"></script>
-  <script src="..\assets/vendor/bootbox/bootbox.js"></script>
   <script src="..\assets/vendor/peity/jquery.peity.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -471,12 +457,14 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
-  <script src="..\assets/js/Plugin/animate-list.js"></script>
-  <script src="..\assets/js/Plugin/bootbox.js"></script>
-  <script src="..\assets/js/Site.js"></script>
-  <script src="..\assets/js/App/Projects.js"></script>
+  <script src="../app/conflict-resolution/conflict-resolution.module.js"></script>
+  <script src="../app/conflict-resolution/conflict-resolution.controller.js"></script>
   <script src="..\assets/js/Plugin/peity.js"></script>
-  <script src="..\assets/examples/js/project-center.js"></script>
+  <script src="..\assets/js/Plugin/asselectable.js"></script>
+  <script src="..\assets/js/Plugin/selectable.js"></script>
+  <script src="..\assets/js/Plugin/table.js"></script>
+  <script src="..\assets/js/Plugin/asscrollable.js"></script>
+  <script src="..\assets/examples/js/charts/peity.js"></script>
   <script>
   (function(document, window, $) {
     $(document).ready(function() {
