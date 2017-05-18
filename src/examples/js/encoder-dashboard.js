@@ -83,111 +83,21 @@
 
   })();
 
-  // item dialog
-  (function() {
-
-    //handleSelective
-    var handleSelective = function(handleSelectiveItem) {
-      var member = [{
-        id: 'uid_1',
-        name: 'Herman Beck',
-        avatar: '../../../global/portraits/1.jpg'
-      }, {
-        id: 'uid_2',
-        name: 'Mary Adams',
-        avatar: '../../../global/portraits/2.jpg'
-      }, {
-        id: 'uid_3',
-        name: 'Caleb Richards',
-        avatar: '../../../global/portraits/3.jpg'
-      }, {
-        id: 'uid_4',
-        name: 'June Lane',
-        avatar: '../../../global/portraits/4.jpg'
-      }];
-
-      var items = handleSelectiveItem;
-
-      $('.plugin-selective').selective({
-        namespace: 'addMember',
-        local: member,
-        selected: items,
-        buildFromHtml: false,
-        tpl: {
-          optionValue: function(data) {
-            return data.id;
-          },
-          frame: function() {
-            return '<div class="' + this.namespace + '">' +
-              this.options.tpl.items.call(this) +
-              '<div class="' + this.namespace + '-trigger">' +
-              this.options.tpl.triggerButton.call(this) +
-              '<div class="' + this.namespace + '-trigger-dropdown">' +
-              this.options.tpl.list.call(this) +
-              '</div>' +
-              '</div>' +
-              '</div>'
-          },
-          triggerButton: function() {
-            return '<div class="' + this.namespace + '-trigger-button"><i class="wb-plus"></i></div>';
-          },
-          listItem: function(data) {
-            return '<li class="' + this.namespace + '-list-item"><img class="avatar" src="' + data.avatar + '">' + data.name + '</li>';
-          },
-          item: function(data) {
-            return '<li class="' + this.namespace + '-item"><img class="avatar" src="' + data.avatar + '" title="' + data.name + '">' +
-              this.options.tpl.itemRemove.call(this) +
-              '</li>';
-          },
-          itemRemove: function() {
-            return '<span class="' + this.namespace + '-remove"><i class="wb-minus-circle"></i></span>';
-          },
-          option: function(data) {
-            return '<option value="' + this.options.tpl.optionValue.call(this, data) + '">' + data.name + '</option>';
-          }
-        }
-      });
-    };
-
-    // add Item Dialog
-    $('#addNewItemBtn').on('click', function() {
-      //default handleSelectiveItem for add dialog
-      var handleSelectiveItem = [{
-        id: 'uid_1',
-        name: 'Herman Beck',
-        avatar: '../../../global/portraits/1.jpg'
-      }, {
-        id: 'uid_2',
-        name: 'Caleb Richards',
-        avatar: '../../../global/portraits/2.jpg'
-      }];
-
-      handleSelective(handleSelectiveItem);
-
-      $('#addtodoItemForm').modal('show');
-    });
-
-    // edit Item Dialog
-    $("#toDoListWidget .list-group-item input").on('click', function(e) {
-      e.stopPropagation();
-    });
-
-    $('#toDoListWidget .list-group-item').on('click', function() {
-      var oldTitle = $(this).find(".item-title").text();
-      var dueDate = $(this).find(".item-due-date > span").text();
-      if (dueDate == "No due date") {
-        dueDate = null;
-      } else {
-        dueDate = "8/25/2015";
-      }
-
-      $("#editTitle").val(oldTitle);
-      $("#editDueDate").val(dueDate);
-      var handleSelectiveItem = [];
-      handleSelective(handleSelectiveItem);
-
-      $('#edittodoItemForm').modal('show');
-    });
-
-  })();
 })(document, window, jQuery);
+
+
+/*
+* Data this page needs:
+* -> total papers encoded
+* -> total projects started
+* -> total data collected
+*
+* User Specific
+* -> assignments completed
+* -> average completion
+* -> active papers
+* -> total sessions
+* -> notifications
+* -> invitations
+* -> new assignments
+* */
