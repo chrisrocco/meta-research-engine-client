@@ -25,23 +25,23 @@ function paperCoderService() {
      * @param inputObject
      */
     function toggleScope(inputObject) {
-        if (branchContains(assignment.encoding.constants, inputObject.field)) {		// If the field exists in constants
-            branchRemove(assignment.encoding.constants, inputObject.field);				// Remove it from constants
+        if (branchContains(assignment.encoding.constants, inputObject.question)) {		// If the field exists in constants
+            branchRemove(assignment.encoding.constants, inputObject.question);				// Remove it from constants
             for (var i = 0; i < assignment.encoding.branches.length; i++) {			// Add it to all branches
-                branchAdd(assignment.encoding.branches[i], inputObject.field);
+                branchAdd(assignment.encoding.branches[i], inputObject.question);
             }
         } else {
             for (var i = 0; i < assignment.encoding.branches.length; i++) {
-                branchRemove(assignment.encoding.branches[i], inputObject.field);
+                branchRemove(assignment.encoding.branches[i], inputObject.question);
             }
-            branchAdd(assignment.encoding.constants, inputObject.field);
+            branchAdd(assignment.encoding.constants, inputObject.question);
         }
     }
 
     function branchRemove(branch, fieldName) {
         for (var i = 0; i < branch.length; i++) {
             var fieldObject = branch[i];
-            if (fieldObject.field === fieldName) {
+            if (fieldObject.question === fieldName) {
                 branch.splice(i, 1);
                 return true;
             }
@@ -53,14 +53,14 @@ function paperCoderService() {
         console.log( "contains?", branch, fieldName );
         for (var i = 0; i < branch.length; i++) {
             var fieldObject = branch[i];
-            if (fieldObject.field === fieldName) return true;
+            if (fieldObject.question === fieldName) return true;
         }
         return false;
     }
 
     function branchAdd(branch, fieldName) {
         branch.push({
-            field: fieldName,
+            question: fieldName,
             content: {
                 value: ""
             }

@@ -39,7 +39,7 @@ function BigDataBranch(paperCoderService) {
             this.isAlive = function(fieldName){
                 for(var i = 0; i < $scope.branch.length; i++){
                     // If the 'Input' exist in the encoding branch
-                    if($scope.branch[i].field === fieldName){
+                    if($scope.branch[i].question === fieldName){
                         return true;
                     }
                 }
@@ -48,14 +48,14 @@ function BigDataBranch(paperCoderService) {
             }
 
             /**
-             * Find and return the field input object associated with the field name
+             * Find and return the question input object associated with the question name
              * @param fieldName
              * @returns {*}
              */
             this.getInput = function(fieldName){
                 for(var i = 0; i < $scope.branch.length; i++){
                     // If the 'Input' exist in the encoding branch
-                    if($scope.branch[i].field === fieldName){
+                    if($scope.branch[i].question === fieldName){
                         return $scope.branch[i];
                     }
                 }

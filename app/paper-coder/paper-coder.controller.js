@@ -68,7 +68,7 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
 
             for( var i = 0; i < data.questions.length; i++ ){
                 var input = {
-                    field: data.questions[i]['_key'],
+                    question: data.questions[i]['_key'],
                     content: {
                         value: ""
                     }
