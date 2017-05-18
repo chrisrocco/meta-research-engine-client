@@ -16,20 +16,13 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.postStudyEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.getAssignmentDashboard = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
+    exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postStudyEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
     var API_BASE_PATH = "https://coursebooks.xyz";
     // const API_BASE_PATH = "http://localhost:8080";
 
-    function getAssignmentDashboard(key) {
-        return http({
-            url: "/loadAssignmentDashboard" + "?userkey=" + key,
-            method: "GET",
-            dataType: "json"
-        });
-    }
     function getUsersAssignments(id) {
         return http({
             url: "/users/" + id + "/assignments",
@@ -101,7 +94,28 @@
             data: {
                 "userKey": userKey,
                 "registrationCode": registrationCode
+            },
+            dataType: "json"
+        });
+    }
+    function postForgotPassword(email) {
+        return http({
+            url: "/users/recover",
+            method: "POST",
+            data: {
+                "email": email,
+                "callback": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             }
+        });
+    }
+    function postResetPassword(newPassword, hash) {
+        // TODO
+    }
+    function loadAssignments() {
+        return http({
+            url: "/loadAssignments" + "?userKey=" + AuthService.getUser()._key,
+            method: "GET",
+            dataType: "json"
         });
     }
     function http(config) {
@@ -119,8 +133,10 @@
     exports.getPaperCoderData = getPaperCoderData;
     exports.getProjectsData = getProjectsData;
     exports.postProject = postProject;
-    exports.getAssignmentDashboard = getAssignmentDashboard;
     exports.getProjectBuilderData = getProjectBuilderData;
     exports.postProjectStructure = postProjectStructure;
     exports.postStudyEnrollments = postStudyEnrollments;
+    exports.postForgotPassword = postForgotPassword;
+    exports.postResetPassword = postResetPassword;
+    exports.loadAssignments = loadAssignments;
 });

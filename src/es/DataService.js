@@ -3,13 +3,6 @@ import * as AuthService from 'AuthService';
 const API_BASE_PATH = "https://coursebooks.xyz";
 // const API_BASE_PATH = "http://localhost:8080";
 
-function getAssignmentDashboard( key ){
-    return http({
-        url: "/loadAssignmentDashboard" + "?userkey=" + key,
-        method: "GET",
-        dataType: "json"
-    })
-}
 function getUsersAssignments( id ){
     return http({
         url:    "/users/"+id+"/assignments",
@@ -81,7 +74,28 @@ function postStudyEnrollments( registrationCode, userKey){
         data: {
             "userKey": userKey,
             "registrationCode": registrationCode
+        },
+        dataType: "json"
+    })
+}
+function postForgotPassword( email ){
+    return http({
+        url: "/users/recover",
+        method: "POST",
+        data: {
+            "email": email,
+            "callback": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }
+    })
+}
+function postResetPassword( newPassword, hash ){
+    // TODO
+}
+function loadAssignments(){
+    return http({
+        url: "/loadAssignments" + "?userKey=" + AuthService.getUser()._key,
+        method: "GET",
+        dataType: "json"
     })
 }
 function http( config ){
@@ -100,8 +114,10 @@ export {
     getPaperCoderData,
     getProjectsData,
     postProject,
-    getAssignmentDashboard,
     getProjectBuilderData,
     postProjectStructure,
-    postStudyEnrollments
+    postStudyEnrollments,
+    postForgotPassword,
+    postResetPassword,
+    loadAssignments
 }

@@ -1,6 +1,6 @@
 import BaseApp from 'BaseApp';
 
-class AppWork extends BaseApp {
+class Assignments2 extends BaseApp {
   processed() {
     super.processed();
 
@@ -237,7 +237,7 @@ let instance = null;
 
 function getInstance() {
   if (!instance) {
-    instance = new AppWork();
+    instance = new Assignments2();
   }
   return instance;
 }
@@ -247,9 +247,9 @@ function run() {
   app.run();
 }
 
-export default AppWork;
+export default Assignments2;
 export {
-  AppWork,
+  Assignments2,
   run,
   getInstance
 };

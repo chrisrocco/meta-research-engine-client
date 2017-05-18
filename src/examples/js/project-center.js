@@ -36,7 +36,7 @@ function submitNewProjectForm(){
     DataService.postProject( projectObject ).success( function( response ){
         swal({
             title: "Project Created!",
-            text: "Project Key: "+response.projectKey,
+            text: "Project Registration Code: "+response.registrationCode,
             type: "success",
             showCancelButton: false,
             confirmButtonClass: "btn-success",

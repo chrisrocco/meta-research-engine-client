@@ -16,7 +16,7 @@ function joinStudy(  ){
         showCancelButton: true,
         closeOnConfirm: false,
         animation: "slide-from-top",
-        inputPlaceholder: "Write something",
+        inputPlaceholder: "Ask your project manager",
         showLoaderOnConfirm: true
     },
     function(inputValue){
@@ -27,7 +27,7 @@ function joinStudy(  ){
         }
         var promise = DataService.postStudyEnrollments( inputValue, userKey );
         promise.success( function( res ){
-            var projectName = "[project_name]";
+            var projectName = res.studyName;
             swal({
                 title: "Success!",
                 text: "You have joined " + projectName,

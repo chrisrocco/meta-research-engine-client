@@ -3,42 +3,53 @@
  * Copyright 2017 chrisrocco
  * Licensed under the Themeforest Standard Licenses
  */
-$(document).ready(function($) {
+$(document).ready(function() {
   Site.run();
   loadAssignments();
 });
 
-
 function loadAssignments(){
-    var table = document.querySelector("tbody");
+  var outlet = document.getElementById("templateOutlet");
+    $( outlet ).empty();
+  var template = document.getElementById("assignmentTemplate");
+  var content = template.content;
 
-    var template = document.querySelector("#assignmentRow");
-    var content = template.content;
-    var cells = content.querySelectorAll("td");
+    var datastatus = '[data-status]';
+    var datapapername = '[data-papername]';
+    var datapapermeta = '[data-papermeta]';
+    var dataprogress = '[data-progress]';
+    var dataprogresstext = '[data-progresstext]';
+    var datastudyname = '[data-studyname]';
+    var datastudymeta = '[data-studymeta]';
+    var databutton = '[data-button]';
 
-    var promise = DataService.getUsersAssignments( AuthService.getUser()['_key'] );
+    var promise = DataService.loadAssignments( AuthService.getUser()['_key'] );
     promise.success( function( data ){
-        // render the assignment data
-        for( var i = 0; i < data.length; i++ ){
 
-            var assignment = data[i];
+        /* Load Stats */
+        var numAssignments = data.length;
+        $("[data-numassignments]").html( numAssignments );
 
-            cells[0].querySelector(".paper").textContent = assignment._id;
-            cells[1].querySelector(".completion").style.width = assignment.completion + "%";
-            cells[1].querySelector(".completion").textContent = assignment.completion + "%";
-            cells[2].querySelector("button").dataset.assignmentKey = assignment._key;
+        console.log( "server", data );
+        for( var i = 0; i < data.length; i++ ) {
+            var obj = data[i];
 
-            console.log( cells[2] );
+            /* set the content object DOM with selectors above */
+            content.querySelector( datastatus ).textContent = "active";
+            content.querySelector( datapapername ).textContent = obj.paper.title;
+            content.querySelector( datapapermeta ).textContent = "PMC-ID: " + obj.paper.pmcID;
+            content.querySelector( dataprogress ).style.width = obj.assignment.completion+"%";
+            content.querySelector( dataprogresstext ).textContent = obj.assignment.completion+"%";
+            content.querySelector( datastudyname ).textContent = obj.project.name;
+            content.querySelector( datastudymeta ).textContent = obj.project.date_created;
+            content.querySelector( databutton ).dataset.assignmentKey = obj.assignment._key;
 
-            var clone = content.cloneNode( true );
-            table.appendChild( clone );
+            outlet.appendChild( content.cloneNode( true ) );
         }
-
-        console.log( data );
     });
 }
 
-function loadAssignment( element ){
-    localStorage.assignmentKey = element.dataset.assignmentKey;
+function load( buttonElement ){
+    localStorage.assignmentKey = buttonElement.dataset.assignmentKey;
     window.location = "paper-coder.html";
 }
