@@ -16,11 +16,14 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postStudyEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = undefined;
+    exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.setHost = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
     var API_BASE_PATH = "https://coursebooks.xyz";
+    if (localStorage.hostOverride) {
+        API_BASE_PATH = localStorage.hostOverride;
+    }
     // const API_BASE_PATH = "http://localhost:8080";
 
     function getUsersAssignments(id) {
@@ -62,34 +65,34 @@
             dataType: "json"
         });
     }
-    function getProjectBuilderData(studyKey) {
+    function getProjectBuilderData(projectKey) {
         return http({
             url: "/loadProjectBuilder",
             method: "GET",
             data: {
-                'studyKey': studyKey
+                'projectKey': projectKey
             },
             dataType: "json"
         });
     }
     function postProjectStructure(projectKey, structure) {
         return http({
-            url: "/studies/" + projectKey + "/structure",
+            url: "/projects/" + projectKey + "/structure",
             method: "POST",
             data: structure
         });
     }
     function postProject(projectObject) {
         return http({
-            url: "/studies",
+            url: "/projects",
             method: "POST",
             data: projectObject,
             dataType: "json"
         });
     }
-    function postStudyEnrollments(registrationCode, userKey) {
+    function postProjectEnrollments(registrationCode, userKey) {
         return http({
-            url: "/studies/members",
+            url: "/projects/members",
             method: "POST",
             data: {
                 "userKey": userKey,
@@ -125,7 +128,12 @@
         };
         return $.ajax(config);
     }
+    /* Development */
+    function setHost(url) {
+        localStorage.hostOverride = url;
+    }
 
+    exports.setHost = setHost;
     exports.http = http;
     exports.getAssignment = getAssignment;
     exports.putAssignment = putAssignment;
@@ -135,7 +143,7 @@
     exports.postProject = postProject;
     exports.getProjectBuilderData = getProjectBuilderData;
     exports.postProjectStructure = postProjectStructure;
-    exports.postStudyEnrollments = postStudyEnrollments;
+    exports.postProjectEnrollments = postProjectEnrollments;
     exports.postForgotPassword = postForgotPassword;
     exports.postResetPassword = postResetPassword;
     exports.loadAssignments = loadAssignments;

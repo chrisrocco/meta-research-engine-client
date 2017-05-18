@@ -1,6 +1,9 @@
 import * as AuthService from 'AuthService';
 
-const API_BASE_PATH = "https://coursebooks.xyz";
+var API_BASE_PATH = "https://coursebooks.xyz";
+if (localStorage.hostOverride) {
+    API_BASE_PATH = localStorage.hostOverride;
+}
 // const API_BASE_PATH = "http://localhost:8080";
 
 function getUsersAssignments( id ){
@@ -105,8 +108,13 @@ function http( config ){
     };
     return $.ajax(config);
 }
+/* Development */
+function setHost( url ){
+    localStorage.hostOverride = url;
+}
 
 export {
+    setHost,
     http,
     getAssignment,
     putAssignment,
