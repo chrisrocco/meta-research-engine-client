@@ -8,8 +8,9 @@ ProjectBuilderController.$inject = ['$scope'];
 function ProjectBuilderController( $scope ){
     init();
 
-    $scope.domains = [];
-    $scope.questions = [];
+    // Data Models
+    $scope.domains = defaultModel.domains;
+    $scope.questions = defaultModel.questions;
     $scope.questionTypes = [
         {
             id: "text",
@@ -29,35 +30,18 @@ function ProjectBuilderController( $scope ){
         }
     ];
 
-    $scope.selectedQuestionType = $scope.questionTypes[0].id;
-
-    /* Mock Data */
-    $scope.domains = mockStructure.domains;
-    $scope.questions = mockStructure.questions;
-    /* Mock Data */
-
+    // Function Binding
     $scope.editDomain = editDomain;
     $scope.editQuestion = editQuestion;
     $scope.handleDeleteDomain = handleDeleteDomain;
     $scope.handleDeleteQuestion = handleDeleteQuestion;
-
     $scope.handleSubmitDomain = handleSubmitDomain;
     $scope.handleSubmitQuestion = handleSubmitQuestion;
 
-    function save(){
-        var structure = {
-            domains: $scope.domains,
-            questions: $scope.questions
-        };
-        var req = {
-            "structure": JSON.stringify( structure )
-        };
+    // Property Binding
+    $scope.selectedQuestionType = $scope.questionTypes[0].id;
 
-        var promise = DataService.postProjectStructure( localStorage.projectKey, req );
-        promise.success( function( res ){
-            console.log( "saved!", res );
-        });
-    }
+    /*-----------------------------------------------------------------*/
 
     function parseQuestionForm(){
         var form = document.forms.questionForm;
@@ -208,6 +192,35 @@ function ProjectBuilderController( $scope ){
         } );
     }
 
+    function init(){
+        var promise = DataService.getProjectBuilderData( localStorage.projectKey );
+        promise.success( function( data ){
+            console.log( "from server", data );
+            var structure = data.structure;
+            if( structure ){
+                $scope.$apply( function(){
+                    $scope.domains = structure.domains;
+                    $scope.questions = structure.questions;
+                });
+            }
+            /* Display the project name */
+            var spanElement = document.getElementById("project-name");
+            spanElement.innerHTML = data.projectName;
+            renderTree();
+        });
+
+        $("#editDomainModal").on('hidden.bs.modal', function () {
+            refresh()
+        });
+        $("#editQuestionModal").on('hidden.bs.modal', function () {
+            refresh()
+        });
+    }
+
+    function refresh(){
+        renderTree();
+        save();
+    }
     function renderTree(){
         var treeData = [];
         for (var i = 0; i < $scope.domains.length; i++) {
@@ -241,101 +254,23 @@ function ProjectBuilderController( $scope ){
         $('#projectStructure').jstree(true).settings.core.data = treeData;
         $('#projectStructure').jstree(true).refresh();
     }
+    function save(){
+        var structure = {
+            domains: $scope.domains,
+            questions: $scope.questions
+        };
+        var req = {
+            "structure": JSON.stringify( structure )
+        };
 
-    function init(){
-        var promise = DataService.getProjectBuilderData( localStorage.projectKey );
-        promise.success( function( data ){
-            var structure = data.structure;
-
-            $scope.$apply( function(){
-                $scope.domains = structure.domains;
-                $scope.questions = structure.questions;
-            });
-
-            renderTree();
-            console.log( "loaded structure", structure );
+        var promise = DataService.postProjectStructure( localStorage.projectKey, req );
+        promise.success( function( res ){
+            console.log( "saved!", res );
         });
-        promise.fail( function( data ){
-            console.log( "fail response", data );
-        });
-    }
-
-    $("#editDomainModal").on('hidden.bs.modal', function () {
-        refresh()
-    });
-    $("#editQuestionModal").on('hidden.bs.modal', function () {
-        refresh()
-    });
-
-    function refresh(){
-        renderTree();
-        save();
     }
 }
 
-const mockStructure = {
-    domains: [
-        {
-            id: "diet",
-            parent: "#",
-            name: "Diet",
-            description: "data related to the diet",
-            icon: "fa fa-cutlery"
-        },
-        {
-            id: "lighting",
-            parent: "#",
-            name: "Lighting",
-            description: "Ligting in the facility",
-            icon: "fa fa-lightbulb-o"
-        },
-        {
-            id: "mice",
-            parent: "#",
-            name: "Mice",
-            description: "mice information",
-            icon: "fa fa-circle"
-        },
-        {
-            id: "sex",
-            parent: "mice",
-            name: "Sex",
-            description: "How many of the mice were male and female?",
-            icon: "fa fa-intersex"
-        }
-    ],
-    questions: [
-        {
-            id: "micePerCage",
-            parent: "mice",
-            type: "number",
-            min: 1,
-            max: 10,
-            unit: "",
-            name: "Mice Per Cage",
-            question: "How many mice were there per cage?"
-        },
-        {
-            id: "males",
-            parent: "sex",
-            type: "number",
-            min: 1,
-            max: 10,
-            unit: "mice",
-            name: "Male Mice",
-            question: "How many of the mice were male?",
-            icon: "fa fa-mars"
-        },
-        {
-            id: "females",
-            parent: "sex",
-            type: "number",
-            min: 1,
-            max: 10,
-            unit: "mice",
-            name: "Female Mice",
-            question: "How many of the mice were female?",
-            icon: "fa fa-venus"
-        }
-    ]
+const defaultModel = {
+    domains: [],
+    questions: []
 };

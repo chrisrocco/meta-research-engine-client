@@ -14,6 +14,7 @@
 <script src="{{assets}}/vendor/intro-js/intro.js"></script>
 <script src="{{assets}}/vendor/screenfull/screenfull.js"></script>
 <script src="{{assets}}/vendor/slidepanel/jquery-slidePanel.js"></script>
+<script src="{{assets}}/vendor/bootstrap-sweetalert/sweetalert.js"></script>
 {{/block}}
 
 <!-- Scripts -->
@@ -32,6 +33,7 @@
 <!-- Providers -->
 <script src="{{assets}}/js/AuthService.js"></script>
 <script src="{{assets}}/js/DataService.js"></script>
+<script src="{{assets}}/js/ApplicationService.js"></script>
 
 <!-- Config -->
 <script src="{{assets}}/js/config/colors.js"></script>
@@ -58,3 +60,10 @@
 </script>
 {{/block}}
 
+<script>
+    (function(document, window, $){
+        $(document).ready(function(){
+            ApplicationService.renderSession();
+        });
+    })(document, window, jQuery);
+</script>

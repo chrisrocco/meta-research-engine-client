@@ -35,8 +35,5 @@ function loadAssignments(){
 
 function loadAssignment( element ){
     localStorage.assignmentKey = element.dataset.assignmentKey;
-
-    alert("Set localStorage.assignmentKey to " + localStorage.assignmentKey );
-
     window.location = "paper-coder.html";
 }

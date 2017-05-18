@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="..\assets/vendor/intro-js/introjs.css">
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
+  <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
   <link rel="stylesheet" href="..\assets/examples/css/pages/register-v3.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
   <!-- Fonts -->
@@ -107,6 +108,7 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="..\assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
@@ -121,6 +123,7 @@
   <!-- Providers -->
   <script src="..\assets/js/AuthService.js"></script>
   <script src="..\assets/js/DataService.js"></script>
+  <script src="..\assets/js/ApplicationService.js"></script>
   <!-- Config -->
   <script src="..\assets/js/config/colors.js"></script>
   <script src="..\assets/js/config/tour.js"></script>
@@ -135,5 +138,12 @@
   <script src="..\assets/js/Plugin/jquery-placeholder.js"></script>
   <script src="..\assets/js/Plugin/material.js"></script>
   <script src="..\assets/examples/js/register.js"></script>
+  <script>
+  (function(document, window, $) {
+    $(document).ready(function() {
+      ApplicationService.renderSession();
+    });
+  })(document, window, jQuery);
+  </script>
 </body>
 </html>

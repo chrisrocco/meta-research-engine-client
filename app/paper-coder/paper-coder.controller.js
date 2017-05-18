@@ -78,7 +78,6 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
 
             encoding.constants = assignmentInputs;
             data.assignment.encoding = encoding;
-            alert("initialized blank encoding");
             console.log( data.assignment );
         }
         if( !data.assignment.encoding.branches){

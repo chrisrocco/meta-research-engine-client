@@ -10,7 +10,6 @@ function getAssignmentDashboard( key ){
         dataType: "json"
     })
 }
-
 function getUsersAssignments( id ){
     return http({
         url:    "/users/"+id+"/assignments",
@@ -18,7 +17,6 @@ function getUsersAssignments( id ){
         dataType: "json"
     })
 }
-
 function getAssignment( key ){
     return http({
         url: "/assignments/" + key,
@@ -26,7 +24,6 @@ function getAssignment( key ){
         dataType: "json"
     });
 }
-
 function putAssignment( assignmentObject ){
     return http({
         url: "/assignments/" + assignmentObject._key,
@@ -38,7 +35,6 @@ function putAssignment( assignmentObject ){
         }
     });
 }
-
 function getPaperCoderData( assignmentKey ){
     return http({
         url: "/loadAssignment?key="+assignmentKey,
@@ -46,7 +42,6 @@ function getPaperCoderData( assignmentKey ){
         dataType: "json"
     });
 }
-
 function getProjectsData(){
     return http({
         url: "/loadProjects",
@@ -54,7 +49,6 @@ function getProjectsData(){
         dataType: "json"
     });
 }
-
 function getProjectBuilderData( studyKey ){
     return http({
         url: "/loadProjectBuilder",
@@ -65,7 +59,6 @@ function getProjectBuilderData( studyKey ){
         dataType: "json"
     })
 }
-
 function postProjectStructure( projectKey, structure ){
     return http({
         url: "/studies/"+projectKey+"/structure",
@@ -73,7 +66,6 @@ function postProjectStructure( projectKey, structure ){
         data: structure
     })
 }
-
 function postProject( projectObject ){
     return http({
         url: "/studies",
@@ -82,7 +74,16 @@ function postProject( projectObject ){
         dataType: "json"
     })
 }
-
+function postStudyEnrollments( registrationCode, userKey){
+    return http({
+        url: "/studies/members",
+        method: "POST",
+        data: {
+            "userKey": userKey,
+            "registrationCode": registrationCode
+        }
+    })
+}
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
@@ -101,5 +102,6 @@ export {
     postProject,
     getAssignmentDashboard,
     getProjectBuilderData,
-    postProjectStructure
+    postProjectStructure,
+    postStudyEnrollments
 }

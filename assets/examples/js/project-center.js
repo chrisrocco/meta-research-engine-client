@@ -5,7 +5,6 @@
  */
 $(document).ready(function () {
     AppProjects.run();
-
     loadProjects();
 });
 
@@ -29,7 +28,6 @@ function loadProjects() {
         console.log("from server", data);
     });
 }
-
 function submitNewProjectForm(){
     var form = document.forms.createProjectForm;
     var name = form.name.value;
@@ -53,12 +51,18 @@ function submitNewProjectForm(){
         loadProjects();
     });
 }
-
 function openProject( buttonElement ){
-    var projectKey = buttonElement.dataSet.projectKey;
+    swal({
+        title: "Are you sure?",
+        text: "Editing the project structure will make it hard to compare different versions!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, edit it!",
+        closeOnConfirm: false
+    },
+    function(){
+        localStorage.projectKey = buttonElement.dataset.key;
+        window.location = "project-builder.html";
+    });
 }
-
-var sampleProject = {
-    'name': "Front End Stuff",
-    'description': "this project was created by the website"
-};
