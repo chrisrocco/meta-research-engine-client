@@ -51,6 +51,7 @@ function init( ){
 
         $("[data-projectname]").html( projectObject.name );
 
+
         console.log( "Project Object", projectObject );
         console.log( "Paper Queue", paperQueue );
     })

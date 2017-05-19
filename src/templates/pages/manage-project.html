@@ -112,7 +112,7 @@ title: Manage Project
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr id="template-outlet">
                                 <td> 3462345</td>
                                 <td> [The Effects of Something Something on Mice]</td>
                                 <td> 2</td>
@@ -120,6 +120,14 @@ title: Manage Project
                                     <span class="badge badge-table badge-success"> Clean </span>
                                 </td>
                             </tr>
+                            <template id="paperTemplate">
+                                <td data-pmcid > [PMC-ID] </td>
+                                <td data-title> [Article Title]</td>
+                                <td data-assignment> [Number of Assignments] </td>
+                                <td>
+                                    <span data-status class="badge badge-table badge-success"> [Status] </span>
+                                </td>
+                            </template>
                             </tbody>
                         </table>
                     </div>
