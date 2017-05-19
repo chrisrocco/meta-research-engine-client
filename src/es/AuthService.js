@@ -33,6 +33,7 @@ function logout(){
     delete localStorage['user'];
 }
 function getUser(){
+    if( ! localStorage['user'] ) return;
     let json = localStorage['user'];
     return JSON.parse(json);
 }

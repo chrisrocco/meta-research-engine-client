@@ -62,6 +62,7 @@
             });
             promise.fail(function (res) {
                 console.log("Fail", res);
+
                 if (res.status === 409) {
                     swal({
                         title: "Wait a Minute!",
@@ -72,6 +73,7 @@
                         confirmButtonText: 'OK',
                         closeOnConfirm: false
                     });
+                    return;
                 }
                 if (res.status === 404) {
                     swal({
@@ -83,15 +85,31 @@
                         confirmButtonText: 'OK',
                         closeOnConfirm: false
                     });
+                    return;
                 }
+
+                swal({
+                    title: "Opps...",
+                    text: "Something went wrong. My Fault.",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                });
             });
         });
     }
 
     function renderSession() {
-        (0, _jquery2.default)(emailSelector).html(AuthService.getUser().email);
-        (0, _jquery2.default)(firstNameSelector).html(AuthService.getUser().first_name);
-        (0, _jquery2.default)(lastNameSelector).html(AuthService.getUser().last_name);
+        var user = AuthService.getUser();
+        if (!user) {
+            return;
+        }
+
+        (0, _jquery2.default)(emailSelector).html(user.email);
+        (0, _jquery2.default)(firstNameSelector).html(user.first_name);
+        (0, _jquery2.default)(lastNameSelector).html(user.last_name);
     }
 
     exports.joinStudy = joinStudy;

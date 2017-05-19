@@ -101,6 +101,13 @@ function loadAssignments(){
         dataType: "json"
     })
 }
+function loadManageProject( projectKey ){
+    return http({
+        url: "/loadManageProject" + "?projectKey=" + projectKey,
+        method: "GET",
+        dataType: "json"
+    });
+}
 function uploadPapersCSV( projectKey, formData ){
     return http({
         url: "/projects/"+projectKey+"/papers",
@@ -138,5 +145,6 @@ export {
     postForgotPassword,
     postResetPassword,
     loadAssignments,
+    loadManageProject,
     uploadPapersCSV
 }

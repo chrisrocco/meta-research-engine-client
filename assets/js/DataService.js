@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.uploadPapersCSV = exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.setHost = undefined;
+    exports.uploadPapersCSV = exports.loadManageProject = exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.setHost = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
@@ -121,6 +121,13 @@
             dataType: "json"
         });
     }
+    function loadManageProject(projectKey) {
+        return http({
+            url: "/loadManageProject" + "?projectKey=" + projectKey,
+            method: "GET",
+            dataType: "json"
+        });
+    }
     function uploadPapersCSV(projectKey, formData) {
         return http({
             url: "/projects/" + projectKey + "/papers",
@@ -157,5 +164,6 @@
     exports.postForgotPassword = postForgotPassword;
     exports.postResetPassword = postResetPassword;
     exports.loadAssignments = loadAssignments;
+    exports.loadManageProject = loadManageProject;
     exports.uploadPapersCSV = uploadPapersCSV;
 });

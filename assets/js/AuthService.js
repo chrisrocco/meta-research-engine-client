@@ -51,6 +51,7 @@
         delete localStorage['user'];
     }
     function getUser() {
+        if (!localStorage['user']) return;
         var json = localStorage['user'];
         return JSON.parse(json);
     }

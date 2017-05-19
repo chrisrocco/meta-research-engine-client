@@ -10,6 +10,7 @@
 
     $(document).ready(function ($) {
         Site.run();
+        init();
     });
 
 
@@ -35,13 +36,27 @@
 
 function submitPaperUploadForm( formElement ) {
 
-    var form = new FormData( formElement );
-    console.log( form );
+    var formData = new FormData();
+    var file = $("#papersCSV")[0].files[0];
+    formData.append( "papersCSV", file );
 
-    var promise = DataService.uploadPapersCSV( localStorage.projectKey, form);
-    promise.complete(function (res) {
-        console.log("from server", res);
+    var promise = DataService.uploadPapersCSV( localStorage.projectKey, formData );
+    promise.success( function ( data ) {
+        console.log("from server", data);
     });
 
     return false;
+}
+
+function init( ){
+    var p = DataService.loadManageProject( localStorage.projectKey );
+    p.success( function( data ){
+        var projectObject = data.project;
+        var paperQueue = data.paperQueue;
+
+        $("[data-projectname]").html( projectObject.name );
+
+        console.log( "Project Object", projectObject );
+        console.log( "Paper Queue", paperQueue );
+    })
 }

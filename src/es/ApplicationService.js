@@ -41,6 +41,7 @@ function joinStudy(  ){
         });
         promise.fail( function (res) {
             console.log( "Fail", res );
+
             if( res.status === 409 ){
                 swal({
                     title: "Wait a Minute!",
@@ -51,6 +52,7 @@ function joinStudy(  ){
                     confirmButtonText: 'OK',
                     closeOnConfirm: false
                 });
+                return;
             }
             if( res.status === 404 ){
                 swal({
@@ -62,8 +64,18 @@ function joinStudy(  ){
                     confirmButtonText: 'OK',
                     closeOnConfirm: false
                 });
+                return;
             }
 
+            swal({
+                title: "Opps...",
+                text: "Something went wrong. My Fault.",
+                type: "error",
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
         })
     });
 
@@ -71,9 +83,14 @@ function joinStudy(  ){
 }
 
 function renderSession(){
-    $(emailSelector).html( AuthService.getUser().email );
-    $(firstNameSelector).html( AuthService.getUser().first_name );
-    $(lastNameSelector).html( AuthService.getUser().last_name );
+    var user = AuthService.getUser();
+    if( ! user ){
+        return;
+    }
+
+    $(emailSelector).html( user.email );
+    $(firstNameSelector).html( user.first_name );
+    $(lastNameSelector).html( user.last_name );
 }
 
 export {

@@ -14,7 +14,6 @@ title: Manage Project
 <link rel="stylesheet" href="{{assets}}/examples/css/tables/footable.css">
 {{/content}}
 
-
 {{#content "js_vendor" mode="append"}}
 <script src="{{assets}}/vendor/moment/moment.min.js"></script>
 <script src="{{assets}}/vendor/footable/footable.min.js"></script>
@@ -45,11 +44,11 @@ title: Manage Project
 <!-- Page -->
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title">Managing [Project Name]</h1>
+        <h1 class="page-title">Managing <span data-projectname></span></h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
-            <li class="breadcrumb-item active">[Project Name]</li>
+            <li class="breadcrumb-item active" data-projectname >[Project Name]</li>
         </ol>
         <div class="page-header-actions">
             <a class="btn btn-sm btn-default btn-outline btn-round" href="#"
@@ -138,9 +137,9 @@ title: Manage Project
                         <div class="example-wrap">
                             <h4 class="example-title">Upload a .csv of articles: Title, Description, Embedding URL</h4>
                             <div class="example">
-                                <form name="paperUploadForm" onsubmit="return submitPaperUploadForm( this )">
-                                    <input type="text" name="test">
-                                    <input type="file" id="paperCSV" data-plugin="dropify" data-height="500"/>
+                                <form id="paperUploadForm" onsubmit="return submitPaperUploadForm( this )" enctype="multipart/form-data" action="#">
+                                    <input id="fileupload" name="myfile" type="file" />
+                                    <input type="file" id="papersCSV" data-plugin="dropify" data-height="500"/>
                                     <br>
                                     <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
                                 </form>

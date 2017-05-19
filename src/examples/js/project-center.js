@@ -64,6 +64,6 @@ function openProjectEditor( buttonElement ){
     });
 }
 function openProject( buttonElement ){
-    localStorage.projectKey = buttonElement;
+    localStorage.projectKey = buttonElement.dataset.key;
     window.location = "manage-project.html";
 }
