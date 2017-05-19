@@ -101,6 +101,16 @@ function loadAssignments(){
         dataType: "json"
     })
 }
+function uploadPapersCSV( projectKey, formData ){
+    return http({
+        url: "/projects/"+projectKey+"/papers",
+        method: "POST",
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false
+    })
+}
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
@@ -127,5 +137,6 @@ export {
     postProjectEnrollments,
     postForgotPassword,
     postResetPassword,
-    loadAssignments
+    loadAssignments,
+    uploadPapersCSV
 }

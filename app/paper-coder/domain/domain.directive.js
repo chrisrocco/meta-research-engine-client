@@ -59,8 +59,8 @@ function BigDataDomain(paperCoderService) {
                     var theInput = $ctrl.getInput(theField._key);
                     if(theInput){
                         if(
-                            !theInput.content.value
-                            && !(theInput.content.min && theInput.content.max)
+                            !theInput.data.value
+                            && !(theInput.data.min && theInput.data.max)
                         ) return false;
                     }
                 }

@@ -38,6 +38,7 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
     }
     $scope.save = function(){
         DataService.putAssignment( $scope.assignment ).then( function(res){
+            console.log( "from server: ", res);
             swal({
                 title: "Work Saved!",
                 text: "Your work has been uploaded to the database!",
@@ -69,7 +70,7 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
             for( var i = 0; i < data.questions.length; i++ ){
                 var input = {
                     question: data.questions[i]['_key'],
-                    content: {
+                    data: {
                         value: ""
                     }
                 };

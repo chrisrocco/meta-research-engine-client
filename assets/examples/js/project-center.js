@@ -20,7 +20,9 @@ function loadProjects() {
             var projectData = data.projects[pr];
             projectTemplate.content.querySelector("[data-name]").textContent = projectData.name;
             // set the projectKey to the button in the dataset
-            projectTemplate.content.querySelector("[data-key]").dataset.key = projectData._key;
+            projectTemplate.content.querySelectorAll("[data-key]")[0].dataset.key = projectData._key;
+            projectTemplate.content.querySelectorAll("[data-key]")[1].dataset.key = projectData._key;
+            projectTemplate.content.querySelector("[data-rac]").textContent = projectData.registrationCode;
 
             var clone = projectTemplate.content.cloneNode( true );
             ul.appendChild( clone );
@@ -51,7 +53,7 @@ function submitNewProjectForm(){
         loadProjects();
     });
 }
-function openProject( buttonElement ){
+function openProjectEditor( buttonElement ){
     swal({
         title: "Are you sure?",
         text: "Editing the project structure will make it hard to compare different versions!",
@@ -65,4 +67,8 @@ function openProject( buttonElement ){
         localStorage.projectKey = buttonElement.dataset.key;
         window.location = "project-builder.html";
     });
+}
+function openProject( buttonElement ){
+    localStorage.projectKey = buttonElement;
+    window.location = "manage-project.html";
 }

@@ -46,7 +46,7 @@
                 swal.showInputError("You need to write something!");
                 return false;
             }
-            var promise = DataService.postStudyEnrollments(inputValue, userKey);
+            var promise = DataService.postProjectEnrollments(inputValue, userKey);
             promise.success(function (res) {
                 var projectName = res.studyName;
                 swal({

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Research Study Encoding System">
   <meta name="author" content="Chris Rocco">
-  <title>Projects | Big Data UAB</title>
+  <title>Manage Project | Big Data UAB</title>
   <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="..\assets/images/favicon.ico">
   <!-- Stylesheets -->
@@ -21,9 +21,10 @@
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
-  <link rel="stylesheet" href="..\assets/vendor/jquery-selective/jquery-selective.css">
-  <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
-  <link rel="stylesheet" href="..\assets/examples/css/apps/projects.css">
+  <link rel="stylesheet" href="..\assets/vendor/footable/footable.core.css">
+  <link rel="stylesheet" href="..\assets/vendor/blueimp-file-upload/jquery.fileupload.css">
+  <link rel="stylesheet" href="..\assets/vendor/dropify/dropify.css">
+  <link rel="stylesheet" href="..\assets/examples/css/tables/footable.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
   <link rel="stylesheet" href="..\assets/fonts/brand-icons/brand-icons.min.css">
@@ -41,7 +42,7 @@
   Breakpoints();
   </script>
 </head>
-<body class="animsition app-projects">
+<body class="animsition">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -291,7 +292,7 @@
                 <span class="site-menu-title">Conflict Resolution</span>
               </a>
             </li>
-            <li class="site-menu-item  active open">
+            <li class="site-menu-item ">
               <a href="project-center.html">
                 <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
                 <span class="site-menu-title"> Project Center </span>
@@ -329,97 +330,112 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Project Center</h1>
+      <h1 class="page-title">Managing [Project Name]</h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">You are Here</li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
+        <li class="breadcrumb-item active">[Project Name]</li>
       </ol>
       <div class="page-header-actions">
-        <div class="counter inline-block text-right mr-20 hidden-sm-down">
-          <div class="counter-label">New Users</div>
-          <span data-new-users class="counter-number font-weight-medium">[data-injected-here]</span>
-        </div>
-        <span data-plugin="peityBar" data-width="90" data-height="38" data-padding="0.25"
-        data-skin="blue">5,3,9,6,5,9,7,3,5,2</span>
+        <a class="btn btn-sm btn-default btn-outline btn-round" href="#" target="_blank">
+          <i class="icon wb-link" aria-hidden="true"></i>
+          <span class="hidden-sm-down">Official Website</span>
+        </a>
       </div>
     </div>
-    <div class="page-content">
-      <div class="projects-wrap">
-        <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
-        data-plugin="animateList" data-child=">li">
-          <!-- Dynamically Populated -->
-        </ul>
-        <template id="projectPanel">
-          <li>
-            <div class="panel">
-              <figure class="overlay overlay-hover animation-hover">
-                <img class="caption-figure overlay-figure" src="..\assets/photos/placeholder.png">
-                <figcaption class="overlay-panel overlay-background overlay-fade text-center vertical-align">
-                  <div class="btn-group">
-                    <div class="dropdown float-left">
-                      <button type="button" class="btn btn-icon btn-pure btn-default" title="Setting"><i class="icon wb-settings" aria-hidden="true"></i>
-                      </button>
-                      <div class="dropdown-menu" role="menu">
-                        <a data-key class="dropdown-item" onclick="openProjectEditor(this)" href="javascript:void(0)">Edit Questions</a>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
-                    data-tag="project-delete"><i class="icon wb-trash" aria-hidden="true"></i></button>
+    <div class="page-content container-fluid">
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- Panel Custom filter UI -->
+          <div class="panel">
+            <header class="panel-heading">
+              <h3 class="panel-title"> Paper Pool </h3>
+              <div class="pl-30">
+                <form class="form-inline">
+                  <div class="radio-custom radio-primary mr-15">
+                    <input type="radio" name="status" id="status_none" class="filter-ui-status" value="none"
+                    checked>
+                    <label for="status_none">
+                      All
+                    </label>
                   </div>
-                  <button data-key onclick="openProject( this )" type="button" class="btn btn-outline btn-default project-button">View Project
-                  </button>
-                </figcaption>
-              </figure>
-              <div data-rac class="time float-right" style="color: green;">[RAC]</div>
-              <div data-name class="text-truncate">Lorem ipsum</div>
+                  <div class="radio-custom radio-primary mr-15">
+                    <input type="radio" name="status" id="status_active" class="filter-ui-status" value="active">
+                    <label for="status_active">
+                      Active
+                    </label>
+                  </div>
+                  <div class="radio-custom radio-primary mr-15">
+                    <input type="radio" name="status" id="status_disabled" class="filter-ui-status"
+                    value="disabled">
+                    <label for="status_disabled">
+                      Disabled
+                    </label>
+                  </div>
+                  <div class="radio-custom radio-primary">
+                    <input type="radio" name="status" id="status_suspended" class="filter-ui-status"
+                    value="suspended">
+                    <label for="status_suspended">
+                      Suspended
+                    </label>
+                  </div>
+                </form>
+              </div>
+            </header>
+            <div class="panel-body">
+              <table id="exampleCustomFilter" class="table table-hover" data-paging="true" data-sorting="true"
+              data-filtering="true">
+                <thead>
+                  <tr>
+                    <th data-name="id" data-type="number" data-breakpoints="xs">PMC-ID</th>
+                    <th data-name="title">Title</th>
+                    <th data-name="assignments"># Assignments</th>
+                    <th data-name="status">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> 3462345</td>
+                    <td> [The Effects of Something Something on Mice]</td>
+                    <td> 2</td>
+                    <td>
+                      <span class="badge badge-table badge-success"> Clean </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </li>
-        </template>
+          </div>
+          <!-- End Custom filter UI -->
+        </div>
+        <div class="col-lg-6">
+          <!-- Panel Custom filter UI -->
+          <div class="panel">
+            <header class="panel-heading">
+              <h3 class="panel-title"> Paper Pool </h3>
+            </header>
+            <div class="panel-body">
+              <!-- Example height -->
+              <div class="example-wrap">
+                <h4 class="example-title">Upload a .csv of articles: Title, Description, Embedding URL</h4>
+                <div class="example">
+                  <form name="paperUploadForm" onsubmit="return submitPaperUploadForm( this )">
+                    <input type="text" name="test">
+                    <input type="file" id="paperCSV" data-plugin="dropify" data-height="500" />
+                    <br>
+                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
+                  </form>
+                </div>
+              </div>
+              <!-- End Example height -->
+            </div>
+          </div>
+          <!-- End Custom filter UI -->
+        </div>
       </div>
     </div>
   </div>
-  <!-- Site Action -->
-  <button class="site-action btn-raised btn btn-success btn-floating" data-target="#addProjectForm"
-  data-toggle="modal" type="button">
-    <i class="icon wb-plus" aria-hidden="true"></i>
-  </button>
-  <!-- End Site Action -->
-  <!-- Add Project Form -->
-  <div class="modal fade" id="addProjectForm" aria-hidden="true" aria-labelledby="addProjectForm"
-  role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-simple">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-          <h4 class="modal-title">Create New Project</h4>
-        </div>
-        <div class="modal-body">
-          <form name="createProjectForm" action="" role="form">
-            <div class="form-group">
-              <label class="form-control-label mb-15" for="name">Project name:</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Project name">
-            </div>
-            <div class="form-group">
-              <label class="form-control-label mb-15" for="name">Project description:</label>
-              <textarea name="description" class="form-control mb-sm" placeholder="Project description."
-              rows="4"></textarea>
-            </div>
-            <!--<div class="form-group">-->
-            <!--<label class="form-control-label mb-15" for="name">Choice people to your project:</label>-->
-            <!--<select multiple="multiple" class="plugin-selective"></select>-->
-            <!--</div>-->
-          </form>
-        </div>
-        <div class="modal-footer text-left">
-          <button class="btn btn-primary" data-dismiss="modal" type="button" onclick="submitNewProjectForm()">
-            Create
-          </button>
-          <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Add Project Form -->
+  <!-- End Page -->
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer-legal">© 2017 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Big Data</a></div>
@@ -442,10 +458,20 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/jquery-selective/jquery-selective.min.js"></script>
-  <script src="..\assets/vendor/bootbox/bootbox.js"></script>
-  <script src="..\assets/vendor/peity/jquery.peity.min.js"></script>
+  <script src="..\assets/vendor/moment/moment.min.js"></script>
+  <script src="..\assets/vendor/footable/footable.min.js"></script>
+  <script src="..\assets/vendor/jquery-ui/jquery-ui.js"></script>
+  <script src="..\assets/vendor/blueimp-tmpl/tmpl.js"></script>
+  <script src="..\assets/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+  <script src="..\assets/vendor/blueimp-load-image/load-image.all.min.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
+  <script src="..\assets/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
+  <script src="..\assets/vendor/dropify/dropify.min.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -471,12 +497,8 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
-  <script src="..\assets/js/Plugin/animate-list.js"></script>
-  <script src="..\assets/js/Plugin/bootbox.js"></script>
-  <script src="..\assets/js/Site.js"></script>
-  <script src="..\assets/js/App/Projects.js"></script>
-  <script src="..\assets/js/Plugin/peity.js"></script>
-  <script src="..\assets/examples/js/project-center.js"></script>
+  <script src="..\assets/js/Plugin/dropify.js"></script>
+  <script src="..\assets/examples/js/manage-project.js"></script>
   <script>
   (function(document, window, $) {
     $(document).ready(function() {

@@ -42,8 +42,8 @@ function EditorDirective(editorService,) {
                         step: 1,
                         onChange: function(data){
                             scope.$apply(function(){
-                                scope.inputObject.content.min = data[0];
-                                scope.inputObject.content.max = data[1];
+                                scope.inputObject.data.min = data[0];
+                                scope.inputObject.data.max = data[1];
                             });
                         },
                         ready: function(){

@@ -73,19 +73,19 @@ body_class: app-projects
                                                 title="Setting"><i class="icon wb-settings" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a data-key class="dropdown-item" onclick="openProject(this)" href="javascript:void(0)">Edit Questions</a>
+                                            <a data-key class="dropdown-item" onclick="openProjectEditor(this)" href="javascript:void(0)">Edit Questions</a>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
                                             data-tag="project-delete"><i class="icon wb-trash"
                                                                          aria-hidden="true"></i></button>
                                 </div>
-                                <button data-key onclick="" type="button" class="btn btn-outline btn-default project-button">View
+                                <button data-key onclick="openProject( this )" type="button" class="btn btn-outline btn-default project-button">View
                                     Project
                                 </button>
                             </figcaption>
                         </figure>
-                        <div data-date class="time float-right">Feb 22, 2017</div>
+                        <div data-rac class="time float-right" style="color: green;">[RAC]</div>
                         <div data-name class="text-truncate">Lorem ipsum</div>
                     </div>
                 </li>

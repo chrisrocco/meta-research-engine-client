@@ -61,7 +61,7 @@ function paperCoderService() {
     function branchAdd(branch, fieldName) {
         branch.push({
             question: fieldName,
-            content: {
+            data: {
                 value: ""
             }
         })
@@ -109,12 +109,12 @@ function paperCoderService() {
         return completion;
 
         function isFilled(input){
-            if( input.content.value ){
-                return input.content.value !== "";
+            if( input.data.value ){
+                return input.data.value !== "";
             }
-            if( input.content.min && input.content.max ){
-                return input.content.min !== "" &&
-                    input.content.max !== ""
+            if( input.data.min && input.data.max ){
+                return input.data.min !== "" &&
+                    input.data.max !== ""
             }
             return false;
         }

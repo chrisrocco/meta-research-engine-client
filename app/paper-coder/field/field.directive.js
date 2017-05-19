@@ -57,11 +57,11 @@ function BigDataField(paperCoderService, editorService) {
 
                 var type = $scope.fieldObject.type;
                 if(type === "text" || type === "number" || type === "select" || type === "boolean"){
-                    return $scope.inputObject.content.value;
+                    return $scope.inputObject.data.value;
                 }
                 if(type === "range"){
-                    var min = $scope.inputObject.content.min;
-                    var max = $scope.inputObject.content.max;
+                    var min = $scope.inputObject.data.min;
+                    var max = $scope.inputObject.data.max;
                     return min + " -> " + max;
                 }
             }

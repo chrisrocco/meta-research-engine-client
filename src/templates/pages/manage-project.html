@@ -2,128 +2,159 @@
 title: Manage Project
 ---
 
+
 {{#extend "layout-default"}}
-  {{#content "css_vendor" mode="append"}}
-    <link rel="stylesheet" href="{{assets}}/vendor/footable/footable.bootstrap.css">
-    <link rel="stylesheet" href="{{assets}}/vendor/footable/footable.core.css">
-  {{/content}}
+{{#content "css_vendor" mode="append"}}
+<link rel="stylesheet" href="{{assets}}/vendor/footable/footable.core.css">
+<link rel="stylesheet" href="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload.css">
+<link rel="stylesheet" href="{{assets}}/vendor/dropify/dropify.css">
+{{/content}}
 
-  {{#content "css" mode="prepend"}}
-    <link rel="stylesheet" href="{{assets}}/examples/css/tables/footable.css">
-  {{/content}}
-
-
-  {{#content "js_vendor" mode="append"}}
-    <script src="{{assets}}/vendor/moment/moment.min.js"></script>
-    <script src="{{assets}}/vendor/footable/footable.min.js"></script>
-  {{/content}}
+{{#content "css" mode="prepend"}}
+<link rel="stylesheet" href="{{assets}}/examples/css/tables/footable.css">
+{{/content}}
 
 
-  {{#content "scripts" mode="replace"}}
-    <script src="{{assets}}/examples/js/manage-project.js"></script>
-  {{/content}}
+{{#content "js_vendor" mode="append"}}
+<script src="{{assets}}/vendor/moment/moment.min.js"></script>
+<script src="{{assets}}/vendor/footable/footable.min.js"></script>
+<script src="{{assets}}/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="{{assets}}/vendor/blueimp-tmpl/tmpl.js"></script>
+<script src="{{assets}}/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+<script src="{{assets}}/vendor/blueimp-load-image/load-image.all.min.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
+<script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
+<script src="{{assets}}/vendor/dropify/dropify.min.js"></script>
+{{/content}}
 
-  {{#content "body"}}
+{{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/dropify.js"></script>
+{{/content}}
 
-    <!-- Page -->
-    <div class="page">
-      <div class="page-header">
+{{#content "scripts" mode="replace"}}
+<script src="{{assets}}/examples/js/manage-project.js"></script>
+{{/content}}
+
+{{#content "body"}}
+
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
         <h1 class="page-title">Managing [Project Name]</h1>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
-          <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
-          <li class="breadcrumb-item active">[Project Name]</li>
+            <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
+            <li class="breadcrumb-item active">[Project Name]</li>
         </ol>
         <div class="page-header-actions">
-          <a class="btn btn-sm btn-default btn-outline btn-round" href="#"
-            target="_blank">
-            <i class="icon wb-link" aria-hidden="true"></i>
-            <span class="hidden-sm-down">Official Website</span>
-          </a>
+            <a class="btn btn-sm btn-default btn-outline btn-round" href="#"
+               target="_blank">
+                <i class="icon wb-link" aria-hidden="true"></i>
+                <span class="hidden-sm-down">Official Website</span>
+            </a>
         </div>
-      </div>
-
-      <div class="page-content container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <!-- Panel Custom filter UI -->
-            <div class="panel">
-              <header class="panel-heading">
-                <h3 class="panel-title"> Paper Pool </h3>
-                <div class="pl-30">
-                  <form class="form-inline">
-                    <div class="radio-custom radio-primary mr-15">
-                      <input type="radio" name="status" id="status_none" class="filter-ui-status" value="none"
-                        checked>
-                      <label for="status_none">
-                        All
-                      </label>
-                    </div>
-                    <div class="radio-custom radio-primary mr-15">
-                      <input type="radio" name="status" id="status_active" class="filter-ui-status" value="active">
-                      <label for="status_active">
-                        Active
-                      </label>
-                    </div>
-                    <div class="radio-custom radio-primary mr-15">
-                      <input type="radio" name="status" id="status_disabled" class="filter-ui-status"
-                        value="disabled">
-                      <label for="status_disabled">
-                        Disabled
-                      </label>
-                    </div>
-                    <div class="radio-custom radio-primary">
-                      <input type="radio" name="status" id="status_suspended" class="filter-ui-status"
-                        value="suspended">
-                      <label for="status_suspended">
-                        Suspended
-                      </label>
-                    </div>
-                  </form>
-                </div>
-              </header>
-              <div class="panel-body">
-                <table id="exampleCustomFilter" class="table table-hover" data-paging="true" data-sorting="true"
-                  data-filtering="true">
-                  <thead>
-                    <tr>
-                      <th data-name="id" data-type="number" data-breakpoints="xs">PMC-ID</th>
-                      <th data-name="title">Title</th>
-                      <th data-name="assignments"># Assignments</th>
-                      <th data-name="status">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td> 3462345 </td>
-                      <td> [The Effects of Something Something on Mice] </td>
-                      <td> 2 </td>
-                      <td>
-                        <span class="badge badge-table badge-success"> Clean </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- End Custom filter UI -->
-          </div>
-          <div class="col-lg-6">
-            <!-- Panel Custom filter UI -->
-            <div class="panel">
-              <header class="panel-heading">
-                <h3 class="panel-title"> Paper Pool </h3>
-              </header>
-              <div class="panel-body">
-
-              </div>
-            </div>
-            <!-- End Custom filter UI -->
-          </div>
-        </div>
-      </div>
     </div>
-    <!-- End Page -->
 
-  {{/content}}
+    <div class="page-content container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Panel Custom filter UI -->
+                <div class="panel">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"> Paper Pool </h3>
+                        <div class="pl-30">
+                            <form class="form-inline">
+                                <div class="radio-custom radio-primary mr-15">
+                                    <input type="radio" name="status" id="status_none" class="filter-ui-status"
+                                           value="none"
+                                           checked>
+                                    <label for="status_none">
+                                        All
+                                    </label>
+                                </div>
+                                <div class="radio-custom radio-primary mr-15">
+                                    <input type="radio" name="status" id="status_active" class="filter-ui-status"
+                                           value="active">
+                                    <label for="status_active">
+                                        Active
+                                    </label>
+                                </div>
+                                <div class="radio-custom radio-primary mr-15">
+                                    <input type="radio" name="status" id="status_disabled" class="filter-ui-status"
+                                           value="disabled">
+                                    <label for="status_disabled">
+                                        Disabled
+                                    </label>
+                                </div>
+                                <div class="radio-custom radio-primary">
+                                    <input type="radio" name="status" id="status_suspended" class="filter-ui-status"
+                                           value="suspended">
+                                    <label for="status_suspended">
+                                        Suspended
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </header>
+                    <div class="panel-body">
+                        <table id="exampleCustomFilter" class="table table-hover" data-paging="true" data-sorting="true"
+                               data-filtering="true">
+                            <thead>
+                            <tr>
+                                <th data-name="id" data-type="number" data-breakpoints="xs">PMC-ID</th>
+                                <th data-name="title">Title</th>
+                                <th data-name="assignments"># Assignments</th>
+                                <th data-name="status">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> 3462345</td>
+                                <td> [The Effects of Something Something on Mice]</td>
+                                <td> 2</td>
+                                <td>
+                                    <span class="badge badge-table badge-success"> Clean </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Custom filter UI -->
+            </div>
+            <div class="col-lg-6">
+                <!-- Panel Custom filter UI -->
+                <div class="panel">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"> Paper Pool </h3>
+                    </header>
+                    <div class="panel-body">
+                        <!-- Example height -->
+                        <div class="example-wrap">
+                            <h4 class="example-title">Upload a .csv of articles: Title, Description, Embedding URL</h4>
+                            <div class="example">
+                                <form name="paperUploadForm" onsubmit="return submitPaperUploadForm( this )">
+                                    <input type="text" name="test">
+                                    <input type="file" id="paperCSV" data-plugin="dropify" data-height="500"/>
+                                    <br>
+                                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example height -->
+                    </div>
+                </div>
+                <!-- End Custom filter UI -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+
+{{/content}}
 {{/extend}}
