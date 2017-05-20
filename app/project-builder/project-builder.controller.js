@@ -44,13 +44,13 @@ function ProjectBuilderController( $scope ){
     /*-----------------------------------------------------------------*/
 
     function parseQuestionForm(){
-        var form = document.forms.questionForm;
-        var name = form.name.value;
-        var parent = form.parent.value;
-        var question = form.question.value;
-        var tooltip = form.tooltip.value;
-        var icon = form.icon.value;
-        var type = $scope.selectedQuestionType;
+        var form        = document.forms.questionForm;
+        var name        = form.name.value;
+        var parent      = form.parent.value;
+        var question    = form.question.value;
+        var tooltip     = form.tooltip.value;
+        var icon        = form.icon.value;
+        var type        = $scope.selectedQuestionType;
 
         if( parent == "" ){
             alert("Questions must have a parent domain"); return false;
@@ -59,7 +59,7 @@ function ProjectBuilderController( $scope ){
         var questionObject = {
             id: (Math.random() * 99999).toString(),
             parent: parent,
-            type: $scope.selectedQuestionType,
+            type: type,
             name: name,
             question: question,
             tooltip: tooltip,
@@ -82,22 +82,40 @@ function ProjectBuilderController( $scope ){
             questionObject.rangeMin = parseInt( form.rangeMin.value );
             questionObject.rangeMax = parseInt( form.rangeMax.value );
             questionObject.rangeUnit = form.rangeUnit.value;
+
         }
 
-        form.reset();
+        form.parent.value   =   "";
+        form.name.value     =   "";
+        form.question.value =   "";
+        form.tooltip.value  =   "";
         form.icon.value = icon;
+
+        if( form.min ) form.min.value = "";
+        if( form.max ) form.max.value = "";
+        if( form.unit ) form.unit.value = "";
+        if( form.trueOption ) form.trueOption.value = "";
+        if( form.falseOption ) form.falseOption.value = "";
+        if( form.rangeMin ) form.rangeMin.value = "";
+        if( form.rangeMax ) form.rangeMax.value = "";
+        if( form.rangeUnit ) form.rangeUnit.value = "";
 
         return questionObject;
     }
     function parseDomainForm(){
-        var form = document.forms.domainForm;
-        var name = form.name.value;
-        var parent = form.parent.value;
-        var description = form.description.value;
-        var tooltip = form.tooltip.value;
-        var icon = form.icon.value;
+        var form            = document.forms.domainForm;
+        var name            = form.name.value;
+        var parent          = form.parent.value;
+        var description     = form.description.value;
+        var tooltip         = form.tooltip.value;
+        var icon            = form.icon.value;
 
-        form.reset();
+
+        // form.parent.value       =   "";
+        form.name.value         =   "";
+        form.description.value  =   "";
+        form.tooltip.value      =   "";
+        form.icon.value         =   "";
         form.icon.value = icon;
 
         var domainObject = {
@@ -114,7 +132,8 @@ function ProjectBuilderController( $scope ){
     function handleSubmitDomain(){
         var newDomainObject = parseDomainForm();
         $scope.domains.push( newDomainObject );
-        refresh()
+        refresh();
+        console.log( $scope.selectedQuestionType );
         console.log( newDomainObject );
     }
     function handleSubmitQuestion(){
