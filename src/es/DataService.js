@@ -31,9 +31,9 @@ function putAssignment( assignmentObject ){
         }
     });
 }
-function getPaperCoderData( assignmentKey ){
+function loadPaperCoder( assignmentKey ){
     return http({
-        url: "/loadAssignment?key="+assignmentKey,
+        url: "/loadPaperCoder?key="+assignmentKey,
         method: "GET",
         dataType: "json"
     });
@@ -136,7 +136,7 @@ export {
     getAssignment,
     putAssignment,
     getUsersAssignments,
-    getPaperCoderData,
+    loadPaperCoder,
     getProjectsData,
     postProject,
     getProjectBuilderData,

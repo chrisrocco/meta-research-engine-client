@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.uploadPapersCSV = exports.loadManageProject = exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getPaperCoderData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.setHost = undefined;
+    exports.uploadPapersCSV = exports.loadManageProject = exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.loadPaperCoder = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.setHost = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
@@ -51,9 +51,9 @@
             }
         });
     }
-    function getPaperCoderData(assignmentKey) {
+    function loadPaperCoder(assignmentKey) {
         return http({
-            url: "/loadAssignment?key=" + assignmentKey,
+            url: "/loadPaperCoder?key=" + assignmentKey,
             method: "GET",
             dataType: "json"
         });
@@ -155,7 +155,7 @@
     exports.getAssignment = getAssignment;
     exports.putAssignment = putAssignment;
     exports.getUsersAssignments = getUsersAssignments;
-    exports.getPaperCoderData = getPaperCoderData;
+    exports.loadPaperCoder = loadPaperCoder;
     exports.getProjectsData = getProjectsData;
     exports.postProject = postProject;
     exports.getProjectBuilderData = getProjectBuilderData;

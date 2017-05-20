@@ -1,5 +1,7 @@
 $(document).ready(function($) {
     Site.run();
+    var hash = ""; // get url params
+    if( !hash ) window.location = "index.html";
 });
 
 function submitResetForm(){
@@ -20,6 +22,4 @@ function submitResetForm(){
         });
         return;
     }
-
-
 }
