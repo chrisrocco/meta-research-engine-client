@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.uploadPapersCSV = exports.loadManageProject = exports.loadAssignments = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.loadPaperCoder = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.setHost = undefined;
+    exports.setHost = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
@@ -83,6 +83,13 @@
             data: structure
         });
     }
+    function loadCodeBook() {
+        return http({
+            url: "/loadCodeBook",
+            method: "GET",
+            dataType: "json"
+        });
+    }
     function postProject(projectObject) {
         return http({
             url: "/projects",
@@ -117,8 +124,8 @@
             url: "/users/reset",
             method: "POST",
             data: {
-                hash_code: hash_code,
-                newPassword: newPassword
+                "hash_code": hash_code,
+                "newPassword": newPassword
             }
         });
     }
@@ -158,12 +165,14 @@
         localStorage.hostOverride = url;
     }
 
-    exports.setHost = setHost;
+    exports.loadManageProject = loadManageProject;
+    exports.loadPaperCoder = loadPaperCoder;
+    exports.loadCodeBook = loadCodeBook;
+    exports.loadAssignments = loadAssignments;
     exports.http = http;
     exports.getAssignment = getAssignment;
     exports.putAssignment = putAssignment;
     exports.getUsersAssignments = getUsersAssignments;
-    exports.loadPaperCoder = loadPaperCoder;
     exports.getProjectsData = getProjectsData;
     exports.postProject = postProject;
     exports.getProjectBuilderData = getProjectBuilderData;
@@ -171,7 +180,6 @@
     exports.postProjectEnrollments = postProjectEnrollments;
     exports.postForgotPassword = postForgotPassword;
     exports.postResetPassword = postResetPassword;
-    exports.loadAssignments = loadAssignments;
-    exports.loadManageProject = loadManageProject;
     exports.uploadPapersCSV = uploadPapersCSV;
+    exports.setHost = setHost;
 });

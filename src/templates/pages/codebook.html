@@ -9,6 +9,10 @@ body_class: page-faq
 <link rel="stylesheet" href="{{assets}}/fonts/font-awesome/font-awesome.css">
 {{/content}}
 
+{{#content "css" mode="prepend"}}
+<link rel="stylesheet" href="{{assets}}/examples/css/uikit/dropdowns.css">
+{{/content}}
+
 {{#content "scripts" mode="replace"}}
 <script src="{{assets}}/examples/js/codebook.js"></script>
 {{/content}}
@@ -27,15 +31,27 @@ body_class: page-faq
                 <!-- Panel -->
                 <div class="panel">
                     <div class="panel-body">
-                        <div class="list-group faq-list" role="tablist" id="domainTabs">
-                            <template id="domainTab">
-                                <a class="list-group-item" data-toggle="tab" href="domain-id-here"
-                                   aria-controls="category-2"
-                                   role="tab">
-                                    <i class="icon"></i>
-                                    <span class="domain-name"></span>
-                                </a>
+                        <template id="domainTab">
+                            <a class="list-group-item" data-toggle="tab" href="domain-id-here"
+                               aria-controls="category-2"
+                               role="tab">
+                                <i class="icon"></i>
+                                <span class="domain-name"></span>
+                            </a>
+                        </template>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary btn-block dropdown-toggle" id="projectDropdown"
+                                    data-toggle="dropdown" aria-expanded="false">Murine Rigor</button>
+                            <div id="projectDropdownOutlet" class="dropdown-menu dropdown-menu-primary" aria-labelledby="projectDropdown" role="menu">
+                                <!-- Dynamic -->
+                            </div>
+                            <template id="projectDropdownItemTemplate">
+                                <a data-projectkey onclick="openProject( this )"
+                                   class="dropdown-item" href="javascript:void(0)" role="menuitem"> [Project Name] </a>
                             </template>
+                        </div>
+                        <hr>
+                        <div class="list-group faq-list" role="tablist" id="domainTabs">
                         </div>
                     </div>
                 </div>
@@ -46,19 +62,16 @@ body_class: page-faq
                 <!-- Panel -->
                 <div class="panel">
                     <div class="panel-body">
-                        <div class="tab-content">
+                        <template id="domain-block">
+                            <div class="tab-pane animation-fade" id="domain_name_here" role="tabpanel">
+                                <!-- One of these for every domain -->
+                                <div class="panel-group panel-group-simple panel-group-continuous"
+                                     aria-multiselectable="true" role="tablist">
 
-
-                            <template id="domain-block">
-                                <div class="tab-pane animation-fade" id="domain_name_here" role="tabpanel">
-                                    <!-- One of these for every domain -->
-                                    <div class="panel-group panel-group-simple panel-group-continuous"
-                                         aria-multiselectable="true" role="tablist">
-
-                                    </div>
                                 </div>
-                            </template>
-                            <template id="variable">
+                            </div>
+                        </template>
+                        <template id="variable">
                                 <!-- Question 4 -->
                                 <div class="panel">
                                     <div class="panel-heading" id="var_name_here" role="tab">
@@ -78,6 +91,8 @@ body_class: page-faq
                                 </div>
                                 <!-- End Question 4 -->
                             </template>
+                        <div class="tab-content">
+                            <!-- Dynamic -->
                         </div>
                     </div>
                 </div>

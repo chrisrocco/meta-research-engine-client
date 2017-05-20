@@ -63,6 +63,13 @@ function postProjectStructure( projectKey, structure ){
         data: structure
     })
 }
+function loadCodeBook(){
+    return http({
+        url: "/loadCodeBook",
+        method: "GET",
+        dataType: "json"
+    })
+}
 function postProject( projectObject ){
     return http({
         url: "/projects",
@@ -139,12 +146,14 @@ function setHost( url ){
 }
 
 export {
-    setHost,
+    loadManageProject,
+    loadPaperCoder,
+    loadCodeBook,
+    loadAssignments,
     http,
     getAssignment,
     putAssignment,
     getUsersAssignments,
-    loadPaperCoder,
     getProjectsData,
     postProject,
     getProjectBuilderData,
@@ -152,7 +161,7 @@ export {
     postProjectEnrollments,
     postForgotPassword,
     postResetPassword,
-    loadAssignments,
-    loadManageProject,
-    uploadPapersCSV
+    uploadPapersCSV,
+    /* development */
+    setHost
 }
