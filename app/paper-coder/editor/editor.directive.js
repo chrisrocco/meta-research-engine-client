@@ -39,18 +39,18 @@ function EditorDirective(editorService,) {
                 if(type === "range"){
                     $('.example').asRange({
                         range: true,
-                        step: 1,
+                        step: 0.05,
                         onChange: function(data){
                             scope.$apply(function(){
-                                scope.inputObject.data.min = data[0];
-                                scope.inputObject.data.max = data[1];
+                                scope.inputObject.data.rangeMin = data[0];
+                                scope.inputObject.data.rangeMax = data[1];
                             });
                         },
                         ready: function(){
                             $(".example").style("display", "initial")
                         },
                         format: function(value){
-                            return value + "";
+                            return value + " " + scope.fieldObject.rangeUnit;
                         }
                     });
                 }

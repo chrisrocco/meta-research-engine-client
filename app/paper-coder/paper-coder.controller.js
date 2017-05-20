@@ -71,7 +71,7 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
                 var input = {
                     question: data.questions[i]['_key'],
                     data: {
-                        value: ""
+                        dont_flatten_me: ""
                     }
                 };
                 assignmentInputs.push( input );
@@ -91,7 +91,4 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
             paperCoderService.loadAssignment( $scope.assignment );
         });
     });
-    window.assignment = function () {
-        return $scope.assignment;
-    }
 }

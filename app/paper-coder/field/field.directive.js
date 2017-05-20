@@ -16,8 +16,9 @@ function BigDataField(paperCoderService, editorService) {
             $scope.editMe = editMe;
             $scope.toggleScope = toggleScope;
             $scope.generatePreview = generatePreview;
-            $scope.inputObject = $ctrl.getInput($scope.fieldObject._key);
+            $scope.inputObject = $ctrl.getInput( $scope.fieldObject._key );
             $scope.getForm = editorService.getInputForm;
+            init();
 
             /**
              * Listens for the "edit" event, indicating we should switch to edit mode
@@ -60,9 +61,19 @@ function BigDataField(paperCoderService, editorService) {
                     return $scope.inputObject.data.value;
                 }
                 if(type === "range"){
-                    var min = $scope.inputObject.data.min;
-                    var max = $scope.inputObject.data.max;
-                    return min + " -> " + max;
+                    var min = $scope.inputObject.data.rangeMin;
+                    var max = $scope.inputObject.data.rangeMax;
+                    if( min && max ){
+                        return min + " -> " + max;
+                    }
+                    return "";
+                }
+            }
+
+            function init(){
+                var type = $scope.fieldObject.type;
+                if( type == "range" ){
+
                 }
             }
         },
