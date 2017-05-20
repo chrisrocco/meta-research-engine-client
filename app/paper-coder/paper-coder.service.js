@@ -112,9 +112,9 @@ function paperCoderService() {
             if( input.data.value ){
                 return input.data.value !== "";
             }
-            if( input.data.min && input.data.max ){
-                return input.data.min !== "" &&
-                    input.data.max !== ""
+            if( input.data.rangeMin && input.data.rangeMin ){
+                return input.data.rangeMin !== "" &&
+                    input.data.rangeMin !== ""
             }
             return false;
         }
