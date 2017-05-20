@@ -70,8 +70,8 @@ function ProjectBuilderController( $scope ){
             questionObject.placeholder = form.placeholder.value;
         }
         if( type == "number" ){
-            questionObject.min = form.min.value;
-            questionObject.max = form.max.value;
+            questionObject.min = parseInt( form.min.value );
+            questionObject.max = parseInt( form.max.value );
             questionObject.unit = form.unit.value;
         }
         if( type == "boolean" ){
@@ -79,9 +79,9 @@ function ProjectBuilderController( $scope ){
             questionObject.falseOption = form.falseOption.value;
         }
         if( type == "range" ){
-            questionObject.min = form.rangeMin.value;
-            questionObject.max = form.rangeMax.value;
-            questionObject.unit = form.rangeUnit.value;
+            questionObject.rangeMin = parseInt( form.rangeMin.value );
+            questionObject.rangeMax = parseInt( form.rangeMax.value );
+            questionObject.rangeUnit = form.rangeUnit.value;
         }
 
         form.reset();

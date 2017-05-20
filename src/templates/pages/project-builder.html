@@ -406,7 +406,7 @@ title: Treeview
                             <div ng-if="modalQuestion.type === 'boolean'" class="row" >
                                 <div class="form-group col-md-6">
                                     <label class="floating-label">True Option</label>
-                                    <input ng-model="modalQuestion.truOption"
+                                    <input ng-model="modalQuestion.trueOption"
                                            name="trueOption" type="text" class="form-control" placeholder="Yes"/>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -419,6 +419,23 @@ title: Treeview
                                 <label class="floating-label">Placeholder</label>
                                 <input ng-model="modalQuestion.placeholder"
                                        name="placeholder" type="text" class="form-control"  required/>
+                            </div>
+                            <div ng-if="modalQuestion.type === 'range'" class="row" >
+                                <div class="form-group col-md-4">
+                                    <label class="floating-label">Min</label>
+                                    <input ng-model="modalQuestion.rangeMin"
+                                           name="rangeMin" type="number" class="form-control" placeholder="Lower Bound"/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="floating-label">Max</label>
+                                    <input ng-model="modalQuestion.rangeMax"
+                                            name="rangeMax" type="number" class="form-control" placeholder="Upper Bound"/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="floating-label">Unit</label>
+                                    <input ng-model="modalQuestion.rangeUnit"
+                                           name="rangeUnit" type="text" class="form-control" placeholder="degrees"/>
+                                </div>
                             </div>
                             <!-- End Type Conditionals -->
                             <div class="form-group">
