@@ -23,6 +23,16 @@ function submitPaperUploadForm(  ) {
 
     var promise = DataService.uploadPapersCSV( localStorage.projectKey, formData );
     promise.success( function ( data ) {
+        var newPaperCount = data.newPaperCount;
+        swal({
+            title: "Success!",
+            text: "You have uploaded " + newPaperCount + " new papers",
+            type: "success",
+            showCancelButton: false,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        });
         console.log("success from server", data);
     });
     promise.error( function( response ) {
@@ -33,16 +43,39 @@ function submitPaperUploadForm(  ) {
         var error = response.responseJSON;
         switch ( error.reason ){
             case badColumns:
-                alert("Invalid column count on line " + error.row );
+                swal({
+                    title: "Invalid File",
+                    text: "Invalid column count on line " + error.row,
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                });
                 break;
             case badFile:
-                alert("Could not parse csv");
+                swal({
+                    title: "Invalid File",
+                    text: "We couldn't even parse the thing!",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                });
                 break;
             case empty:
-                alert("Empty File");
+                swal({
+                    title: "That's.. Empty?",
+                    text: "Looks like you submitted an empty file!",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                });
                 break;
         }
-
         console.log("fail from server", error);
     });
 

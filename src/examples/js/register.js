@@ -19,7 +19,15 @@ function register(){
     /* Validate Name */
     var tmp = name.split(" ");
     if( tmp.length < 2 ){
-        alert("Please provide your full name");
+        swal({
+            title: "Psst!",
+            text: "Can you put your first AND last name please?",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        });
         return false;
     }
     var firstName = tmp[0];
@@ -27,7 +35,15 @@ function register(){
 
     /* Validate Password */
     if( password !== confirmPassword ){
-        alert("Passwords do not match");
+        swal({
+            title: "Oops..",
+            text: "Those passwords don't match!",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        });
         return false;
     }
 

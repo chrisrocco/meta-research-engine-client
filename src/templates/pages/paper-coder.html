@@ -82,7 +82,7 @@ title: Paper Coder
             </div>
             <div class="col-lg-6">
                 <bd-branch ng-repeat="branch in assignment.encoding.branches"
-                        branch="branch" name="'branch'+$index" label="'Study Branch '+$index">
+                        branch="branch" name="'branch'+$index" label="'Study Branch '+ ($index+1)">
                     <bd-domain ng-repeat="domain in structure" domain="domain" >
                         <bd-field ng-repeat="variable in domain.variables" field="variable" ></bd-field>
                     </bd-domain>

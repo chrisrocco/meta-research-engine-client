@@ -20,23 +20,34 @@ function BigDataDomain(paperCoderService) {
             $scope.isAlive = isAlive;
             $scope.toggleScope = toggleScope;
             $scope.isComplete = isComplete;
+            $scope.hasLivingSubdomains = false;
+            $scope.hasLivingQuestions = false;
 
             /**
              * Decides if this domain DOM element should be rendered
              * @returns {boolean}
              */
-            function isAlive( domainObject ){
+            function isAlive( domainObject, firstCall = false ){
+                var hasLivingQuestions = false;
+                var hasLivingSubdomains = false;
+
                 for(var i = 0; i < domainObject.variables.length; i++){
                     var theField = domainObject.variables[i];
-                    if($ctrl.isAlive(theField._key)){
-                        return true;
+                    if( $ctrl.isAlive( theField._key ) ){
+                        hasLivingQuestions = true;
                     }
                 }
                 for( var sd = 0; sd < domainObject.subdomains.length; sd++ ){
                     var subdomain = domainObject.subdomains[sd];
-                    if( isAlive(subdomain) ) return true;
+                    if( isAlive(subdomain) ) hasLivingSubdomains = true;
                 }
-                return false;
+
+                if( firstCall ){
+                    $scope.hasLivingQuestions = hasLivingQuestions;
+                    $scope.hasLivingSubdomains = hasLivingSubdomains;
+                }
+
+                return ( hasLivingQuestions || hasLivingSubdomains );
             }
 
             /**

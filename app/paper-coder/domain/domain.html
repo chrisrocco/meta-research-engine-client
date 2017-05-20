@@ -1,4 +1,4 @@
-<div class="panel" ng-show="isAlive( domain )">
+<div class="panel" ng-show="isAlive( domain, true )">
     <div class="panel-heading">
         <a class="panel-title" data-toggle="collapse"
            href="" onclick="return false;"
@@ -16,12 +16,12 @@
         <div class="panel-body">
             <!-- Example Gap -->
             <div class="example-wrap">
-                <h4 class="example-title">{{domain.name}} Fields</h4>
+                <h4 ng-if="hasLivingQuestions" class="example-title">{{domain.name}} Questions</h4>
                 <!--<p>Add the <code>.list-group-gap</code> to the wrap for gap the items.</p>-->
                 <ul class="list-group list-group-gap">
                     <ng-transclude></ng-transclude>
                 </ul>
-                <h4 class="example-title">{{domain.name}} Subdomains</h4>
+                <h4 ng-if="hasLivingSubdomains" class="example-title">{{domain.name}} Subdomains</h4>
                 <bd-domain ng-repeat="subdomain in domain.subdomains" domain="subdomain" >
                     <bd-field ng-repeat="variable in subdomain.variables" field="variable" ></bd-field>
                 </bd-domain>
