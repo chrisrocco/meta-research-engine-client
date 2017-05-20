@@ -107,7 +107,7 @@
             method: "POST",
             data: {
                 "email": email,
-                "callback": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                "callback": "https://uab-energetics.github.io/bigdata-app/html/reset-password.html"
             }
         });
     }

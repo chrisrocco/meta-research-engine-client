@@ -27,11 +27,9 @@ function register(){
         alert("Please provide your full name");
         return false;
     }
-
     var firstName = tmp[0];
     var lastName = tmp[1];
 
-    /* Validate Email */
     /* Validate Password */
     if( password !== confirmPassword ){
         alert("Passwords do not match");
@@ -39,17 +37,33 @@ function register(){
     }
 
     var promise = AuthService.register( firstName, lastName, email, password );
-    promise.complete( function( response ){
-        switch( response.status ){
-            case 200:
-                alert("Registration Successful. You may now login.");
-                window.location = "login.html";
-                break;
-            case 409:
-                alert("That email already exists. Do you need to login?");
-                break;
+    promise.success( function( res ){
+        swal({
+            title: "Registration Successful!",
+            text: "Check your email for a validation link",
+            type: "success",
+            showCancelButton: false,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        },
+        function(){
+            window.location = "login.html"
+        })
+    });
+    promise.error( function( res ){
+        if( res.status == 409 ){
+            swal({
+                title: "Wait a minute!",
+                text: "There's already an account with that email. Do you need to login?",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            })
         }
-    } );
+    });
 
     return false;
 }
