@@ -24,7 +24,6 @@
     if (localStorage.hostOverride) {
         API_BASE_PATH = localStorage.hostOverride;
     }
-    // const API_BASE_PATH = "http://localhost:8080";
 
     function getUsersAssignments(id) {
         return http({
@@ -49,6 +48,8 @@
                 "completion": assignmentObject.completion,
                 "encoding": assignmentObject.encoding
             }
+        }).complete(function (res) {
+            console.log("put assignment response", res);
         });
     }
     function loadPaperCoder(assignmentKey) {
@@ -111,8 +112,15 @@
             }
         });
     }
-    function postResetPassword(newPassword, hash) {
-        // TODO
+    function postResetPassword(newPassword, hash_code) {
+        return http({
+            url: "/users/reset",
+            method: "POST",
+            data: {
+                hash_code: hash_code,
+                newPassword: newPassword
+            }
+        });
     }
     function loadAssignments() {
         return http({
