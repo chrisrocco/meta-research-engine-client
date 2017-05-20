@@ -25,7 +25,18 @@ function submitResetForm(){
 
     var pr = DataService.postResetPassword( password, hash );
     pr.success( function( response ){
-        console.log("win", response );
+        console.log( "win", response );
+        swal({
+            title: "Password Reset!",
+            text: "Maybe write it down next time?",
+            type: "success",
+            showCancelButton: false,
+            confirmButtonClass: "btn-success",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        }, function(){
+            window.location = "login.html";
+        });
     });
     pr.error( function( response ){
         console.log("fail", response );

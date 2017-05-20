@@ -4,6 +4,17 @@ let values = {
   assets: '../assets'
 };
 
+let urls = {
+    api: "https://coursebooks.xyz",
+    login: "https://coursebooks.xyz/users/login",
+    register: "https://coursebooks.xyz/users/register",
+    resetPasswordCallback: "https://uab-energetics.github.io/bigdata-app/html/reset-password.html"
+};
+
+function getUrl( name ){
+  return urls[name];
+}
+
 function get(...names) {
   let data = values;
   let callback = function(data, name) {
@@ -60,5 +71,6 @@ export {
   get,
   set,
   getColor,
-  colors
+  colors,
+    getUrl
 };

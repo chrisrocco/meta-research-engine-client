@@ -22,6 +22,17 @@
     assets: '../assets'
   };
 
+  var urls = {
+    api: "https://coursebooks.xyz",
+    login: "https://coursebooks.xyz/users/login",
+    register: "https://coursebooks.xyz/users/register",
+    resetPasswordCallback: "https://uab-energetics.github.io/bigdata-app/html/reset-password.html"
+  };
+
+  function getUrl(name) {
+    return urls[name];
+  }
+
   function get() {
     var data = values;
     var callback = function callback(data, name) {
@@ -82,4 +93,5 @@
   exports.set = set;
   exports.getColor = getColor;
   exports.colors = colors;
+  exports.getUrl = getUrl;
 });

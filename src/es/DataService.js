@@ -1,6 +1,7 @@
+import * as Config from 'Config';
 import * as AuthService from 'AuthService';
 
-var API_BASE_PATH = "https://coursebooks.xyz";
+var API_BASE_PATH = Config.getUrl('api');
 if (localStorage.hostOverride) {
     API_BASE_PATH = localStorage.hostOverride;
 }
@@ -95,7 +96,7 @@ function postForgotPassword( email ){
         method: "POST",
         data: {
             "email": email,
-            "callback": "https://uab-energetics.github.io/bigdata-app/html/reset-password.html"
+            "callback": Config.getUrl( "resetPasswordCallback" )
         }
     })
 }

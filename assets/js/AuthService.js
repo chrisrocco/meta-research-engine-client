@@ -1,24 +1,27 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define("/AuthService", ["exports"], factory);
+        define("/AuthService", ["exports", "Config"], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports);
+        factory(exports, require("Config"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports);
+        factory(mod.exports, global.Config);
         global.AuthService = mod.exports;
     }
-})(this, function (exports) {
+})(this, function (exports, _Config) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    var API_BASE_PATH = "https://coursebooks.xyz";
-    var TOKEN_PROVIDER = API_BASE_PATH + "/users/login";
-    var REGISTER = API_BASE_PATH + "/users/register";
+    exports.getToken = exports.getUser = exports.logout = exports.register = exports.login = undefined;
+    var Config = babelHelpers.interopRequireWildcard(_Config);
+
+
+    var TOKEN_PROVIDER = Config.getUrl("login");
+    var REGISTER = Config.getUrl("register");
 
     function login(email, password, win, fail) {
         return $.ajax({
