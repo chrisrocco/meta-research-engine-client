@@ -367,43 +367,30 @@
                       Active
                     </label>
                   </div>
-                  <div class="radio-custom radio-primary mr-15">
-                    <input type="radio" name="status" id="status_disabled" class="filter-ui-status"
-                    value="disabled">
-                    <label for="status_disabled">
-                      Disabled
-                    </label>
-                  </div>
-                  <div class="radio-custom radio-primary">
-                    <input type="radio" name="status" id="status_suspended" class="filter-ui-status"
-                    value="suspended">
-                    <label for="status_suspended">
-                      Suspended
-                    </label>
-                  </div>
                 </form>
               </div>
             </header>
             <div class="panel-body">
-              <table id="exampleCustomFilter" class="table table-hover" data-paging="true" data-sorting="true"
-              data-filtering="true">
+              <table id="papersTable" class="table table-hover" data-paging="true" data-sorting="true">
                 <thead>
                   <tr>
-                    <th data-name="id" data-type="number" data-breakpoints="xs">PMC-ID</th>
-                    <th data-name="title">Title</th>
-                    <th data-name="assignments"># Assignments</th>
+                    <th data-name="title" data-title="Paper Title"> Paper Title </th>
+                    <th data-name="desc"> Description </th>
+                    <th data-name="assignments" data-breakpoints="xs">Assignment Count</th>
                     <th data-name="status">Status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td> 3462345</td>
-                    <td> [The Effects of Something Something on Mice]</td>
-                    <td> 2</td>
-                    <td>
-                      <span class="badge badge-table badge-success"> Clean </span>
-                    </td>
-                  </tr>
+                <tbody id="templateOutlet">
+                  <template id="paperTemplate">
+                    <tr>
+                      <td data-title> [PMC-ID] </td>
+                      <td data-desc> [Article Title] </td>
+                      <td data-assignmentCount> [Number of Assignments] </td>
+                      <td>
+                        <span data-status class="badge badge-table badge-success"> [Status] </span>
+                      </td>
+                    </tr>
+                  </template>
                 </tbody>
               </table>
             </div>
@@ -421,10 +408,9 @@
               <div class="example-wrap">
                 <h4 class="example-title">Upload a .csv of articles: Title, Description, Embedding URL</h4>
                 <div class="example">
-                  <form id="paperUploadForm" onsubmit="return submitPaperUploadForm( this )" enctype="multipart/form-data"
+                  <form id="paperUploadForm" onsubmit="return submitPaperUploadForm()" enctype="multipart/form-data"
                   action="#">
-                    <input id="fileupload" name="myfile" type="file" />
-                    <input type="file" id="papersCSV" data-plugin="dropify" data-height="500" />
+                    <input type="file" id="papersCSV" data-allowed-file-extensions="csv" />
                     <br>
                     <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
                   </form>
