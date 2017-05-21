@@ -57,7 +57,7 @@ function ProjectBuilderController( $scope ){
         }
 
         var questionObject = {
-            id: (Math.random() * 99999).toString(),
+            id: (Math.floor( Math.random() * 99999) ).toString(),
             parent: parent,
             type: type,
             name: name,
@@ -119,7 +119,7 @@ function ProjectBuilderController( $scope ){
         form.icon.value = icon;
 
         var domainObject = {
-            id: (Math.random() * 99999).toString(),
+            id: ( Math.floor( Math.random() * 99999 )).toString(),
             parent: parent,
             name: name,
             description: description,
