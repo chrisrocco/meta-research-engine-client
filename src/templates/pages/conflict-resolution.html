@@ -16,6 +16,7 @@ title: Conflict Resolution
 
   {{#content "js" mode="append"}}
   <script src="{{html}}../app/conflict-resolution/conflict-resolution.module.js"></script>
+  <script src="{{html}}../app/conflict-resolution/transaction.service.js"></script>
   <script src="{{html}}../app/conflict-resolution/conflict-resolution.controller.js"></script>
 
     <script src="{{assets}}/js/Plugin/peity.js"></script>
@@ -47,12 +48,14 @@ title: Conflict Resolution
 
       <div class="page-content">
         <div class="row">
-          <div ng-repeat="masterRecord in paper.masterEncoding" class="col-md-6">
+          <div ng-repeat="masterRecord in paper.masterEncoding"
+               ng-if="masterRecord.responses.length > 1"
+               class="col-md-6">
             <div class="panel">
               <div class="panel-body">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Responses to <span ng-bind="conflict.question.name"></span>:
-                    <span class="panel-desc"><span ng-bind="conflict.question.description_short"></span></span>
+                  <h3 class="panel-title">Responses to <span ng-bind="masterRecord.question.name"></span>:
+                    <span class="panel-desc"><span ng-bind="masterRecord.question.question"></span></span>
                   </h3>
                   <div class="panel-actions">
                     <a class="panel-action icon wb-thumb-down" data-toggle="tooltip" data-original-title="I Tried"
@@ -73,14 +76,11 @@ title: Conflict Resolution
                           <th>
                             Responders
                           </th>
-                          <!--<th>-->
-                            <!--Date Created-->
-                          <!--</th>-->
                           <th> Agree </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="response in conflict.responses" ng-class="{ 'me': response.users.indexOf( myUserKey ) > 0 }">
+                        <tr ng-repeat="response in masterRecord.responses" ng-class="{ 'me': isMyResponse( response ) }">
                           <td>
                             <span ng-bind="response.data.value"></span>
                             <!--<i class="icon wb-help-circle ml-10 red-600" aria-hidden="true"-->
@@ -88,17 +88,14 @@ title: Conflict Resolution
                                     <!--title=""></i>-->
                           </td>
                           <td>
-                            <img ng-repeat="userKey in response.users"
+                            <img ng-repeat="assignmentKey in response.users"
                                  class="mr-10 avatar avatar-sm" src="../assets/avatars/7.png" data-toggle="tooltip"
-                                 data-original-title="{[{userKey}]}" data-container="body"
+                                 data-original-title="{[{assignmentKey}]}" data-container="body"
                                  title="">
                           </td>
-                          <!--<td>-->
-                            <!--<span>6 minets ago</span>-->
-                            <!--<i class="icon wb-time ml-10" aria-hidden="true"></i>-->
-                          <!--</td>-->
                           <td>
-                            <button type="button" class="btn btn-animate btn-animate-side btn-success">
+                            <button ng-click="iAgree( masterRecord.question, response )"
+                                    type="button" class="btn btn-animate btn-animate-side btn-success">
                               <span><i class="icon wb-thumb-up" aria-hidden="true"></i>Agree</span>
                             </button>
                           </td>

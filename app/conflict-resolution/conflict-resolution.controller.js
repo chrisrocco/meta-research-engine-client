@@ -7,9 +7,17 @@ function ConflictResolutionController( $scope, TransactionService ){
     $scope.assignment       =   defaultModel.assignment;
     $scope.paper            =   defaultModel.paper;
     $scope.collaborators    =   defaultModel.collaborators;
-    $scope.userKey          =   AuthService.getUser()._key;
     init();
 
+    $scope.isMyResponse     =   isMyResponse;
+    $scope.iAgree           =   function( question, response ){
+        console.log( "user (assignment key) ", $scope.assignment._key, " wants to change his answer on ", question, " to agree with ", response );
+        TransactionService.addTransaction(  );
+    };
+
+    function isMyResponse( response ){
+        return response.users.indexOf( $scope.assignment._key ) > 0;
+    }
     function init() {
         var p = DataService.loadConflictResolution( localStorage.assignmentKey );
         p.success( function( data ){
