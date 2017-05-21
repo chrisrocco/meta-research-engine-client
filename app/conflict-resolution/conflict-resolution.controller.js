@@ -12,7 +12,7 @@ function ConflictResolutionController( $scope, TransactionService ){
     $scope.isMyResponse     =   isMyResponse;
     $scope.iAgree           =   function( question, response ){
         console.log( "user (assignment key) ", $scope.assignment._key, " wants to change his answer on ", question, " to agree with ", response );
-        TransactionService.addTransaction(  );
+        TransactionService.addTransaction( question._key, response.data );
     };
 
     function isMyResponse( response ){

@@ -17,14 +17,17 @@ function TransactionService() {
         assignment = assignmentObject;
     }
 
-    function addTransaction( inputObject, newResponse ){
+    function addTransaction( questionKey, newData ){
         // TODO
-        transactions.push( {} );
+        transactions.push( {
+            questionKey:    questionKey,
+            newData:        newData
+        } );
     }
 
     function resolve(){
         // TODO
-        return assignmentObject;
+        return assignment;
     }
 }
 

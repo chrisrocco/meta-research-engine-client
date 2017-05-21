@@ -362,7 +362,8 @@
                             title="">
                           </td>
                           <td>
-                            <button ng-click="iAgree( masterRecord.question, response )" type="button" class="btn btn-animate btn-animate-side btn-success">
+                            <button ng-click="iAgree( masterRecord.question, response )" ng-if="( ! isMyResponse( response ) )"
+                            type="button" class="btn btn-animate btn-animate-side btn-success">
                               <span><i class="icon wb-thumb-up" aria-hidden="true"></i>Agree</span>
                             </button>
                           </td>
