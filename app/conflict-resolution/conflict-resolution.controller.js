@@ -2,8 +2,8 @@ angular
     .module("conflict-resolution")
     .controller("ConflictResolutionController", ConflictResolutionController);
 
-ConflictResolutionController.$inject = [ '$scope', 'transaction.service' ];
-function ConflictResolutionController( $scope, TransactionService ){
+ConflictResolutionController.$inject = [ '$scope', '$sce', 'transaction.service' ];
+function ConflictResolutionController( $scope, $sce, TransactionService ){
     $scope.assignment       =   defaultModel.assignment;
     $scope.paper            =   defaultModel.paper;
     $scope.collaborators    =   defaultModel.collaborators;
@@ -14,22 +14,34 @@ function ConflictResolutionController( $scope, TransactionService ){
         console.log( "user (assignment key) ", $scope.assignment._key, " wants to change his answer on ", question, " to agree with ", response );
         TransactionService.addTransaction( question._key, response.data );
 
-        // TODO - dont immediately resolve
-        console.log( "before resolve", $scope.assignment );
-        TransactionService.resolve();
-        console.log( "after resolve", $scope.assignment );
-        DataService.putAssignment( $scope.assignment ).then( function(res){
-            console.log( "from server: ", res);
-            swal({
-                title: "All Good!",
-                text: "Your assignment has been updated with the new response!",
-                type: "success",
-                showCancelButton: false,
-                confirmButtonClass: "btn-success",
-                confirmButtonText: 'OK',
-                closeOnConfirm: false
+        swal({
+            title: "Change your Response!?",
+            text: "#bandwagon",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        },
+        function(){
+            // TODO - dont immediately resolve
+            console.log( "before resolve", $scope.assignment );
+            TransactionService.resolve();
+            console.log( "after resolve", $scope.assignment );
+            DataService.putAssignment( $scope.assignment ).then( function(res){
+                console.log( "from server: ", res);
+                swal({
+                    title: "All Good!",
+                    text: "Your assignment has been updated with the new response!",
+                    type: "success",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                }, function(){
+                    window.location.reload();
+                });
             });
-        })
+        });
     };
 
     function isMyResponse( response ){
@@ -41,6 +53,8 @@ function ConflictResolutionController( $scope, TransactionService ){
 
             $scope.$apply( function(){
                 $scope.assignment = data.assignment;
+                /* Trust Paper URL */
+                data.paper.url = $sce.trustAsResourceUrl(data.paper.url);
                 $scope.paper = data.paper;
                 $scope.collaborators = data.collaborators;
             });

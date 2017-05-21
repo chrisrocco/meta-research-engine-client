@@ -316,18 +316,17 @@
     </div>
     <div class="page-content">
       <!-- Start Paper Embedding -->
-      <div class="panel">
+      <div class="panel is-collapse">
         <div class="panel-heading">
           <h3 class="panel-title"> {[{paper.title}]}</h3>
           <div class="panel-actions">
+            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-hidden="true"></a>
             <div class="dropdown">
               <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i class="icon wb-settings" aria-hidden="true"></i></a>
               <div class="dropdown-menu dropdown-menu-bullet" role="menu">
                 <a ng-click="popOut( paper )" class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-flag" aria-hidden="true"></i> Pop Out</a>
               </div>
             </div>
-            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
-            aria-hidden="true"></a>
             <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
           </div>
         </div>

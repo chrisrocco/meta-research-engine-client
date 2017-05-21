@@ -313,6 +313,26 @@
       </div>
     </div>
     <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"> {[{paper.title}]}</h3>
+          <div class="panel-actions">
+            <div class="dropdown">
+              <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i class="icon wb-settings" aria-hidden="true"></i></a>
+              <div class="dropdown-menu dropdown-menu-bullet" role="menu">
+                <a ng-click="popOut( paper )" class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-flag" aria-hidden="true"></i> Pop Out</a>
+              </div>
+            </div>
+            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+            aria-hidden="true"></a>
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          {[{paper.description}]}
+          <iframe ng-src="{[{paper.url}]}" width="100%" height="700px"></iframe>
+        </div>
+      </div>
       <div class="row">
         <div ng-repeat="masterRecord in paper.masterEncoding" ng-if="masterRecord.responses.length > 1"
         class="col-md-6">
@@ -344,7 +364,7 @@
                           <th>
                             Responders
                           </th>
-                          <th> Agree </th>
+                          <th> Agree</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -402,8 +422,9 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/peity/jquery.peity.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="..\assets/vendor/peity/jquery.peity.min.js"></script>
+  <script src="..\assets/js/Plugin/panel.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
