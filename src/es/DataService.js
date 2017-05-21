@@ -124,6 +124,13 @@ function loadManageProject( projectKey ){
         dataType: "json"
     });
 }
+function loadConflictResolution( assignmentKey ){
+    return http({
+        url: "/loadConflictResolution" + "?assignmentKey=" + assignmentKey,
+        method: "GET",
+        dataType: "json"
+    })
+}
 function uploadPapersCSV( projectKey, formData ){
     return http({
         url: "/projects/"+projectKey+"/papers",
@@ -151,6 +158,7 @@ export {
     loadPaperCoder,
     loadCodeBook,
     loadAssignments,
+    loadConflictResolution,
     http,
     getAssignment,
     putAssignment,

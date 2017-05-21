@@ -8,7 +8,7 @@
   <meta name="author" content="Chris Rocco">
   <title>Paper Coder | Big Data UAB</title>
   <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
-  <link rel="shortcut icon" href="..\assets/images/favicon.ico">
+  <link rel="shortcut icon" href="..\assets/images/favicon.ico?v=2">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="..\assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="..\assets/css/bootstrap-extend.min.css">
@@ -258,10 +258,16 @@
       <div>
         <div>
           <ul class="site-menu" data-plugin="menu">
-            <li class="site-menu-item ">
-              <a href="index.html">
-                <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                <span class="site-menu-title">Landing</span>
+            <li class="bdManagerOnly site-menu-item ">
+              <a href="project-center.html">
+                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                <span class="site-menu-title"> Project Center </span>
+              </a>
+            </li>
+            <li class="bdManagerOnly site-menu-item ">
+              <a href="project-builder.html">
+                <i class="site-menu-icon wb-user-add" aria-hidden="true"></i>
+                <span class="site-menu-title"> Project Builder </span>
               </a>
             </li>
             <li class="site-menu-item ">
@@ -294,30 +300,6 @@
                 <span class="site-menu-title">Conflict Resolution</span>
               </a>
             </li>
-            <li class="site-menu-item ">
-              <a href="project-center.html">
-                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
-                <span class="site-menu-title"> Project Center </span>
-              </a>
-            </li>
-            <li class="site-menu-item ">
-              <a href="project-builder.html">
-                <i class="site-menu-icon wb-user-add" aria-hidden="true"></i>
-                <span class="site-menu-title"> Project Builder </span>
-              </a>
-            </li>
-            <li class="site-menu-item ">
-              <a href="login.html">
-                <i class="site-menu-icon wb-user" aria-hidden="true"></i>
-                <span class="site-menu-title"> Login </span>
-              </a>
-            </li>
-            <li class="site-menu-item ">
-              <a href="register.html">
-                <i class="site-menu-icon wb-user-add" aria-hidden="true"></i>
-                <span class="site-menu-title"> Register </span>
-              </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -331,14 +313,30 @@
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item active">Paper Coder</li>
       </ol>
-      <div class="page-header-actions">
-        <button type="button" class="btn btn-sm btn-outline btn-default btn-round">
-          <span class="text hidden-sm-down">View Paper</span>
-          <i class="icon wb-chevron-right" aria-hidden="true"></i>
-        </button>
-      </div>
     </div>
     <div class="page-content">
+      <!-- Start Paper Embedding -->
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"> {[{paper.title}]}</h3>
+          <div class="panel-actions">
+            <div class="dropdown">
+              <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i class="icon wb-settings" aria-hidden="true"></i></a>
+              <div class="dropdown-menu dropdown-menu-bullet" role="menu">
+                <a ng-click="popOut( paper )" class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-flag" aria-hidden="true"></i> Pop Out</a>
+              </div>
+            </div>
+            <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+            aria-hidden="true"></a>
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          {[{paper.description}]}
+          <iframe ng-src="{[{paper.url}]}" width="100%" height="700px"></iframe>
+        </div>
+      </div>
+      <!-- End Paper Embedding -->
       <div class="panel">
         <div class="panel-body">
           <div class="progress">
@@ -350,11 +348,14 @@
           <button ng-click="save()" type="button" class="btn btn-animate btn-animate-side btn-outline btn-success">
             <span><i class="icon wb-download" aria-hidden="true"></i>Save</span>
           </button>
-          <button ng-click="newBranch()" type="button" class="btn btn-outline btn-primary"><i class="icon md-plus" aria-hidden="true"></i> New Branch</button>
+          <button ng-click="newBranch()" type="button" class="btn btn-outline btn-primary"><i class="icon md-plus" aria-hidden="true"></i> New Branch
+          </button>
           <button ng-click="toggleComplete()" ng-if="assignment.done == false" type="button"
-          class="btn btn-outline btn-success"><i class="icon wb-thumb-up" aria-hidden="true"></i> Mark as Complete</button>
+          class="btn btn-outline btn-success"><i class="icon wb-thumb-up" aria-hidden="true"></i> Mark as Complete
+          </button>
           <button ng-click="toggleComplete()" ng-if="assignment.done == true" type="button"
-          class="btn btn-outline btn-danger"><i class="icon wb-thumb-down" aria-hidden="true"></i> Mark as Incomplete</button>
+          class="btn btn-outline btn-danger"><i class="icon wb-thumb-down" aria-hidden="true"></i> Mark as Incomplete
+          </button>
         </div>
       </div>
       <div class="row">
@@ -400,8 +401,9 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="..\assets/js/Plugin/panel.js"></script>
+  <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="..\assets/vendor/jquery-asRange/jquery-asRange.js"></script>
   <script src="..\assets/vendor/pace/pace.min.js"></script>
   <!-- Scripts -->
@@ -429,6 +431,7 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
+  <script src="..\assets/js/Plugin/panel.js"></script>
   <script src="..\assets/examples/js/paper-coder.js"></script>
   <script src="../app/paper-coder/paper-coder.module.js"></script>
   <script src="../app/paper-coder/editor/editor.service.js"></script>

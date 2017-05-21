@@ -28,6 +28,8 @@
     var firstNameSelector = ".bdFirstName";
     var lastNameSelector = ".bdLastName";
 
+    var managerOnlySelector = ".bdManagerOnly";
+
     function joinStudy() {
         var userKey = AuthService.getUser()._key;
 
@@ -102,6 +104,7 @@
     }
 
     function renderSession() {
+        (0, _jquery2.default)(managerOnlySelector).hide();
         var user = AuthService.getUser();
         if (!user) {
             return;
@@ -110,6 +113,9 @@
         (0, _jquery2.default)(emailSelector).html(user.email);
         (0, _jquery2.default)(firstNameSelector).html(user.first_name);
         (0, _jquery2.default)(lastNameSelector).html(user.last_name);
+        if (user.role === "manager") {
+            (0, _jquery2.default)(managerOnlySelector).show();
+        }
     }
 
     exports.joinStudy = joinStudy;

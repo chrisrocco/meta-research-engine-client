@@ -6,6 +6,8 @@ const emailSelector = ".bdEmail";
 const firstNameSelector = ".bdFirstName";
 const lastNameSelector = ".bdLastName";
 
+const managerOnlySelector = ".bdManagerOnly";
+
 function joinStudy(  ){
     var userKey = AuthService.getUser()._key;
 
@@ -83,6 +85,7 @@ function joinStudy(  ){
 }
 
 function renderSession(){
+    $(managerOnlySelector).hide();
     var user = AuthService.getUser();
     if( ! user ){
         return;
@@ -91,6 +94,9 @@ function renderSession(){
     $(emailSelector).html( user.email );
     $(firstNameSelector).html( user.first_name );
     $(lastNameSelector).html( user.last_name );
+    if( user.role === "manager" ){
+        $(managerOnlySelector).show();
+    }
 }
 
 export {

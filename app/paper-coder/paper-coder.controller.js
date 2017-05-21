@@ -2,8 +2,8 @@ angular
     .module("paper-coder")
     .controller("PaperCoderController", PaperCoderController);
 
-PaperCoderController.$inject = ['$scope', '$http', '$log', 'paper-coder.service', 'editor.service'];
-function PaperCoderController($scope, $http, $log, paperCoderService, editorService) {
+PaperCoderController.$inject = ['$scope', '$sce', 'paper-coder.service'];
+function PaperCoderController($scope, $sce, paperCoderService) {
     // setup default models
     $scope.assignment = paperCoderService.getAssignment();
     $scope.structure = [];
@@ -50,12 +50,15 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
             });
         })
     };
+    $scope.popOut = function( paperObject ){
+        window.open( paperObject.url,
+            "Research Coder | "+paperObject.title,
+            "height=700,width=500"
+        );
+    };
 
     DataService.loadPaperCoder( localStorage.assignmentKey ).success( function(data){
         console.log( "Data from server", data );
-        console.log( "Assignment", data.assignment );
-        console.log( "Questions", data.questions );
-        console.log( "Structure", data.structure );
 
         /* Initialize Data */
         data.assignment.done == "true" ? data.assignment.done = true : data.assignment.done = false ;
@@ -84,8 +87,11 @@ function PaperCoderController($scope, $http, $log, paperCoderService, editorServ
         if( !data.assignment.encoding.branches){
             data.assignment.encoding.branches = [[]];
         }
+        /* Trust Paper URL */
+        data.paper.url = $sce.trustAsResourceUrl(data.paper.url);
 
         $scope.$apply( function(){
+            $scope.paper = data.paper;
             $scope.assignment = data.assignment;
             $scope.structure = data.structure;
             paperCoderService.loadAssignment( $scope.assignment );
