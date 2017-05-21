@@ -309,12 +309,12 @@
     <div class="page-content">
       <div class="panel">
         <div class="panel-heading">
-          <h3 class="panel-title">ASSIGNMENT LIST {[{test}]}</h3>
+          <h3 class="panel-title">ASSIGNMENT LIST</h3>
           <form class="panel-search-form" role="search">
             <div class="input-search">
               <i class="input-search-icon wb-search" aria-hidden="true"></i>
               <input type="text" class="form-control" id="inputSearch" name="search" placeholder="Search List">
-              <i onclick="loadAssignments()" class="icon wb-loop"></i>
+              <i onclick="javascript:alert('working on it')" class="icon wb-loop"></i>
             </div>
           </form>
           <ul class="panel-info">
@@ -323,7 +323,7 @@
               <p>Conflicts</p>
             </li>
             <li>
-              <div data-numassignments class="num orange-600">[8]</div>
+              <div class="num orange-600">[8]</div>
               <p>Active</p>
             </li>
             <li>
@@ -343,42 +343,56 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody id="templateOutlet">
-              <!-- Dynamic -->
-            </tbody>
-            <template id="assignmentTemplate">
-              <tr>
+            <tbody>
+              <tr ng-repeat="row in tableRows">
                 <td class="work-status">
-                  <span data-status class="badge">Active</span>
+                  <span ng-if="row.paper.status == 'active'" class="badge badge-primary"> Active </span>
+                  <span ng-if="row.paper.status == 'pending'" class="badge badge-warning"> Pending </span>
+                  <span ng-if="row.paper.status == 'conflicted'" class="badge badge-danger"> Conflict </span>
                 </td>
                 <td class="subject">
                   <div class="table-content">
-                    <p data-papername class="blue-grey-500">Lorem ipsum dolor sit amet,consectetur adipsicing elit</p>
-                    <span data-papermeta class="blue-grey-400">11/08/2017</span>
+                    <p data-papername class="blue-grey-500">
+                      <span ng-bind="row.paper.title"></span>
+                    </p>
+                    <span data-papermeta class="blue-grey-400">
+                      <span ng-bind="row.paper.description"></span>
+                    </span>
                     <span class="badge badge-sm badge-primary">Recruiting</span>
                   </div>
                 </td>
                 <td class="work-progress">
                   <div class="progress progress-xs table-content">
-                    <div data-progress class="progress-bar progress-bar-primary progress-bar-indicating"
+                    <div style="width: {[{row.assignment.completion}]}%" class="progress-bar progress-bar-primary progress-bar-indicating"
                     role="progressbar"> </div>
                   </div>
-                  <span data-progresstext>90%</span>
+                  <span data-progresstext>
+                    <span ng-bind="row.assignment.completion"></span>% </span>
                 </td>
                 <td class="subject">
                   <div class="table-content">
-                    <p data-studyname class="blue-grey-500">[Murine Rigor]</p>
-                    <span data-studymeta class="blue-grey-400">11/08/2017</span>
+                    <p data-studyname class="blue-grey-500">
+                      <span ng-bind="row.study.name"></span>
+                    </p>
+                    <span data-studymeta class="blue-grey-400">
+                      <span ng-bind="row.study.date_created"></span>
+                    </span>
                   </div>
                 </td>
                 <td class="subject">
-                  <button data-button onclick="load( this )" type="button" class="btn btn-animate btn-animate-vertical btn-success">
+                  <button ng-if="row.paper.status == 'conflicted'" ng-click="loadConflictResolution( row.assignment )"
+                  type="button" class="btn btn-animate btn-animate-vertical btn-danger">
+                    <span><i class="icon wb-play" aria-hidden="true"></i> Resolve Conflicts
+                    </span>
+                  </button>
+                  <button ng-if="row.paper.status != 'conflicted'" ng-click="loadPaperCoder( row.assignment )"
+                  type="button" class="btn btn-animate btn-animate-vertical btn-primary">
                     <span><i class="icon wb-play" aria-hidden="true"></i> Continue
                     </span>
                   </button>
                 </td>
               </tr>
-            </template>
+            </tbody>
           </table>
         </div>
       </div>

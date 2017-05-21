@@ -5,8 +5,9 @@
  */
 $(document).ready(function() {
   Site.run();
-  loadAssignments();
+  // loadAssignments();
 });
+/*
 
 function loadAssignments(){
   var outlet = document.getElementById("templateOutlet");
@@ -26,7 +27,7 @@ function loadAssignments(){
     var promise = DataService.loadAssignments( AuthService.getUser()['_key'] );
     promise.success( function( data ){
 
-        /* Load Stats */
+        /!* Load Stats *!/
         var numAssignments = data.length;
         $("[data-numassignments]").html( numAssignments );
 
@@ -37,7 +38,7 @@ function loadAssignments(){
             var assignment      =   obj.assignment;
             var study           =   obj.study;
 
-            var statusClass = "badge badge-primary";
+            var statusClass         = "badge badge-primary";
             switch( paper.status ){
                 case "active":
                     statusClass = "badge badge-primary";
@@ -50,8 +51,9 @@ function loadAssignments(){
                     break;
             }
 
-            /* set the content object DOM with selectors above */
-
+            /!**
+             * RENDER INFORMATION
+             *!/
             // Setting status button
             content.querySelector( datastatus ).className = statusClass;
             content.querySelector( datastatus ).textContent = paper.status;
@@ -75,4 +77,4 @@ function loadAssignments(){
 function load( buttonElement ){
     localStorage.assignmentKey = buttonElement.dataset.assignmentKey;
     window.location = "paper-coder.html";
-}
+}*/

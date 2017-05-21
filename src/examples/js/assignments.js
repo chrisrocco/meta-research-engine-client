@@ -1,7 +1,8 @@
 $(document).ready(function() {
   Site.run();
-  loadAssignments();
+  // loadAssignments();
 });
+/*
 
 function loadAssignments(){
   var outlet = document.getElementById("templateOutlet");
@@ -21,7 +22,7 @@ function loadAssignments(){
     var promise = DataService.loadAssignments( AuthService.getUser()['_key'] );
     promise.success( function( data ){
 
-        /* Load Stats */
+        /!* Load Stats *!/
         var numAssignments = data.length;
         $("[data-numassignments]").html( numAssignments );
 
@@ -45,9 +46,9 @@ function loadAssignments(){
                     break;
             }
 
-            /**
+            /!**
              * RENDER INFORMATION
-             */
+             *!/
             // Setting status button
             content.querySelector( datastatus ).className = statusClass;
             content.querySelector( datastatus ).textContent = paper.status;
@@ -71,4 +72,4 @@ function loadAssignments(){
 function load( buttonElement ){
     localStorage.assignmentKey = buttonElement.dataset.assignmentKey;
     window.location = "paper-coder.html";
-}
+}*/
