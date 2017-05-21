@@ -84,12 +84,21 @@ body_class: app-work
                     <span ng-if="row.paper.status == 'active'" class="badge badge-primary" >  Active    </span>
                     <span ng-if="row.paper.status == 'pending'" class="badge badge-warning" >  Pending   </span>
                     <span ng-if="row.paper.status == 'conflicted'" class="badge badge-danger"  >  Conflict  </span>
+                    <span ng-if="row.paper.status == 'clean'" class="badge badge-primary"  >  Clean  </span>
+                    <span ng-if="row.paper.status == 'complete'" class="badge badge-success"  >  Complete  </span>
+                    <span ng-if="row.paper.status == 'ready'" class="badge badge-warning"  >  Ready  </span>
                   </td>
                   <td class="subject">
                     <div class="table-content">
                       <p data-papername class="blue-grey-500"><span ng-bind="row.paper.title"></span></p>
                       <span data-papermeta class="blue-grey-400"><span ng-bind="row.paper.description"></span></span>
-                      <span class="badge badge-sm badge-primary">Recruiting</span>
+
+                      <span ng-if="row.paper.status == 'active'" class="badge badge-primary" >  Active    </span>
+                      <span ng-if="row.paper.status == 'pending'" class="badge badge-warning" >  Pending   </span>
+                      <span ng-if="row.paper.status == 'conflicted'" class="badge badge-danger"  >  Conflict  </span>
+                      <span ng-if="row.paper.status == 'clean'" class="badge badge-primary"  >  Clean  </span>
+                      <span ng-if="row.paper.status == 'complete'" class="badge badge-success"  >  Complete  </span>
+                      <span ng-if="row.paper.status == 'ready'" class="badge badge-warning"  >  Ready  </span>
                     </div>
                   </td>
                   <td class="work-progress">

@@ -84,6 +84,9 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             data.assignment.encoding = encoding;
             console.log( data.assignment );
         }
+        if( !data.assignment.encoding.constants ){
+            data.assignment.encoding.constants = [];
+        }
         if( !data.assignment.encoding.branches){
             data.assignment.encoding.branches = [[]];
         }
