@@ -11,6 +11,15 @@
 
 
 function submitPaperUploadForm(  ) {
+    swal({
+        title: "Saving...",
+        text: "Just a sec!",
+        type: "info",
+        showCancelButton: true,
+        showConfirmButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true,
+    });
 
     var formData = new FormData();
     var file = $("#papersCSV")[0].files[0];

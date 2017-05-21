@@ -5,16 +5,11 @@ angular
     .module('paper-coder')
     .directive('bdEditor', EditorDirective);
 
-EditorDirective.$inject = ['editor.service'];
-function EditorDirective(editorService,) {
+EditorDirective.$inject = ['editor.service', '$compile' ];
+function EditorDirective( editorService, $compile ) {
     return {
         restrict: 'E',
         link: function(scope, element, attrs) {
-            scope.getContent = function(){
-                if(editorService.getField()){
-                    return editorService.getInputForm(editorService.getField().type);
-                }
-            };
             scope.close = function(){
                 $('#editor').modal("hide");
             };
@@ -31,33 +26,6 @@ function EditorDirective(editorService,) {
                 }
             };
             editorService.registerObserver(observer);
-
-            /* After the modal has rendered */
-            $('#editor').on('shown.bs.modal', function () {
-                var type = scope.fieldObject.type;
-
-                if(type === "range"){
-                    $('.example').asRange({
-                        range: true,
-                        step: 0.05,
-                        onChange: function(data){
-                            scope.$apply(function(){
-                                scope.inputObject.data.rangeMin = data[0];
-                                scope.inputObject.data.rangeMax = data[1];
-                            });
-                        },
-                        ready: function(){
-                            $(".example").style("display", "initial")
-                        },
-                        format: function(value){
-                            return value + " " + scope.fieldObject.rangeUnit;
-                        }
-                    });
-                }
-                if(type === "text" || type === "number"){
-                    document.getElementById("inputElement").focus();    // autofocus
-                }
-            });
         },
         templateUrl: '../app/paper-coder/editor/editor.html',
     }
