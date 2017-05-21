@@ -270,12 +270,12 @@
                 <span class="site-menu-title">Code Book</span>
               </a>
             </li>
-            <li class="site-menu-item ">
-              <a href="encoder-dashboard.html">
-                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
-                <span class="site-menu-title"> Encoder Dashboard </span>
-              </a>
-            </li>
+            <!--<li class="site-menu-item ">
+                    <a href="encoder-dashboard.html">
+                        <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                        <span class="site-menu-title"> Encoder Dashboard </span>
+                    </a>
+                </li>-->
             <li class="site-menu-item ">
               <a href="assignments.html">
                 <i class="site-menu-icon wb-pencil" aria-hidden="true"></i>
@@ -303,7 +303,13 @@
   <div class="page">
     <div class="page-content container-fluid">
       <script>
-      window.location = "../landing/index.html"
+      if (localStorage.user) {
+        var user = JSON.parse(localStorage.user);
+        if (user.role == "manager") window.location = "project-center.html";
+        window.location = "assignments.html";
+      } else {
+        window.location = "login.html";
+      }
       </script>
     </div>
   </div>
