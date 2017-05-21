@@ -66,6 +66,14 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
             console.log( "error loading activity: ", err );
         });
     }
+
+
+    $scope.popOut = function( paperObject ){
+        window.open( paperObject.url,
+            "Research Coder | "+paperObject.title,
+            "height=700,width=500"
+        );
+    };
 }
 
 var defaultModel = {

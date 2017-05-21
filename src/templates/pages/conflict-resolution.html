@@ -16,6 +16,8 @@ title: Conflict Resolution
 {{/content}}
 
 {{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/panel.js"></script>
+
 <script src="{{html}}../app/conflict-resolution/conflict-resolution.module.js"></script>
 <script src="{{html}}../app/conflict-resolution/encoding.service.js"></script>
 <script src="{{html}}../app/conflict-resolution/transaction.service.js"></script>
@@ -49,7 +51,7 @@ title: Conflict Resolution
     </div>
 
     <div class="page-content">
-        <div class="panel">
+        <div class="panel is-collapse">
             <div class="panel-heading">
                 <h3 class="panel-title"> {[{paper.title}]}</h3>
                 <div class="panel-actions">

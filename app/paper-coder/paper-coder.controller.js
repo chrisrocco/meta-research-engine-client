@@ -37,7 +37,17 @@ function PaperCoderController($scope, $sce, paperCoderService) {
         paperCoderService.toggleComplete();
     };
     $scope.save = function(){
-        DataService.putAssignment( $scope.assignment ).then( function(res){
+        swal({
+                title: "Saving...",
+                text: "Just a sec!",
+                type: "info",
+                showCancelButton: true,
+                showConfirmButton: false,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            });
+        var p = DataService.putAssignment( $scope.assignment );
+        p.success( function( res ){
             console.log( "from server: ", res);
             swal({
                 title: "Work Saved!",
@@ -48,7 +58,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
                 confirmButtonText: 'OK',
                 closeOnConfirm: false
             });
-        })
+        });
     };
     $scope.popOut = function( paperObject ){
         window.open( paperObject.url,
