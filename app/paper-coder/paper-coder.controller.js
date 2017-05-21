@@ -35,7 +35,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
         }
 
         paperCoderService.toggleComplete();
-    }
+    };
     $scope.save = function(){
         DataService.putAssignment( $scope.assignment ).then( function(res){
             console.log( "from server: ", res);

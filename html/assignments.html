@@ -305,11 +305,11 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="assignments" ng-controller="AssignmentsController">
     <div class="page-content">
       <div class="panel">
         <div class="panel-heading">
-          <h3 class="panel-title">ASSIGNMENT LIST</h3>
+          <h3 class="panel-title">ASSIGNMENT LIST {[{test}]}</h3>
           <form class="panel-search-form" role="search">
             <div class="input-search">
               <i class="input-search-icon wb-search" aria-hidden="true"></i>
@@ -349,7 +349,7 @@
             <template id="assignmentTemplate">
               <tr>
                 <td class="work-status">
-                  <span data-status class="badge badge-primary">Active</span>
+                  <span data-status class="badge">Active</span>
                 </td>
                 <td class="subject">
                   <div class="table-content">
@@ -406,6 +406,7 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/chartist/chartist.min.js"></script>
   <script src="..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js"></script>
@@ -437,6 +438,8 @@
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
   <script src="..\assets/js/Plugin/aspaginator.js"></script>
+  <script src="../app/assignments/assignments.module.js"></script>
+  <script src="../app/assignments/assignments.controller.js"></script>
   <script src="..\assets/examples/js/assignments.js"></script>
   <script>
   (function(document, window, $) {

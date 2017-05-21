@@ -35,19 +35,19 @@ title: Conflict Resolution
     <!-- Page -->
     <div class="page" ng-app="conflict-resolution" ng-controller="ConflictResolutionController">
       <div class="page-header">
-        <h1 class="page-title"> Conflict Report</h1>
+        <h1 class="page-title"> Resolving Conflicts of {[{paper.title}]}</h1>
         <div class="page-header-actions">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li>
-            <li class="breadcrumb-item active">Basic</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Assignments</a></li>
+            <li class="breadcrumb-item active">Resolve Conflicts</li>
           </ol>
         </div>
       </div>
 
       <div class="page-content">
         <div class="row">
-          <div ng-repeat="conflict in valueConflicts" class="col-md-6">
+          <div ng-repeat="masterRecord in paper.masterEncoding" class="col-md-6">
             <div class="panel">
               <div class="panel-body">
                 <div class="panel-heading">

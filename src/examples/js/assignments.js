@@ -32,7 +32,7 @@ function loadAssignments(){
             var assignment      =   obj.assignment;
             var study           =   obj.study;
 
-            var statusClass = "badge badge-primary";
+            var statusClass         = "badge badge-primary";
             switch( paper.status ){
                 case "active":
                     statusClass = "badge badge-primary";

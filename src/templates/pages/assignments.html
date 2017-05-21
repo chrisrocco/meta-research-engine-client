@@ -17,6 +17,8 @@ body_class: app-work
 
 
   {{#content "js_vendor" mode="append"}}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
     <script src="{{assets}}/vendor/slidepanel/jquery-slidePanel.js"></script>
     <script src="{{assets}}/vendor/chartist/chartist.min.js"></script>
     <script src="{{assets}}/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js"></script>
@@ -29,17 +31,19 @@ body_class: app-work
   {{/content}}
 
   {{#content "scripts" mode="replace"}}
+    <script src="../app/assignments/assignments.module.js"></script>
+    <script src="../app/assignments/assignments.controller.js"></script>
     <script src="{{assets}}/examples/js/assignments.js"></script>
   {{/content}}
 
   {{#content "body"}}
 
     <!-- Page -->
-    <div class="page">
+    <div class="page" ng-app="assignments" ng-controller="AssignmentsController">
       <div class="page-content">
         <div class="panel">
           <div class="panel-heading">
-            <h3 class="panel-title">ASSIGNMENT LIST</h3>
+            <h3 class="panel-title">ASSIGNMENT LIST {[{test}]}</h3>
             <form class="panel-search-form" role="search">
               <div class="input-search">
                 <i class="input-search-icon wb-search" aria-hidden="true"></i>

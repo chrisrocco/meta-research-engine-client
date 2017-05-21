@@ -3,5 +3,14 @@ angular.module("assignments")
 
 AssignmentsController.$inject = [ '$scope' ];
 function AssignmentsController ( $scope ){
-    $scope.test = "Success";
+    $scope.tableRows = [];
+    init();
+
+    function init(){
+        var p = DataService.loadAssignments( AuthService.getUser()['_key'] );
+        p.success( function( data ){
+
+        } );
+        p.fail( console.log("server error") );
+    }
 }

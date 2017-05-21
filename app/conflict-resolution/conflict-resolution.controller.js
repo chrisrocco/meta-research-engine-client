@@ -2,8 +2,8 @@ angular
     .module("conflict-resolution")
     .controller("ConflictResolutionController", ConflictResolutionController);
 
-ConflictResolutionController.$inject = [ '$scope' ];
-function ConflictResolutionController( $scope ){
+ConflictResolutionController.$inject = [ '$scope', 'transaction.service' ];
+function ConflictResolutionController( $scope, TransactionService ){
     $scope.assignment       =   defaultModel.assignment;
     $scope.paper            =   defaultModel.paper;
     $scope.collaborators    =   defaultModel.collaborators;
@@ -13,6 +13,14 @@ function ConflictResolutionController( $scope ){
     function init() {
         var p = DataService.loadConflictResolution( localStorage.assignmentKey );
         p.success( function( data ){
+
+            $scope.$apply( function(){
+                $scope.assignment = data.assignment;
+                $scope.paper = data.paper;
+                $scope.collaborators = data.collaborators;
+            });
+            TransactionService.startTransaction( $scope.assignment );
+
             console.log( "loaded activity: ", data );
         });
         p.fail( function( err ){
@@ -23,6 +31,8 @@ function ConflictResolutionController( $scope ){
 
 var defaultModel = {
     "assignment": {},
-    "paper": {},
+    "paper": {
+        title: "Loading..."
+    },
     "collaborators": []
 };
