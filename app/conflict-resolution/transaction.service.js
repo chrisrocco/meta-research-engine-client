@@ -2,8 +2,8 @@ angular
     .module("conflict-resolution")
     .factory("transaction.service", TransactionService);
 
-
-function TransactionService() {
+TransactionService.$inject = [ 'encoding.service' ]
+function TransactionService( EncodingService ) {
     var assignment = ASSIGNMENT_DEFAULT_MODEL;
     var transactions = [ TRANSACTION_DEFAULT_MODEL ];
 
@@ -16,17 +16,17 @@ function TransactionService() {
     function startTransaction( assignmentObject ){
         assignment = assignmentObject;
     }
-
     function addTransaction( questionKey, newData ){
-        // TODO
         transactions.push( {
             questionKey:    questionKey,
             newData:        newData
         } );
     }
-
     function resolve(){
-        // TODO
+        for (var i = 0; i < transactions.length; i++) {
+            var transaction = transactions[i];
+            EncodingService.write( assignment.encoding, transaction.questionKey, transaction.newData );
+        }
         return assignment;
     }
 }
@@ -37,7 +37,6 @@ const ASSIGNMENT_DEFAULT_MODEL = {
         branches : [[]]
     }
 };
-
 const TRANSACTION_DEFAULT_MODEL = {
     inputObject : {},
     newData     : {}

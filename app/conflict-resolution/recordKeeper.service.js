@@ -2,6 +2,7 @@ angular
     .module("conflict-resolution")
     .factory("recordKeeper.service", RecordKeeperService);
 
+// TODO
 function RecordKeeperService() {
 
     function previewResponse( masterRecord, response, userKey ){
