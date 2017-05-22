@@ -21,6 +21,15 @@ function submitPaperUploadForm(  ) {
     var file = $("#papersCSV")[0].files[0];
     formData.append( "papersCSV", file );
 
+    swal({
+        title: "Uploading...",
+        text: "Just a sec!",
+        type: "info",
+        showCancelButton: true,
+        showConfirmButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true,
+    });
     var promise = DataService.uploadPapersCSV( localStorage.projectKey, formData );
     promise.success( function ( data ) {
         var newPaperCount = data.newPaperCount;
@@ -32,6 +41,8 @@ function submitPaperUploadForm(  ) {
             confirmButtonClass: "btn-success",
             confirmButtonText: 'OK',
             closeOnConfirm: false
+        }, function(){
+            window.location.reload();
         });
         console.log("success from server", data);
     });
