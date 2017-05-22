@@ -149,8 +149,13 @@ function http( config ){
     return $.ajax(config);
 }
 /* Development */
-function setHost( url ){
-    localStorage.hostOverride = url;
+function localhost(  ){
+    localStorage.hostOverride = "http://localhost:8080";
+    window.location.reload();
+}
+function defaulthost() {
+    delete localStorage.hostOverride;
+    window.location.reload();
 }
 
 export {
@@ -172,5 +177,6 @@ export {
     postResetPassword,
     uploadPapersCSV,
     /* development */
-    setHost
+    localhost,
+    defaulthost
 }

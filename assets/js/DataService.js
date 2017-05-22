@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.setHost = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.defaulthost = exports.localhost = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var Config = babelHelpers.interopRequireWildcard(_Config);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -169,8 +169,13 @@
         return $.ajax(config);
     }
     /* Development */
-    function setHost(url) {
-        localStorage.hostOverride = url;
+    function localhost() {
+        localStorage.hostOverride = "http://localhost:8080";
+        window.location.reload();
+    }
+    function defaulthost() {
+        delete localStorage.hostOverride;
+        window.location.reload();
     }
 
     exports.loadManageProject = loadManageProject;
@@ -190,5 +195,6 @@
     exports.postForgotPassword = postForgotPassword;
     exports.postResetPassword = postResetPassword;
     exports.uploadPapersCSV = uploadPapersCSV;
-    exports.setHost = setHost;
+    exports.localhost = localhost;
+    exports.defaulthost = defaulthost;
 });

@@ -27,6 +27,10 @@ function ProjectBuilderController( $scope ){
         {
             id: "range",
             name: "Range Slider"
+        },
+        {
+            id: "select",
+            name: "Multiple Choice"
         }
     ];
 
@@ -82,7 +86,17 @@ function ProjectBuilderController( $scope ){
             questionObject.rangeMin = parseInt( form.rangeMin.value );
             questionObject.rangeMax = parseInt( form.rangeMax.value );
             questionObject.rangeUnit = form.rangeUnit.value;
+        }
+        if( type == "select" ){
+            var tokens = $('#multipleChoiceInput').tokenfield('getTokens');
 
+            questionObject.options = [];
+            for (var i = 0; i < tokens.length; i++) {
+                var option = tokens[i];
+                questionObject.options.push( option.value );
+            }
+
+            console.log( questionObject.options );
         }
 
         form.parent.value   =   "";
