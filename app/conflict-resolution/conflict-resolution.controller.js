@@ -50,6 +50,9 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
     function init() {
         var p = DataService.loadConflictResolution( localStorage.assignmentKey );
         p.success( function( data ){
+            if( data.paper.status != "conflicted" ){
+                window.location = "assignments.html";
+            }
 
             $scope.$apply( function(){
                 $scope.assignment = data.assignment;
