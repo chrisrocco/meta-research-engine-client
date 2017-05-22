@@ -8,7 +8,7 @@ let urls = {
     api: "https://coursebooks.xyz",
     login: "https://coursebooks.xyz/users/login",
     register: "https://coursebooks.xyz/users/register",
-    resetPasswordCallback: "https://uab-energetics.github.io/bigdata-app/html/reset-password.html"
+    resetPasswordCallback: "https://www.researchcoder.com/reset-password.html"
 };
 
 function getUrl( name ){
