@@ -114,16 +114,17 @@ body_class: app-work
                     </div>
                   </td>
                   <td class="subject">
-                    <button ng-if="row.paper.status == 'conflicted'" ng-click="loadConflictResolution( row.assignment )"
-                            type="button" class="btn btn-animate btn-animate-vertical btn-danger">
-                      <span><i class="icon wb-play" aria-hidden="true"></i>
-                        Resolve Conflicts
-                      </span>
-                    </button>
-                    <button ng-if="row.paper.status != 'conflicted'" ng-click="loadPaperCoder( row.assignment )"
+                    <button ng-click="loadPaperCoder( row.assignment )"
                             type="button" class="btn btn-animate btn-animate-vertical btn-primary">
                       <span><i class="icon wb-play" aria-hidden="true"></i>
                         Continue
+                      </span>
+                    </button>
+                    <button ng-if="row.paper.status == 'conflicted' && row.assignment.done "
+                            ng-click="loadConflictResolution( row.assignment )"
+                            type="button" class="btn btn-animate btn-animate-vertical btn-danger mt-10">
+                      <span><i class="icon wb-play" aria-hidden="true"></i>
+                        Resolve Conflicts
                       </span>
                     </button>
                   </td>
