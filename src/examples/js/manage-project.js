@@ -28,6 +28,7 @@ function submitPaperUploadForm(  ) {
             confirmButtonText: 'OK',
             closeOnConfirm: false
         });
+        window.location.reload();
         console.log("success from server", data);
     });
     promise.error( function( response ) {
@@ -78,6 +79,11 @@ function submitPaperUploadForm(  ) {
 }
 
 function init( ){
+    var bdActive = document.querySelector("#bd-active").content;
+    var bdPending = document.querySelector("#bd-pending").content;
+    var bdConflicted = document.querySelector("#bd-conflicted").content;
+    var bdComplete = document.querySelector("#bd-complete").content;
+
     var p = DataService.loadManageProject( localStorage.projectKey );
     p.success( function( data ){
         var projectObject = data.project;
@@ -90,13 +96,30 @@ function init( ){
         var template = document.querySelector("#paperTemplate").content;
         for (var i = 0; i < papers.length; i++) {
             var paper = papers[i];
-            /* server not ready */
-            paper.status = 'active';
-            /* server not ready */
             template.querySelector("[data-title]").textContent = paper.title;
             template.querySelector("[data-desc]").textContent = paper.description.substring(0, 33) + "..";
             template.querySelector("[data-assignmentCount]").textContent = paper.assignmentCount;
-            template.querySelector("[data-status]").textContent = paper.status;
+
+            var statusOutlet = template.querySelector("[data-status]");
+            while( statusOutlet.hasChildNodes() ){
+                statusOutlet.removeChild( statusOutlet.lastChild );
+            }
+
+            switch ( paper.status ){
+                case "active":
+                    template.querySelector("[data-status]").appendChild( bdActive.cloneNode( true ) );
+                    break;
+                case "pending":
+                    template.querySelector("[data-status]").appendChild( bdPending.cloneNode( true ) );
+                    break;
+                case "conflicted":
+                    template.querySelector("[data-status]").appendChild( bdConflicted.cloneNode( true ) );
+                    break;
+                case "complete":
+                    template.querySelector("[data-status]").appendChild( bdComplete.cloneNode( true ) );
+                    break;
+            }
+
             outlet.appendChild( template.cloneNode( true ) );
         }
         initFooTable();

@@ -353,7 +353,7 @@
                     <th data-name="title" data-title="Paper Title"> Paper Title </th>
                     <th data-name="desc"> Description </th>
                     <th data-name="assignments" data-breakpoints="xs">Assignment Count</th>
-                    <th data-name="status">Status</th>
+                    <th data-name="status"> Status </th>
                   </tr>
                 </thead>
                 <tbody id="templateOutlet">
@@ -362,10 +362,21 @@
                       <td data-title> [PMC-ID] </td>
                       <td data-desc> [Article Title] </td>
                       <td data-assignmentCount> [Number of Assignments] </td>
-                      <td>
-                        <span data-status class="badge badge-table badge-success"> [Status] </span>
+                      <td data-status>
                       </td>
                     </tr>
+                  </template>
+                  <template id="bd-active">
+                    <span class="badge badge-table badge-primary"> Active </span>
+                  </template>
+                  <template id="bd-pending">
+                    <span class="badge badge-table badge-warning"> Pending </span>
+                  </template>
+                  <template id="bd-conflicted">
+                    <span class="badge badge-table badge-danger"> Conflicted </span>
+                  </template>
+                  <template id="bd-complete">
+                    <span class="badge badge-table badge-success"> Complete </span>
                   </template>
                 </tbody>
               </table>
