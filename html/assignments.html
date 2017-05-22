@@ -319,15 +319,21 @@
           </form>
           <ul class="panel-info">
             <li>
-              <div class="num red-600">[23]</div>
+              <div class="num red-600">
+                <span ng-bind="conflictCount"></span>
+              </div>
               <p>Conflicts</p>
             </li>
             <li>
-              <div class="num orange-600">[8]</div>
+              <div class="num orange-600">
+                <span ng-bind="activeCount"></span>
+              </div>
               <p>Active</p>
             </li>
             <li>
-              <div class="num green-600">[5]</div>
+              <div class="num green-600">
+                <span ng-bind="completeCount"></span>
+              </div>
               <p>Completed</p>
             </li>
           </ul>

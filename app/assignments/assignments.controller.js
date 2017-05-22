@@ -24,6 +24,26 @@ function AssignmentsController ( $scope ){
             $scope.$apply( function(){
                 $scope.tableRows = data;
             });
+
+            $scope.activeCount      = 0;
+            $scope.completeCount    = 0;
+            $scope.conflictCount    = 0;
+            for (var i = 0; i < data.length; i++) {
+                var row = data[i];
+                var status = row.paper.status;
+                switch ( status ){
+                    case "active":
+                        $scope.activeCount++;
+                        break;
+                    case "complete":
+                        $scope.completeCount++;
+                        break;
+                    case "conflicted":
+                        $scope.conflictCount++;
+                        break;
+                }
+            }
+
         } );
         p.fail( function( err ){
             console.log( "could not load activity", err );
