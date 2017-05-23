@@ -303,7 +303,7 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="codebook" ng-controller="CodebookController">
     <div class="page-header">
       <h1 class="page-title">Code Book</h1>
     </div>
@@ -313,27 +313,27 @@
           <!-- Panel -->
           <div class="panel">
             <div class="panel-body">
-              <template id="domainTab">
-                <a class="list-group-item" data-toggle="tab" href="domain-id-here" aria-controls="category-2"
-                role="tab">
-                  <i class="icon"></i>
-                  <span class="domain-name"></span>
-                </a>
-              </template>
               <div class="dropdown">
                 <button type="button" class="btn btn-primary btn-block dropdown-toggle" id="projectDropdown"
-                data-toggle="dropdown" aria-expanded="false">Murine Rigor</button>
-                <div id="projectDropdownOutlet" class="dropdown-menu dropdown-menu-primary" aria-labelledby="projectDropdown"
+                data-toggle="dropdown" aria-expanded="false">
+                  <span ng-bind="selectedProject.project.name"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-primary" aria-labelledby="projectDropdown"
                 role="menu">
-                  <!-- Dynamic -->
+                  <a ng-repeat="project in projects" class="dropdown-item" href="javascript:void(0)"
+                  role="menuitem">
+                    <span ng-bind="project.project.name"></span>
+                  </a>
                 </div>
-                <template id="projectDropdownItemTemplate">
-                  <a onclick="openProject( this )" class="dropdown-item" href="javascript:void(0)"
-                  role="menuitem"> [Project Name] </a>
-                </template>
               </div>
               <hr>
-              <div class="list-group faq-list" role="tablist" id="domainTabs">
+              <div class="list-group faq-list" role="tablist">
+                <a ng-repeat="domain in selectedProject.structure" ng-click="selectDomain( domain )"
+                href="" class="list-group-item" data-toggle="tab" aria-controls="category-2"
+                role="tab">
+                  <i class="icon {[{domain.icon}]}"></i>
+                  <span ng-bind="domain.name"></span>
+                </a>
               </div>
             </div>
           </div>
@@ -343,35 +343,33 @@
           <!-- Panel -->
           <div class="panel">
             <div class="panel-body">
-              <template id="domain-block">
-                <div class="tab-pane animation-fade" id="domain_name_here" role="tabpanel">
-                  <!-- One of these for every domain -->
-                  <div class="panel-group panel-group-simple panel-group-continuous" aria-multiselectable="true"
-                  role="tablist">
-                  </div>
-                </div>
-              </template>
-              <template id="variable">
-                <!-- Question 4 -->
-                <div class="panel">
-                  <div class="panel-heading" id="var_name_here" role="tab">
-                    <a class="panel-title" aria-controls="answer-4" aria-expanded="false" data-toggle="collapse"
-                    href="#answer-4" data-parent="#accordion2">
-                      <i class="icon"></i>
-                      <span class="var-name"></span>
-                    </a>
-                  </div>
-                  <div class="panel-collapse collapse" id="answer-4" aria-labelledby="question-4"
-                  role="tabpanel">
-                    <div class="panel-body">
-                      Variable description here
-                    </div>
-                  </div>
-                </div>
-                <!-- End Question 4 -->
-              </template>
               <div class="tab-content">
-                <!-- Dynamic -->
+                <!-- Categroy 1 -->
+                <div class=" tab-pane animation-fade active" id="category-1" role="tabpanel">
+                  <div class="panel-group panel-group-simple panel-group-continuous" id="accordion2"
+                  aria-multiselectable="true" role="tablist">
+                    <!-- Question 1 -->
+                    <div ng-repeat="question in selectedDomain.variables" class="panel">
+                      <div class="panel-heading" id="question-1" role="tab">
+                        <a class="panel-title" aria-controls="panel-{[{question._key}]}" aria-expanded="false"
+                        data-toggle="collapse" href="#panel-{[{question._key}]}"
+                        onclick="return void(0)" data-parent="#accordion2">
+                          <i class="icon {[{question.icon}]}"></i>
+                          <span ng-bind="question.name"></span>
+                          <small class="ml-15"> {[{question.tooltip}]} </small>
+                        </a>
+                      </div>
+                      <div class="panel-collapse collapse in" id="panel-{[{question._key}]}" aria-labelledby="question-1"
+                      role="tabpanel">
+                        <div class="panel-body">
+                          <span ng-bind="question.question"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Question 1 -->
+                  </div>
+                </div>
+                <!-- End Categroy 1 -->
               </div>
             </div>
           </div>
@@ -403,6 +401,7 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -429,7 +428,17 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
-  <script src="..\assets/examples/js/codebook.js"></script>
+  <script>
+  (function(document, window, $) {
+    'use strict';
+    var Site = window.Site;
+    $(document).ready(function() {
+      Site.run();
+    });
+  })(document, window, jQuery);
+  </script>
+  <script src="../app/codebook/codebook.module.js"></script>
+  <script src="../app/codebook/codebook.controller.js"></script>
   <script>
   (function(document, window, $) {
     $(document).ready(function() {
