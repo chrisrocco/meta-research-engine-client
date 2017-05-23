@@ -6,7 +6,7 @@ angular
     .directive('bdEditor', EditorDirective);
 
 EditorDirective.$inject = ['editor.service'];
-function EditorDirective(editorService,) {
+function EditorDirective( editorService ) {
     return {
         restrict: 'E',
         link: function(scope, element, attrs) {
