@@ -25,9 +25,9 @@ function AssignmentsController ( $scope ){
                 $scope.tableRows = data;
             });
 
-            $scope.activeCount      = 0;
-            $scope.completeCount    = 0;
-            $scope.conflictCount    = 0;
+            var activeCount      = 0;
+            var completeCount    = 0;
+            var conflictCount    = 0;
             for (var i = 0; i < data.length; i++) {
                 var row = data[i];
                 var status = row.paper.status;
@@ -43,6 +43,11 @@ function AssignmentsController ( $scope ){
                         break;
                 }
             }
+            $scope.$apply( function(){
+                $scope.activeCount      = activeCount  ;
+                $scope.completeCount    = completeCount;
+                $scope.conflictCount    = conflictCount;
+            });
 
         } );
         p.fail( function( err ){
