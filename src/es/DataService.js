@@ -1,7 +1,7 @@
-import * as Config from 'Config';
+import * as URLs from 'URLs';
 import * as AuthService from 'AuthService';
 
-var API_BASE_PATH = Config.getUrl('api');
+var API_BASE_PATH = URLs.getUrl('api');
 if (localStorage.hostOverride) {
     API_BASE_PATH = localStorage.hostOverride;
 }
@@ -96,7 +96,7 @@ function postForgotPassword( email ){
         method: "POST",
         data: {
             "email": email,
-            "callback": Config.getUrl( "resetPasswordCallback" )
+            "callback": URLs.getUrl( "resetPasswordCallback" )
         }
     })
 }

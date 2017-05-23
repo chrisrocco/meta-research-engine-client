@@ -1,27 +1,27 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define("/AuthService", ["exports", "Config"], factory);
+        define("/AuthService", ["exports", "URLs"], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require("Config"));
+        factory(exports, require("URLs"));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.Config);
+        factory(mod.exports, global.URLs);
         global.AuthService = mod.exports;
     }
-})(this, function (exports, _Config) {
+})(this, function (exports, _URLs) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.getToken = exports.getUser = exports.logout = exports.register = exports.login = undefined;
-    var Config = babelHelpers.interopRequireWildcard(_Config);
+    var URLs = babelHelpers.interopRequireWildcard(_URLs);
 
 
-    var TOKEN_PROVIDER = Config.getUrl("login");
-    var REGISTER = Config.getUrl("register");
+    var TOKEN_PROVIDER = URLs.getUrl("login");
+    var REGISTER = URLs.getUrl("register");
 
     function login(email, password, win, fail) {
         return $.ajax({

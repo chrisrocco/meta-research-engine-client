@@ -1,27 +1,27 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define('/DataService', ['exports', 'Config', 'AuthService'], factory);
+        define('/DataService', ['exports', 'URLs', 'AuthService'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('Config'), require('AuthService'));
+        factory(exports, require('URLs'), require('AuthService'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.Config, global.AuthService);
+        factory(mod.exports, global.URLs, global.AuthService);
         global.DataService = mod.exports;
     }
-})(this, function (exports, _Config, _AuthService) {
+})(this, function (exports, _URLs, _AuthService) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.defaulthost = exports.localhost = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
-    var Config = babelHelpers.interopRequireWildcard(_Config);
+    var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
-    var API_BASE_PATH = Config.getUrl('api');
+    var API_BASE_PATH = URLs.getUrl('api');
     if (localStorage.hostOverride) {
         API_BASE_PATH = localStorage.hostOverride;
     }
@@ -116,7 +116,7 @@
             method: "POST",
             data: {
                 "email": email,
-                "callback": Config.getUrl("resetPasswordCallback")
+                "callback": URLs.getUrl("resetPasswordCallback")
             }
         });
     }

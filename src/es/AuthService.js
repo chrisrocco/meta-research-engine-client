@@ -1,7 +1,7 @@
-import * as Config from 'Config';
+import * as URLs from 'URLs';
 
-const TOKEN_PROVIDER = Config.getUrl( "login" );
-const REGISTER = Config.getUrl( "register" );
+const TOKEN_PROVIDER = URLs.getUrl( "login" );
+const REGISTER = URLs.getUrl( "register" );
 
 function login( email, password, win, fail ){
     return $.ajax({
