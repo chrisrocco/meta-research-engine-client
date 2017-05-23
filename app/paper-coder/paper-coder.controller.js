@@ -59,6 +59,18 @@ function PaperCoderController($scope, $sce, paperCoderService) {
                 closeOnConfirm: false
             });
         });
+        p.error( function( err ){
+            swal({
+                title: "Opps..",
+                text: "Something went wrong :(",
+                type: "error",
+                showCancelButton: false,
+                confirmButtonClass: "btn-error",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
+            console.log( err );
+        })
     };
     $scope.popOut = function( paperObject ){
         window.open( paperObject.url,

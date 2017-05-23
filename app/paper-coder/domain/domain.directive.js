@@ -27,7 +27,7 @@ function BigDataDomain(paperCoderService) {
              * Decides if this domain DOM element should be rendered
              * @returns {boolean}
              */
-            function isAlive( domainObject, firstCall = false ){
+            function isAlive( domainObject, firstCall ){
                 var hasLivingQuestions = false;
                 var hasLivingSubdomains = false;
 

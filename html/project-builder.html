@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-treeview/bootstrap-treeview.css">
   <link rel="stylesheet" href="..\assets/vendor/jstree/jstree.min.css">
   <link rel="stylesheet" href="..\assets/vendor/fontIconPicker-2.0.0/css/jquery.fonticonpicker.css">
+  <link rel="stylesheet" href="..\assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
@@ -355,8 +356,9 @@
                       <div class="form-group col-md-6">
                         <h5 class="example-title">Parent Domain</h5>
                         <select name="parent" class="form-control">
-                          <option value="#"> -- none -- </option>
-                          <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}</option>
+                          <option value="#"> -- none --</option>
+                          <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -396,8 +398,8 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="domain in domains track by domain.id">
-                        <td> {[{domain.name}]} </td>
-                        <td> {[{domain.description.substring(0, 25)}]}... </td>
+                        <td> {[{domain.name}]}</td>
+                        <td> {[{domain.description.substring(0, 25)}]}...</td>
                         <td class="text-nowrap">
                           <button ng-click="editDomain( domain )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
                           data-toggle="tooltip" data-original-title="Edit">
@@ -427,7 +429,8 @@
                       <div class="form-group col-md-6">
                         <h5 class="example-title">Parent Domain</h5>
                         <select name="parent" class="form-control">
-                          <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}</option>
+                          <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}
+                          </option>
                         </select>
                       </div>
                       <div class="form-group col-md-6">
@@ -495,6 +498,12 @@
                         />
                       </div>
                     </div>
+                    <div ng-show="selectedQuestionType === 'select'" class="form-group">
+                      <div class="example">
+                        <input id="multipleChoiceInput" type="text" class="form-control" data-plugin="tokenfield"
+                        value="red,green,blue" />
+                      </div>
+                    </div>
                     <!-- End Type Conditionals -->
                     <div class="form-group form-material floating" data-plugin="formMaterial">
                       <input name="tooltip" type="text" class="form-control" required/>
@@ -524,8 +533,8 @@
                       </thead>
                       <tbody>
                         <tr ng-repeat="question in questions track by question.id">
-                          <td> {[{question.name}]} </td>
-                          <td> {[{question.question.substring(0, 25)}]}... </td>
+                          <td> {[{question.name}]}</td>
+                          <td> {[{question.question.substring(0, 25)}]}...</td>
                           <td class="text-nowrap">
                             <button ng-click="editQuestion( question )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
                             data-toggle="tooltip" data-original-title="Edit">
@@ -567,7 +576,8 @@
                   <select ng-model="modalDomain.parent" class="form-control">
                     <option value="#">-- none --</option>
                     <option ng-repeat="domain in domains track by domain.id" ng-if="modalDomain.id !== domain.id && modalDomain.id !== domain.parent"
-                    value="{[{domain.id}]}">{[{domain.name}]}</option>
+                    value="{[{domain.id}]}">{[{domain.name}]}
+                    </option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -588,7 +598,8 @@
                   required/>
                 </div>
                 <!-- INPUT element -->
-                <button data-dismiss="modal" type="submit" class="btn btn-block btn-primary"> Update </button>
+                <button data-dismiss="modal" type="submit" class="btn btn-block btn-primary"> Update
+                </button>
               </form>
             </div>
           </div>
@@ -612,7 +623,8 @@
                   <div class="form-group col-md-6">
                     <h5 class="example-title">Parent Domain</h5>
                     <select ng-model="modalQuestion.parent" name="parent" class="form-control">
-                      <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}</option>
+                      <option ng-repeat="domain in domains track by domain.id" value="{[{domain.id}]}">{[{domain.name}]}
+                      </option>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
@@ -695,7 +707,8 @@
                   <input ng-model="modalQuestion.icon" name="icon" type="text" id="variable-editor-icon-picker"
                   required/>
                 </div>
-                <button data-dismiss="modal" type="submit" class="btn btn-block btn-primary"> Update </button>
+                <button data-dismiss="modal" type="submit" class="btn btn-block btn-primary"> Update
+                </button>
               </form>
             </div>
           </div>
@@ -734,6 +747,7 @@
   <script src="..\assets/vendor/bootstrap-treeview/bootstrap-treeview.min.js"></script>
   <script src="..\assets/vendor/jstree/jstree.min.js"></script>
   <script src="..\assets/vendor/fontIconPicker-2.0.0/jquery.fonticonpicker.js"></script>
+  <script src="..\assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -766,6 +780,7 @@
   <script src="..\assets/js/Plugin/toastr.js"></script>
   <script src="..\assets/js/Plugin/bootstrap-treeview.js"></script>
   <script src="..\assets/js/Plugin/jstree.js"></script>
+  <script src="..\assets/js/Plugin/bootstrap-tokenfield.js"></script>
   <script src="..\assets/examples/js/define-study.js"></script>
   <script>
   (function(document, window, $) {
