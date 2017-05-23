@@ -1,6 +1,6 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define("/URLs", ["exports"], factory);
+        define('/URLs', ['exports'], factory);
     } else if (typeof exports !== "undefined") {
         factory(exports);
     } else {
@@ -11,17 +11,22 @@
         global.URLs = mod.exports;
     }
 })(this, function (exports) {
-    "use strict";
+    'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    var urls = {
-        api: "https://coursebooks.xyz",
-        login: "https://coursebooks.xyz/users/login",
-        register: "https://coursebooks.xyz/users/register",
-        resetPasswordCallback: "https://www.researchcoder.com/reset-password.html"
-    };
+    var urls = {};
+    urls['api'] = "https://coursebooks.xyz";
+    urls['login'] = urls['api'] + "/users/login";
+    urls['register'] = urls['api'] + "/users/register";
+    urls['resetPasswordCallback'] = "https://www.researchcoder.com/reset-password.html";
+
+    // urls['api'] = "https://api.researchcoder.com:8081";
+    // urls['login'] = urls['api'] + "/users/login";
+    // urls['register'] = urls['api'] + "/users/register";
+    // urls['resetPasswordCallback'] = "https://www.researchcoder.com/reset-password.html";
+
 
     function getUrl(name) {
         return urls[name];
