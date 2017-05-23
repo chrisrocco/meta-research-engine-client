@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
+  <link rel="stylesheet" href="..\assets/vendor/ionrangeslider/ionrangeslider.min.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
   <link rel="stylesheet" href="..\assets/examples/css/paper-coder.css">
   <link rel="stylesheet" href="..\assets/fonts/font-awesome/font-awesome.css">
@@ -355,6 +356,8 @@
           <button ng-click="toggleComplete()" ng-if="assignment.done == true" type="button"
           class="btn btn-outline btn-danger"><i class="icon wb-thumb-down" aria-hidden="true"></i> Mark as Incomplete
           </button>
+          <button ng-click="nullify()" type="button" class="btn btn-outline btn-danger"><i class="icon fa-bomb" aria-hidden="true"></i> Reset
+          </button>
         </div>
       </div>
       <div class="row">
@@ -400,8 +403,8 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="..\assets/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="..\assets/js/Plugin/panel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="..\assets/vendor/jquery-asRange/jquery-asRange.js"></script>
   <script src="..\assets/vendor/pace/pace.min.js"></script>
@@ -430,6 +433,7 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
+  <script src="..\assets/js/Plugin/ionrangeslider.js"></script>
   <script src="..\assets/js/Plugin/panel.js"></script>
   <script src="..\assets/examples/js/paper-coder.js"></script>
   <script src="../app/paper-coder/paper-coder.module.js"></script>
@@ -437,8 +441,12 @@
   <script src="../app/paper-coder/editor/editor.directive.js"></script>
   <script src="../app/paper-coder/domain/domain.directive.js"></script>
   <script src="../app/paper-coder/branch/branch.directive.js"></script>
-  <script src="../app/paper-coder/editor/input/input.boolean.directive.js"></script>
   <script src="../app/paper-coder/field/field.directive.js"></script>
+  <script src="../app/paper-coder/inputs/input.text.directive.js"></script>
+  <script src="../app/paper-coder/inputs/input.number.directive.js"></script>
+  <script src="../app/paper-coder/inputs/input.boolean.directive.js"></script>
+  <script src="../app/paper-coder/inputs/input.select.directive.js"></script>
+  <script src="../app/paper-coder/inputs/input.range.directive.js"></script>
   <script src="../app/paper-coder/paper-coder.service.js"></script>
   <script src="../app/paper-coder/paper-coder.controller.js"></script>
   <script>

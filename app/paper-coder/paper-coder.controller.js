@@ -85,7 +85,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
         /* Initialize Data */
         data.assignment.done == "true" ? data.assignment.done = true : data.assignment.done = false ;
         data.assignment.completion = parseFloat( data.assignment.completion );
-        if( data.assignment.encoding == null ){
+        if( data.assignment.encoding == null || data.assignment.encoding == "" ){
             var encoding = {
                 constants: [],
                 branches: [[]]
@@ -121,5 +121,11 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             $scope.structure = data.structure;
             paperCoderService.loadAssignment( $scope.assignment );
         });
+
+        $scope.nullify = function (){
+            $scope.assignment.encoding = null;
+            $scope.save();
+            window.location.reload();
+        }
     });
 }
