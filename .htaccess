@@ -1,17 +1,21 @@
-# .htaccess main domain to subdirectory redirect
-
+# lunarpages.com
+# .htaccess primary domain to subfolder redirect
+# Copy and paste the following code into the .htaccess file
+# in the public_html folder of your hosting account
+# make the changes to the file according to the instructions.
+# Do not change this line.
 RewriteEngine on
-# Change example.com to be your main domain.
+# Change yourdomain.com to be your primary domain.
 RewriteCond %{HTTP_HOST} ^(www.)?researchcoder.com$
-# Change 'subdirectory' to be the directory you will use for your main domain.
+# Change 'subfolder' to be the folder you will use for your primary domain.
 RewriteCond %{REQUEST_URI} !^/html/
-# Don't change the following two lines.
+# Don't change this line.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Change 'subdirectory' to be the directory you will use for your main domain.
+# Change 'subfolder' to be the folder you will use for your primary domain.
 RewriteRule ^(.*)$ /html/$1
-# Change example.com to be your main domain again.
-# Change 'subdirectory' to be the directory you will use for your main domain
+# Change yourdomain.com to be your primary domain again.
+# Change 'subfolder' to be the folder you will use for your primary domain
 # followed by / then the main file for your site, index.php, index.html, etc.
 RewriteCond %{HTTP_HOST} ^(www.)?researchcoder.com$
-RewriteRule ^(/)?$ html/ [L]
+RewriteRule ^(/)?$ html/index.html [L]
