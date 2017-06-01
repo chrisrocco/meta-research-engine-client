@@ -4,7 +4,7 @@ RewriteEngine on
 # Change example.com to be your main domain.
 RewriteCond %{HTTP_HOST} ^(www.)?researchcoder.com$
 # Change 'subdirectory' to be the directory you will use for your main domain.
-RewriteCond %{REQUEST_URI} !^/
+RewriteCond %{REQUEST_URI} !^/html/
 # Don't change the following two lines.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
