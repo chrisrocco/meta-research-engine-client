@@ -18,4 +18,4 @@ RewriteRule ^(.*)$ /html/$1
 # Change 'subfolder' to be the folder you will use for your primary domain
 # followed by / then the main file for your site, index.php, index.html, etc.
 RewriteCond %{HTTP_HOST} ^(www.)?researchcoder.com$
-RewriteRule ^(/)?$ html/index.html [L]
+RewriteRule ^(/)?$ index.html [L]
