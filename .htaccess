@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^$ /store [L]
+RewriteRule ^$ /html [L]
