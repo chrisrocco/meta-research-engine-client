@@ -17,7 +17,7 @@
         value: true
     });
     var urls = {};
-    urls['api'] = "https://coursebooks.xyz";
+    urls['api'] = "https://researchcoder.com/api";
     urls['login'] = urls['api'] + "/users/login";
     urls['register'] = urls['api'] + "/users/register";
     urls['resetPasswordCallback'] = "https://www.researchcoder.com/reset-password.html";
@@ -26,7 +26,6 @@
     // urls['login'] = urls['api'] + "/users/login";
     // urls['register'] = urls['api'] + "/users/register";
     // urls['resetPasswordCallback'] = "https://www.researchcoder.com/reset-password.html";
-
 
     function getUrl(name) {
         return urls[name];
