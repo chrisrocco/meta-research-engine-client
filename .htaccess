@@ -8,14 +8,14 @@ RewriteEngine on
 # Change yourdomain.com to be your primary domain.
 RewriteCond %{HTTP_HOST} ^(www.)?researchcoder.com$
 # Change 'subfolder' to be the folder you will use for your primary domain.
-RewriteCond %{REQUEST_URI} !^/
+RewriteCond %{REQUEST_URI} !^/html/
 # Don't change this line.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # Change 'subfolder' to be the folder you will use for your primary domain.
-RewriteRule ^(.*)$ /$1
+RewriteRule ^(.*)$ /html/$1
 # Change yourdomain.com to be your primary domain again.
 # Change 'subfolder' to be the folder you will use for your primary domain
 # followed by / then the main file for your site, index.php, index.html, etc.
 RewriteCond %{HTTP_HOST} ^(www.)?researchcoder.com$
-RewriteRule ^(/)?$ index.html [L]
+RewriteRule ^(/)?$ html/index.html [L]
