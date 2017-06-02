@@ -166,7 +166,10 @@
         config['headers'] = {
             "Authorization": "Bearer " + AuthService.getToken() // token here
         };
-        return $.ajax(config).error(reportError);
+        config['statusCode'] = {
+            500: reportError
+        };
+        return $.ajax(config);
     }
 
     function reportError(err) {
