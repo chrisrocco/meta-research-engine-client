@@ -158,7 +158,7 @@ function reportError( err ){
     else if ( err.responseText ) report = err.responseText;
     else report = JSON.stringify( err );
 
-    var activity = window.location;
+    var activity = window.location.href;
 
     console.log( "generating error report", err );
     $.ajax({
