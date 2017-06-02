@@ -1,8 +1,8 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define("/AuthService", ["exports", "URLs"], factory);
+        define("/AuthService", ["exports", "src/es/URLs"], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require("URLs"));
+        factory(exports, require("src/es/URLs"));
     } else {
         var mod = {
             exports: {}

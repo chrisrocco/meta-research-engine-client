@@ -1,8 +1,8 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define('/DataService', ['exports', 'URLs', 'AuthService'], factory);
+        define('/DataService', ['exports', 'src/es/URLs', 'AuthService'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('URLs'), require('AuthService'));
+        factory(exports, require('src/es/URLs'), require('AuthService'));
     } else {
         var mod = {
             exports: {}
@@ -164,8 +164,8 @@
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
-            "Authorization": "Bearer " + AuthService.getToken // token here
-            () };
+            "Authorization": "Bearer " + AuthService.getToken() // token here
+        };
         return $.ajax(config);
     }
     /* Development */
