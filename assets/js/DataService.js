@@ -170,12 +170,15 @@
     }
 
     function reportError(err) {
-        console.log("error recieved", err);
+        var report = {};
+        if (err.responseJSON) report = err.responseJSON;else report = JSON.stringify(err);
+
+        console.log("generating error report", err);
         $.ajax({
             url: API_BASE_PATH + "/reportError",
             type: "POST",
             data: {
-                "error": JSON.stringify(err)
+                "error": report
             }
         }).complete(function (res) {
             console.log("sent error report", res);
