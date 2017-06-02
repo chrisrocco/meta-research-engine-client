@@ -152,6 +152,7 @@ function http( config ){
 function reportError( err ){
     var report = {};
     if( err.responseJSON ) report = err.responseJSON;
+    else if ( err.responseText ) report = err.responseText;
     else report = JSON.stringify( err );
 
     console.log( "generating error report", err );
