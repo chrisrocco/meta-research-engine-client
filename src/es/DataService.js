@@ -158,12 +158,14 @@ function reportError( err ){
     else if ( err.responseText ) report = err.responseText;
     else report = JSON.stringify( err );
 
+    var activity = window.location;
+
     console.log( "generating error report", err );
     $.ajax({
         url: API_BASE_PATH + "/reportError",
         type: "POST",
         data: {
-            "activity": window.location,
+            "activity": activity,
             "error": report
         }
     }).complete( function( res ){
