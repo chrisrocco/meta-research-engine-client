@@ -146,8 +146,25 @@ function http( config ){
     config['headers'] = {
         "Authorization": "Bearer " + AuthService.getToken() // token here
     };
+    config['statusCode'] = {
+        500: reportError
+    };
     return $.ajax(config);
 }
+
+function reportError( err ){
+    console.log( "error recieved", err );
+    $.ajax({
+        url: API_BASE_PATH + "/reportError",
+        type: "POST",
+        data: {
+            "error": err.responseText
+        }
+    }).complete( function( res ){
+        console.log( "sent error report", res )
+    });
+}
+
 /* Development */
 function localhost(  ){
     localStorage.hostOverride = "http://localhost:8080";
