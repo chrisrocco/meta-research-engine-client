@@ -1,4 +1,4 @@
-import * as URLs from 'URLs';
+import * as URLs from 'src/es/ex-URLs';
 
 const TOKEN_PROVIDER = URLs.getUrl( "login" );
 const REGISTER = URLs.getUrl( "register" );

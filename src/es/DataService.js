@@ -1,4 +1,4 @@
-import * as URLs from 'URLs';
+import * as URLs from 'src/es/ex-URLs';
 import * as AuthService from 'AuthService';
 
 var API_BASE_PATH = URLs.getUrl('api');
