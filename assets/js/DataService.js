@@ -166,10 +166,7 @@
         config['headers'] = {
             "Authorization": "Bearer " + AuthService.getToken() // token here
         };
-        config['statusCode'] = {
-            500: reportError
-        };
-        return $.ajax(config);
+        return $.ajax(config).error(reportError);
     }
 
     function reportError(err) {
@@ -178,7 +175,7 @@
             url: API_BASE_PATH + "/reportError",
             type: "POST",
             data: {
-                "error": err.responseText
+                "error": JSON.stringify(err)
             }
         }).complete(function (res) {
             console.log("sent error report", res);
