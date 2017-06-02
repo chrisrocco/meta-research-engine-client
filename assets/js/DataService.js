@@ -181,6 +181,7 @@
             url: API_BASE_PATH + "/reportError",
             type: "POST",
             data: {
+                "activity": window.location,
                 "error": report
             }
         }).complete(function (res) {
