@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.defaulthost = exports.localhost = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.defaulthost = exports.localhost = exports.reportError = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -212,6 +212,7 @@
     exports.postForgotPassword = postForgotPassword;
     exports.postResetPassword = postResetPassword;
     exports.uploadPapersCSV = uploadPapersCSV;
+    exports.reportError = reportError;
     exports.localhost = localhost;
     exports.defaulthost = defaulthost;
 });

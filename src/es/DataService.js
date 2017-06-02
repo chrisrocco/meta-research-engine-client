@@ -193,6 +193,7 @@ export {
     postForgotPassword,
     postResetPassword,
     uploadPapersCSV,
+    reportError,
     /* development */
     localhost,
     defaulthost
