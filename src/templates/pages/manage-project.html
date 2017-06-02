@@ -5,6 +5,7 @@ title: Manage Project
 
 {{#extend "layout-default"}}
 {{#content "css_vendor" mode="append"}}
+<link rel="stylesheet" href="{{assets}}/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
 <link rel="stylesheet" href="{{assets}}/vendor/footable/footable.core.css">
 <link rel="stylesheet" href="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload.css">
 <link rel="stylesheet" href="{{assets}}/vendor/dropify/dropify.css">
@@ -29,15 +30,18 @@ title: Manage Project
 <script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
 <script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
 <script src="{{assets}}/vendor/dropify/dropify.min.js"></script>
+<script src="{{assets}}/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
 {{/content}}
 
 {{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/bootstrap-tokenfield.js"></script>
 <script src="{{assets}}/js/Plugin/dropify.js"></script>
 {{/content}}
 
 {{#content "scripts" mode="replace"}}
 <script src="{{assets}}/examples/js/manage-project.js"></script>
 {{/content}}
+
 
 {{#content "body"}}
 
@@ -147,6 +151,26 @@ title: Manage Project
                     </div>
                 </div>
                 <!-- End Custom filter UI -->
+
+                <div class="panel">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"> Upload Papers to Project </h3>
+                    </header>
+                    <div class="panel-body">
+                        <!-- Example height -->
+                        <div class="example-wrap">
+                            <h4 class="example-title">Upload a .csv with columns: Title, Description, Embedding URL</h4>
+                            <div class="example">
+                                <input id="pmcidList" type="text" class="form-control" data-plugin="tokenfield"
+                                       value=""/>
+                                <br />
+                                <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
+                            </div>
+                        </div>
+                        <!-- End Example height -->
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
