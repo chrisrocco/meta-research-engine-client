@@ -297,8 +297,8 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-primary" aria-labelledby="projectDropdown"
                 role="menu">
-                  <a ng-repeat="project in projects" class="dropdown-item" href="javascript:void(0)"
-                  role="menuitem">
+                  <a ng-repeat="project in projects" ng-click="selectProject( project )" class="dropdown-item"
+                  href="javascript:void(0)" role="menuitem">
                     <span ng-bind="project.project.name"></span>
                   </a>
                 </div>

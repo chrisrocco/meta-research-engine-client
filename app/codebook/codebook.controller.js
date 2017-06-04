@@ -12,9 +12,13 @@ function CodebookController( $scope ){
     init();
 
     $scope.selectDomain = selectDomain;
+    $scope.selectProject = selectProject;
 
     function selectDomain( domain ){
         $scope.selectedDomain = domain;
+    }
+    function selectProject( project ){
+        $scope.selectedProject = project;
     }
     function init(){
         var pr = DataService.loadCodeBook();
