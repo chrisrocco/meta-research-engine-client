@@ -172,8 +172,8 @@
             "Authorization": "Bearer " + AuthService.getToken // token here
             () };
         config['statusCode'] = {
-            500: reportError
-        };
+            500: reportError,
+            405: reportError };
         return $.ajax(config);
     }
 

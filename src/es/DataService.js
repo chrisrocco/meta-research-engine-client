@@ -153,7 +153,7 @@ function http( config ){
     };
     config['statusCode'] = {
         500: reportError
-    };
+, 405: reportError    };
     return $.ajax(config);
 }
 
