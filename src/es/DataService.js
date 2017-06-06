@@ -2,9 +2,6 @@ import * as URLs from 'src/es/URLs';
 import * as AuthService from 'AuthService';
 
 var API_BASE_PATH = URLs.getUrl('api');
-if (localStorage.hostOverride) {
-    API_BASE_PATH = localStorage.hostOverride;
-}
 
 function getUsersAssignments( id ){
     return http({
@@ -136,9 +133,7 @@ function uploadPapersCSV( projectKey, formData ){
         url: "/projects/"+projectKey+"/papers",
         method: "POST",
         data: formData,
-        dataType: "json",
-        processData: false,
-        contentType: false
+        dataType: "json"
     })
 }
 function http( config ){
@@ -173,16 +168,6 @@ function reportError( err ){
     });
 }
 
-/* Development */
-function localhost(  ){
-    localStorage.hostOverride = "http://localhost:8080";
-    window.location.reload();
-}
-function defaulthost() {
-    delete localStorage.hostOverride;
-    window.location.reload();
-}
-
 export {
     loadManageProject,
     loadPaperCoder,
@@ -201,8 +186,5 @@ export {
     postForgotPassword,
     postResetPassword,
     uploadPapersCSV,
-    reportError,
-    /* development */
-    localhost,
-    defaulthost
+    reportError
 }

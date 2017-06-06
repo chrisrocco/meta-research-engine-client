@@ -16,15 +16,12 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.defaulthost = exports.localhost = exports.reportError = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.reportError = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
     var API_BASE_PATH = URLs.getUrl('api');
-    if (localStorage.hostOverride) {
-        API_BASE_PATH = localStorage.hostOverride;
-    }
 
     function getUsersAssignments(id) {
         return http({
@@ -156,9 +153,7 @@
             url: "/projects/" + projectKey + "/papers",
             method: "POST",
             data: formData,
-            dataType: "json",
-            processData: false,
-            contentType: false
+            dataType: "json"
         });
     }
     function http(config) {
@@ -191,16 +186,6 @@
         });
     }
 
-    /* Development */
-    function localhost() {
-        localStorage.hostOverride = "http://localhost:8080";
-        window.location.reload();
-    }
-    function defaulthost() {
-        delete localStorage.hostOverride;
-        window.location.reload();
-    }
-
     exports.loadManageProject = loadManageProject;
     exports.loadPaperCoder = loadPaperCoder;
     exports.loadCodeBook = loadCodeBook;
@@ -219,6 +204,4 @@
     exports.postResetPassword = postResetPassword;
     exports.uploadPapersCSV = uploadPapersCSV;
     exports.reportError = reportError;
-    exports.localhost = localhost;
-    exports.defaulthost = defaulthost;
 });

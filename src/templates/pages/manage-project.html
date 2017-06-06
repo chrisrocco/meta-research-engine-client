@@ -5,6 +5,10 @@ title: Manage Project
 
 {{#extend "layout-default"}}
 {{#content "css_vendor" mode="append"}}
+<link rel="stylesheet" href="{{assets}}/vendor/datatables-bootstrap/dataTables.bootstrap.css">
+<link rel="stylesheet" href="{{assets}}/vendor/datatables-fixedheader/dataTables.fixedHeader.css">
+<link rel="stylesheet" href="{{assets}}/vendor/datatables-responsive/dataTables.responsive.css">
+<link rel="stylesheet" href="{{assets}}/vendor/datatables-buttons/dataTables.buttons.css">
 <link rel="stylesheet" href="{{assets}}/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
 <link rel="stylesheet" href="{{assets}}/vendor/footable/footable.core.css">
 <link rel="stylesheet" href="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload.css">
@@ -16,6 +20,11 @@ title: Manage Project
 {{/content}}
 
 {{#content "js_vendor" mode="append"}}
+<script src="{{assets}}/vendor/datatables/jquery.dataTables.js"></script>
+<script src="{{assets}}/vendor/datatables-fixedheader/dataTables.fixedHeader.js"></script>
+<script src="{{assets}}/vendor/datatables-bootstrap/dataTables.bootstrap.js"></script>
+<script src="{{assets}}/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script src="{{assets}}/vendor/datatables-buttons/dataTables.buttons.js"></script>
 <script src="{{assets}}/vendor/moment/moment.min.js"></script>
 <script src="{{assets}}/vendor/footable/footable.min.js"></script>
 <script src="{{assets}}/vendor/jquery-ui/jquery-ui.js"></script>
@@ -31,9 +40,11 @@ title: Manage Project
 <script src="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
 <script src="{{assets}}/vendor/dropify/dropify.min.js"></script>
 <script src="{{assets}}/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
+<script src="{{assets}}/vendor/papaparse/papaparse.min.js"></script>
 {{/content}}
 
 {{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/datatables.js"></script>
 <script src="{{assets}}/js/Plugin/bootstrap-tokenfield.js"></script>
 <script src="{{assets}}/js/Plugin/dropify.js"></script>
 {{/content}}
@@ -154,17 +165,17 @@ title: Manage Project
 
                 <div class="panel">
                     <header class="panel-heading">
-                        <h3 class="panel-title"> Upload Papers to Project </h3>
+                        <h3 class="panel-title"> Find Publishing by PMC-ID </h3>
                     </header>
                     <div class="panel-body">
                         <!-- Example height -->
                         <div class="example-wrap">
-                            <h4 class="example-title">Upload a .csv with columns: Title, Description, Embedding URL</h4>
+                            <h4 class="example-title">Enter PMC-ID's delimited by commas, and we'll look them up for you!</h4>
                             <div class="example">
                                 <input id="pmcidList" type="text" class="form-control" data-plugin="tokenfield"
                                        value=""/>
                                 <br />
-                                <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
+                                <button class="btn btn-block btn-primary" type="submit"> Find Papers </button>
                             </div>
                         </div>
                         <!-- End Example height -->
@@ -173,6 +184,29 @@ title: Manage Project
 
             </div>
         </div>
+
+        <!-- Upload Preview Modal -->
+        <div class="modal fade modal-primary" id="uploadPreviewModal" aria-hidden="true"
+             aria-labelledby="uploadPreviewModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">If everything looks ok, press confirm!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="uploadPreviewTable" class="table table-hover dataTable table-striped w-full" width="100%"></table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button onclick="doUpload()" type="button" class="btn btn-primary">Confirm!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
     </div>
 </div>
 <!-- End Page -->
