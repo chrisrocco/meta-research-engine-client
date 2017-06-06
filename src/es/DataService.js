@@ -136,6 +136,16 @@ function uploadPapersCSV( projectKey, formData ){
         dataType: "json"
     })
 }
+function uploadPapersByID( projectKey, pmcIDs ){
+    return http({
+        url: "/projects/"+projectKey+"/papers/byPMCID",
+        method: "POST",
+        data: {
+            "pmcIDs": pmcIDs
+        },
+        dataType: "json"
+    });
+}
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
@@ -186,5 +196,6 @@ export {
     postForgotPassword,
     postResetPassword,
     uploadPapersCSV,
+    uploadPapersByID,
     reportError
 }
