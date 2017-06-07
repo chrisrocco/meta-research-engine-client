@@ -79,12 +79,15 @@ function PaperCoderController($scope, $sce, paperCoderService) {
         );
     };
 
-    DataService.loadPaperCoder( localStorage.assignmentKey ).success( function(data){
+    var p = DataService.loadPaperCoder( localStorage.assignmentKey );
+    p.success( function(data){
         console.log( "Data from server", data );
 
         /* Initialize Data */
         data.assignment.done == "true" ? data.assignment.done = true : data.assignment.done = false ;
         data.assignment.completion = parseFloat( data.assignment.completion );
+
+        // NULL encoding? -> Initialize a blank one: add all project questions in the assignment's encoding. load the structure into activity as a global.
         if( data.assignment.encoding == null || data.assignment.encoding == "" ){
             var encoding = {
                 constants: [],
@@ -92,40 +95,57 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             };
             var assignmentInputs = [];
 
-            for( var i = 0; i < data.questions.length; i++ ){
-                var input = {
-                    question: data.questions[i]['_key'],
-                    data: {
-                        dont_flatten_me: ""
-                    }
-                };
-                assignmentInputs.push( input );
-            }
+            addToAssignment( assignmentInputs, data.questions );
 
             encoding.constants = assignmentInputs;
             data.assignment.encoding = encoding;
             console.log( data.assignment );
         }
+
+        // If constants property was removed during the encoding / decoding
         if( !data.assignment.encoding.constants ){
             data.assignment.encoding.constants = [];
         }
+        // If branches property was removed during encoding / decoding
         if( !data.assignment.encoding.branches){
             data.assignment.encoding.branches = [[]];
         }
-        /* Trust Paper URL */
-        data.paper.url = $sce.trustAsResourceUrl(data.paper.url);
 
+        // Because there might be new questions
+        addToAssignment( data.assignment.encoding.constants, data.questions );
+
+        /* Allows loading outside resources into iframe with angular */
+        data.paper.url = $sce.trustAsResourceUrl(data.paper.url);
+        // Hook into angular digest cycle
         $scope.$apply( function(){
             $scope.paper = data.paper;
             $scope.assignment = data.assignment;
             $scope.structure = data.structure;
             paperCoderService.loadAssignment( $scope.assignment );
         });
-
+        // reseting the assignment
         $scope.nullify = function (){
             $scope.assignment.encoding = null;
             $scope.save();
             window.location.reload();
         }
     });
+
+    // adds questions from project into an encoding branch IF they are not already there.
+    function addToAssignment( branch, questionsArray ){
+        for( var i = 0; i < questionsArray.length; i++ ){
+            var qKey = questionsArray[i]['_key'];
+
+            var alreadyHasIt = paperCoderService.branchContains( branch, qKey );
+            if( alreadyHasIt ) continue;
+
+            var input = {
+                question: qKey,
+                data: {
+                    dont_flatten_me: ""
+                }
+            };
+            branch.push( input );
+        }
+    }
 }

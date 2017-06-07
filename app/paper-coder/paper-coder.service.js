@@ -13,7 +13,8 @@ function paperCoderService() {
         newBranch: newBranch,
         calculateCompletion: calculateCompletion,
         toggleComplete: toggleComplete,
-        getAssignment: getAssignment
+        getAssignment: getAssignment,
+        branchContains: branchContains
     };
     return service;
 
@@ -49,11 +50,11 @@ function paperCoderService() {
         return false;
     }
 
-    function branchContains(branch, fieldName) {
-        console.log( "contains?", branch, fieldName );
+    function branchContains(branch, questionKey) {
+        console.log( "contains?", branch, questionKey );
         for (var i = 0; i < branch.length; i++) {
             var fieldObject = branch[i];
-            if (fieldObject.question === fieldName) return true;
+            if (fieldObject.question === questionKey) return true;
         }
         return false;
     }
