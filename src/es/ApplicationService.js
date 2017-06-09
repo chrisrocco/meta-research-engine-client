@@ -25,7 +25,7 @@ function joinStudy(  ){
         if (inputValue === false) return false;
         if (inputValue === "") {
             swal.showInputError("You need to write something!");
-            return false
+            return false;
         }
         var promise = DataService.postProjectEnrollments( inputValue, userKey );
         promise.success( function( res ){
@@ -71,14 +71,14 @@ function joinStudy(  ){
 
             swal({
                 title: "Opps...",
-                text: "Something went wrong. My Fault.",
+                text: "Something went wrong.",
                 type: "error",
                 showCancelButton: false,
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: 'OK',
                 closeOnConfirm: false
             });
-        })
+        });
     });
 
 

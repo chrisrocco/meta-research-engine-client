@@ -1,3 +1,4 @@
+
 ---
 title: Project Builder
 ---
@@ -463,6 +464,13 @@ title: Project Builder
                                     <label class="floating-label">Unit</label>
                                     <input ng-model="modalQuestion.rangeUnit"
                                            name="rangeUnit" type="text" class="form-control" placeholder="degrees"/>
+                                </div>
+                            </div>
+                            <div ng-show="modalQuestion.type === 'select'" class="form-group">
+                                <div class="example">
+                                    <label class="floating-label">Options</label>
+                                    <input id="editMultipleChoiceInput" onchange="updateMultipleChoice()" type="text" class="form-control" data-plugin="tokenfield"
+                                           value=""/>
                                 </div>
                             </div>
                             <!-- End Type Conditionals -->

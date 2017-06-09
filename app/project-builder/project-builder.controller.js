@@ -46,7 +46,6 @@ function ProjectBuilderController( $scope ){
     $scope.selectedQuestionType = $scope.questionTypes[0].id;
 
     /*-----------------------------------------------------------------*/
-
     function parseQuestionForm(){
         var form        = document.forms.questionForm;
         var name        = form.name.value;
@@ -79,8 +78,15 @@ function ProjectBuilderController( $scope ){
             questionObject.unit = form.unit.value;
         }
         if( type == "boolean" ){
+            /* Init true/false if blank */
             questionObject.trueOption = form.trueOption.value;
             questionObject.falseOption = form.falseOption.value;
+            if( questionObject.trueOption == "" ){
+                questionObject.trueOption = "true";
+            }
+            if( questionObject.falseOption == "" ){
+                questionObject.falseOption = "false";
+            }
         }
         if( type == "range" ){
             questionObject.rangeMin = parseInt( form.rangeMin.value );
@@ -88,15 +94,7 @@ function ProjectBuilderController( $scope ){
             questionObject.rangeUnit = form.rangeUnit.value;
         }
         if( type == "select" ){
-            var tokens = $('#multipleChoiceInput').tokenfield('getTokens');
-
-            questionObject.options = [];
-            for (var i = 0; i < tokens.length; i++) {
-                var option = tokens[i];
-                questionObject.options.push( option.value );
-            }
-
-            console.log( questionObject.options );
+            extractQuestions( $('#multipleChoiceInput'), questionObject.options );
         }
 
         form.parent.value   =   "";
@@ -166,6 +164,8 @@ function ProjectBuilderController( $scope ){
     }
     function editQuestion( question ){
         $scope.modalQuestion = question;
+        resetEditTokenField();
+        loadEditTokenField( question );
         $("#editQuestionModal").modal("show");
     }
     function handleDeleteDomain( domain ){
@@ -223,6 +223,12 @@ function ProjectBuilderController( $scope ){
         $scope.$apply( function() {
             $scope.questions.splice($scope.domains.indexOf(question), 1);
         } );
+    }
+
+    // Third party angular adapter
+    window.updateMultipleChoice = function(){
+        $scope.modalQuestion.options = [];
+        extractQuestions( $('#editMultipleChoiceInput'), $scope.modalQuestion.options );
     }
 
     function init(){
@@ -307,3 +313,24 @@ const defaultModel = {
     domains: [],
     questions: []
 };
+
+/* Bootstrap tokenfield adapter */
+function extractQuestions( tokenFieldElement, target ){
+    var tokens = tokenFieldElement.tokenfield('getTokens');
+
+    for (var i = 0; i < tokens.length; i++) {
+        var option = tokens[i];
+        target.push( option.value );
+    }
+}
+function resetEditTokenField(){
+    var tf = $('#editMultipleChoiceInput');
+    tf.tokenfield('setTokens', []);
+    tf.val('');
+}
+function loadEditTokenField( questionObject ){
+    if( questionObject.options ){
+        var tf = $('#editMultipleChoiceInput');
+        tf.tokenfield('setTokens', questionObject.options );
+    }
+}

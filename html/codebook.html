@@ -332,13 +332,13 @@
                         onclick="return void(0)" data-parent="#accordion2">
                           <i class="icon {[{question.icon}]}"></i>
                           <span ng-bind="question.name"></span>
-                          <small class="ml-15"> {[{question.tooltip}]} </small>
+                          <small class="ml-15"> {[{question.question}]} </small>
                         </a>
                       </div>
                       <div class="panel-collapse collapse in" id="panel-{[{question._key}]}" aria-labelledby="question-1"
                       role="tabpanel">
                         <div class="panel-body">
-                          <span ng-bind="question.question"></span>
+                          <span ng-bind="question.tooltip"></span>
                         </div>
                       </div>
                     </div>

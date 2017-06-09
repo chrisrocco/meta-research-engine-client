@@ -26,8 +26,6 @@ function putAssignment( assignmentObject ){
             "completion": assignmentObject.completion,
             "encoding": assignmentObject.encoding
         }
-    }).complete( function(res){
-        console.log( "put assignment response", res );
     });
 }
 function loadPaperCoder( assignmentKey ){
@@ -146,6 +144,17 @@ function uploadPapersByID( projectKey, pmcIDs ){
         dataType: "json"
     });
 }
+function moreAssignmentsPlease( userKey, projectKey, howMany ){
+    return http({
+        url: "/moreAssignmentsPlease",
+        method: "POST",
+        data: {
+            userKey: userKey,
+            projectKey: projectKey,
+            howMany: howMany
+        }
+    });
+}
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
@@ -197,5 +206,6 @@ export {
     postResetPassword,
     uploadPapersCSV,
     uploadPapersByID,
-    reportError
+    reportError,
+    moreAssignmentsPlease
 }

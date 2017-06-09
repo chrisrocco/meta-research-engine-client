@@ -284,7 +284,8 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page" ng-controller="PaperCoderController" ng-app="paper-coder">
+  <div style="max-width: 3000px !important;" class="page" ng-controller="PaperCoderController"
+  ng-app="paper-coder">
     <div class="page-header">
       <h1 class="page-title">{[{assignment.title}]}</h1>
       <ol class="breadcrumb">
@@ -293,27 +294,6 @@
       </ol>
     </div>
     <div class="page-content">
-      <!-- Start Paper Embedding -->
-      <div class="panel is-collapse">
-        <div class="panel-heading">
-          <h3 class="panel-title"> {[{paper.title}]}</h3>
-          <div class="panel-actions">
-            <a class="panel-action icon wb-plus" data-toggle="panel-collapse" aria-hidden="true"></a>
-            <div class="dropdown">
-              <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i class="icon wb-settings" aria-hidden="true"></i></a>
-              <div class="dropdown-menu dropdown-menu-bullet" role="menu">
-                <a ng-click="popOut( paper )" class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-flag" aria-hidden="true"></i> Pop Out</a>
-              </div>
-            </div>
-            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
-          </div>
-        </div>
-        <div class="panel-body">
-          {[{paper.description}]}
-          <iframe ng-src="{[{paper.url}]}" width="100%" height="700px"></iframe>
-        </div>
-      </div>
-      <!-- End Paper Embedding -->
       <div class="panel">
         <div class="panel-body">
           <div class="progress">
@@ -341,19 +321,46 @@
       </div>
       <div class="row">
         <div class="col-lg-6">
-          <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
-            <bd-domain ng-repeat="domain in structure" domain="domain">
-              <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
-            </bd-domain>
-          </bd-branch>
+          <div class="row">
+            <div class="col-lg-6">
+              <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
+                <bd-domain ng-repeat="domain in structure" domain="domain">
+                  <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
+                </bd-domain>
+              </bd-branch>
+            </div>
+            <div class="col-lg-6">
+              <bd-branch ng-repeat="branch in assignment.encoding.branches" branch="branch" name="'branch'+$index"
+              label="'Study Branch '+ ($index+1)">
+                <bd-domain ng-repeat="domain in structure" domain="domain">
+                  <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
+                </bd-domain>
+              </bd-branch>
+            </div>
+          </div>
         </div>
         <div class="col-lg-6">
-          <bd-branch ng-repeat="branch in assignment.encoding.branches" branch="branch" name="'branch'+$index"
-          label="'Study Branch '+ ($index+1)">
-            <bd-domain ng-repeat="domain in structure" domain="domain">
-              <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
-            </bd-domain>
-          </bd-branch>
+          <!-- Start Paper Embedding -->
+          <div class="panel is-collapse">
+            <div class="panel-heading">
+              <h3 class="panel-title"> {[{paper.title}]}</h3>
+              <div class="panel-actions">
+                <a class="panel-action icon wb-plus" data-toggle="panel-collapse" aria-hidden="true"></a>
+                <div class="dropdown">
+                  <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i class="icon wb-settings" aria-hidden="true"></i></a>
+                  <div class="dropdown-menu dropdown-menu-bullet" role="menu">
+                    <a ng-click="popOut( paper )" class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-flag" aria-hidden="true"></i> Pop Out</a>
+                  </div>
+                </div>
+                <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+              </div>
+            </div>
+            <div class="panel-body">
+              {[{paper.description}]}
+              <iframe ng-src="{[{paper.url}]}" width="100%" height="700px"></iframe>
+            </div>
+          </div>
+          <!-- End Paper Embedding -->
         </div>
       </div>
     </div>
