@@ -51,7 +51,7 @@
 
     function logout() {
         delete localStorage['api_token'];
-        delete localStorage['user'];
+        // delete localStorage['user'];
     }
     function getUser() {
         if (!localStorage['user']) return;

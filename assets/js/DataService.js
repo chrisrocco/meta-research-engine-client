@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.moreAssignmentsPlease = exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.handleUnauthorized = exports.moreAssignmentsPlease = exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -181,7 +181,8 @@
             "Authorization": "Bearer " + AuthService.getToken // token here
             () };
         config['statusCode'] = {
-            500: reportError
+            500: reportError,
+            401: handleUnauthorized
         };
         return $.ajax(config);
     }
@@ -202,6 +203,19 @@
             }
         }).complete(function (res) {
             console.log("sent error report", res);
+        });
+    }
+    function handleUnauthorized(res) {
+        swal({
+            title: "Your Session has Expired!",
+            text: "Please log in again",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: 'OK',
+            closeOnConfirm: false
+        }, function () {
+            window.location = "login.html";
         });
     }
 
@@ -225,4 +239,5 @@
     exports.uploadPapersByID = uploadPapersByID;
     exports.reportError = reportError;
     exports.moreAssignmentsPlease = moreAssignmentsPlease;
+    exports.handleUnauthorized = handleUnauthorized;
 });

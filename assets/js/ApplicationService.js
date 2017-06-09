@@ -92,7 +92,7 @@
 
                 swal({
                     title: "Opps...",
-                    text: "Something went wrong. My Fault.",
+                    text: "Something went wrong.",
                     type: "error",
                     showCancelButton: false,
                     confirmButtonClass: "btn-danger",
