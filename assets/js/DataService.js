@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.moreAssignmentsPlease = exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -46,8 +46,6 @@
                 "completion": assignmentObject.completion,
                 "encoding": assignmentObject.encoding
             }
-        }).complete(function (res) {
-            console.log("put assignment response", res);
         });
     }
     function loadPaperCoder(assignmentKey) {
@@ -166,6 +164,17 @@
             dataType: "json"
         });
     }
+    function moreAssignmentsPlease(userKey, projectKey, howMany) {
+        return http({
+            url: "/moreAssignmentsPlease",
+            method: "POST",
+            data: {
+                userKey: userKey,
+                projectKey: projectKey,
+                howMany: howMany
+            }
+        });
+    }
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
@@ -215,4 +224,5 @@
     exports.uploadPapersCSV = uploadPapersCSV;
     exports.uploadPapersByID = uploadPapersByID;
     exports.reportError = reportError;
+    exports.moreAssignmentsPlease = moreAssignmentsPlease;
 });

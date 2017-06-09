@@ -1,3 +1,4 @@
+
 angular.module("assignments")
     .controller("AssignmentsController", AssignmentsController);
 
@@ -8,6 +9,7 @@ function AssignmentsController ( $scope ){
 
     $scope.loadConflictResolution   = loadConflictResolution;
     $scope.loadPaperCoder           = loadPaperCoder;
+    $scope.getMoreAssignments       = getMoreAssignments;
 
     function loadConflictResolution( assignment ){
         localStorage.assignmentKey = assignment._key;
@@ -17,6 +19,19 @@ function AssignmentsController ( $scope ){
         localStorage.assignmentKey = assignment._key;
         window.location = "paper-coder.html";
     }
+    function getMoreAssignments(){
+        var howMany = prompt( "How Many?" );
+        var projectkey = prompt( "From Which Project?" );
+        var myKey = AuthService.getUser()['_key'];
+        var p = DataService.moreAssignmentsPlease( myKey, projectkey, howMany );
+        p.success( function( res ){
+            console.log( "success adding assignments", res );
+        });
+        p.error( function ( err ) {
+            console.log( "failed adding assignments", err );
+        });
+    }
+
     function init(){
         var p = DataService.loadAssignments( AuthService.getUser()['_key'] );
         p.success( function( data ){

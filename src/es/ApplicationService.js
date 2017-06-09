@@ -78,7 +78,7 @@ function joinStudy(  ){
                 confirmButtonText: 'OK',
                 closeOnConfirm: false
             });
-        })
+        });
     });
 
 
