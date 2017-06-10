@@ -32,7 +32,6 @@ function submitPaperUploadForm(  ) {
 }
 
 function init( ){
-    initFooTable();
     initDropify();
 
     var p = DataService.loadManageProject( localStorage.projectKey );
