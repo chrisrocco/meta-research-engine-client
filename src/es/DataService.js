@@ -161,9 +161,10 @@ function http( config ){
         "Authorization": "Bearer " + AuthService.getToken() // token here
     };
     config['statusCode'] = {
-        500: reportError
+        500: reportError,
+        401: handleUnauthorized
     };
-    return $.ajax(config);
+    return $.ajax(config).complete( function( res ){ AuthService.renew() } );
 }
 
 function reportError( err ){
@@ -186,6 +187,11 @@ function reportError( err ){
         console.log( "sent error report", res )
     });
 }
+function handleUnauthorized( err ){
+    // The server is not appending the 'Access-Control-Allow-Origin' header into the response, preventing me from reading the status code.
+    // window.location = window.location.hostname;
+    window.location = "login.html";
+}
 
 export {
     loadManageProject,
@@ -207,5 +213,6 @@ export {
     uploadPapersCSV,
     uploadPapersByID,
     reportError,
+    handleUnauthorized,
     moreAssignmentsPlease
 }

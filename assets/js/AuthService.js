@@ -16,12 +16,13 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getToken = exports.getUser = exports.logout = exports.register = exports.login = undefined;
+    exports.getToken = exports.getUser = exports.isLoggedIn = exports.logout = exports.renew = exports.register = exports.login = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
 
 
     var TOKEN_PROVIDER = URLs.getUrl("login");
     var REGISTER = URLs.getUrl("register");
+    var RENEW = URLs.getUrl("renew");
 
     function login(email, password, win, fail) {
         return $.ajax({
@@ -49,14 +50,34 @@
         });
     }
 
+    function renew() {
+        $.ajax({
+            url: RENEW,
+            headers: {
+                Authorization: "Bearer " + getToken()
+            },
+            method: "POST",
+            dataType: "json"
+        }).success(function (res) {
+            console.log("Renewing Token..");
+            console.log("Old: ", getToken());
+            console.log("New: ", res.token);
+            localStorage['api_token'] = res.token;
+        });
+    }
+
     function logout() {
         delete localStorage['api_token'];
         // delete localStorage['user'];
     }
     function getUser() {
-        if (!localStorage['user']) return;
+        if (!localStorage['user']) throw 'Tried to access user details when they were not logged in!';
         var json = localStorage['user'];
         return JSON.parse(json);
+    }
+    function isLoggedIn() {
+        if (localStorage['user'] && localStorage['api_token']) return true;
+        return false;
     }
     function getToken() {
         return localStorage['api_token'];
@@ -64,7 +85,9 @@
 
     exports.login = login;
     exports.register = register;
+    exports.renew = renew;
     exports.logout = logout;
+    exports.isLoggedIn = isLoggedIn;
     exports.getUser = getUser;
     exports.getToken = getToken;
 });
