@@ -36,8 +36,11 @@ function PaperCoderController($scope, $sce, paperCoderService) {
 
         paperCoderService.toggleComplete();
     };
-    $scope.save = function(){
-        swal({
+    $scope.save = function( silent ){
+        if( silent == true ){
+
+        } else {
+            swal({
                 title: "Saving...",
                 text: "Just a sec!",
                 type: "info",
@@ -46,6 +49,8 @@ function PaperCoderController($scope, $sce, paperCoderService) {
                 closeOnConfirm: false,
                 showLoaderOnConfirm: true,
             });
+        }
+
         var p = DataService.putAssignment( $scope.assignment );
         p.success( function( res ){
             console.log( "from server: ", res);
@@ -77,6 +82,9 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             "Research Coder | "+paperObject.title,
             "height=700,width=500"
         );
+    };
+    $scope.nextAssignment = function(){
+        if( !localStorage.nextAssignment ) throw "Next Assignment is not set!";
     };
 
     var p = DataService.loadPaperCoder( localStorage.assignmentKey );
@@ -129,6 +137,10 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             $scope.save();
             window.location.reload();
         }
+    });
+    $( window ).unload(function() {
+        DataService.putAssignment( $scope.assignment, false );
+        console.log("unloaded");
     });
 
     // adds questions from project into an encoding branch IF they are not already there.
