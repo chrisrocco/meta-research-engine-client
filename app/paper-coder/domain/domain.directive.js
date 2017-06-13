@@ -23,6 +23,15 @@ function BigDataDomain(paperCoderService) {
             $scope.hasLivingSubdomains = false;
             $scope.hasLivingQuestions = false;
 
+            setTimeout ( function(){
+                $element.find(".nametag").webuiPopover({
+                    content: $scope.domain.tooltip,
+                    trigger:'hover',
+                    placement:'top',
+                    title: $scope.domain.name
+                })
+            }, 0 );
+
             /**
              * Decides if this domain DOM element should be rendered
              * @returns {boolean}

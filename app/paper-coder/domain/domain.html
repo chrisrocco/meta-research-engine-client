@@ -9,7 +9,8 @@
             <button ng-show="edit" ng-click="toggleScope( domain )"
                     type="button" class="btn btn-icon btn-warning btn-outline btn-round">
                 <i class="icon md md-swap" aria-hidden="true"></i></button>
-            &nbsp;&nbsp;&nbsp;{{domain.name}} <span ng-if="isComplete( domain )" class="badge badge-success">Complete</span>
+            &nbsp;&nbsp;&nbsp;<span class="nametag" >{{domain.name}}</span>
+            <span ng-if="isComplete( domain )" class="badge badge-success">Complete</span>
         </a>
     </div>
     <div class="panel-collapse collapse in" id="{{name}}-content-{{domain._key}}">

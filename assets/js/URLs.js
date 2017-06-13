@@ -17,11 +17,11 @@
         value: true
     });
     var urls = {};
-    urls['api'] = "https://researchcoder.com/api";
+    urls['api'] = "https://dev.researchcoder.com/api";
     urls['login'] = urls['api'] + "/users/login";
     urls['register'] = urls['api'] + "/users/register";
     urls['renew'] = urls['api'] + "/renewToken";
-    urls['resetPasswordCallback'] = "https://researchcoder.com/reset-password.html";
+    urls['resetPasswordCallback'] = "https://dev.researchcoder.com/reset-password.html";
 
     if (localStorage.hostOverride) {
         urls['api'] = localStorage.hostOverride;
