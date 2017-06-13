@@ -20,6 +20,15 @@ function BigDataField(paperCoderService, editorService) {
             $scope.getForm = editorService.getInputForm;
             init();
 
+            setTimeout ( function(){
+                $element.find(".nametag").webuiPopover({
+                    content: $scope.fieldObject.tooltip,
+                    trigger:'hover',
+                    placement:'right',
+                    title: $scope.fieldObject.name
+                })
+            }, 0 );
+
             /**
              * Listens for the "edit" event, indicating we should switch to edit mode
              */

@@ -27,7 +27,7 @@ function BigDataDomain(paperCoderService) {
                 $element.find(".nametag").webuiPopover({
                     content: $scope.domain.tooltip,
                     trigger:'hover',
-                    placement:'top',
+                    placement:'right',
                     title: $scope.domain.name
                 })
             }, 0 );
