@@ -97,26 +97,19 @@ title: Paper Coder
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
-                            <bd-domain ng-repeat="domain in structure" domain="domain"
-                                       data-content="And here's some amazing content. It's very engaging. Right?"
-                                       data-trigger="hover" data-toggle="popover" data-original-title="Hover to trigger">
-                                <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
-                            </bd-domain>
-                        </bd-branch>
-                    </div>
-                    <div class="col-lg-6">
-                        <bd-branch ng-repeat="branch in assignment.encoding.branches"
-                                   branch="branch" name="'branch'+$index" label="'Study Branch '+ ($index+1)">
-                            <bd-domain ng-repeat="domain in structure" domain="domain">
-                                <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
-                            </bd-domain>
-                        </bd-branch>
-                    </div>
-                </div>
-
+                <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
+                    <bd-domain ng-repeat="domain in structure" domain="domain"
+                               data-content="And here's some amazing content. It's very engaging. Right?"
+                               data-trigger="hover" data-toggle="popover" data-original-title="Hover to trigger">
+                        <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
+                    </bd-domain>
+                </bd-branch>
+                <bd-branch ng-repeat="branch in assignment.encoding.branches"
+                           branch="branch" name="'branch'+$index" label="'Study Branch '+ ($index+1)">
+                    <bd-domain ng-repeat="domain in structure" domain="domain">
+                        <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
+                    </bd-domain>
+                </bd-branch>
             </div>
             <div class="col-lg-6">
                 <!-- Start Paper Embedding -->

@@ -17,10 +17,12 @@ function getAssignment( key ){
         dataType: "json"
     });
 }
-function putAssignment( assignmentObject ){
+function putAssignment( assignmentObject, async ){
+    if( async == 'undefined' ) async = true;
     return http({
         url: "/assignments/" + assignmentObject._key,
         method: "PUT",
+        async: async,
         data: {
             "done": assignmentObject.done,
             "completion": assignmentObject.completion,
