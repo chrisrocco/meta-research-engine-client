@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.moreAssignmentsPlease = exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -182,8 +182,11 @@
             () };
         config['statusCode'] = {
             500: reportError,
-            405: reportError };
-        return $.ajax(config);
+            401: handleUnauthorized
+        };
+        return $.ajax(config).complete(function (res) {
+            AuthService.renew();
+        });
     }
 
     function reportError(err) {
@@ -203,6 +206,11 @@
         }).complete(function (res) {
             console.log("sent error report", res);
         });
+    }
+    function handleUnauthorized(err) {
+        // The server is not appending the 'Access-Control-Allow-Origin' header into the response, preventing me from reading the status code.
+        // window.location = window.location.hostname;
+        window.location = "login.html";
     }
 
     exports.loadManageProject = loadManageProject;
@@ -224,5 +232,6 @@
     exports.uploadPapersCSV = uploadPapersCSV;
     exports.uploadPapersByID = uploadPapersByID;
     exports.reportError = reportError;
+    exports.handleUnauthorized = handleUnauthorized;
     exports.moreAssignmentsPlease = moreAssignmentsPlease;
 });

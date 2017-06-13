@@ -104,6 +104,7 @@
     }
 
     function renderSession() {
+        if (!AuthService.isLoggedIn()) return;
         (0, _jquery2.default)(managerOnlySelector).hide();
         var user = AuthService.getUser();
         if (!user) {

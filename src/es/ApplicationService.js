@@ -85,6 +85,7 @@ function joinStudy(  ){
 }
 
 function renderSession(){
+    if( ! AuthService.isLoggedIn() ) return;
     $(managerOnlySelector).hide();
     var user = AuthService.getUser();
     if( ! user ){
