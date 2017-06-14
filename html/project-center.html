@@ -280,7 +280,7 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="project-center" ng-controller="ProjectCenterController">
     <div class="page-header">
       <h1 class="page-title">Project Center</h1>
       <ol class="breadcrumb">
@@ -293,9 +293,7 @@
         <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
         data-plugin="animateList" data-child=">li">
           <!-- Dynamically Populated -->
-        </ul>
-        <template id="projectPanel">
-          <li>
+          <li ng-repeat="project in projects">
             <div class="panel">
               <figure class="overlay overlay-hover animation-hover">
                 <img class="caption-figure overlay-figure" src="..\assets/photos/placeholder.png">
@@ -305,30 +303,34 @@
                       <button type="button" class="btn btn-icon btn-pure btn-default" title="Setting"><i class="icon wb-edit" aria-hidden="true"></i>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a data-key class="dropdown-item" onclick="openProjectEditor(this)" href="javascript:void(0)">Edit Questions</a>
+                        <a class="dropdown-item" ng-click="openProjectBuilder(project)" href="javascript:void(0)">Edit Questions</a>
                       </div>
                     </div>
                     <div class="dropdown float-left">
                       <button type="button" class="btn btn-icon btn-pure btn-default" title="Setting"><i class="icon wb-user-add" aria-hidden="true"></i>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a data-key class="dropdown-item" onclick="inviteUser(this)" href="javascript:void(0)">Invite Collaborator</a>
+                        <a class="dropdown-item" ng-click="inviteCollaborator(project)" href="javascript:void(0)">Invite Collaborator</a>
                       </div>
                     </div>
                     <!--<button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
                                             data-tag="project-delete"><i class="icon wb-trash"
                                                                          aria-hidden="true"></i></button>-->
                   </div>
-                  <button data-key onclick="openProject( this )" type="button" class="btn btn-outline btn-default project-button">
+                  <button ng-click="openProjectManager(project)" type="button" class="btn btn-outline btn-default project-button">
                     View Project
                   </button>
                 </figcaption>
               </figure>
-              <div data-rac class="time float-right" style="color: green;">[RAC]</div>
-              <div data-name class="text-truncate">Lorem ipsum</div>
+              <div class="time float-right" style="color: green;">
+                <span ng-bind="project._key"></span>
+              </div>
+              <div class="text-truncate">
+                <span ng-bind="project.name"></span>
+              </div>
             </div>
           </li>
-        </template>
+        </ul>
       </div>
     </div>
   </div>
@@ -396,6 +398,7 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="..\assets/vendor/jquery-selective/jquery-selective.min.js"></script>
   <script src="..\assets/vendor/bootbox/bootbox.js"></script>
@@ -426,12 +429,22 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
+  <script src="../app/project-center/project-center.module.js"></script>
+  <script src="../app/project-center/project-center.controller.js"></script>
   <script src="..\assets/js/Plugin/animate-list.js"></script>
   <script src="..\assets/js/Plugin/bootbox.js"></script>
   <script src="..\assets/js/Site.js"></script>
   <script src="..\assets/js/App/Projects.js"></script>
   <script src="..\assets/js/Plugin/peity.js"></script>
-  <script src="..\assets/examples/js/project-center.js"></script>
+  <script>
+  (function(document, window, $) {
+    'use strict';
+    var Site = window.Site;
+    $(document).ready(function() {
+      Site.run();
+    });
+  })(document, window, jQuery);
+  </script>
   <script>
   (function(document, window, $) {
     $(document).ready(function() {

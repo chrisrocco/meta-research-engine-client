@@ -14,8 +14,9 @@ body_class: app-projects
 <link rel="stylesheet" href="{{assets}}/examples/css/apps/projects.css">
 {{/content}}
 
-
 {{#content "js_vendor" mode="append"}}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
 <script src="{{assets}}/vendor/bootstrap-sweetalert/sweetalert.js"></script>
 <script src="{{assets}}/vendor/jquery-selective/jquery-selective.min.js"></script>
 <script src="{{assets}}/vendor/bootbox/bootbox.js"></script>
@@ -23,6 +24,9 @@ body_class: app-projects
 {{/content}}
 
 {{#content "js" mode="append"}}
+<script src="{{html}}../app/project-center/project-center.module.js"></script>
+<script src="{{html}}../app/project-center/project-center.controller.js"></script>
+
 <script src="{{assets}}/js/Plugin/animate-list.js"></script>
 <script src="{{assets}}/js/Plugin/bootbox.js"></script>
 <script src="{{assets}}/js/Site.js"></script>
@@ -30,14 +34,10 @@ body_class: app-projects
 <script src="{{assets}}/js/Plugin/peity.js"></script>
 {{/content}}
 
-{{#content "scripts" mode="replace"}}
-<script src="{{assets}}/examples/js/project-center.js"></script>
-{{/content}}
-
 {{#content "body"}}
 
 <!-- Page -->
-<div class="page">
+<div class="page" ng-app="project-center" ng-controller="ProjectCenterController">
     <div class="page-header">
         <h1 class="page-title">Project Center</h1>
         <ol class="breadcrumb">
@@ -51,9 +51,7 @@ body_class: app-projects
             <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
                 data-plugin="animateList" data-child=">li">
                 <!-- Dynamically Populated -->
-            </ul>
-            <template id="projectPanel">
-                <li>
+                <li ng-repeat="project in projects">
                     <div class="panel">
                         <figure class="overlay overlay-hover animation-hover">
                             <img class="caption-figure overlay-figure" src="{{assets}}/photos/placeholder.png">
@@ -65,7 +63,7 @@ body_class: app-projects
                                                 title="Setting"><i class="icon wb-edit" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a data-key class="dropdown-item" onclick="openProjectEditor(this)" href="javascript:void(0)">Edit Questions</a>
+                                            <a class="dropdown-item" ng-click="openProjectBuilder(project)" href="javascript:void(0)">Edit Questions</a>
                                         </div>
                                     </div>
                                     <div class="dropdown float-left">
@@ -73,23 +71,23 @@ body_class: app-projects
                                                 title="Setting"><i class="icon wb-user-add" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a data-key class="dropdown-item" onclick="inviteUser(this)" href="javascript:void(0)">Invite Collaborator</a>
+                                            <a class="dropdown-item" ng-click="inviteCollaborator(project)" href="javascript:void(0)">Invite Collaborator</a>
                                         </div>
                                     </div>
                                     <!--<button type="button" class="btn btn-icon btn-pure btn-default" title="Delete"
                                             data-tag="project-delete"><i class="icon wb-trash"
                                                                          aria-hidden="true"></i></button>-->
                                 </div>
-                                <button data-key onclick="openProject( this )" type="button" class="btn btn-outline btn-default project-button">
+                                <button ng-click="openProjectManager(project)" type="button" class="btn btn-outline btn-default project-button">
                                     View Project
                                 </button>
                             </figcaption>
                         </figure>
-                        <div data-rac class="time float-right" style="color: green;">[RAC]</div>
-                        <div data-name class="text-truncate">Lorem ipsum</div>
+                        <div class="time float-right" style="color: green;"><span ng-bind="project._key"></span></div>
+                        <div class="text-truncate"><span ng-bind="project.name"></span></div>
                     </div>
                 </li>
-            </template>
+            </ul>
         </div>
     </div>
 </div>
