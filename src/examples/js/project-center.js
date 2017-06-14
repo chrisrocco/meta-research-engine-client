@@ -17,6 +17,7 @@ function loadProjects() {
             // set the projectKey to the button in the dataset
             projectTemplate.content.querySelectorAll("[data-key]")[0].dataset.key = projectData._key;
             projectTemplate.content.querySelectorAll("[data-key]")[1].dataset.key = projectData._key;
+            projectTemplate.content.querySelectorAll("[data-key]")[2].dataset.key = projectData._key;
             projectTemplate.content.querySelector("[data-rac]").textContent = projectData.registrationCode;
 
             var clone = projectTemplate.content.cloneNode( true );
