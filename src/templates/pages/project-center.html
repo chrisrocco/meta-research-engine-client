@@ -90,6 +90,43 @@ body_class: app-projects
             </ul>
         </div>
     </div>
+
+    <!-- Add Project Form -->
+    <div class="modal fade" id="addProjectForm" aria-hidden="true" aria-labelledby="addProjectForm"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-simple">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Create New Project</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="createProjectForm" action="" role="form">
+                        <div class="form-group">
+                            <label class="form-control-label mb-15" for="name">Project name:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Project name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label mb-15" for="name">Project description:</label>
+                            <textarea name="description" class="form-control mb-sm" placeholder="Project description."
+                                      rows="4"></textarea>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<label class="form-control-label mb-15" for="name">Choice people to your project:</label>-->
+                        <!--<select multiple="multiple" class="plugin-selective"></select>-->
+                        <!--</div>-->
+                    </form>
+                </div>
+                <div class="modal-footer text-left">
+                    <button class="btn btn-primary" data-dismiss="modal" type="button" ng-click="createProject()">
+                        Create
+                    </button>
+                    <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Project Form -->
 </div>
 
 <!-- Site Action -->
@@ -98,43 +135,6 @@ body_class: app-projects
     <i class="icon wb-plus" aria-hidden="true"></i>
 </button>
 <!-- End Site Action -->
-
-<!-- Add Project Form -->
-<div class="modal fade" id="addProjectForm" aria-hidden="true" aria-labelledby="addProjectForm"
-     role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-simple">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Create New Project</h4>
-            </div>
-            <div class="modal-body">
-                <form name="createProjectForm" action="" role="form">
-                    <div class="form-group">
-                        <label class="form-control-label mb-15" for="name">Project name:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Project name">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-control-label mb-15" for="name">Project description:</label>
-                        <textarea name="description" class="form-control mb-sm" placeholder="Project description."
-                                  rows="4"></textarea>
-                    </div>
-                    <!--<div class="form-group">-->
-                    <!--<label class="form-control-label mb-15" for="name">Choice people to your project:</label>-->
-                    <!--<select multiple="multiple" class="plugin-selective"></select>-->
-                    <!--</div>-->
-                </form>
-            </div>
-            <div class="modal-footer text-left">
-                <button class="btn btn-primary" data-dismiss="modal" type="button" onclick="submitNewProjectForm()">
-                    Create
-                </button>
-                <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Add Project Form -->
 
 {{/content}}
 {{/extend}}

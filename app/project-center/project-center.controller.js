@@ -15,6 +15,7 @@ function ProjectCenterController( $scope ){
     $scope.openProjectBuilder = openProjectBuilder;
     $scope.openProjectManager = openProjectManager;
     $scope.inviteCollaborator = inviteCollaborator;
+    $scope.createProject = createProject;
 
     // Property Binding
 
@@ -26,6 +27,29 @@ function ProjectCenterController( $scope ){
     function openProjectManager( project ){
         localStorage.projectKey = project._key;
         window.location = "manage-project.html";
+    }
+    function createProject(){
+        alert("handled");
+        var form = document.forms.createProjectForm;
+        var name = form.name.value;
+        var desc = form.description.value;
+
+        var projectObject = {
+                'name': name,
+                'description': desc
+        };
+        DataService.postProject( projectObject ).success( function( response ){
+            swal({
+                    title: "Project Created!",
+                    text: "Project Registration Code: "+response.registrationCode,
+                    type: "success",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+            });
+            init();
+        });
     }
     function inviteCollaborator( project ){
         swal({
