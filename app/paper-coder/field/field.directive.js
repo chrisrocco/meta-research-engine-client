@@ -20,24 +20,27 @@ function BigDataField(paperCoderService, editorService, $compile) {
             $scope.getForm = editorService.getInputForm;
             init();
 
-            setTimeout ( function(){
-                if( $scope.inputObject ){
-                    // enable tooltip
-                    $element.find(".nametag").webuiPopover({
-                        content: $scope.fieldObject.tooltip,
-                        trigger:'hover',
-                        placement:'right',
-                        title: $scope.fieldObject.name
-                    });
-                    // render form
-                    var tag = "bd-input-"+$scope.fieldObject.type;
-                    var dr = "<"+tag+" bind='inputObject.data' meta='fieldObject' >"
-                        + "</"+tag+">";
-                    $element.find(".inputOutlet").empty();
-                    angular.element( $element.find(".inputOutlet") )
-                        .append($compile(dr)($scope));
-                }
-            }, 0 );
+            function renderQuestions(){
+                setTimeout ( function(){
+                    if( $scope.inputObject ){
+                        // enable tooltip
+                        $element.find(".nametag").webuiPopover({
+                            content: $scope.fieldObject.tooltip,
+                            trigger:'hover',
+                            placement:'right',
+                            title: $scope.fieldObject.name
+                        });
+                        // render form
+                        var tag = "bd-input-"+$scope.fieldObject.type;
+                        var dr = "<"+tag+" bind='inputObject.data' meta='fieldObject' >"
+                            + "</"+tag+">";
+                        $element.find(".inputOutlet").empty();
+                        angular.element( $element.find(".inputOutlet") )
+                            .append($compile(dr)($scope));
+                    }
+                }, 0 );
+            }
+
 
             /**
              * Listens for the "edit" event, indicating we should switch to edit mode
@@ -59,7 +62,8 @@ function BigDataField(paperCoderService, editorService, $compile) {
             * @returns {boolean}
             */
             function isAlive() {
-                return $ctrl.isAlive($scope.fieldObject._key);
+                var alive = $ctrl.isAlive($scope.fieldObject._key);
+                return alive;
             }
 
             /**
@@ -90,10 +94,7 @@ function BigDataField(paperCoderService, editorService, $compile) {
             }
 
             function init(){
-                var type = $scope.fieldObject.type;
-                if( type == "range" ){
-
-                }
+                renderQuestions();
             }
         },
         templateUrl: '../app/paper-coder/field/field.html',

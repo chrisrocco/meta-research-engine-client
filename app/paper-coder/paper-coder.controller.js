@@ -120,7 +120,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
         }
 
         // Because there might be new questions
-        addToAssignment( data.assignment.encoding.constants, data.questions );
+        addToAssignment( data.assignment.encoding, data.questions );
 
         /* Allows loading outside resources into iframe with angular */
         data.paper.url = $sce.trustAsResourceUrl(data.paper.url);
@@ -144,20 +144,27 @@ function PaperCoderController($scope, $sce, paperCoderService) {
     });
 
     // adds questions from project into an encoding branch IF they are not already there.
-    function addToAssignment( branch, questionsArray ){
+    function addToAssignment( encoding, questionsArray ){
         for( var i = 0; i < questionsArray.length; i++ ){
             var qKey = questionsArray[i]['_key'];
+            var existsInEncoding = false;
+            // in constants?
+            if( paperCoderService.branchContains( encoding.constants, qKey ) ) existsInEncoding = true;
+            // in branches?
+            encoding.branches.forEach( function( branch ){
+                if( paperCoderService.branchContains( branch, qKey ) ) existsInEncoding = true;
+            });
 
-            var alreadyHasIt = paperCoderService.branchContains( branch, qKey );
-            if( alreadyHasIt ) continue;
+            if( existsInEncoding == false ){
+                var input = {
+                    question: qKey,
+                    data: {
+                        dont_flatten_me: ""
+                    }
+                };
+                encoding.constants.push( input );
+            }
 
-            var input = {
-                question: qKey,
-                data: {
-                    dont_flatten_me: ""
-                }
-            };
-            branch.push( input );
         }
     }
 }

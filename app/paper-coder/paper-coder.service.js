@@ -44,6 +44,7 @@ function paperCoderService() {
             var fieldObject = branch[i];
             if (fieldObject.question === fieldName) {
                 branch.splice(i, 1);
+                console.log( "removed question from a branch " );
                 return true;
             }
         }
@@ -51,7 +52,6 @@ function paperCoderService() {
     }
 
     function branchContains(branch, questionKey) {
-        console.log( "contains?", branch, questionKey );
         for (var i = 0; i < branch.length; i++) {
             var fieldObject = branch[i];
             if (fieldObject.question === questionKey) return true;
