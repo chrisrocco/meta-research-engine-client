@@ -157,6 +157,16 @@ function moreAssignmentsPlease( userKey, projectKey, howMany ){
         }
     });
 }
+function makeProjectOwner(projectKey, otherUserEmail){
+    return http({
+        url: "/projects/"+projectKey+"/makeOwner",
+        method: "POST",
+        data: {
+            "userEmail": otherUserEmail
+        },
+        dataType: "json"
+    })
+}
 function http( config ){
     config['url'] = API_BASE_PATH + config['url'];
     config['headers'] = {
@@ -214,6 +224,7 @@ export {
     postResetPassword,
     uploadPapersCSV,
     uploadPapersByID,
+    makeProjectOwner,
     reportError,
     handleUnauthorized,
     moreAssignmentsPlease
