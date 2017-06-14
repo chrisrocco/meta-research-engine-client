@@ -67,3 +67,76 @@ function openProject( buttonElement ){
     localStorage.projectKey = buttonElement.dataset.key;
     window.location = "manage-project.html";
 }
+function inviteUser( buttonElement ){
+    var projectKey = buttonElement.dataset.key;
+    swal({
+            title: "Invite Collaborator",
+            text: "Enter a collaborator's email:",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: "They must have an account",
+            showLoaderOnConfirm: true
+        },
+        function(inputValue){
+            if( inputValue === false ) return;
+            if (inputValue === "") {
+                swal.showInputError("You need to write something!");
+                return false;
+            }
+            var promise = DataService.makeProjectOwner( projectKey, inputValue );
+            promise.success( function( res ){
+                console.log( "Success", res );
+                swal({
+                    title: "Authorization Granted!",
+                    text: "User " + res.newOwner + " now has access to " + res.projectName,
+                    type: "success",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                });
+            });
+            promise.fail( function (res) {
+                console.log( "Fail", res );
+
+                if( res.status === 400 ){
+                    if( res.responseJSON.status === "NO_USER"){
+                        swal({
+                            title: "No Account Found",
+                            text: "We don't have an account with that email registered",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn-warning",
+                            confirmButtonText: 'OK',
+                            closeOnConfirm: false
+                        });
+                        return;
+                    }
+                }
+                if( res.status === 409 ){
+                    swal({
+                        title: "Wait a Minute!",
+                        text: "That user is already a collaborator",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-warning",
+                        confirmButtonText: 'OK',
+                        closeOnConfirm: false
+                    });
+                    return;
+                }
+
+                swal({
+                    title: "Opps...",
+                    text: "Something went wrong.",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                });
+            });
+        });
+}

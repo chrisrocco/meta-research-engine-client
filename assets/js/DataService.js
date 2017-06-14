@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.makeProjectOwner = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -177,6 +177,16 @@
             }
         });
     }
+    function makeProjectOwner(projectKey, otherUserEmail) {
+        return http({
+            url: "/projects/" + projectKey + "/makeOwner",
+            method: "POST",
+            data: {
+                "userEmail": otherUserEmail
+            },
+            dataType: "json"
+        });
+    }
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
@@ -233,6 +243,7 @@
     exports.postResetPassword = postResetPassword;
     exports.uploadPapersCSV = uploadPapersCSV;
     exports.uploadPapersByID = uploadPapersByID;
+    exports.makeProjectOwner = makeProjectOwner;
     exports.reportError = reportError;
     exports.handleUnauthorized = handleUnauthorized;
     exports.moreAssignmentsPlease = moreAssignmentsPlease;
