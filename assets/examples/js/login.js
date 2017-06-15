@@ -34,7 +34,7 @@ function fail( response ){
     var json = response.responseText;
     var data = JSON.parse( json );
 
-    if( data.reason === "inactive" ){
+    if( data.status === "INACTIVE" ){
         swal({
             title: "Not so Fast!",
             text: "You need to validate your email first.",
@@ -45,7 +45,7 @@ function fail( response ){
             closeOnConfirm: false
         });
     }
-    if( data.reason === "invalid") {
+    if( data.status === "INVALID") {
         swal({
             title: "Invalid Login",
             text: "Try Again",
