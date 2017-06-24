@@ -311,62 +311,64 @@
         </div>
       </div>
       <div class="row">
-        <div ng-repeat="masterRecord in paper.masterEncoding" ng-if="masterRecord.responses.length > 1"
-        class="col-md-6">
-          <div class="panel">
-            <div class="panel-heading">
-              <h3 class="panel-title">Responses to
-                <span ng-bind="masterRecord.question.name"></span>:
-                <span class="panel-desc">
-                  <span ng-bind="masterRecord.question.question"></span>
-                </span>
-              </h3>
-            </div>
-            <div class="panel-body">
-              <div class="example-wrap">
-                <div class="example">
-                  <div class="table-responsive">
-                    <table class="table table-hover" data-role="content">
-                      <thead class="bg-blue-grey-100">
-                        <tr>
-                          <th>
-                            Data
-                          </th>
-                          <th>
-                            Responders
-                          </th>
-                          <th> Agree</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="response in masterRecord.responses" ng-class="{ 'me': isMyResponse( response ) }">
-                          <td>
-                            <span ng-bind="response.data.value"></span>
-                            <!--<i class="icon wb-help-circle ml-10 red-600" aria-hidden="true"-->
-                            <!--data-toggle="tooltip" data-original-title="help" data-container="body"-->
-                            <!--title=""></i>-->
-                          </td>
-                          <td>
-                            <img ng-repeat="assignmentKey in response.users" class="mr-10 avatar avatar-sm"
-                            src="../assets/avatars/7.png" data-toggle="tooltip"
-                            data-original-title="{[{assignmentKey}]}" data-container="body"
-                            title="">
-                          </td>
-                          <td>
-                            <button ng-click="iAgree( masterRecord.question, response )" ng-if="( ! isMyResponse( response ) )"
-                            type="button" class="btn btn-animate btn-animate-side btn-success">
-                              <span><i class="icon wb-thumb-up" aria-hidden="true"></i>Agree</span>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+        <bd-record ng-repeat="record in paper.masterEncoding" record="record" asUser="assignment._key"
+        editable="false" ng-if="record.responses.length > 1"></bd-record>
+        <!--<div ng-repeat="masterRecord in paper.masterEncoding"
+                 ng-if="masterRecord.responses.length > 1"
+                 class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Responses to <span ng-bind="masterRecord.question.name"></span>:
+                            <span class="panel-desc"><span ng-bind="masterRecord.question.question"></span></span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="example-wrap">
+                            <div class="example">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" data-role="content">
+                                        <thead class="bg-blue-grey-100">
+                                        <tr>
+                                            <th>
+                                                Data
+                                            </th>
+                                            <th>
+                                                Responders
+                                            </th>
+                                            <th> Agree</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="response in masterRecord.responses"
+                                            ng-class="{ 'me': isMyResponse( response ) }">
+                                            <td>
+                                                <span ng-bind="response.data.value"></span>
+                                            </td>
+                                            <td>
+                                                <img ng-repeat="assignmentKey in response.users"
+                                                     class="mr-10 avatar avatar-sm" src="../assets/avatars/7.png"
+                                                     data-toggle="tooltip"
+                                                     data-original-title="{[{assignmentKey}]}" data-container="body"
+                                                     title="">
+                                            </td>
+                                            <td>
+                                                <button ng-click="iAgree( masterRecord.question, response )"
+                                                        ng-if="( ! isMyResponse( response ) )"
+                                                        type="button"
+                                                        class="btn btn-animate btn-animate-side btn-success">
+                                                    <span><i class="icon wb-thumb-up"
+                                                             aria-hidden="true"></i>Agree</span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            </div>-->
       </div>
     </div>
   </div>
@@ -427,6 +429,7 @@
   <script src="../app/conflict-resolution/encoding.service.js"></script>
   <script src="../app/conflict-resolution/transaction.service.js"></script>
   <script src="../app/conflict-resolution/conflict-resolution.controller.js"></script>
+  <script src="../app/conflict-resolution/record/record.directive.js"></script>
   <script src="..\assets/js/Plugin/peity.js"></script>
   <script src="..\assets/js/Plugin/asselectable.js"></script>
   <script src="..\assets/js/Plugin/selectable.js"></script>

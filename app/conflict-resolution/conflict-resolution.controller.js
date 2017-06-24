@@ -50,7 +50,7 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
     function init() {
         var p = DataService.loadConflictResolution( localStorage.assignmentKey );
         p.success( function( data ){
-            if( data.paper.status != "conflicted" ){
+            if( data.paper.status !== "conflicted" ){
                 window.location = "assignments.html";
             }
 
@@ -69,7 +69,6 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
             console.log( "error loading activity: ", err );
         });
     }
-
 
     $scope.popOut = function( paperObject ){
         window.open( paperObject.url,

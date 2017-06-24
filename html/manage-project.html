@@ -286,11 +286,12 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="manage-project" ng-controller="ManageProjectController">
     <div class="page-header">
       <h1 class="page-title">Managing
         <span data-projectname></span>
       </h1>
+      {[{test}]}
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
@@ -310,25 +311,6 @@
           <div class="panel">
             <header class="panel-heading">
               <h3 class="panel-title"> Paper Pool </h3>
-              <!--<div class="pl-30">
-                            <form class="form-inline">
-                                <div class="radio-custom radio-primary mr-15">
-                                    <input type="radio" name="status" id="status_none" class="filter-ui-status"
-                                           value="none"
-                                           checked>
-                                    <label for="status_none">
-                                        All
-                                    </label>
-                                </div>
-                                <div class="radio-custom radio-primary mr-15">
-                                    <input type="radio" name="status" id="status_active" class="filter-ui-status"
-                                           value="active">
-                                    <label for="status_active">
-                                        Active
-                                    </label>
-                                </div>
-                            </form>
-                        </div>-->
             </header>
             <div class="panel-body">
               <table id="papersTable" class="table table-hover" data-paging="true" data-sorting="true">
@@ -461,6 +443,7 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>s
   <script src="..\assets/vendor/datatables/jquery.dataTables.js"></script>
   <script src="..\assets/vendor/datatables-fixedheader/dataTables.fixedHeader.js"></script>
   <script src="..\assets/vendor/datatables-bootstrap/dataTables.bootstrap.js"></script>
@@ -511,6 +494,10 @@
   <script src="..\assets/js/Plugin/datatables.js"></script>
   <script src="..\assets/js/Plugin/bootstrap-tokenfield.js"></script>
   <script src="..\assets/js/Plugin/dropify.js"></script>
+  <script src="../app/manage-project/manage-project.module.js">
+  </script>
+  <script src="../app/manage-project/manage-project.controller.js">
+  </script>
   <script src="..\assets/examples/js/manage-project.js"></script>
   <script>
   (function(document, window, $) {

@@ -22,6 +22,7 @@ title: Conflict Resolution
 <script src="{{html}}../app/conflict-resolution/encoding.service.js"></script>
 <script src="{{html}}../app/conflict-resolution/transaction.service.js"></script>
 <script src="{{html}}../app/conflict-resolution/conflict-resolution.controller.js"></script>
+<script src="{{html}}../app/conflict-resolution/record/record.directive.js"></script>
 
 <script src="{{assets}}/js/Plugin/peity.js"></script>
 <script src="{{assets}}/js/Plugin/asselectable.js"></script>
@@ -75,7 +76,12 @@ title: Conflict Resolution
             </div>
         </div>
         <div class="row">
-            <div ng-repeat="masterRecord in paper.masterEncoding"
+            <bd-record ng-repeat="record in paper.masterEncoding"
+                record="record"
+                asUser="assignment._key"
+                editable="false"
+                ng-if="record.responses.length > 1"></bd-record>
+            <!--<div ng-repeat="masterRecord in paper.masterEncoding"
                  ng-if="masterRecord.responses.length > 1"
                  class="col-md-6">
                 <div class="panel">
@@ -105,9 +111,6 @@ title: Conflict Resolution
                                             ng-class="{ 'me': isMyResponse( response ) }">
                                             <td>
                                                 <span ng-bind="response.data.value"></span>
-                                                <!--<i class="icon wb-help-circle ml-10 red-600" aria-hidden="true"-->
-                                                <!--data-toggle="tooltip" data-original-title="help" data-container="body"-->
-                                                <!--title=""></i>-->
                                             </td>
                                             <td>
                                                 <img ng-repeat="assignmentKey in response.users"
@@ -134,7 +137,7 @@ title: Conflict Resolution
                     </div>
                 </div>
 
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
