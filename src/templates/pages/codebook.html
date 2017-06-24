@@ -20,6 +20,9 @@ body_class: page-faq
 {{#content "scripts" mode="append"}}
 <script src="{{html}}../app/codebook/codebook.module.js"></script>
 <script src="{{html}}../app/codebook/codebook.controller.js"></script>
+<script src="{{html}}../app/codebook/domain/domain-tag.directive.js"></script>
+<script src="{{html}}../app/codebook/question/question.directive.js"></script>
+<script src="{{html}}../app/codebook/subdomain/subdomain.directive.js"></script>
 {{/content}}
 
 {{#content "body"}}
@@ -51,15 +54,7 @@ body_class: page-faq
                         </div>
                         <hr>
                         <div class="list-group faq-list" role="tablist">
-                            <a ng-repeat="domain in selectedProject.structure"
-                               ng-click="selectDomain( domain )"
-                               href=""
-                               class="list-group-item" data-toggle="tab"
-                               aria-controls="category-2"
-                               role="tab">
-                                <i class="icon {[{domain.icon}]}"></i>
-                                <span ng-bind="domain.name"></span>
-                            </a>
+                            <bd-domain-tag ng-repeat="domain in selectedProject.structure" domain="domain"></bd-domain-tag>
                         </div>
                     </div>
                 </div>
@@ -67,39 +62,30 @@ body_class: page-faq
             </div>
 
             <div class="col-xl-9 col-md-8">
-                <!-- Panel -->
+                <!-- Questions Panel -->
                 <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span ng-bind="selectedDomain.name"></span> Questions</h3>
+                    </div>
                     <div class="panel-body">
                         <div class="tab-content">
                             <!-- Categroy 1 -->
                             <div class=" tab-pane animation-fade active" id="category-1" role="tabpanel">
                                 <div class="panel-group panel-group-simple panel-group-continuous" id="accordion2"
                                      aria-multiselectable="true" role="tablist">
-                                    <!-- Question 1 -->
-                                    <div ng-repeat="question in selectedDomain.variables" class="panel">
-                                        <div class="panel-heading" id="question-1" role="tab">
-                                            <a class="panel-title" aria-controls="panel-{[{question._key}]}" aria-expanded="false" data-toggle="collapse"
-                                               href="#panel-{[{question._key}]}" onclick="return void(0)" data-parent="#accordion2">
-                                                <i class="icon {[{question.icon}]}"></i>
-                                                <span ng-bind="question.name"></span>
-                                                <small class="ml-15"> {[{question.question}]} </small>
-                                            </a>
-                                        </div>
-                                        <div class="panel-collapse collapse in" id="panel-{[{question._key}]}" aria-labelledby="question-1"
-                                             role="tabpanel">
-                                            <div class="panel-body">
-                                                <span ng-bind="question.tooltip"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Question 1 -->
+
+                                    <bd-question-reference ng-repeat="question in selectedDomain.variables" question="question"></bd-question-reference>
                                 </div>
                             </div>
                             <!-- End Categroy 1 -->
                         </div>
                     </div>
                 </div>
-                <!-- End Panel -->
+                <!-- End Questions Panel -->
+
+                <!-- Subdomains Panel -->
+                <bd-subdomain domain="selectedDomain" ng-if="selectedDomain.subdomains.length > 0"></bd-subdomain>
+                <!-- End Subdomains Panel -->
             </div>
         </div>
     </div>

@@ -1,0 +1,12 @@
+<!-- Panel -->
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span ng-bind="domain.name"></span> Subdomains</h3>
+    </div>
+    <div class="panel-body">
+        <div class="list-group faq-list" role="tablist">
+            <bd-domain-tag ng-repeat="subdomain in domain.subdomains" domain="subdomain"></bd-domain-tag>
+        </div>
+    </div>
+</div>
+<!-- End Panel -->
