@@ -101,11 +101,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
                 constants: [],
                 branches: [[]]
             };
-            var assignmentInputs = [];
-
-            addToAssignment( assignmentInputs, data.questions );
-
-            encoding.constants = assignmentInputs;
+            addToAssignment( encoding, data.questions );
             data.assignment.encoding = encoding;
             console.log( data.assignment );
         }
@@ -140,7 +136,6 @@ function PaperCoderController($scope, $sce, paperCoderService) {
     });
     $( window ).unload(function() {
         DataService.putAssignment( $scope.assignment, false );
-        console.log("unloaded");
     });
 
     // adds questions from project into an encoding branch IF they are not already there.
