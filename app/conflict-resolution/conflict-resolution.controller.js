@@ -4,8 +4,8 @@ angular
 
 ConflictResolutionController.$inject = [ '$scope', '$sce', 'transaction.service' ];
 function ConflictResolutionController( $scope, $sce, TransactionService ){
-    $scope.assignment       =   defaultModel.assignment;
     $scope.paper            =   defaultModel.paper;
+    $scope.assignment       =   defaultModel.assignment;
     $scope.collaborators    =   defaultModel.collaborators;
     init();
 
@@ -47,13 +47,13 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
     function isMyResponse( response ){
         return response.users.indexOf( $scope.assignment._key ) >= 0;
     }
+
     function init() {
         var p = DataService.loadConflictResolution( localStorage.assignmentKey );
         p.success( function( data ){
             if( data.paper.status !== "conflicted" ){
                 window.location = "assignments.html";
             }
-
             $scope.$apply( function(){
                 $scope.assignment = data.assignment;
                 /* Trust Paper URL */
@@ -65,7 +65,7 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
 
             console.log( "loaded activity: ", data );
         });
-        p.fail( function( err ){
+        p.error( function( err ){
             console.log( "error loading activity: ", err );
         });
     }
