@@ -323,7 +323,7 @@
       </div>
       <div class="row">
         <bd-record ng-repeat="record in paper.masterEncoding" record="record" asUser="assignment._key"
-        editable="false" ng-if="record.responses.length > 1"></bd-record>
+        editable="true" ng-if="record.responses.length > 1"></bd-record>
         <!--<div ng-repeat="masterRecord in paper.masterEncoding"
                  ng-if="masterRecord.responses.length > 1"
                  class="col-md-6">
