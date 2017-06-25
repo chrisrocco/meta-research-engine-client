@@ -5,29 +5,23 @@ title: Manage Project
 
 {{#extend "layout-default"}}
 {{#content "css_vendor" mode="append"}}
-<link rel="stylesheet" href="{{assets}}/vendor/datatables-bootstrap/dataTables.bootstrap.css">
-<link rel="stylesheet" href="{{assets}}/vendor/datatables-fixedheader/dataTables.fixedHeader.css">
-<link rel="stylesheet" href="{{assets}}/vendor/datatables-responsive/dataTables.responsive.css">
-<link rel="stylesheet" href="{{assets}}/vendor/datatables-buttons/dataTables.buttons.css">
 <link rel="stylesheet" href="{{assets}}/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
 <link rel="stylesheet" href="{{assets}}/vendor/footable/footable.core.css">
 <link rel="stylesheet" href="{{assets}}/vendor/blueimp-file-upload/jquery.fileupload.css">
 <link rel="stylesheet" href="{{assets}}/vendor/dropify/dropify.css">
+<link rel="stylesheet" href="{{assets}}/vendor/slidepanel/slidePanel.css">
+<link rel="stylesheet" href="{{assets}}/vendor/chartist/chartist.css">
+<link rel="stylesheet" href="{{assets}}/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+<link rel="stylesheet" href="{{assets}}/vendor/jquery-selective/jquery-selective.css">
 {{/content}}
 
 {{#content "css" mode="prepend"}}
-<link rel="stylesheet" href="{{assets}}/examples/css/tables/footable.css">
+<link rel="stylesheet" href="{{assets}}/examples/css/assignments2.css">
 {{/content}}
 
 {{#content "js_vendor" mode="append"}}
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>s
-<script src="{{assets}}/vendor/datatables/jquery.dataTables.js"></script>
-<script src="{{assets}}/vendor/datatables-fixedheader/dataTables.fixedHeader.js"></script>
-<script src="{{assets}}/vendor/datatables-bootstrap/dataTables.bootstrap.js"></script>
-<script src="{{assets}}/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script src="{{assets}}/vendor/datatables-buttons/dataTables.buttons.js"></script>
 <script src="{{assets}}/vendor/moment/moment.min.js"></script>
-<script src="{{assets}}/vendor/footable/footable.min.js"></script>
 <script src="{{assets}}/vendor/jquery-ui/jquery-ui.js"></script>
 <script src="{{assets}}/vendor/blueimp-tmpl/tmpl.js"></script>
 <script src="{{assets}}/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
@@ -45,14 +39,14 @@ title: Manage Project
 {{/content}}
 
 {{#content "js" mode="append"}}
-<script src="{{assets}}/js/Plugin/datatables.js"></script>
+<script src="{{assets}}/js/Plugin/panel.js"></script>
 <script src="{{assets}}/js/Plugin/bootstrap-tokenfield.js"></script>
 <script src="{{assets}}/js/Plugin/dropify.js"></script>
 {{/content}}
 
 {{#content "scripts" mode="replace"}}
-<script src="../app/manage-project/manage-project.module.js"> </script>
-<script src="../app/manage-project/manage-project.controller.js"> </script>
+<script src="../app/manage-project/manage-project.module.js"></script>
+<script src="../app/manage-project/manage-project.controller.js"></script>
 <script src="{{assets}}/examples/js/manage-project.js"></script>
 {{/content}}
 
@@ -67,7 +61,7 @@ title: Manage Project
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
-            <li class="breadcrumb-item active" data-projectname >[Project Name]</li>
+            <li class="breadcrumb-item active" data-projectname>[Project Name]</li>
         </ol>
         <div class="page-header-actions">
             <a class="btn btn-sm btn-default btn-outline btn-round" href="#"
@@ -77,7 +71,6 @@ title: Manage Project
             </a>
         </div>
     </div>
-
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-lg-8">
@@ -87,22 +80,67 @@ title: Manage Project
                         <h3 class="panel-title"> Paper Pool </h3>
                     </header>
                     <div class="panel-body">
-                        <table id="papersTable" class="table table-hover" data-paging="true" data-sorting="true" >
+                        <table class="table">
                             <thead>
                                 <tr>
-                                    <th data-name="title" data-title="Paper Title"> Paper Title </th>
-                                    <th data-name="desc"> Description </th>
-                                    <th data-name="assignments" data-breakpoints="xs" >Assignment Count</th>
-                                    <th data-name="status"> Status </th>
+                                    <th>Status</th>
+                                    <th>Paper Title</th>
+                                    <th>Assignment Count</th>
+                                    <th>Actions</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in tableRows">
+                                    <td class="work-status">
+                                        <span ng-if="row.status == 'active'"
+                                              class="badge badge-primary">  Active    </span>
+                                        <span ng-if="row.status == 'pending'"
+                                              class="badge badge-warning">  Pending   </span>
+                                        <span ng-if="row.status == 'conflicted'"
+                                              class="badge badge-danger">  Conflict  </span>
+                                        <span ng-if="row.status == 'clean'"
+                                              class="badge badge-primary">  Clean  </span>
+                                        <span ng-if="row.status == 'complete'"
+                                              class="badge badge-success">  Complete  </span>
+                                        <span ng-if="row.status == 'ready'"
+                                              class="badge badge-warning">  Ready  </span>
+                                    </td>
+                                    <td class="subject">
+                                        <div class="table-content">
+                                            <p class="blue-grey-500"><span ng-bind="row.title"></span></p>
+                                        </div>
+                                    </td>
+                                    <td class="work-status">
+                                        <span class="badge badge-default">
+                                            <span ng-bind="row.assignmentCount"></span>
+                                        </span>
+                                    </td>
+                                    <td class="subject">
+                                        <button type="button" class="btn btn-animate btn-animate-vertical btn-primary">
+                                          <span><i class="icon wb-file" aria-hidden="true"></i>
+                                            View Report
+                                          </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="papersTable" class="table table-hover" data-paging="true" data-sorting="true">
+                            <thead>
+                            <tr>
+                                <th data-name="title" data-title="Paper Title"> Paper Title</th>
+                                <th data-name="desc"> Description</th>
+                                <th data-name="assignments" data-breakpoints="xs">Assignment Count</th>
+                                <th data-name="status"> Status</th>
+                            </tr>
                             </thead>
                             <tbody id="templateOutlet">
                             <template id="paperTemplate">
                                 <tr>
-                                    <td data-title > [PMC-ID] </td>
-                                    <td data-desc > [Article Title] </td>
-                                    <td data-assignmentCount > [Number of Assignments] </td>
-                                    <td data-status >
+                                    <td data-title> [PMC-ID]</td>
+                                    <td data-desc> [Article Title]</td>
+                                    <td data-assignmentCount> [Number of Assignments]</td>
+                                    <td data-status>
 
                                     </td>
                                 </tr>
@@ -136,10 +174,11 @@ title: Manage Project
                         <div class="example-wrap">
                             <h4 class="example-title">Upload a .csv with columns: Title, Description, Embedding URL</h4>
                             <div class="example">
-                                <form id="paperUploadForm" onsubmit="return submitPaperUploadForm()" enctype="multipart/form-data" action="#">
-                                    <input type="file" id="papersCSV" data-allowed-file-extensions="csv" />
+                                <form id="paperUploadForm" onsubmit="return submitPaperUploadForm()"
+                                      enctype="multipart/form-data" action="#">
+                                    <input type="file" id="papersCSV" data-allowed-file-extensions="csv"/>
                                     <br>
-                                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
+                                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles</button>
                                 </form>
                             </div>
                         </div>
@@ -155,12 +194,15 @@ title: Manage Project
                     <div class="panel-body">
                         <!-- Example height -->
                         <div class="example-wrap">
-                            <h4 class="example-title">Enter PMC-ID's delimited by commas, and we'll look them up for you!</h4>
+                            <h4 class="example-title">Enter PMC-ID's delimited by commas, and we'll look them up for
+                                you!</h4>
                             <div class="example">
                                 <input id="pmcidList" type="text" class="form-control" data-plugin="tokenfield"
                                        value=""/>
-                                <br />
-                                <button onclick="findPapersHandler()" class="btn btn-block btn-primary" type="submit"> Find Papers </button>
+                                <br/>
+                                <button onclick="findPapersHandler()" class="btn btn-block btn-primary" type="submit">
+                                    Find Papers
+                                </button>
                             </div>
                         </div>
                         <!-- End Example height -->
@@ -182,7 +224,8 @@ title: Manage Project
                         <h4 class="modal-title">If everything looks ok, press confirm!</h4>
                     </div>
                     <div class="modal-body">
-                        <table id="uploadPreviewTable" class="table table-hover dataTable table-striped w-full" width="100%"></table>
+                        <table id="uploadPreviewTable" class="table table-hover dataTable table-striped w-full"
+                               width="100%"></table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

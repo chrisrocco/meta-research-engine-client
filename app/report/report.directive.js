@@ -11,9 +11,6 @@ function Report() {
             masterEncoding: "=masterEncoding"
         },
         link: function($scope, $element, $attrs, $ctrl) {
-            $scope.sayHi = function(){
-                alert("Hi");
-            };
         },
         controller: function( $scope ){
 
