@@ -18,7 +18,6 @@
                                 <th>
                                     Responders
                                 </th>
-                                <th ng-if="editable"> Agree</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -28,17 +27,10 @@
                                 </td>
                                 <td>
                                     <img ng-repeat="assignmentKey in response.users"
-                                         class="mr-10 avatar avatar-sm" src="../assets/avatars/7.png"
+                                         class="mr-10 avatar avatar-sm" ng-src="../assets/avatars/{{assignmentKey.charAt(0)}}.png"
                                          data-toggle="tooltip"
                                          data-original-title="{[{asUser}]}" data-container="body"
                                          title="">
-                                </td>
-                                <td ng-if="editable">
-                                    <button type="button"
-                                            class="btn btn-animate btn-animate-side btn-success">
-                                                        <span><i class="icon wb-thumb-up"
-                                                                 aria-hidden="true"></i>Agree</span>
-                                    </button>
                                 </td>
                             </tr>
                             </tbody>

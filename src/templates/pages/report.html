@@ -35,7 +35,7 @@ title: Paper Report
 <!-- Page -->
 <div class="page" ng-app="report" ng-controller="ReportController">
     <div class="page-header">
-        <h1 class="page-title"> Resolving Conflicts </h1>
+        <h1 class="page-title"> Report </h1>
         <div class="page-header-actions">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
@@ -46,8 +46,7 @@ title: Paper Report
     </div>
     <div class="page-content">
             <bd-report masterEncoding="paper.masterEncoding">
-                <bd-record record="record" editable="false"
-                    ng-repeat="record in paper.masterEncoding"></bd-record>
+                <bd-record record="record" ng-repeat="record in paper.masterEncoding"></bd-record>
             </bd-report>
     </div>
 </div>

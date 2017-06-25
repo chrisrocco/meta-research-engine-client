@@ -16,7 +16,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.makeProjectOwner = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.makeProjectOwner = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadReport = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
@@ -148,6 +148,13 @@
             dataType: "json"
         });
     }
+    function loadReport(paperKey) {
+        return http({
+            url: "/activities/report" + "?paperKey=" + paperKey,
+            method: "GET",
+            dataType: "json"
+        });
+    }
     function uploadPapersCSV(projectKey, formData) {
         return http({
             url: "/projects/" + projectKey + "/papers",
@@ -230,6 +237,7 @@
     exports.loadCodeBook = loadCodeBook;
     exports.loadAssignments = loadAssignments;
     exports.loadConflictResolution = loadConflictResolution;
+    exports.loadReport = loadReport;
     exports.http = http;
     exports.getAssignment = getAssignment;
     exports.putAssignment = putAssignment;

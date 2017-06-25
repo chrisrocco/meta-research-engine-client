@@ -128,6 +128,13 @@ function loadConflictResolution( assignmentKey ){
         dataType: "json"
     })
 }
+function loadReport( paperKey ){
+    return http({
+        url: "/activities/report" + "?paperKey=" + paperKey,
+        method: "GET",
+        dataType: "json"
+    })
+}
 function uploadPapersCSV( projectKey, formData ){
     return http({
         url: "/projects/"+projectKey+"/papers",
@@ -211,6 +218,7 @@ export {
     loadCodeBook,
     loadAssignments,
     loadConflictResolution,
+    loadReport,
     http,
     getAssignment,
     putAssignment,

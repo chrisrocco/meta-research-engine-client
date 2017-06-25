@@ -6,8 +6,15 @@ function ManageProjectController ( $scope ){
     $scope.tableRows = [];
     $scope.project = null;
 
+    $scope.loadReport = loadReport;
+
     init();
 
+    function loadReport( paper ){
+        localStorage.paperKey = paper.key;
+        // console.log( paper );
+        window.location = "report.html";
+    }
     function init(){
         initDropify();
         var p = DataService.loadManageProject( localStorage.projectKey );

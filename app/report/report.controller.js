@@ -7,7 +7,7 @@ function ReportController( $scope ) {
     $scope.paper = null;
 
     function init() {
-        var p = DataService.loadConflictResolution( localStorage.assignmentKey );
+        var p = DataService.loadReport( localStorage.paperKey );
         p.success( function( data ){
             $scope.$apply( function(){
                 $scope.paper = data.paper;

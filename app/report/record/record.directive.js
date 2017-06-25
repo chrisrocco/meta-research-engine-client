@@ -11,12 +11,11 @@ function Record() {
         require: "^bdReport",
         replace: true,
         scope: {
-            record: "=record",
-            asUser: "=asUser",
-            editable: "=editable"
+            record: "=record"
         },
         link: function($scope, $element, $attrs, $ctrl) {
             $scope.loadResponseData = loadResponseData;
+            $scope.getAvatar = getAvatar;
 
             function loadResponseData( response ){
                 var d = response.data;
@@ -30,6 +29,16 @@ function Record() {
                     return ( d.min + " -> " + d.max );
                 }
                 return "No Response";
+            }
+
+            function getAvatar(){
+                return getRandomIntInclusive(1, 9);
+            }
+
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
             }
         },
         templateUrl: '../app/report/record/record.html'
