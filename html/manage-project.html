@@ -358,7 +358,8 @@
                       </span>
                     </td>
                     <td class="subject">
-                      <button ng-click="loadReport( row )" type="button" class="btn btn-sm btn-animate btn-animate-vertical btn-primary">
+                      <button ng-click="loadReport( row )" type="button" class="btn btn-sm btn-animate btn-animate-vertical btn-primary"
+                      ng-disabled="(row.status=='active' || row.status=='pending')">
                         <span><i class="icon wb-file" aria-hidden="true"></i> View Report
                         </span>
                       </button>

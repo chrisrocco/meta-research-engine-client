@@ -24,12 +24,13 @@ function BigDataField(paperCoderService, editorService, $compile) {
                 setTimeout ( function(){
                     if( $scope.inputObject ){
                         // enable tooltip
-                        $element.find(".nametag").webuiPopover({
+                        $element.find(".questionTooltip").webuiPopover({
                             content: $scope.fieldObject.tooltip,
                             trigger:'hover',
                             placement:'right',
                             title: $scope.fieldObject.name
                         });
+                        $element.removeAttr('title');
                         // render form
                         var tag = "bd-input-"+$scope.fieldObject.type;
                         var dr = "<"+tag+" bind='inputObject.data' meta='fieldObject' >"
