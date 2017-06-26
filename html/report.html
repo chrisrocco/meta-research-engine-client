@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="Research Study Encoding System">
   <meta name="author" content="Chris Rocco">
-  <title>Assignments | Big Data UAB</title>
+  <title>Paper Report | Big Data UAB</title>
   <link rel="apple-touch-icon" href="..\assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="..\assets/images/favicon.ico?v=2">
   <!-- Stylesheets -->
@@ -21,11 +21,6 @@
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
-  <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
-  <link rel="stylesheet" href="..\assets/vendor/chartist/chartist.css">
-  <link rel="stylesheet" href="..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
-  <link rel="stylesheet" href="..\assets/vendor/jquery-selective/jquery-selective.css">
-  <link rel="stylesheet" href="..\assets/examples/css/assignments2.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
   <link rel="stylesheet" href="..\assets/fonts/brand-icons/brand-icons.min.css">
@@ -43,7 +38,7 @@
   Breakpoints();
   </script>
 </head>
-<body class="animsition app-work">
+<body class="animsition">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -281,7 +276,7 @@
                 <span class="site-menu-title">Code Book</span>
               </a>
             </li>
-            <li class="site-menu-item  active open">
+            <li class="site-menu-item ">
               <a href="assignments.html">
                 <i class="site-menu-icon wb-pencil" aria-hidden="true"></i>
                 <span class="site-menu-title">My Assignments</span>
@@ -293,143 +288,24 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page full-width" ng-app="assignments" ng-controller="AssignmentsController">
-    <div class="page-content">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title">ASSIGNMENT LIST</h3>
-          <form class="panel-search-form" role="search">
-            <button ng-click="getMoreAssignments()" class="btn btn-success"> Get More Assignments </button>
-          </form>
-          <ul class="panel-info">
-            <li>
-              <div class="num red-600">
-                <span ng-bind="conflictCount"></span>
-              </div>
-              <p>Conflicts</p>
-            </li>
-            <li>
-              <div class="num orange-600">
-                <span ng-bind="activeCount"></span>
-              </div>
-              <p>Active</p>
-            </li>
-            <li>
-              <div class="num green-600">
-                <span ng-bind="completeCount"></span>
-              </div>
-              <p>Completed</p>
-            </li>
-          </ul>
-        </div>
-        <div class="panel-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Status</th>
-                <th>Paper</th>
-                <th>Progress</th>
-                <th>Project</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="row in tableRows">
-                <td class="work-status">
-                  <span ng-if="row.paper.status == 'active'" class="badge badge-primary"> Active </span>
-                  <span ng-if="row.paper.status == 'pending'" class="badge badge-warning"> Pending </span>
-                  <span ng-if="row.paper.status == 'conflicted'" class="badge badge-danger"> Conflict </span>
-                  <span ng-if="row.paper.status == 'clean'" class="badge badge-primary"> Clean </span>
-                  <span ng-if="row.paper.status == 'complete'" class="badge badge-success"> Complete </span>
-                  <span ng-if="row.paper.status == 'ready'" class="badge badge-warning"> Ready </span>
-                </td>
-                <td class="subject">
-                  <div class="table-content">
-                    <p data-papername class="blue-grey-500">
-                      <span ng-bind="row.paper.title"></span>
-                    </p>
-                    <span data-papermeta class="blue-grey-400">
-                      <span ng-bind="row.paper.description"></span>
-                    </span>
-                    <span ng-if="row.paper.status == 'active'" class="badge badge-primary"> Active </span>
-                    <span ng-if="row.paper.status == 'pending'" class="badge badge-warning"> Pending </span>
-                    <span ng-if="row.paper.status == 'conflicted'" class="badge badge-danger"> Conflict </span>
-                    <span ng-if="row.paper.status == 'clean'" class="badge badge-primary"> Clean </span>
-                    <span ng-if="row.paper.status == 'complete'" class="badge badge-success"> Complete </span>
-                    <span ng-if="row.paper.status == 'ready'" class="badge badge-warning"> Ready </span>
-                  </div>
-                </td>
-                <td class="work-progress">
-                  <div class="progress progress-xs table-content">
-                    <div style="width: {[{row.assignment.completion}]}%" class="progress-bar progress-bar-primary progress-bar-indicating"
-                    role="progressbar"> </div>
-                  </div>
-                  <span data-progresstext>
-                    <span ng-bind="row.assignment.completion"></span>% </span>
-                </td>
-                <td class="subject">
-                  <div class="table-content">
-                    <p class="blue-grey-500">
-                      <span ng-bind="row.project.name"></span>
-                    </p>
-                    <span class="blue-grey-400">
-                      <span ng-bind="row.project.date_created"></span>
-                    </span>
-                  </div>
-                </td>
-                <td class="subject">
-                  <button ng-click="loadPaperCoder( row.assignment )" type="button" class="btn btn-animate btn-animate-vertical btn-primary">
-                    <span><i class="icon wb-play" aria-hidden="true"></i> Continue
-                    </span>
-                  </button>
-                  <button ng-if="row.paper.status == 'conflicted' && row.assignment.done " ng-click="loadConflictResolution( row.assignment )"
-                  type="button" class="btn btn-animate btn-animate-vertical btn-danger mt-10">
-                    <span><i class="icon wb-play" aria-hidden="true"></i> Resolve Conflicts
-                    </span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- Get More Assignments Modal -->
-      <div class="modal fade" id="moreAssignmentsModal" aria-hidden="false" aria-labelledby="moreAssignmentsLabel"
-      role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-simple">
-          <form class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-              <h4 class="modal-title" id="moreAssignmentsLabel">Request More Assignments</h4>
-            </div>
-            <div class="modal-body">
-              <div class="panel-body container-fluid">
-                <form name="domainForm" autocomplete="off" ng-submit="handleSubmitDomain()">
-                  <h5 class="example-title">From Which Project?</h5>
-                  <div class="form-group">
-                    <select ng-options="project as project.name for project in myProjects track by project._key"
-                    ng-model="assignFromProject" class="form-control">
-                    </select>
-                  </div>
-                  <h5 class="example-title">How many would you like?</h5>
-                  <div class="row">
-                    <div class="form-group col-md-8">
-                      <input ng-model="howManyAssignments" name="min" min="1" max="5" type="number" class="form-control"
-                      placeholder="Number of Assignments" />
-                    </div>
-                  </div>
-                  <button ng-click="getMoreAssignments( true )" data-dismiss="modal" type="submit"
-                  class="btn btn-block btn-primary"> Submit </button>
-                </form>
-              </div>
-            </div>
-          </form>
-        </div>
+  <div class="page" ng-app="report" ng-controller="ReportController">
+    <div class="page-header">
+      <h1 class="page-title"> Report </h1>
+      <div class="page-header-actions">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="javascript:void(0)">Assignments</a></li>
+          <li class="breadcrumb-item active">Resolve Conflicts</li>
+        </ol>
       </div>
     </div>
+    <div class="page-content">
+      <bd-report masterEncoding="paper.masterEncoding">
+        <bd-record record="record" editable="false" ng-repeat="record in paper.masterEncoding"></bd-record>
+      </bd-report>
+    </div>
   </div>
+  <!-- End Page -->
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer-legal">© 2017 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Big Data</a></div>
@@ -453,11 +329,8 @@
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
-  <script src="..\assets/vendor/chartist/chartist.min.js"></script>
-  <script src="..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js"></script>
-  <script src="..\assets/vendor/jquery-selective/jquery-selective.min.js"></script>
-  <script src="..\assets/vendor/aspaginator/jquery.asPaginator.min.js"></script>
+  <script src="..\assets/vendor/peity/jquery.peity.min.js"></script>
+  <script src="..\assets/js/Plugin/panel.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -484,10 +357,17 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
-  <script src="..\assets/js/Plugin/aspaginator.js"></script>
-  <script src="../app/assignments/assignments.module.js"></script>
-  <script src="../app/assignments/assignments.controller.js"></script>
-  <script src="..\assets/examples/js/assignments.js"></script>
+  <script src="..\assets/js/Plugin/panel.js"></script>
+  <script src="../app/report/report.module.js"></script>
+  <script src="../app/report/report.controller.js"></script>
+  <script src="../app/report/report.directive.js"></script>
+  <script src="../app/report/record/record.directive.js"></script>
+  <script src="..\assets/js/Plugin/peity.js"></script>
+  <script src="..\assets/js/Plugin/asselectable.js"></script>
+  <script src="..\assets/js/Plugin/selectable.js"></script>
+  <script src="..\assets/js/Plugin/table.js"></script>
+  <script src="..\assets/js/Plugin/asscrollable.js"></script>
+  <script src="..\assets/examples/js/charts/peity.js"></script>
   <script>
   (function(document, window, $) {
     $(document).ready(function() {

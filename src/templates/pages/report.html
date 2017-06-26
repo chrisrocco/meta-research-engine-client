@@ -1,0 +1,57 @@
+---
+title: Paper Report
+---
+
+{{#extend "layout-default"}}
+
+{{#content "js_vendor" mode="append"}}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="{{assets}}/vendor/peity/jquery.peity.min.js"></script>
+<script src="{{assets}}/js/Plugin/panel.js"></script>
+{{/content}}
+
+{{#content "js" mode="append"}}
+<script src="{{assets}}/js/Plugin/panel.js"></script>
+
+<script src="{{html}}../app/report/report.module.js"></script>
+<script src="{{html}}../app/report/report.controller.js"></script>
+<script src="{{html}}../app/report/report.directive.js"></script>
+<script src="{{html}}../app/report/record/record.directive.js"></script>
+
+<script src="{{assets}}/js/Plugin/peity.js"></script>
+<script src="{{assets}}/js/Plugin/asselectable.js"></script>
+<script src="{{assets}}/js/Plugin/selectable.js"></script>
+<script src="{{assets}}/js/Plugin/table.js"></script>
+<script src="{{assets}}/js/Plugin/asscrollable.js"></script>
+{{/content}}
+
+
+{{#content "scripts" mode="replace"}}
+<script src="{{assets}}/examples/js/charts/peity.js"></script>
+{{/content}}
+
+{{#content "body"}}
+
+<!-- Page -->
+<div class="page" ng-app="report" ng-controller="ReportController">
+    <div class="page-header">
+        <h1 class="page-title"> Report </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Assignments</a></li>
+                <li class="breadcrumb-item active">Resolve Conflicts</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+            <bd-report masterEncoding="paper.masterEncoding">
+                <bd-record record="record" editable="false"
+                    ng-repeat="record in paper.masterEncoding"></bd-record>
+            </bd-report>
+    </div>
+</div>
+<!-- End Page -->
+
+{{/content}}
+{{/extend}}

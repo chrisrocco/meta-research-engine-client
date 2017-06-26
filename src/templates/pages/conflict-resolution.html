@@ -18,10 +18,11 @@ title: Conflict Resolution
 {{#content "js" mode="append"}}
 <script src="{{assets}}/js/Plugin/panel.js"></script>
 
-<script src="{{html}}../app/conflict-resolution/conflict-resolution.module.js"></script>
-<script src="{{html}}../app/conflict-resolution/encoding.service.js"></script>
-<script src="{{html}}../app/conflict-resolution/transaction.service.js"></script>
-<script src="{{html}}../app/conflict-resolution/conflict-resolution.controller.js"></script>
+<script src="../app/conflict-resolution/conflict-resolution.module.js"></script>
+<script src="../app/conflict-resolution/encoding.service.js"></script>
+<script src="../app/conflict-resolution/transaction.service.js"></script>
+<script src="../app/conflict-resolution/conflict-resolution.controller.js"></script>
+<script src="../app/conflict-resolution/record/record.directive.js"></script>
 
 <script src="{{assets}}/js/Plugin/peity.js"></script>
 <script src="{{assets}}/js/Plugin/asselectable.js"></script>
@@ -29,7 +30,6 @@ title: Conflict Resolution
 <script src="{{assets}}/js/Plugin/table.js"></script>
 <script src="{{assets}}/js/Plugin/asscrollable.js"></script>
 {{/content}}
-
 
 {{#content "scripts" mode="replace"}}
 <script src="{{assets}}/examples/js/charts/peity.js"></script>
@@ -40,7 +40,7 @@ title: Conflict Resolution
 <!-- Page -->
 <div class="page" ng-app="conflict-resolution" ng-controller="ConflictResolutionController">
     <div class="page-header">
-        <h1 class="page-title"> Resolving Conflicts of {[{paper.title}]}</h1>
+        <h1 class="page-title"> Resolving Conflicts </h1>
         <div class="page-header-actions">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
@@ -49,11 +49,10 @@ title: Conflict Resolution
             </ol>
         </div>
     </div>
-
     <div class="page-content">
         <div class="panel is-collapse">
             <div class="panel-heading">
-                <h3 class="panel-title"> {[{paper.title}]}</h3>
+                <h3 class="panel-title" style="padding-right: 20%"> {[{paper.title}]}</h3>
                 <div class="panel-actions">
                     <div class="dropdown">
                         <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i
@@ -76,7 +75,12 @@ title: Conflict Resolution
             </div>
         </div>
         <div class="row">
-            <div ng-repeat="masterRecord in paper.masterEncoding"
+            <bd-record ng-repeat="record in paper.masterEncoding"
+                record="record"
+                asUser="assignment._key"
+                editable="false"
+                ng-if="record.responses.length > 1"></bd-record>
+            <!--<div ng-repeat="masterRecord in paper.masterEncoding"
                  ng-if="masterRecord.responses.length > 1"
                  class="col-md-6">
                 <div class="panel">
@@ -84,14 +88,6 @@ title: Conflict Resolution
                         <h3 class="panel-title">Responses to <span ng-bind="masterRecord.question.name"></span>:
                             <span class="panel-desc"><span ng-bind="masterRecord.question.question"></span></span>
                         </h3>
-                        <div class="panel-actions">
-                            <a class="panel-action icon wb-thumb-down" data-toggle="tooltip"
-                               data-original-title="I Tried"
-                               data-container="body" title=""></a>
-                            <a class="panel-action icon wb-user" data-toggle="tooltip"
-                               data-original-title="They're Wrong"
-                               data-container="body" title=""></a>
-                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="example-wrap">
@@ -114,9 +110,6 @@ title: Conflict Resolution
                                             ng-class="{ 'me': isMyResponse( response ) }">
                                             <td>
                                                 <span ng-bind="response.data.value"></span>
-                                                <!--<i class="icon wb-help-circle ml-10 red-600" aria-hidden="true"-->
-                                                <!--data-toggle="tooltip" data-original-title="help" data-container="body"-->
-                                                <!--title=""></i>-->
                                             </td>
                                             <td>
                                                 <img ng-repeat="assignmentKey in response.users"
@@ -143,7 +136,7 @@ title: Conflict Resolution
                     </div>
                 </div>
 
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

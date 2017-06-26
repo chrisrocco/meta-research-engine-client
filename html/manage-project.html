@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="..\assets/vendor/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-sweetalert/sweetalert.css">
-  <link rel="stylesheet" href="..\assets/vendor/datatables-bootstrap/dataTables.bootstrap.css">
-  <link rel="stylesheet" href="..\assets/vendor/datatables-fixedheader/dataTables.fixedHeader.css">
-  <link rel="stylesheet" href="..\assets/vendor/datatables-responsive/dataTables.responsive.css">
-  <link rel="stylesheet" href="..\assets/vendor/datatables-buttons/dataTables.buttons.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
   <link rel="stylesheet" href="..\assets/vendor/footable/footable.core.css">
   <link rel="stylesheet" href="..\assets/vendor/blueimp-file-upload/jquery.fileupload.css">
   <link rel="stylesheet" href="..\assets/vendor/dropify/dropify.css">
-  <link rel="stylesheet" href="..\assets/examples/css/tables/footable.css">
+  <link rel="stylesheet" href="..\assets/vendor/slidepanel/slidePanel.css">
+  <link rel="stylesheet" href="..\assets/vendor/chartist/chartist.css">
+  <link rel="stylesheet" href="..\assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+  <link rel="stylesheet" href="..\assets/vendor/jquery-selective/jquery-selective.css">
+  <link rel="stylesheet" href="..\assets/examples/css/assignments2.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/web-icons/web-icons.min.css">
   <link rel="stylesheet" href="..\assets/fonts/brand-icons/brand-icons.min.css">
@@ -124,94 +124,105 @@
               role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications"
-            aria-expanded="false" data-animation="scale-up" role="button">
-              <i class="icon wb-bell" aria-hidden="true"></i>
-              <span class="badge badge-pill badge-danger up">5</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
-              <div class="dropdown-menu-header">
-                <h5>NOTIFICATIONS</h5>
-                <span class="badge badge-round badge-danger">New 5</span>
-              </div>
-              <div class="list-group">
-                <div data-role="container">
-                  <div data-role="content">
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                      <div class="media">
-                        <div class="pr-10">
-                          <i class="icon wb-order bg-red-600 white icon-circle" aria-hidden="true"></i>
-                        </div>
-                        <div class="media-body">
-                          <h6 class="media-heading">You have a new assignment</h6>
-                          <time class="media-meta" datetime="2017-06-12T20:50:48+08:00">5 hours ago
-                          </time>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                      <div class="media">
-                        <div class="pr-10">
-                          <i class="icon wb-user bg-green-600 white icon-circle" aria-hidden="true"></i>
-                        </div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Your assignment was merged without conflict
-                          </h6>
-                          <time class="media-meta" datetime="2017-06-11T18:29:20+08:00">2 days ago
-                          </time>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                      <div class="media">
-                        <div class="pr-10">
-                          <i class="icon wb-settings bg-red-600 white icon-circle" aria-hidden="true"></i>
-                        </div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Settings updated</h6>
-                          <time class="media-meta" datetime="2017-06-11T14:05:00+08:00">2 days ago
-                          </time>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                      <div class="media">
-                        <div class="pr-10">
-                          <i class="icon wb-calendar bg-blue-600 white icon-circle" aria-hidden="true"></i>
-                        </div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Paper Completed</h6>
-                          <time class="media-meta" datetime="2017-06-10T13:50:18+08:00">3 days ago
-                          </time>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                      <div class="media">
-                        <div class="pr-10">
-                          <i class="icon wb-chat bg-orange-600 white icon-circle" aria-hidden="true"></i>
-                        </div>
-                        <div class="media-body">
-                          <h6 class="media-heading">New Conflict</h6>
-                          <time class="media-meta" datetime="2017-06-10T12:34:48+08:00">3 days ago
-                          </time>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="dropdown-menu-footer">
-                <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                  <i class="icon md-settings" aria-hidden="true"></i>
-                </a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+          <!--<li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications"
+                           aria-expanded="false" data-animation="scale-up" role="button">
+                            <i class="icon wb-bell" aria-hidden="true"></i>
+                            <span class="badge badge-pill badge-danger up">5</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
+                            <div class="dropdown-menu-header">
+                                <h5>NOTIFICATIONS</h5>
+                                <span class="badge badge-round badge-danger">New 5</span>
+                            </div>
+    
+                            <div class="list-group">
+                                <div data-role="container">
+                                    <div data-role="content">
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-order bg-red-600 white icon-circle"
+                                                       aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">You have a new assignment</h6>
+                                                    <time class="media-meta" datetime="2017-06-12T20:50:48+08:00">5 hours
+                                                        ago
+                                                    </time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-user bg-green-600 white icon-circle"
+                                                       aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Your assignment was merged without
+                                                        conflict</h6>
+                                                    <time class="media-meta" datetime="2017-06-11T18:29:20+08:00">2 days
+                                                        ago
+                                                    </time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-settings bg-red-600 white icon-circle"
+                                                       aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Settings updated</h6>
+                                                    <time class="media-meta" datetime="2017-06-11T14:05:00+08:00">2 days
+                                                        ago
+                                                    </time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-calendar bg-blue-600 white icon-circle"
+                                                       aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Paper Completed</h6>
+                                                    <time class="media-meta" datetime="2017-06-10T13:50:18+08:00">3 days
+                                                        ago
+                                                    </time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-chat bg-orange-600 white icon-circle"
+                                                       aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">New Conflict</h6>
+                                                    <time class="media-meta" datetime="2017-06-10T12:34:48+08:00">3 days
+                                                        ago
+                                                    </time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-menu-footer">
+                                <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
+                                    <i class="icon md-settings" aria-hidden="true"></i>
+                                </a>
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
                                     All notifications
                                 </a>
-              </div>
-            </div>
-          </li>
+                            </div>
+                        </div>
+                    </li>-->
         </ul>
         <!-- End Navbar Toolbar Right -->
         <div class="navbar-brand navbar-brand-center">
@@ -286,11 +297,12 @@
     </div>
   </div>
   <!-- Page -->
-  <div class="page">
+  <div class="page" ng-app="manage-project" ng-controller="ManageProjectController">
     <div class="page-header">
       <h1 class="page-title">Managing
         <span data-projectname></span>
       </h1>
+      {[{test}]}
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
@@ -310,42 +322,63 @@
           <div class="panel">
             <header class="panel-heading">
               <h3 class="panel-title"> Paper Pool </h3>
-              <!--<div class="pl-30">
-                            <form class="form-inline">
-                                <div class="radio-custom radio-primary mr-15">
-                                    <input type="radio" name="status" id="status_none" class="filter-ui-status"
-                                           value="none"
-                                           checked>
-                                    <label for="status_none">
-                                        All
-                                    </label>
-                                </div>
-                                <div class="radio-custom radio-primary mr-15">
-                                    <input type="radio" name="status" id="status_active" class="filter-ui-status"
-                                           value="active">
-                                    <label for="status_active">
-                                        Active
-                                    </label>
-                                </div>
-                            </form>
-                        </div>-->
             </header>
             <div class="panel-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Paper Title</th>
+                    <th>Assignment Count</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="row in tableRows">
+                    <td class="work-status">
+                      <span ng-if="row.status == 'active'" class="badge badge-primary"> Active </span>
+                      <span ng-if="row.status == 'pending'" class="badge badge-warning"> Pending </span>
+                      <span ng-if="row.status == 'conflicted'" class="badge badge-danger"> Conflict </span>
+                      <span ng-if="row.status == 'clean'" class="badge badge-primary"> Clean </span>
+                      <span ng-if="row.status == 'complete'" class="badge badge-success"> Complete </span>
+                      <span ng-if="row.status == 'ready'" class="badge badge-warning"> Ready </span>
+                    </td>
+                    <td class="subject">
+                      <div class="table-content">
+                        <p class="blue-grey-500">
+                          <span ng-bind="row.title"></span>
+                        </p>
+                      </div>
+                    </td>
+                    <td class="work-status">
+                      <span class="badge badge-default">
+                        <span ng-bind="row.assignmentCount"></span>
+                      </span>
+                    </td>
+                    <td class="subject">
+                      <button ng-click="loadReport( row )" type="button" class="btn btn-sm btn-animate btn-animate-vertical btn-primary">
+                        <span><i class="icon wb-file" aria-hidden="true"></i> View Report
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <table id="papersTable" class="table table-hover" data-paging="true" data-sorting="true">
                 <thead>
                   <tr>
-                    <th data-name="title" data-title="Paper Title"> Paper Title </th>
-                    <th data-name="desc"> Description </th>
+                    <th data-name="title" data-title="Paper Title"> Paper Title</th>
+                    <th data-name="desc"> Description</th>
                     <th data-name="assignments" data-breakpoints="xs">Assignment Count</th>
-                    <th data-name="status"> Status </th>
+                    <th data-name="status"> Status</th>
                   </tr>
                 </thead>
                 <tbody id="templateOutlet">
                   <template id="paperTemplate">
                     <tr>
-                      <td data-title> [PMC-ID] </td>
-                      <td data-desc> [Article Title] </td>
-                      <td data-assignmentCount> [Number of Assignments] </td>
+                      <td data-title> [PMC-ID]</td>
+                      <td data-desc> [Article Title]</td>
+                      <td data-assignmentCount> [Number of Assignments]</td>
                       <td data-status>
                       </td>
                     </tr>
@@ -383,7 +416,7 @@
                   action="#">
                     <input type="file" id="papersCSV" data-allowed-file-extensions="csv" />
                     <br>
-                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles </button>
+                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles</button>
                   </form>
                 </div>
               </div>
@@ -399,13 +432,15 @@
               <!-- Example height -->
               <div class="example-wrap">
                 <h4 class="example-title">Enter PMC-ID's delimited by commas, and we'll look them up for
-                  you!</h4>
+                  you!
+                </h4>
                 <div class="example">
                   <input id="pmcidList" type="text" class="form-control" data-plugin="tokenfield"
                   value="" />
-                  <br />
+                  <br/>
                   <button onclick="findPapersHandler()" class="btn btn-block btn-primary" type="submit">
-                  Find Papers </button>
+                    Find Papers
+                  </button>
                 </div>
               </div>
               <!-- End Example height -->
@@ -461,13 +496,8 @@
   <script src="..\assets/vendor/screenfull/screenfull.js"></script>
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="..\assets/vendor/datatables/jquery.dataTables.js"></script>
-  <script src="..\assets/vendor/datatables-fixedheader/dataTables.fixedHeader.js"></script>
-  <script src="..\assets/vendor/datatables-bootstrap/dataTables.bootstrap.js"></script>
-  <script src="..\assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-  <script src="..\assets/vendor/datatables-buttons/dataTables.buttons.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>s
   <script src="..\assets/vendor/moment/moment.min.js"></script>
-  <script src="..\assets/vendor/footable/footable.min.js"></script>
   <script src="..\assets/vendor/jquery-ui/jquery-ui.js"></script>
   <script src="..\assets/vendor/blueimp-tmpl/tmpl.js"></script>
   <script src="..\assets/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
@@ -508,9 +538,11 @@
   <script src="..\assets/js/Plugin/asscrollable.js"></script>
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
-  <script src="..\assets/js/Plugin/datatables.js"></script>
+  <script src="..\assets/js/Plugin/panel.js"></script>
   <script src="..\assets/js/Plugin/bootstrap-tokenfield.js"></script>
   <script src="..\assets/js/Plugin/dropify.js"></script>
+  <script src="../app/manage-project/manage-project.module.js"></script>
+  <script src="../app/manage-project/manage-project.controller.js"></script>
   <script src="..\assets/examples/js/manage-project.js"></script>
   <script>
   (function(document, window, $) {
