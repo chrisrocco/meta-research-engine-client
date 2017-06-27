@@ -4,17 +4,18 @@ const TOKEN_PROVIDER = URLs.getUrl( "login" );
 const REGISTER = URLs.getUrl( "register" );
 const RENEW = URLs.getUrl( "renew" );
 
-function login( email, password, win, fail ){
-    return $.ajax({
+function login( email, password ){
+    var p = $.ajax({
         url: TOKEN_PROVIDER,
         method: "POST",
         data: {"email": email, "password": password},
         dataType: "json",
-    }).success(function( data ){
+    });
+    p.success(function( data ){
             localStorage['api_token']   =   data.token;
             localStorage['user']        =   JSON.stringify(data.user);
-            win();
-        })
+        });
+    return p;
 }
 
 function register( firstName, lastName, email, password ){
@@ -39,9 +40,6 @@ function renew(){
         method: "POST",
         dataType: "json"
     }).success( function( res ){
-        console.log( "Renewing Token.." );
-        console.log( "Old: ", getToken() );
-        console.log( "New: ", res.token );
         localStorage['api_token']   =   res.token;
     } );
 }
