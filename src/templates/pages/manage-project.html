@@ -60,8 +60,8 @@ title: Manage Project
         {[{test}]}
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{dest 'index.html'}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Projects</a></li>
-            <li class="breadcrumb-item active" data-projectname>[Project Name]</li>
+            <li class="breadcrumb-item"><a href="project-center.html">Projects</a></li>
+            <li class="breadcrumb-item active"><span ng-bind="project.name"></span></li>
         </ol>
         <div class="page-header-actions">
             <a class="btn btn-sm btn-default btn-outline btn-round" href="#"
@@ -116,7 +116,8 @@ title: Manage Project
                                         </span>
                                     </td>
                                     <td class="subject">
-                                        <button ng-click="loadReport( row )" type="button" class="btn btn-sm btn-animate btn-animate-vertical btn-primary">
+                                        <button ng-click="loadReport( row )" type="button" class="btn btn-sm btn-animate btn-animate-vertical btn-primary"
+                                            ng-disabled="(row.status=='active' || row.status=='pending')">
                                           <span><i class="icon wb-file" aria-hidden="true"></i>
                                             View Report
                                           </span>
