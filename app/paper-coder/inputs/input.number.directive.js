@@ -18,6 +18,7 @@ function NumberDirective( ) {
         template: `<div class="form-group">
                         <label class="control-label" <span ng-bind="metaData.question"></span></label>
                         <input ng-model="bindData.value"
+                        placeholder="{[{metaData.question}]}"
                         type="number" class="form-control" />
                       </div>`
     }
