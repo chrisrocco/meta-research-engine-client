@@ -13,7 +13,8 @@ function login(){
     var email = $("#emailInput").val();
     var password = $("#passwordInput").val();
 
-    var promise = AuthService.login( email, password, win, fail );
+    var promise = AuthService.login( email, password );
+    promise.success( win );
     promise.error( fail );
 
     return false;

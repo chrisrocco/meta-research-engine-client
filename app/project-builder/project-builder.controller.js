@@ -94,6 +94,7 @@ function ProjectBuilderController( $scope ){
             questionObject.rangeUnit = form.rangeUnit.value;
         }
         if( type == "select" ){
+            questionObject.options = [];
             extractQuestions( $('#multipleChoiceInput'), questionObject.options );
         }
 
