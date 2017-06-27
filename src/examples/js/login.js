@@ -14,7 +14,7 @@ function login(){
     var password = $("#passwordInput").val();
 
     var promise = AuthService.login( email, password, win, fail );
-    promise.fail( fail );
+    promise.error( fail );
 
     return false;
 }
@@ -26,10 +26,11 @@ function win(){
 }
 
 function fail( response ){
-    var json = response.responseText;
-    var data = JSON.parse( json );
+    console.log( "fail", response );
+    var data = response.responseJSON;
+    data.reason = data.reason.toUpperCase();
 
-    if( data.status === "INACTIVE" ){
+    if( data.reason === "INACTIVE" ){
         swal({
             title: "Not so Fast!",
             text: "You need to validate your email first.",
@@ -40,7 +41,7 @@ function fail( response ){
             closeOnConfirm: false
         });
     }
-    if( data.status === "INVALID") {
+    if( data.reason === "INVALID") {
         swal({
             title: "Invalid Login",
             text: "Try Again",
