@@ -17,7 +17,7 @@ function NumberDirective( ) {
         },
         template: `<div class="form-group">
                         <label class="control-label" <span ng-bind="metaData.name"></span></label>
-                        <input ng-model="bindData.value"
+                        <input ng-model="bindData.value" ng-disabled="bindData.notReported"
                         type="number" class="form-control" />
                       </div>`
     }

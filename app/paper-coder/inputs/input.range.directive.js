@@ -39,7 +39,7 @@ function RangeDirective( ) {
         },
         template: `<p>{[{metaData.question}]}</p>
                     <div class="form-group">
-                        <input type="text" id="rangeSlider" />
+                        <input type="text" id="rangeSlider" ng-disabled="bindData.notReported"/>
                     </div>`
     }
 }

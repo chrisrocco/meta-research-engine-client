@@ -18,9 +18,11 @@ function BooleanDirective( ) {
                         <p data-toggle="tooltip" data-placement="top" title="{[{metaData.tooltip}]}">{[{metaData.question}]}</p>
                     </div> <br>
                     <button type="button" ng-class="{'btn-primary': bindData.value==metaData.trueOption}" class="btn"
+                        ng-disabled="bindData.notReported"
                             ng-click="bindData.value = metaData.trueOption">
                         {[{metaData.trueOption}]} </button>
                     <button type="button" ng-class="{'btn-primary': bindData.value==metaData.falseOption}" class="btn"
+                        ng-disabled="bindData.notReported"
                             ng-click="bindData.value = metaData.falseOption">
                         {[{metaData.falseOption}]} </button>`
     }
