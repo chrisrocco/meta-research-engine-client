@@ -17,6 +17,7 @@ function SelectDirective( ) {
         template: `<p>{[{metaData.question}]}</p>
                     <div class="form-group">
                         <select class="form-control" ng-model="bindData.value" 
+                            ng-disabled="bindData.notReported"
                             ng-options="option as option for option in metaData.options">
                             <option value="" >-- Select One --</option>
                         </select>
