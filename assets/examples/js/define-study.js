@@ -10,30 +10,41 @@
     $(document).ready(function ($) {
         Site.run();
 
-        $('#domain-icon-picker').fontIconPicker({
+        var newDomain = $('#domain-icon-picker');
+        var newQuestion = $('#variable-icon-picker');
+        var editDomain = $('#modal-icon-picker');
+        var editQuestion = $('#variable-editor-icon-picker');
+
+        var newDomainPicker = newDomain.fontIconPicker({
             theme: 'fip-darkgrey',
             source: iconSources,
             emptyIcon: false,
             hasSearch: true
         });
-        $('#variable-icon-picker').fontIconPicker({
+        var newQuestionPicker = newQuestion.fontIconPicker({
             theme: 'fip-darkgrey',
             source: iconSources,
             emptyIcon: false,
             hasSearch: true
         });
-        $('#modal-icon-picker').fontIconPicker({
+        var editDomainPicker = editDomain.fontIconPicker({
             theme: 'fip-darkgrey',
             source: iconSources,
             emptyIcon: false,
             hasSearch: true
         });
-        $("#variable-editor-icon-picker").fontIconPicker({
+        var editQuestionPicker = editQuestion.fontIconPicker({
             theme: 'fip-darkgrey',
             source: iconSources,
             emptyIcon: false,
             hasSearch: true
         });
+
+        $(newDomainPicker).val('fa-folder');
+        $(newQuestionPicker).val('fa-question');
+        newDomainPicker.refreshPicker();
+        newQuestionPicker.refreshPicker();
+
         $('#projectStructure').jstree();
     });
 })(document, window, jQuery);
