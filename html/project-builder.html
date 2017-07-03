@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-treeview/bootstrap-treeview.css">
   <link rel="stylesheet" href="..\assets/vendor/jstree/jstree.min.css">
   <link rel="stylesheet" href="..\assets/vendor/fontIconPicker-2.0.0/css/jquery.fonticonpicker.css">
+  <link rel="stylesheet" href="..\assets/vendor/bootstrap-select/bootstrap-select.css">
+  <link rel="stylesheet" href="..\assets/vendor/multi-select/multi-select.css">
   <link rel="stylesheet" href="..\assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="..\assets/fonts/font-awesome/font-awesome.css">
@@ -492,6 +494,12 @@
                         value="" />
                       </div>
                     </div>
+                    <div ng-show="selectedQuestionType === 'multiselect'" class="form-group">
+                      <div class="example">
+                        <input id="multiselectInput" type="text" class="form-control" data-plugin="tokenfield"
+                        value="" />
+                      </div>
+                    </div>
                     <!-- End Type Conditionals -->
                     <div class="form-group form-material floating" data-plugin="formMaterial">
                       <input name="tooltip" type="text" class="form-control" required/>
@@ -691,6 +699,13 @@
                     class="form-control" data-plugin="tokenfield" value="" />
                   </div>
                 </div>
+                <div ng-show="modalQuestion.type === 'multiselect'" class="form-group">
+                  <div class="example">
+                    <label class="floating-label">Options</label>
+                    <input id="editMultiselectInput" onchange="updateMultiselect()" type="text" class="form-control"
+                    data-plugin="tokenfield" value="" />
+                  </div>
+                </div>
                 <!-- End Type Conditionals -->
                 <div class="form-group">
                   <label class="floating-label">Tool Tip</label>
@@ -743,6 +758,8 @@
   <script src="..\assets/vendor/jstree/jstree.min.js"></script>
   <script src="..\assets/vendor/fontIconPicker-2.0.0/jquery.fonticonpicker.js"></script>
   <script src="..\assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
+  <script src="..\assets/vendor/bootstrap-select/bootstrap-select.js"></script>
+  <script src="..\assets/vendor/multi-select/jquery.multi-select.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -777,6 +794,8 @@
   <script src="..\assets/js/Plugin/bootstrap-treeview.js"></script>
   <script src="..\assets/js/Plugin/jstree.js"></script>
   <script src="..\assets/js/Plugin/bootstrap-tokenfield.js"></script>
+  <script src="..\assets/js/Plugin/bootstrap-select.js"></script>
+  <script src="..\assets/js/Plugin/multi-select.js"></script>
   <script src="..\assets/examples/js/define-study.js"></script>
   <script>
   (function(document, window, $) {

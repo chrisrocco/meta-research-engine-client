@@ -97,6 +97,13 @@ function BigDataField(paperCoderService, editorService, $compile) {
 
             function init(){
                 renderQuestions();
+                if( $scope.inputObject ){
+                    if( $scope.inputObject.data.notReported ){
+                        if( $scope.inputObject.data.notReported === "false" ){
+                            $scope.inputObject.data.notReported = false;
+                        }
+                    }
+                }
             }
         },
         templateUrl: '../app/paper-coder/field/field.html',

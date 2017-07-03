@@ -31,6 +31,10 @@ function ProjectBuilderController( $scope ){
         {
             id: "select",
             name: "Multiple Choice"
+        },
+        {
+            id: "multiselect",
+            name: "Multi-Select"
         }
     ];
 
@@ -96,6 +100,10 @@ function ProjectBuilderController( $scope ){
         if( type == "select" ){
             questionObject.options = [];
             extractQuestions( $('#multipleChoiceInput'), questionObject.options );
+        }
+        if( type == "multiselect" ){
+            questionObject.options = [];
+            extractQuestions( $('#multiselectInput'), questionObject.options );
         }
 
         form.parent.value   =   "";
@@ -167,6 +175,8 @@ function ProjectBuilderController( $scope ){
         $scope.modalQuestion = question;
         resetEditTokenField();
         loadEditTokenField( question );
+        resetEditMultiselectTokenField();
+        loadEditMultiselectTokenField( question );
         $("#editQuestionModal").modal("show");
     }
     function handleDeleteDomain( domain ){
@@ -230,6 +240,10 @@ function ProjectBuilderController( $scope ){
     window.updateMultipleChoice = function(){
         $scope.modalQuestion.options = [];
         extractQuestions( $('#editMultipleChoiceInput'), $scope.modalQuestion.options );
+    }
+    window.updateMultiselect = function(){
+        $scope.modalQuestion.options = [];
+        extractQuestions( $('#editMultiselectInput'), $scope.modalQuestion.options );
     }
 
     function init(){
@@ -332,6 +346,17 @@ function resetEditTokenField(){
 function loadEditTokenField( questionObject ){
     if( questionObject.options ){
         var tf = $('#editMultipleChoiceInput');
+        tf.tokenfield('setTokens', questionObject.options );
+    }
+}
+function resetEditMultiselectTokenField(){
+    var tf = $('#editMultiselectInput');
+    tf.tokenfield('setTokens', []);
+    tf.val('');
+}
+function loadEditMultiselectTokenField( questionObject ){
+    if( questionObject.options ){
+        var tf = $('#editMultiselectInput');
         tf.tokenfield('setTokens', questionObject.options );
     }
 }

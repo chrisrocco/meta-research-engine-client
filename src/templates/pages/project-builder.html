@@ -10,6 +10,8 @@ title: Project Builder
 <link rel="stylesheet" href="{{assets}}/vendor/bootstrap-treeview/bootstrap-treeview.css">
 <link rel="stylesheet" href="{{assets}}/vendor/jstree/jstree.min.css">
 <link rel="stylesheet" href="{{assets}}/vendor/fontIconPicker-2.0.0/css/jquery.fonticonpicker.css">
+<link rel="stylesheet" href="{{assets}}/vendor/bootstrap-select/bootstrap-select.css">
+<link rel="stylesheet" href="{{assets}}/vendor/multi-select/multi-select.css">
 {{/content}}
 
 {{#content "fonts" mode="prepend"}}
@@ -29,6 +31,8 @@ title: Project Builder
 <script src="{{assets}}/vendor/jstree/jstree.min.js"></script>
 <script src="{{assets}}/vendor/fontIconPicker-2.0.0/jquery.fonticonpicker.js"></script>
 <script src="{{assets}}/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
+<script src="{{assets}}/vendor/bootstrap-select/bootstrap-select.js"></script>
+<script src="{{assets}}/vendor/multi-select/jquery.multi-select.js"></script>
 {{/content}}
 
 {{#content "js" mode="append"}}
@@ -41,6 +45,8 @@ title: Project Builder
 <script src="{{assets}}/js/Plugin/bootstrap-treeview.js"></script>
 <script src="{{assets}}/js/Plugin/jstree.js"></script>
 <script src="{{assets}}/js/Plugin/bootstrap-tokenfield.js"></script>
+<script src="{{assets}}/js/Plugin/bootstrap-select.js"></script>
+<script src="{{assets}}/js/Plugin/multi-select.js"></script>
 {{/content}}
 
 
@@ -253,6 +259,12 @@ title: Project Builder
                                     <div ng-show="selectedQuestionType === 'select'" class="form-group">
                                         <div class="example">
                                             <input id="multipleChoiceInput" type="text" class="form-control" data-plugin="tokenfield"
+                                                   value=""/>
+                                        </div>
+                                    </div>
+                                    <div ng-show="selectedQuestionType === 'multiselect'" class="form-group">
+                                        <div class="example">
+                                            <input id="multiselectInput" type="text" class="form-control" data-plugin="tokenfield"
                                                    value=""/>
                                         </div>
                                     </div>
@@ -470,6 +482,13 @@ title: Project Builder
                                 <div class="example">
                                     <label class="floating-label">Options</label>
                                     <input id="editMultipleChoiceInput" onchange="updateMultipleChoice()" type="text" class="form-control" data-plugin="tokenfield"
+                                           value=""/>
+                                </div>
+                            </div>
+                            <div ng-show="modalQuestion.type === 'multiselect'" class="form-group">
+                                <div class="example">
+                                    <label class="floating-label">Options</label>
+                                    <input id="editMultiselectInput" onchange="updateMultiselect()" type="text" class="form-control" data-plugin="tokenfield"
                                            value=""/>
                                 </div>
                             </div>
