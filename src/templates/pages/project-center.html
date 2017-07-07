@@ -64,6 +64,7 @@ body_class: app-projects
                                         </button>
                                         <div class="dropdown-menu" role="menu">
                                             <a class="dropdown-item" ng-click="openProjectBuilder(project)" href="javascript:void(0)">Edit Questions</a>
+                                            <a class="dropdown-item" ng-click="openForkProject(project)" href="javascript:void(0)">Fork Project</a>
                                         </div>
                                     </div>
                                     <div class="dropdown float-left">
@@ -124,6 +125,38 @@ body_class: app-projects
         </div>
     </div>
     <!-- End Add Project Form -->
+    <!-- Fork Project Form -->
+    <div class="modal fade" id="forkProjectForm" aria-hidden="true" aria-labelledby="forkProjectForm"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-simple">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Fork Existing Project</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="createProjectForm" action="" role="form">
+                        <div class="form-group">
+                            <label class="form-control-label mb-15" for="name">New Project Name:</label>
+                            <input type="text" class="form-control" id="newName" name="name" placeholder="Project name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label mb-15" for="name">New Project Description:</label>
+                            <textarea name="description" id="newDescription" class="form-control mb-sm" placeholder="Project description."
+                                      rows="4"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-left">
+                    <button class="btn btn-primary" data-dismiss="modal" type="button" ng-click="submitFork()">
+                        Fork
+                    </button>
+                    <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Fork Project Form -->
 </div>
 
 <!-- Site Action -->

@@ -16,6 +16,8 @@ function ProjectCenterController( $scope ){
     $scope.openProjectManager = openProjectManager;
     $scope.inviteCollaborator = inviteCollaborator;
     $scope.createProject = createProject;
+    $scope.openForkProject = openForkProject;
+    $scope.submitFork = submitFork;
 
     // Property Binding
 
@@ -28,8 +30,16 @@ function ProjectCenterController( $scope ){
         localStorage.projectKey = project._key;
         window.location = "manage-project.html";
     }
+    function openForkProject( project ){
+        forking = project;
+        $('#forkProjectForm').modal('show');
+    }
+
+    /**
+     * Create Project
+     * ================
+     */
     function createProject(){
-        alert("handled");
         var form = document.forms.createProjectForm;
         var name = form.name.value;
         var desc = form.description.value;
@@ -51,6 +61,46 @@ function ProjectCenterController( $scope ){
             init();
         });
     }
+
+    /**
+     * Fork Project
+     * ==============
+     */
+    var forking;
+    function submitFork(){
+        var name = $("#newName").val();
+        var description = $("#newDescription").val();
+        var p = DataService.forkProject( forking._key, name, description );
+        p.success( function( response ){
+            swal({
+                title: "Project Created!",
+                text: "Project Registration Code: "+response.registrationCode,
+                type: "success",
+                showCancelButton: false,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: 'OK',
+                closeOnConfirm: false
+            });
+            init();
+        });
+        p.error( function( err ){
+            swal({
+                title: "Oops..",
+                text: "Couldn't fork project",
+                type: "error",
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: 'OK :(',
+                closeOnConfirm: false
+            });
+            console.log( "Error: ", err );
+        });
+    }
+
+    /**
+     * Invite Collaborators
+     * ==========================
+     */
     function inviteCollaborator( project ){
         swal({
                 title: "Invite Collaborator",
