@@ -13,11 +13,11 @@ function TextDirective( ) {
             bindData: "=bind"
         },
         link: function(scope, element, attrs) {
-
         },
         template: `<div class="form-group">
                         <label class="control-label" <span ng-bind="metaData.question"></span></label>
                         <input ng-model="bindData.value"
+                            ng-disabled="bindData.notReported"
                             placeholder="{[{metaData.placeholder}]}"
                         type="text" class="form-control" />
                       </div>`

@@ -1,8 +1,18 @@
 <li class="list-group-item" ng-show="isAlive()" style="cursor: pointer">
-    <button ng-show="edit" ng-click="toggleScope(fieldObject._key)"
-            type="button" class="btn btn-icon btn-xs btn-warning btn-outline btn-round mr-10 float-left">
+    <button ng-show="edit" ng-click="toggleScope(fieldObject._key)" type="button" class="btn btn-icon btn-xs btn-warning btn-outline btn-round mr-10 float-left">
         <i class="md md-swap" aria-hidden="true"></i></button>
-    <div ng-click="editMe()" class="questionTooltip inputOutlet">
+    <button ng-show="!inputObject.data.notReported" ng-click="inputObject.data.notReported = true"
+        type="button" class="btn btn-icon btn-xs btn-success btn-outline btn-round mr-10 float-right">
+        <i class="md md-check" aria-hidden="true"></i>
+        not reported
+    </button>
+    <button ng-show="inputObject.data.notReported" ng-click="inputObject.data.notReported = false"
+        type="button" class="btn btn-icon btn-xs btn-danger btn-outline btn-round mr-10 float-right">
+        <i class="md md-block-alt" aria-hidden="true"></i>
+        undo
+    </button>
 
+    <div ng-click="editMe()" class="questionTooltip inputOutlet">
+        <!-- Outlet -->
     </div>
 </li>

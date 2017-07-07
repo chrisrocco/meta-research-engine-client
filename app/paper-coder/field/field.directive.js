@@ -9,14 +9,14 @@ function BigDataField(paperCoderService, editorService, $compile) {
         replace: true,
         require: "^bdBranch",
         scope: {
-            fieldObject: "=field"
+            questionMetaData: "=field"
         },
         link: function ($scope, $element, $attrs, $ctrl) {
             $scope.isAlive = isAlive;
             $scope.editMe = editMe;
             $scope.toggleScope = toggleScope;
             $scope.generatePreview = generatePreview;
-            $scope.inputObject = $ctrl.getInput( $scope.fieldObject._key );
+            $scope.inputObject = $ctrl.getInput( $scope.questionMetaData._key );
             $scope.getForm = editorService.getInputForm;
             init();
 
@@ -25,23 +25,24 @@ function BigDataField(paperCoderService, editorService, $compile) {
                     if( $scope.inputObject ){
                         // enable tooltip
                         $element.find(".questionTooltip").webuiPopover({
-                            content: $scope.fieldObject.tooltip,
+                            content: $scope.questionMetaData.tooltip,
                             trigger:'hover',
                             placement:'right',
-                            title: $scope.fieldObject.name
+                            title: $scope.questionMetaData.name
                         });
                         $element.removeAttr('title');
                         // render form
-                        var tag = "bd-input-"+$scope.fieldObject.type;
-                        var dr = "<"+tag+" bind='inputObject.data' meta='fieldObject' >"
+                        var tag = "bd-input-"+$scope.questionMetaData.type;
+                        var dr = "<"+tag+" bind='inputObject.data' meta='questionMetaData' >"
                             + "</"+tag+">";
                         $element.find(".inputOutlet").empty();
+                        var elem = angular.element(dr);
                         angular.element( $element.find(".inputOutlet") )
-                            .append($compile(dr)($scope));
+                            .append( elem );
+                        $compile(elem)($scope, undefined, {transcludeControllers: $ctrl});
                     }
                 }, 0 );
             }
-
 
             /**
              * Listens for the "edit" event, indicating we should switch to edit mode
@@ -54,8 +55,8 @@ function BigDataField(paperCoderService, editorService, $compile) {
              * Tells the editor service to load this field input object
              */
             function editMe() {
-                $scope.inputObject = $ctrl.getInput($scope.fieldObject._key);
-                editorService.setView($scope.fieldObject, $scope.inputObject);
+                $scope.inputObject = $ctrl.getInput($scope.questionMetaData._key);
+                editorService.setView($scope.questionMetaData, $scope.inputObject);
             }
 
             /**
@@ -63,24 +64,24 @@ function BigDataField(paperCoderService, editorService, $compile) {
             * @returns {boolean}
             */
             function isAlive() {
-                var alive = $ctrl.isAlive($scope.fieldObject._key);
+                var alive = $ctrl.isAlive($scope.questionMetaData._key);
                 return alive;
             }
 
             /**
-             * Tells the branch controller to toggle the scope of this fieldObject input object
+             * Tells the branch controller to toggle the scope of this questionMetaData input object
              */
             function toggleScope (){
-                $ctrl.toggleScope($ctrl.getInput($scope.fieldObject._key));
+                $ctrl.toggleScope($ctrl.getInput($scope.questionMetaData._key));
             }
 
             /*
-            * Generates a preview for different fieldObject types
+            * Generates a preview for different questionMetaData types
             */
             function generatePreview(){
                 if(!$scope.inputObject) return;
 
-                var type = $scope.fieldObject.type;
+                var type = $scope.questionMetaData.type;
                 if(type === "text" || type === "number" || type === "select" || type === "boolean"){
                     return $scope.inputObject.data.value;
                 }

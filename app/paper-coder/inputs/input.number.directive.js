@@ -16,8 +16,8 @@ function NumberDirective( ) {
             scope.bindData.value = parseInt( scope.bindData.value );
         },
         template: `<div class="form-group">
-                        <label class="control-label" <span ng-bind="metaData.question"></span></label>
-                        <input ng-model="bindData.value"
+                        <label class="control-label" <span ng-bind="metaData.name"></span></label>
+                        <input ng-model="bindData.value" ng-disabled="bindData.notReported"
                         placeholder="{[{metaData.question}]}"
                         type="number" class="form-control" />
                       </div>`
