@@ -3,6 +3,16 @@ import * as AuthService from 'AuthService';
 
 var API_BASE_PATH = URLs.getUrl('api');
 
+function forkProject( projectKey, newName, newDescription ){
+    return http({
+        url: "/projects/"+projectKey+"/fork",
+        method: "POST",
+        data: {
+            name: newName,
+            description: newDescription
+        }
+    })
+}
 function getUsersAssignments( id ){
     return http({
         url:    "/users/"+id+"/assignments",
@@ -235,5 +245,6 @@ export {
     makeProjectOwner,
     reportError,
     handleUnauthorized,
-    moreAssignmentsPlease
+    moreAssignmentsPlease,
+    forkProject
 }

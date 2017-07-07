@@ -16,13 +16,23 @@
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.makeProjectOwner = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadReport = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
+    exports.forkProject = exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.makeProjectOwner = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadReport = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
     var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
     var API_BASE_PATH = URLs.getUrl('api');
 
+    function forkProject(projectKey, newName, newDescription) {
+        return http({
+            url: "/projects/" + projectKey + "/fork",
+            method: "POST",
+            data: {
+                name: newName,
+                description: newDescription
+            }
+        });
+    }
     function getUsersAssignments(id) {
         return http({
             url: "/users/" + id + "/assignments",
@@ -255,4 +265,5 @@
     exports.reportError = reportError;
     exports.handleUnauthorized = handleUnauthorized;
     exports.moreAssignmentsPlease = moreAssignmentsPlease;
+    exports.forkProject = forkProject;
 });
