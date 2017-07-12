@@ -203,7 +203,9 @@ function ProjectBuilderController( $scope ){
             }
             for (var i = 0; i < $scope.questions.length; i++) {
                 var obj = $scope.questions[i];
-                if( obj.parent === domain.id ) obj.parent = domain.parent;
+                if( obj.parent === domain.id ){
+                    deleteQuestion( obj );
+                }
             }
             refresh()
             swal("Deleted!", domain.name + " has been deleted.", "success");
