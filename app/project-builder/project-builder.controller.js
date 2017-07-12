@@ -6,11 +6,6 @@ angular.module("project-builder")
 
 ProjectBuilderController.$inject = ['$scope'];
 function ProjectBuilderController( $scope ){
-    init();
-
-    // Data Models
-    $scope.domains = [];
-    $scope.questions = [];
     $scope.questionTypes = [
         {
             id: "text",
@@ -38,18 +33,216 @@ function ProjectBuilderController( $scope ){
         }
     ];
 
-    // Function Binding
+    /**
+     * Business Logic
+     * ========================
+     */
+    $scope.domains = [];
+    $scope.questions = [];
+    function createDomain( data ){
+        $scope.domains.push( data );
+    }
+    function deleteDomain( domain ){
+        for (var i = $scope.domains.length-1; i >= 0; i--) {
+            var d = $scope.domains[i];
+            if( d.parent === domain.id ) d.parent = domain.parent;
+        }
+        for (var i = $scope.questions.length-1; i >= 0; i--) {
+            var q = $scope.questions[i];
+            if( q.parent == domain.id ){
+                if( domain.parent === "#"){
+                    deleteQuestion( q );
+                    continue;
+                }
+                q.parent = domain.parent;
+            }
+        }
+        var ind = $scope.domains.indexOf(domain);
+        $scope.domains.splice( ind, 1 );
+    }
+    function createQuestion( data ){
+        $scope.questions.push( data );
+    }
+    function deleteQuestion( question ){
+        var ind = $scope.questions.indexOf(question);
+        $scope.$apply(function(){
+            $scope.questions.splice( ind, 1);
+        });
+    }
+
+    /**
+     * Action Handlers
+     * =========================
+     */
     $scope.handleEditDomain = handleEditDomain;
     $scope.handleEditQuestion = handleEditQuestion;
     $scope.handleDeleteDomain = handleDeleteDomain;
     $scope.handleDeleteQuestion = handleDeleteQuestion;
     $scope.handleCreateDomain = handleCreateDomain;
     $scope.handleCreateQuestion = handleCreateQuestion;
+    function handleCreateDomain(){
+        var newDomainObject = parseDomainForm();
+        createDomain( newDomainObject );
+        refresh();
+    }
+    function handleDeleteDomain( domain ){
+        var msg = "This data cannot be recovered!";
+        if( domain.parent === "#" ){
+            msg = "This is root domain. All of its variables will be deleted!";
+        } else {
+            msg = "Questions and sub-domains will be moved to this domain's parent";
+        }
+        swal({
+            title: "Are you sure?",
+            text: msg,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        }, function(){
+            for (var i = $scope.domains.length-1; i >= 0; i--) {
+                var obj = $scope.domains[i];
+                if( obj.parent === domain.id ) obj.parent = domain.parent;
+            }
+            for (var i = $scope.questions.length-1; i >= 0; i--) {
+                var q = $scope.questions[i];
+                if( q.parent == domain.id ){
+                    if( domain.parent === "#"){
+                        deleteQuestion( q );
+                        continue;
+                    }
+                    q.parent = domain.parent;
+                }
+            }
+            deleteDomain( domain );
+            refresh();
+            swal("Deleted!", domain.name + " has been deleted.", "success");
+        });
+    }
+    function handleCreateQuestion(){
+        var newQuestionObject = parseQuestionForm();
+        if( !newQuestionObject ) return;
+        createQuestion( newQuestionObject );
+        refresh();
+    }
+    function handleDeleteQuestion( question ){
+        swal({
+                title: "Are you sure?",
+                text: "This data cannot be recovered!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                deleteQuestion( question );
+                refresh();
+                swal("Deleted!", question.name + " has been deleted.", "success");
+            });
+    }
+    function handleEditDomain( domain ){
+        console.log( "editing", domain );
+        $scope.modalDomain = domain;
+        $("#editDomainModal").modal("show");
+    }
+    function handleEditQuestion( question ){
+        $scope.modalQuestion = question;
+        resetEditTokenField();
+        loadEditTokenField( question );
+        resetEditMultiselectTokenField();
+        loadEditMultiselectTokenField( question );
+        $("#editQuestionModal").modal("show");
+    }
 
-    // Property Binding
+    /*
+    * Event/Lifecycle Handlers
+    * ==========================
+    */
+    function init(){
+        var promise = DataService.getProjectBuilderData( localStorage.projectKey );
+        promise.success( function( data ){
+            console.log( "from server", data );
+            var structure = data.structure;
+            if( structure ){
+                $scope.$apply(function(){
+                    $scope.domains = structure.domains;
+                    $scope.questions = structure.questions;
+                });
+            }
+            /* Display the project name */
+            var spanElement = document.getElementById("project-name");
+            spanElement.innerHTML = data.projectName;
+            renderTree();
+        });
+
+        $("#editDomainModal").on('hidden.bs.modal', function () {
+            refresh()
+        });
+        $("#editQuestionModal").on('hidden.bs.modal', function () {
+            refresh()
+        });
+    }
+    function refresh(){
+        renderTree();
+        save();
+    }
+    function renderTree(){
+        var treeData = [];
+        for (var i = 0; i < $scope.domains.length; i++) {
+            var domain = $scope.domains[i];
+            var node = {
+                id          : domain.id,
+                parent      : domain.parent,
+                text        : domain.name,
+                icon        : domain.icon,
+                state       : {
+                    opened    : true
+                }
+            };
+            if( node.parent === "" ) node.parent = "#";
+            treeData.push( node );
+        }
+        for (var i = 0; i < $scope.questions.length; i++) {
+            var question = $scope.questions[i];
+            var node = {
+                id          : question.id,
+                parent      : question.parent,
+                text        : question.name,
+                icon        : question.icon,
+                state       : {
+                    opened    : true
+                }
+            };
+            if( node.parent === "" ) node.parent = "#";
+            treeData.push( node );
+        }
+        $('#projectStructure').jstree(true).settings.core.data = treeData;
+        $('#projectStructure').jstree(true).refresh();
+    }
+    function save(){
+        var structure = {
+            domains: $scope.domains,
+            questions: $scope.questions
+        };
+        var req = {
+            "structure": JSON.stringify( structure )
+        };
+        var promise = DataService.postProjectStructure( localStorage.projectKey, req );
+        promise.success( function( res ){
+            console.log( "saved!", res );
+        });
+        promise.error(function(err){
+            alert("Something went wrong :(");
+        });
+    }
+
+    /**
+     * Document Controllers
+     * ========================
+     */
     $scope.selectedQuestionType = $scope.questionTypes[0].id;
-
-    /*-----------------------------------------------------------------*/
     function parseQuestionForm(){
         var form        = document.forms.questionForm;
         var name        = form.name.value;
@@ -155,201 +348,6 @@ function ProjectBuilderController( $scope ){
     }
 
     /**
-     * Action Handlers
-     * =========================
-     */
-    function handleCreateDomain(){
-        var newDomainObject = parseDomainForm();
-        createDomain( newDomainObject );
-        refresh();
-    }
-    function handleDeleteDomain( domain ){
-        var msg = "This data cannot be recovered!";
-        if( domain.parent === "#" ){
-            msg = "This is root domain. All of its variables will be deleted!";
-        } else {
-            msg = "Questions and sub-domains will be moved to this domain's parent";
-        }
-        swal({
-            title: "Are you sure?",
-            text: msg,
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false
-        }, function(){
-            for (var i = $scope.domains.length-1; i >= 0; i--) {
-                var obj = $scope.domains[i];
-                if( obj.parent === domain.id ) obj.parent = domain.parent;
-            }
-            for (var i = $scope.questions.length-1; i >= 0; i--) {
-                var q = $scope.questions[i];
-                if( q.parent == domain.id ){
-                    if( domain.parent === "#"){
-                        deleteQuestion( q );
-                        continue;
-                    }
-                    q.parent = domain.parent;
-                }
-            }
-            deleteDomain( domain );
-            refresh();
-            swal("Deleted!", domain.name + " has been deleted.", "success");
-        });
-    }
-    function handleCreateQuestion(){
-        var newQuestionObject = parseQuestionForm();
-        if( !newQuestionObject ) return;
-        createQuestion( newQuestionObject );
-        refresh();
-    }
-    function handleDeleteQuestion( question ){
-        swal({
-                title: "Are you sure?",
-                text: "This data cannot be recovered!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            },
-            function(){
-                deleteQuestion( question );
-                refresh();
-                swal("Deleted!", question.name + " has been deleted.", "success");
-            });
-    }
-    function handleEditDomain( domain ){
-        console.log( "editing", domain );
-        $scope.modalDomain = domain;
-        $("#editDomainModal").modal("show");
-    }
-    function handleEditQuestion( question ){
-        $scope.modalQuestion = question;
-        resetEditTokenField();
-        loadEditTokenField( question );
-        resetEditMultiselectTokenField();
-        loadEditMultiselectTokenField( question );
-        $("#editQuestionModal").modal("show");
-    }
-
-    /**
-     *  Operations
-     *  ========================
-     */
-    function createDomain( data ){
-        $scope.domains.push( data );
-    }
-    function deleteDomain( domain ){
-        for (var i = $scope.domains.length-1; i >= 0; i--) {
-            var d = $scope.domains[i];
-            if( d.parent === domain.id ) d.parent = domain.parent;
-        }
-        for (var i = $scope.questions.length-1; i >= 0; i--) {
-            var q = $scope.questions[i];
-            if( q.parent == domain.id ){
-                if( domain.parent === "#"){
-                    deleteQuestion( q );
-                    continue;
-                }
-                q.parent = domain.parent;
-            }
-        }
-        var ind = $scope.domains.indexOf(domain);
-        $scope.domains.splice( ind, 1 );
-    }
-    function createQuestion( data ){
-        $scope.questions.push( data );
-    }
-    function deleteQuestion( question ){
-        var ind = $scope.questions.indexOf(question);
-        $scope.$apply(function(){
-            $scope.questions.splice( ind, 1);
-        });
-    }
-
-    /*
-    * Event/Lifecycle Handlers
-    * ==========================
-    * */
-    function init(){
-        var promise = DataService.getProjectBuilderData( localStorage.projectKey );
-        promise.success( function( data ){
-            console.log( "from server", data );
-            var structure = data.structure;
-            if( structure ){
-                $scope.$apply(function(){
-                    $scope.domains = structure.domains;
-                    $scope.questions = structure.questions;
-                });
-            }
-            /* Display the project name */
-            var spanElement = document.getElementById("project-name");
-            spanElement.innerHTML = data.projectName;
-            renderTree();
-        });
-
-        $("#editDomainModal").on('hidden.bs.modal', function () {
-            refresh()
-        });
-        $("#editQuestionModal").on('hidden.bs.modal', function () {
-            refresh()
-        });
-    }
-    function refresh(){
-        renderTree();
-        save();
-    }
-    function renderTree(){
-        var treeData = [];
-        for (var i = 0; i < $scope.domains.length; i++) {
-            var domain = $scope.domains[i];
-            var node = {
-                id          : domain.id,
-                parent      : domain.parent,
-                text        : domain.name,
-                icon        : domain.icon,
-                state       : {
-                    opened    : true
-                }
-            };
-            if( node.parent === "" ) node.parent = "#";
-            treeData.push( node );
-        }
-        for (var i = 0; i < $scope.questions.length; i++) {
-            var question = $scope.questions[i];
-            var node = {
-                id          : question.id,
-                parent      : question.parent,
-                text        : question.name,
-                icon        : question.icon,
-                state       : {
-                    opened    : true
-                }
-            };
-            if( node.parent === "" ) node.parent = "#";
-            treeData.push( node );
-        }
-        $('#projectStructure').jstree(true).settings.core.data = treeData;
-        $('#projectStructure').jstree(true).refresh();
-    }
-    function save(){
-        var structure = {
-            domains: $scope.domains,
-            questions: $scope.questions
-        };
-        var req = {
-            "structure": JSON.stringify( structure )
-        };
-
-        var promise = DataService.postProjectStructure( localStorage.projectKey, req );
-        promise.success( function( res ){
-            console.log( "saved!", res );
-        });
-    }
-
-    /**
      * Bootstrap Tokenfield Angular Adapter
      * ========================================
      */
@@ -391,4 +389,6 @@ function ProjectBuilderController( $scope ){
         $scope.modalQuestion.options = [];
         extractQuestions( $('#editMultiselectInput'), $scope.modalQuestion.options );
     }
+
+    init();
 }
