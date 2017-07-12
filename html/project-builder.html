@@ -358,7 +358,7 @@
                     <h3 class="panel-title">Add New Domain</h3>
                   </div>
                   <div class="panel-body container-fluid">
-                    <form name="domainForm" autocomplete="off" ng-submit="handleSubmitDomain()">
+                    <form name="domainForm" autocomplete="off" ng-submit="handleCreateDomain()">
                       <div class="row">
                         <div class="form-group col-md-6">
                           <h5 class="example-title">Parent Domain</h5>
@@ -408,7 +408,7 @@
                           <td> {[{domain.name}]}</td>
                           <td> {[{domain.description.substring(0, 25)}]}...</td>
                           <td class="text-nowrap">
-                            <button ng-click="editDomain( domain )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                            <button ng-click="handleEditDomain( domain )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
                             data-toggle="tooltip" data-original-title="Edit">
                               <i class="icon wb-wrench" aria-hidden="true"></i>
                             </button>
@@ -431,7 +431,7 @@
                     <!--<p></p>-->
                   </div>
                   <div class="panel-body container-fluid">
-                    <form name="questionForm" autocomplete="off" ng-submit="handleSubmitQuestion()">
+                    <form name="questionForm" autocomplete="off" ng-submit="handleCreateQuestion()">
                       <div class="row">
                         <div class="form-group col-md-6">
                           <h5 class="example-title">Parent Domain</h5>
@@ -549,7 +549,7 @@
                             <td> {[{question.name}]}</td>
                             <td> {[{question.question.substring(0, 25)}]}...</td>
                             <td class="text-nowrap">
-                              <button ng-click="editQuestion( question )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                              <button ng-click="handleEditQuestion( question )" type="button" class="btn btn-sm btn-icon btn-flat btn-default"
                               data-toggle="tooltip" data-original-title="Edit">
                                 <i class="icon wb-wrench" aria-hidden="true"></i>
                               </button>
@@ -584,7 +584,7 @@
           </div>
           <div class="modal-body">
             <div class="panel-body container-fluid">
-              <form name="domainForm" autocomplete="off" ng-submit="handleSubmitDomain()">
+              <form name="domainForm" autocomplete="off" ng-submit="handleCreateDomain()">
                 <h5 class="example-title">Parent Domain</h5>
                 <div class="form-group">
                   <select ng-model="modalDomain.parent" class="form-control">
@@ -769,7 +769,6 @@
   <script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
   <script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="..\assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
   <script src="..\assets/vendor/toastr/toastr.js"></script>
   <script src="..\assets/vendor/bootstrap-treeview/bootstrap-treeview.min.js"></script>
@@ -778,6 +777,7 @@
   <script src="..\assets/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
   <script src="..\assets/vendor/bootstrap-select/bootstrap-select.js"></script>
   <script src="..\assets/vendor/multi-select/jquery.multi-select.js"></script>
+  <script src="../node_modules/angular/angular.min.js"></script>
   <!-- Scripts -->
   <script src="..\assets/js/State.js"></script>
   <script src="..\assets/js/Component.js"></script>
@@ -805,25 +805,27 @@
   <script src="..\assets/js/Plugin/slidepanel.js"></script>
   <script src="..\assets/js/Plugin/switchery.js"></script>
   <script src="../app/project-builder/project-builder.module.js"></script>
-  <script src="../app/project-builder/project-builder.controller.js"></script>
-  <script src="..\assets/js/Plugin/responsive-tabs.js"></script>
-  <script src="..\assets/js/Plugin/closeable-tabs.js"></script>
-  <script src="..\assets/js/Plugin/tabs.js"></script>
-  <script src="..\assets/js/Plugin/jquery-placeholder.js"></script>
-  <script src="..\assets/js/Plugin/material.js"></script>
-  <script src="..\assets/js/Plugin/toastr.js"></script>
-  <script src="..\assets/js/Plugin/bootstrap-treeview.js"></script>
-  <script src="..\assets/js/Plugin/jstree.js"></script>
-  <script src="..\assets/js/Plugin/bootstrap-tokenfield.js"></script>
-  <script src="..\assets/js/Plugin/bootstrap-select.js"></script>
-  <script src="..\assets/js/Plugin/multi-select.js"></script>
-  <script src="..\assets/examples/js/define-study.js"></script>
-  <script>
-  (function(document, window, $) {
-    $(document).ready(function() {
-      ApplicationService.renderSession();
-    });
-  })(document, window, jQuery);
-  </script>
-</body>
+  <script src=../app/project-builder/project-builder.controller.js "></script>
+    
+    <script src="..\assets/js/Plugin/responsive-tabs.js "></script>
+    <script src="..\assets/js/Plugin/closeable-tabs.js "></script>
+    <script src="..\assets/js/Plugin/tabs.js "></script>
+    <script src="..\assets/js/Plugin/jquery-placeholder.js "></script>
+    <script src="..\assets/js/Plugin/material.js "></script>
+    <script src="..\assets/js/Plugin/toastr.js "></script>
+    <script src="..\assets/js/Plugin/bootstrap-treeview.js "></script>
+    <script src="..\assets/js/Plugin/jstree.js "></script>
+    <script src="..\assets/js/Plugin/bootstrap-tokenfield.js "></script>
+    <script src="..\assets/js/Plugin/bootstrap-select.js "></script>
+    <script src="..\assets/js/Plugin/multi-select.js "></script>
+    
+    <script src="..\assets/examples/js/define-study.js "></script>
+    
+    <script>
+        (function(document, window, $){
+            $(document).ready(function(){
+                ApplicationService.renderSession();
+            });
+        })(document, window, jQuery);
+    </script>  </body>
 </html>

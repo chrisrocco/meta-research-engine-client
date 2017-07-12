@@ -4,13 +4,13 @@
 angular.module("project-builder")
     .controller("ProjectBuilderController", ProjectBuilderController);
 
-ProjectBuilderController.$inject = ['$scope', 'project-builder.service'];
-function ProjectBuilderController( $scope, projectBuilderService ){
+ProjectBuilderController.$inject = ['$scope'];
+function ProjectBuilderController( $scope ){
     init();
 
     // Data Models
-    $scope.domains = defaultModel.domains;
-    $scope.questions = defaultModel.questions;
+    $scope.domains = [];
+    $scope.questions = [];
     $scope.questionTypes = [
         {
             id: "text",
@@ -39,12 +39,12 @@ function ProjectBuilderController( $scope, projectBuilderService ){
     ];
 
     // Function Binding
-    $scope.editDomain = editDomain;
-    $scope.editQuestion = editQuestion;
+    $scope.handleEditDomain = handleEditDomain;
+    $scope.handleEditQuestion = handleEditQuestion;
     $scope.handleDeleteDomain = handleDeleteDomain;
     $scope.handleDeleteQuestion = handleDeleteQuestion;
-    $scope.handleSubmitDomain = handleSubmitDomain;
-    $scope.handleSubmitQuestion = handleSubmitQuestion;
+    $scope.handleCreateDomain = handleCreateDomain;
+    $scope.handleCreateQuestion = handleCreateQuestion;
 
     // Property Binding
     $scope.selectedQuestionType = $scope.questionTypes[0].id;
@@ -138,7 +138,10 @@ function ProjectBuilderController( $scope, projectBuilderService ){
         form.icon.value         =   "";
         form.icon.value = icon;
 
-        if( parent = "" ) parent = "#";
+        if( parent === "" ){
+            parent = "#";
+        }
+
         var domainObject = {
             id: ( Math.floor( Math.random() * 99999 )).toString(),
             parent: parent,
@@ -151,32 +154,14 @@ function ProjectBuilderController( $scope, projectBuilderService ){
         return domainObject;
     }
 
-    function handleSubmitDomain(){
+    /**
+     * Action Handlers
+     * =========================
+     */
+    function handleCreateDomain(){
         var newDomainObject = parseDomainForm();
-        $scope.domains.push( newDomainObject );
+        createDomain( newDomainObject );
         refresh();
-    }
-    function handleSubmitQuestion(){
-        var newQuestionObject = parseQuestionForm();
-        if( !newQuestionObject ) return;
-
-        $scope.questions.push( newQuestionObject );
-        refresh();
-        console.log( newQuestionObject );
-    }
-
-    function editDomain( domain ){
-        console.log( "editing", domain );
-        $scope.modalDomain = domain;
-        $("#editDomainModal").modal("show");
-    }
-    function editQuestion( question ){
-        $scope.modalQuestion = question;
-        resetEditTokenField();
-        loadEditTokenField( question );
-        resetEditMultiselectTokenField();
-        loadEditMultiselectTokenField( question );
-        $("#editQuestionModal").modal("show");
     }
     function handleDeleteDomain( domain ){
         var msg = "This data cannot be recovered!";
@@ -213,6 +198,12 @@ function ProjectBuilderController( $scope, projectBuilderService ){
             swal("Deleted!", domain.name + " has been deleted.", "success");
         });
     }
+    function handleCreateQuestion(){
+        var newQuestionObject = parseQuestionForm();
+        if( !newQuestionObject ) return;
+        createQuestion( newQuestionObject );
+        refresh();
+    }
     function handleDeleteQuestion( question ){
         swal({
                 title: "Are you sure?",
@@ -229,35 +220,66 @@ function ProjectBuilderController( $scope, projectBuilderService ){
                 swal("Deleted!", question.name + " has been deleted.", "success");
             });
     }
+    function handleEditDomain( domain ){
+        console.log( "editing", domain );
+        $scope.modalDomain = domain;
+        $("#editDomainModal").modal("show");
+    }
+    function handleEditQuestion( question ){
+        $scope.modalQuestion = question;
+        resetEditTokenField();
+        loadEditTokenField( question );
+        resetEditMultiselectTokenField();
+        loadEditMultiselectTokenField( question );
+        $("#editQuestionModal").modal("show");
+    }
+
+    /**
+     *  Operations
+     *  ========================
+     */
+    function createDomain( data ){
+        $scope.domains.push( data );
+    }
     function deleteDomain( domain ){
-        $scope.$apply( function(){
-            $scope.domains.splice( $scope.domains.indexOf(domain), 1 );
-        });
+        for (var i = $scope.domains.length-1; i >= 0; i--) {
+            var d = $scope.domains[i];
+            if( d.parent === domain.id ) d.parent = domain.parent;
+        }
+        for (var i = $scope.questions.length-1; i >= 0; i--) {
+            var q = $scope.questions[i];
+            if( q.parent == domain.id ){
+                if( domain.parent === "#"){
+                    deleteQuestion( q );
+                    continue;
+                }
+                q.parent = domain.parent;
+            }
+        }
+        var ind = $scope.domains.indexOf(domain);
+        $scope.domains.splice( ind, 1 );
+    }
+    function createQuestion( data ){
+        $scope.questions.push( data );
     }
     function deleteQuestion( question ){
         var ind = $scope.questions.indexOf(question);
-        $scope.$apply( function() {
+        $scope.$apply(function(){
             $scope.questions.splice( ind, 1);
-        } );
+        });
     }
 
-    // Third party angular adapter
-    window.updateMultipleChoice = function(){
-        $scope.modalQuestion.options = [];
-        extractQuestions( $('#editMultipleChoiceInput'), $scope.modalQuestion.options );
-    }
-    window.updateMultiselect = function(){
-        $scope.modalQuestion.options = [];
-        extractQuestions( $('#editMultiselectInput'), $scope.modalQuestion.options );
-    }
-
+    /*
+    * Event/Lifecycle Handlers
+    * ==========================
+    * */
     function init(){
         var promise = DataService.getProjectBuilderData( localStorage.projectKey );
         promise.success( function( data ){
             console.log( "from server", data );
             var structure = data.structure;
             if( structure ){
-                $scope.$apply( function(){
+                $scope.$apply(function(){
                     $scope.domains = structure.domains;
                     $scope.questions = structure.questions;
                 });
@@ -275,7 +297,6 @@ function ProjectBuilderController( $scope, projectBuilderService ){
             refresh()
         });
     }
-
     function refresh(){
         renderTree();
         save();
@@ -327,41 +348,47 @@ function ProjectBuilderController( $scope, projectBuilderService ){
             console.log( "saved!", res );
         });
     }
-}
 
-const defaultModel = {
-    domains: [],
-    questions: []
-};
+    /**
+     * Bootstrap Tokenfield Angular Adapter
+     * ========================================
+     */
+    function extractQuestions( tokenFieldElement, target ){
+        var tokens = tokenFieldElement.tokenfield('getTokens');
 
-/* Bootstrap tokenfield adapter */
-function extractQuestions( tokenFieldElement, target ){
-    var tokens = tokenFieldElement.tokenfield('getTokens');
-
-    for (var i = 0; i < tokens.length; i++) {
-        var option = tokens[i];
-        target.push( option.value );
+        for (var i = 0; i < tokens.length; i++) {
+            var option = tokens[i];
+            target.push( option.value );
+        }
     }
-}
-function resetEditTokenField(){
-    var tf = $('#editMultipleChoiceInput');
-    tf.tokenfield('setTokens', []);
-    tf.val('');
-}
-function loadEditTokenField( questionObject ){
-    if( questionObject.options ){
+    function resetEditTokenField(){
         var tf = $('#editMultipleChoiceInput');
-        tf.tokenfield('setTokens', questionObject.options );
+        tf.tokenfield('setTokens', []);
+        tf.val('');
     }
-}
-function resetEditMultiselectTokenField(){
-    var tf = $('#editMultiselectInput');
-    tf.tokenfield('setTokens', []);
-    tf.val('');
-}
-function loadEditMultiselectTokenField( questionObject ){
-    if( questionObject.options ){
+    function loadEditTokenField( questionObject ){
+        if( questionObject.options ){
+            var tf = $('#editMultipleChoiceInput');
+            tf.tokenfield('setTokens', questionObject.options );
+        }
+    }
+    function resetEditMultiselectTokenField(){
         var tf = $('#editMultiselectInput');
-        tf.tokenfield('setTokens', questionObject.options );
+        tf.tokenfield('setTokens', []);
+        tf.val('');
+    }
+    function loadEditMultiselectTokenField( questionObject ){
+        if( questionObject.options ){
+            var tf = $('#editMultiselectInput');
+            tf.tokenfield('setTokens', questionObject.options );
+        }
+    }
+    window.updateMultipleChoice = function(){
+        $scope.modalQuestion.options = [];
+        extractQuestions( $('#editMultipleChoiceInput'), $scope.modalQuestion.options );
+    }
+    window.updateMultiselect = function(){
+        $scope.modalQuestion.options = [];
+        extractQuestions( $('#editMultiselectInput'), $scope.modalQuestion.options );
     }
 }
