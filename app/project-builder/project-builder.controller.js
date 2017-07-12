@@ -44,8 +44,9 @@ function ProjectBuilderController( $scope ){
     }
     function deleteDomain( domain ){
         for (var i = $scope.domains.length-1; i >= 0; i--) {
-            var d = $scope.domains[i];
-            if( d.parent === domain.id ) d.parent = domain.parent;
+            if( $scope.domains[i].parent === domain.id ){
+                $scope.domains[i] = domain.parent;
+            }
         }
         for (var i = $scope.questions.length-1; i >= 0; i--) {
             var q = $scope.questions[i];
@@ -58,7 +59,9 @@ function ProjectBuilderController( $scope ){
             }
         }
         var ind = $scope.domains.indexOf(domain);
-        $scope.domains.splice( ind, 1 );
+        $scope.$apply(function(){
+            $scope.domains.splice( ind, 1 );
+        });
     }
     function createQuestion( data ){
         $scope.questions.push( data );
