@@ -4,8 +4,8 @@
 angular.module("project-builder")
     .controller("ProjectBuilderController", ProjectBuilderController);
 
-ProjectBuilderController.$inject = ['$scope'];
-function ProjectBuilderController( $scope ){
+ProjectBuilderController.$inject = ['$scope', 'project-builder.service'];
+function ProjectBuilderController( $scope, projectBuilderService ){
     init();
 
     // Data Models
@@ -131,7 +131,6 @@ function ProjectBuilderController( $scope ){
         var tooltip         = form.tooltip.value;
         var icon            = form.icon.value;
 
-
         // form.parent.value       =   "";
         form.name.value         =   "";
         form.description.value  =   "";
@@ -139,6 +138,7 @@ function ProjectBuilderController( $scope ){
         form.icon.value         =   "";
         form.icon.value = icon;
 
+        if( parent = "" ) parent = "#";
         var domainObject = {
             id: ( Math.floor( Math.random() * 99999 )).toString(),
             parent: parent,
@@ -150,12 +150,11 @@ function ProjectBuilderController( $scope ){
 
         return domainObject;
     }
+
     function handleSubmitDomain(){
         var newDomainObject = parseDomainForm();
         $scope.domains.push( newDomainObject );
         refresh();
-        console.log( $scope.selectedQuestionType );
-        console.log( newDomainObject );
     }
     function handleSubmitQuestion(){
         var newQuestionObject = parseQuestionForm();
@@ -194,20 +193,23 @@ function ProjectBuilderController( $scope ){
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Yes, delete it!",
             closeOnConfirm: false
-        },
-        function(){
-            deleteDomain( domain );
-            for (var i = 0; i < $scope.domains.length; i++) {
+        }, function(){
+            for (var i = $scope.domains.length-1; i >= 0; i--) {
                 var obj = $scope.domains[i];
                 if( obj.parent === domain.id ) obj.parent = domain.parent;
             }
-            for (var i = 0; i < $scope.questions.length; i++) {
-                var obj = $scope.questions[i];
-                if( obj.parent === domain.id ){
-                    deleteQuestion( obj );
+            for (var i = $scope.questions.length-1; i >= 0; i--) {
+                var q = $scope.questions[i];
+                if( q.parent == domain.id ){
+                    if( domain.parent === "#"){
+                        deleteQuestion( q );
+                        continue;
+                    }
+                    q.parent = domain.parent;
                 }
             }
-            refresh()
+            deleteDomain( domain );
+            refresh();
             swal("Deleted!", domain.name + " has been deleted.", "success");
         });
     }
@@ -233,8 +235,9 @@ function ProjectBuilderController( $scope ){
         });
     }
     function deleteQuestion( question ){
+        var ind = $scope.questions.indexOf(question);
         $scope.$apply( function() {
-            $scope.questions.splice($scope.domains.indexOf(question), 1);
+            $scope.questions.splice( ind, 1);
         } );
     }
 
