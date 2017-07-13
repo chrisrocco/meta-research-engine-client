@@ -37,9 +37,11 @@ function ProjectBuilderController( $scope ){
      * Business Logic
      * ========================
      */
+    $scope.project = DEFAULT_MODEL.project;
     $scope.domains = [];
     $scope.questions = [];
     function createDomain( data ){
+        data.id = $scope.project._key + "." + makeid();
         $scope.domains.push( data );
     }
     function deleteDomain( domain ){
@@ -64,6 +66,7 @@ function ProjectBuilderController( $scope ){
         });
     }
     function createQuestion( data ){
+        data.id = $scope.project._key + "." + makeid();
         $scope.questions.push( data );
     }
     function deleteQuestion( question ){
@@ -175,8 +178,9 @@ function ProjectBuilderController( $scope ){
                 });
             }
             /* Display the project name */
-            var spanElement = document.getElementById("project-name");
-            spanElement.innerHTML = data.projectName;
+            $scope.$apply(function(){
+                $scope.project = data.project;
+            });
             renderTree();
         });
 
@@ -260,7 +264,6 @@ function ProjectBuilderController( $scope ){
         }
 
         var questionObject = {
-            id: (Math.floor( Math.random() * 99999) ).toString(),
             parent: parent,
             type: type,
             name: name,
@@ -339,7 +342,6 @@ function ProjectBuilderController( $scope ){
         }
 
         var domainObject = {
-            id: ( Math.floor( Math.random() * 99999 )).toString(),
             parent: parent,
             name: name,
             description: description,
@@ -394,4 +396,21 @@ function ProjectBuilderController( $scope ){
     }
 
     init();
+}
+
+const DEFAULT_MODEL = {
+    project: {
+        _key: 123,
+        name: "Loading..."
+    }
+};
+
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }

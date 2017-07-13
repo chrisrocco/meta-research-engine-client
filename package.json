@@ -73,5 +73,9 @@
     "src/scss/**/*.scss",
     "src/skins/**/*.scss",
     "src/es/**/*.js"
-  ]
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-sanitize": "^1.6.5"
+  }
 }
