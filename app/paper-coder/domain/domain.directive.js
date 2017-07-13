@@ -78,10 +78,8 @@ function BigDataDomain(paperCoderService) {
                     var theField = domainObject.variables[i];
                     var theInput = $ctrl.getInput(theField._key);
                     if(theInput){
-                        if(
-                            !theInput.data.value
-                            && !(theInput.data.min && theInput.data.max)
-                        ) return false;
+                        var data = theInput.data;
+                        return ( data.value || data.min || data.max || data.rangeMin || data.rangeMax || data.notReported );
                     }
                 }
                 for( var sd = 0; sd < domainObject.subdomains.length; sd++ ){

@@ -1,5 +1,5 @@
 angular
-	.module("paper-coder", [])
+	.module("paper-coder", ['angular-multi-select'])
     .config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');

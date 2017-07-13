@@ -21,7 +21,7 @@ function MultiselectDirective( ) {
         },
         template: `<p>{[{metaData.question}]}</p>
                     <div class="form-group">
-                        <select ng-model="bindData.selections" multiple data-plugin="selectpicker" data-max-options="2"
+                        <select ng-model="bindData.selections" multiple
                             ng-options="option as option for option in metaData.options">
                             <option value="" >-- Select One --</option>
                         </select>
