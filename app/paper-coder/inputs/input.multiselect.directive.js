@@ -13,11 +13,11 @@ function MultiselectDirective( ) {
             bindData: "=bind"
         },
         link: function(scope, element, attrs) {
-            setTimeout ( function(){
-                $( element.find("select")[0] ).selectpicker({
-                    size: 4
-                });
-            }, 0 );
+            // setTimeout ( function(){
+            //     $( element.find("select")[0] ).selectpicker({
+            //         size: 4
+            //     });
+            // }, 0 );
         },
         template: `<p>{[{metaData.question}]}</p>
                     <div class="form-group">
