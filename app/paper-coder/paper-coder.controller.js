@@ -107,7 +107,7 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
         data.assignment.completion = parseFloat( data.assignment.completion );
 
         // NULL encoding? -> Initialize a blank one: add all project questions in the assignment's encoding. load the structure into activity as a global.
-        if( data.assignment.encoding == null || data.assignment.encoding == "" ){
+        if( data.assignment.encoding == null ){
             var encoding = {
                 constants: [],
                 branches: [[]]
@@ -131,11 +131,22 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
 
         /* Allows loading outside resources into iframe with angular */
         data.paper.url = $sce.trustAsResourceUrl(data.paper.url);
+
+        /* Load the data into models */
+        var assignment = Assignment.parseFromJson( data.assignment );
+        var project = Project.parseFromJson( data.structure );
+        /* TODO:
+        *  1.) Pass models into directives: Branch, Domain, Question, Field
+        *  2.) Change bindings to use model properties
+        * */
+
         // Hook into angular digest cycle
         $scope.$apply( function(){
             $scope.paper = data.paper;
-            $scope.assignment = data.assignment;
-            $scope.structure = data.structure;
+            // $scope.assignment = data.assignment;
+            $scope.assignment = assignment;
+            // $scope.structure = data.structure;
+            $scope.structure = project;
             paperCoderService.loadAssignment( $scope.assignment );
         });
     });
