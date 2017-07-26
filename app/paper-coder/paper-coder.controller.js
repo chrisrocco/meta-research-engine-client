@@ -2,8 +2,19 @@ angular
     .module("paper-coder")
     .controller("PaperCoderController", PaperCoderController);
 
-PaperCoderController.$inject = ['$scope', '$sce', 'paper-coder.service'];
-function PaperCoderController($scope, $sce, paperCoderService) {
+PaperCoderController.$inject = [
+    '$scope',
+    '$sce',
+    'paper-coder.service',
+    'Assignment',
+    'Branch',
+    'Domain',
+    'Question',
+    'Project',
+    'Question',
+    'Response'
+];
+function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branch, Domain, Question, Project, Question, Response ) {
     // setup default models
     $scope.assignment = paperCoderService.getAssignment();
     $scope.structure = [];
