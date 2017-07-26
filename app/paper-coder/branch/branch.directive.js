@@ -45,7 +45,7 @@ function BigDataBranch(paperCoderService) {
                 }
                 // If we didn't find it, return false
                 return false;
-            }
+            };
 
             /**
              * Find and return the question input object associated with the question name
@@ -59,7 +59,7 @@ function BigDataBranch(paperCoderService) {
                         return $scope.branch[i];
                     }
                 }
-            }
+            };
 
             /**
              * Tells the paper coder service to move this input object's scope

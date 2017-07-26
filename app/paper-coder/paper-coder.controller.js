@@ -2,8 +2,8 @@ angular
     .module("paper-coder")
     .controller("PaperCoderController", PaperCoderController);
 
-PaperCoderController.$inject = ['$scope', '$sce', 'paper-coder.service'];
-function PaperCoderController($scope, $sce, paperCoderService) {
+PaperCoderController.$inject = ['$scope', '$sce', 'paper-coder.service', 'Project', 'Domain', 'Question', 'Response', 'Assignment', 'Branch'];
+function PaperCoderController($scope, $sce, paperCoderService, Project, Domain, Question, Response, Assignment, Branch) {
     // setup default models
     $scope.assignment = paperCoderService.getAssignment();
     $scope.structure = [];
@@ -83,9 +83,6 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             "height=700,width=500"
         );
     };
-    $scope.nextAssignment = function(){
-        if( !localStorage.nextAssignment ) throw "Next Assignment is not set!";
-    };
 
     var p = DataService.loadPaperCoder( localStorage.assignmentKey );
     p.success( function(data){
@@ -127,12 +124,13 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             $scope.structure = data.structure;
             paperCoderService.loadAssignment( $scope.assignment );
         });
-        // reseting the assignment
-        $scope.nullify = function (){
-            $scope.assignment.encoding = null;
-            $scope.save();
-            window.location.reload();
-        }
+
+        /* Start Testing */
+        var assignment = parseAssignment( data.assignment );
+        var project = parseProject( data.structure );
+        console.log(assignment);
+        console.log(project);
+        /* End Testing */
     });
     $( window ).unload(function() {
         DataService.putAssignment( $scope.assignment, false );
@@ -160,6 +158,61 @@ function PaperCoderController($scope, $sce, paperCoderService) {
                 encoding.constants.push( input );
             }
 
+        }
+    }
+    function parseAssignment( assignmentData ){
+        // make assignment model
+        var assignment = new Assignment({
+            done: assignmentData.done,
+            completion: assignmentData.completion
+        });
+        // load the constants branch
+        assignment.setConstantsBranch(new Branch("Constants"));
+        // load constants data
+        assignmentData.encoding.constants.forEach(function(_input){
+            var response = new Response(_input.question);
+            angular.extend(response, _input.data);
+            assignment.constants.addResponse( response );
+        });
+        assignmentData.encoding.branches.forEach(function(_branch, _index){
+            var branch = new Branch("Branch " + _index);
+            _branch.forEach(function(_input){
+                var res = new Response(_input.question);
+                angular.extend(res, _input.data);
+                branch.addResponse(res);
+            });
+            assignment.addBranch(branch);
+        });
+        return assignment;
+    }
+    function parseProject( projectData ){
+        var project = new Project();
+        projectData.forEach(function(_domain){
+            var domain = new Domain();
+            extractDomain(domain, _domain);
+            project.addDomain(domain);
+        });
+        return project;
+
+        function extractDomain(model, src){
+            // set properties
+            model._key = src._key;
+            model.description = src.description;
+            model.icon = src.icon;
+            model.name = src.name;
+            model.tooltip = src.tooltip;
+            // add the questions
+            src.variables.forEach(function(_question){
+                var question = new Question();
+                angular.extend(question, _question);
+                model.addQuestion(question);
+            });
+            // add the subdomains
+            src.subdomains.forEach(function(_subdomain){
+                var subdomain = new Domain();
+                extractDomain(subdomain, _subdomain);
+                model.addSubdomain(subdomain);
+            });
         }
     }
 }

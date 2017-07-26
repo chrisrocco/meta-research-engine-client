@@ -1,5 +1,5 @@
 angular
-	.module("paper-coder", [])
+	.module("paper-coder", ["models"])
     .config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
