@@ -30,6 +30,8 @@ function Assignment ( Branch, Response ){
         }
 
         static parseFromJson(assignmentData){
+            assignmentData.encoding.branches = assignmentData.encoding.branches || [];
+
             var assignment = new Assignment({
                 done: assignmentData.done,
                 completion: assignmentData.completion

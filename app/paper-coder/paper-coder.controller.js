@@ -102,6 +102,10 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
     p.success( function(data){
         console.log( "Data from server", data );
 
+        /* Start Testing */
+        console.log( Assignment.parseFromJson(data.assignment) );
+        /* End Testing */
+
         /* Initialize Data */
         data.assignment.done == "true" ? data.assignment.done = true : data.assignment.done = false ;
         data.assignment.completion = parseFloat( data.assignment.completion );

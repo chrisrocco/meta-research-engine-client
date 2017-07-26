@@ -9,6 +9,10 @@ angular.module("models")
             addDomain(Domain){
                 this.domains.push(Domain);
             }
+
+            static parseFromJson(){
+
+            }
         }
         return Project;
     }]);
