@@ -102,11 +102,6 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
     p.success( function(data){
         console.log( "Data from server", data );
 
-        /* Start Testing */
-        console.log( Project.parseFromJson(data.structure) );
-        console.log( Assignment.parseFromJson(data.assignment) );
-        /* End Testing */
-
         /* Initialize Data */
         data.assignment.done == "true" ? data.assignment.done = true : data.assignment.done = false ;
         data.assignment.completion = parseFloat( data.assignment.completion );
@@ -143,12 +138,6 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
             $scope.structure = data.structure;
             paperCoderService.loadAssignment( $scope.assignment );
         });
-        // reseting the assignment
-        $scope.nullify = function (){
-            $scope.assignment.encoding = null;
-            $scope.save();
-            window.location.reload();
-        }
     });
     $( window ).unload(function() {
         DataService.putAssignment( $scope.assignment, false );
