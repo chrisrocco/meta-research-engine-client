@@ -26,16 +26,16 @@ function paperCoderService() {
      * @param inputObject
      */
     function toggleScope(inputObject) {
-        if (branchContains(assignment.encoding.constants, inputObject.question)) {		// If the field exists in constants
-            branchRemove(assignment.encoding.constants, inputObject.question);				// Remove it from constants
-            for (var i = 0; i < assignment.encoding.branches.length; i++) {			// Add it to all branches
-                branchAdd(assignment.encoding.branches[i], inputObject.question);
+        if (branchContains(assignment.constants, inputObject.question)) {		// If the field exists in constants
+            branchRemove(assignment.constants, inputObject.question);				// Remove it from constants
+            for (var i = 0; i < assignment.branches.length; i++) {			// Add it to all branches
+                branchAdd(assignment.branches[i], inputObject.question);
             }
         } else {
-            for (var i = 0; i < assignment.encoding.branches.length; i++) {
-                branchRemove(assignment.encoding.branches[i], inputObject.question);
+            for (var i = 0; i < assignment.branches.length; i++) {
+                branchRemove(assignment.branches[i], inputObject.question);
             }
-            branchAdd(assignment.encoding.constants, inputObject.question);
+            branchAdd(assignment.constants, inputObject.question);
         }
     }
 
@@ -69,7 +69,7 @@ function paperCoderService() {
     }
 
     function deleteBranch(branchObject){
-        var branches = assignment.encoding.branches;
+        var branches = assignment.branches;
         if(branches.length === 1) return;
 
         var index = branches.indexOf(branchObject);
@@ -78,27 +78,26 @@ function paperCoderService() {
     }
 
     function newBranch(){
-        var cloneOfFirstBranch = JSON.parse(JSON.stringify(assignment.encoding.branches[0]));
-        assignment.encoding.branches.push(cloneOfFirstBranch);
+        var cloneOfFirstBranch = JSON.parse(JSON.stringify(assignment.branches[0]));
+        assignment.branches.push(cloneOfFirstBranch);
     }
 
     function calculateCompletion() {
         if( !assignment ) return 0;
 
-        var encoding = assignment.encoding;
-        var totalInputs = encoding.constants.length + ( encoding.branches.length * encoding.branches[0].length );
+        var totalInputs = assignment.constants.length + ( assignment.branches.length * assignment.branches[0].length );
         var filledInputs = 0;
 
         /* Rocco Algorithm */
-        for(var i = 0; i < encoding.constants.length; i++){
-            var inputObject = encoding.constants[i];
+        for(var i = 0; i < assignment.constants.length; i++){
+            var inputObject = assignment.constants[i];
             if( isFilled(inputObject) ){
                 filledInputs++;
             }
         }
-        for(var i = 0; i < encoding.branches.length; i++){
-            for(var j = 0; j < encoding.branches[i].length; j++){
-                var inputObject = encoding.branches[i][j];
+        for(var i = 0; i < assignment.branches.length; i++){
+            for(var j = 0; j < assignment.branches[i].length; j++){
+                var inputObject = assignment.branches[i][j];
                 if( isFilled(inputObject) ){
                     filledInputs++;
                 }
@@ -132,6 +131,7 @@ function paperCoderService() {
      */
     function loadAssignment(assignmentObject) {
         assignment = assignmentObject;
+        console.log( "loaded: ", assignmentObject);
     }
     function getAssignment(){
         return assignment;

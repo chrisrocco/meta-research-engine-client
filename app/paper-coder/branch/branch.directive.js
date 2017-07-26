@@ -49,14 +49,14 @@ function BigDataBranch(paperCoderService) {
 
             /**
              * Find and return the question input object associated with the question name
-             * @param fieldName
+             * @param question_key
              * @returns {*}
              */
-            this.getInput = function(fieldName){
-                for(var i = 0; i < $scope.branch.length; i++){
-                    // If the 'Input' exist in the encoding branch
-                    if($scope.branch[i].question === fieldName){
-                        return $scope.branch[i];
+            this.getInput = function(question_key){
+                for(var i = 0; i < $scope.branch.responses.length; i++){
+                    // If the 'Input' exist in the encoding branch.responses
+                    if($scope.branch.responses[i].question === question_key){
+                        return $scope.branch.responses[i];
                     }
                 }
             }

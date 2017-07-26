@@ -238,10 +238,10 @@
       </div>
       <div class="row">
         <div class="col-lg-6">
-          <bd-branch branch="assignment.encoding.constants" name="'constants'" label="'Experiment Information'">
-            <bd-domain ng-repeat="domain in structure" domain="domain" data-content="And here's some amazing content. It's very engaging. Right?"
+          <bd-branch branch="assignment.constants" name="'constants'" label="'Experiment Information'">
+            <bd-domain ng-repeat="domain in structure.domains" domain="domain" data-content="And here's some amazing content. It's very engaging. Right?"
             data-trigger="hover" data-toggle="popover" data-original-title="Hover to trigger">
-              <bd-field ng-repeat="variable in domain.variables" field="variable"></bd-field>
+              <bd-field ng-repeat="question in domain.questions" field="question"></bd-field>
             </bd-domain>
           </bd-branch>
           <bd-branch ng-repeat="branch in assignment.encoding.branches" branch="branch" name="'branch'+$index"
@@ -351,8 +351,6 @@
   <script src="../app/core/models/domain.factory.js"></script>
   <script src="../app/core/models/project.factory.js"></script>
   <script src="../app/paper-coder/paper-coder.module.js"></script>
-  <script src="../app/paper-coder/editor/editor.service.js"></script>
-  <script src="../app/paper-coder/editor/editor.directive.js"></script>
   <script src="../app/paper-coder/domain/domain.directive.js"></script>
   <script src="../app/paper-coder/branch/branch.directive.js"></script>
   <script src="../app/paper-coder/field/field.directive.js"></script>

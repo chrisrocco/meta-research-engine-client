@@ -149,6 +149,7 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
             $scope.structure = project;
             paperCoderService.loadAssignment( $scope.assignment );
         });
+        console.log("Parsed Project: ", $scope.structure);
     });
     $( window ).unload(function() {
         DataService.putAssignment( $scope.assignment, false );

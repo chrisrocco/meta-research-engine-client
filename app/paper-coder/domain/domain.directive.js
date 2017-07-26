@@ -37,11 +37,12 @@ function BigDataDomain(paperCoderService) {
              * @returns {boolean}
              */
             function isAlive( domainObject, firstCall ){
+                return true;
                 var hasLivingQuestions = false;
                 var hasLivingSubdomains = false;
 
-                for(var i = 0; i < domainObject.variables.length; i++){
-                    var theField = domainObject.variables[i];
+                for(var i = 0; i < domainObject.questions.length; i++){
+                    var theField = domainObject.questions[i];
                     if( $ctrl.isAlive( theField._key ) ){
                         hasLivingQuestions = true;
                     }
@@ -63,8 +64,8 @@ function BigDataDomain(paperCoderService) {
              * Iterively toggles the scope of all child fields
              */
             function toggleScope( domainObject ){
-                for(var i = 0; i < domainObject.variables.length; i++){
-                    var theField = domainObject.variables[i];
+                for(var i = 0; i < domainObject.questions.length; i++){
+                    var theField = domainObject.questions[i];
                     $ctrl.toggleScope($ctrl.getInput(theField._key));
                 }
                 for( var sd = 0; sd < domainObject.subdomains.length; sd++ ){
@@ -74,13 +75,13 @@ function BigDataDomain(paperCoderService) {
             }
 
             function isComplete( domainObject ){
-                for(var i = 0; i < domainObject.variables.length; i++){
-                    var theField = domainObject.variables[i];
+                for(var i = 0; i < domainObject.questions.length; i++){
+                    var theField = domainObject.questions[i];
                     var theInput = $ctrl.getInput(theField._key);
                     if(theInput){
                         if(
-                            !theInput.data.value
-                            && !(theInput.data.min && theInput.data.max)
+                            !theInput.value
+                            && !(theInput.min && theInput.max)
                         ) return false;
                     }
                 }

@@ -2,22 +2,20 @@ angular
     .module('paper-coder')
     .directive('bdField', BigDataField);
 
-BigDataField.$inject = ['paper-coder.service', 'editor.service', '$compile']
-function BigDataField(paperCoderService, editorService, $compile) {
+BigDataField.$inject = ['paper-coder.service', '$compile']
+function BigDataField(paperCoderService, $compile) {
     return {
         restrict: 'E',
         replace: true,
         require: "^bdBranch",
         scope: {
-            questionMetaData: "=field"
+            question: "=field"
         },
         link: function ($scope, $element, $attrs, $ctrl) {
             $scope.isAlive = isAlive;
-            $scope.editMe = editMe;
             $scope.toggleScope = toggleScope;
             $scope.generatePreview = generatePreview;
-            $scope.inputObject = $ctrl.getInput( $scope.questionMetaData._key );
-            $scope.getForm = editorService.getInputForm;
+            $scope.inputObject = $ctrl.getInput( $scope.question._key );
             init();
 
             function renderQuestions(){
@@ -25,15 +23,15 @@ function BigDataField(paperCoderService, editorService, $compile) {
                     if( $scope.inputObject ){
                         // enable tooltip
                         $element.find(".questionTooltip").webuiPopover({
-                            content: $scope.questionMetaData.tooltip,
+                            content: $scope.question.tooltip,
                             trigger:'hover',
                             placement:'right',
-                            title: $scope.questionMetaData.name
+                            title: $scope.question.name
                         });
                         $element.removeAttr('title');
                         // render form
-                        var tag = "bd-input-"+$scope.questionMetaData.type;
-                        var dr = "<"+tag+" bind='inputObject.data' meta='questionMetaData' >"
+                        var tag = "bd-input-"+$scope.question.type;
+                        var dr = "<"+tag+" bind='inputObject' meta='question' >"
                             + "</"+tag+">";
                         $element.find(".inputOutlet").empty();
                         var elem = angular.element(dr);
@@ -52,42 +50,35 @@ function BigDataField(paperCoderService, editorService, $compile) {
             });
 
             /**
-             * Tells the editor service to load this field input object
-             */
-            function editMe() {
-                $scope.inputObject = $ctrl.getInput($scope.questionMetaData._key);
-                editorService.setView($scope.questionMetaData, $scope.inputObject);
-            }
-
-            /**
             * Decides if this domain DOM element should be rendered
             * @returns {boolean}
             */
             function isAlive() {
-                var alive = $ctrl.isAlive($scope.questionMetaData._key);
+                return true;
+                var alive = $ctrl.isAlive($scope.question._key);
                 return alive;
             }
 
             /**
-             * Tells the branch controller to toggle the scope of this questionMetaData input object
+             * Tells the branch controller to toggle the scope of this question input object
              */
             function toggleScope (){
-                $ctrl.toggleScope($ctrl.getInput($scope.questionMetaData._key));
+                $ctrl.toggleScope($ctrl.getInput($scope.question._key));
             }
 
             /*
-            * Generates a preview for different questionMetaData types
+            * Generates a preview for different question types
             */
             function generatePreview(){
                 if(!$scope.inputObject) return;
 
-                var type = $scope.questionMetaData.type;
+                var type = $scope.question.type;
                 if(type === "text" || type === "number" || type === "select" || type === "boolean"){
-                    return $scope.inputObject.data.value;
+                    return $scope.inputObject.value;
                 }
                 if(type === "range"){
-                    var min = $scope.inputObject.data.rangeMin;
-                    var max = $scope.inputObject.data.rangeMax;
+                    var min = $scope.inputObject.rangeMin;
+                    var max = $scope.inputObject.rangeMax;
                     if( min && max ){
                         return min + " -> " + max;
                     }
@@ -96,11 +87,12 @@ function BigDataField(paperCoderService, editorService, $compile) {
             }
 
             function init(){
+                console.log('loaded question', $scope)
                 renderQuestions();
                 if( $scope.inputObject ){
-                    if( $scope.inputObject.data.notReported ){
-                        if( $scope.inputObject.data.notReported === "false" ){
-                            $scope.inputObject.data.notReported = false;
+                    if( $scope.inputObject.notReported ){
+                        if( $scope.inputObject.notReported === "false" ){
+                            $scope.inputObject.notReported = false;
                         }
                     }
                 }
