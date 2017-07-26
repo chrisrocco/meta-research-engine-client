@@ -103,6 +103,7 @@ function PaperCoderController($scope, $sce, paperCoderService, Assignment, Branc
         console.log( "Data from server", data );
 
         /* Start Testing */
+        console.log( Project.parseFromJson(data.structure) );
         console.log( Assignment.parseFromJson(data.assignment) );
         /* End Testing */
 
