@@ -29,8 +29,29 @@ function Assignment ( Branch, Response ){
             this.branches.splice(ind,1);
         }
 
-        static parseFromJson(){
-
+        static parseFromJson(assignmentData){
+            var assignment = new Assignment({
+                done: assignmentData.done,
+                completion: assignmentData.completion
+            });
+            // load the constants branch
+            assignment.setConstantsBranch(new Branch("Constants"));
+            // load constants data
+            assignmentData.encoding.constants.forEach(function(_input){
+                var response = new Response(_input.question);
+                angular.extend(response, _input.data);
+                assignment.constants.addResponse( response );
+            });
+            assignmentData.encoding.branches.forEach(function(_branch, _index){
+                var branch = new Branch("Branch " + _index);
+                _branch.forEach(function(_input){
+                    var res = new Response(_input.question);
+                    angular.extend(res, _input.data);
+                    branch.addResponse(res);
+                });
+                assignment.addBranch(branch);
+            });
+            return assignment;
         }
     }
     return Assignment;
