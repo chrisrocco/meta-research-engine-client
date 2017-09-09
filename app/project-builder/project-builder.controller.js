@@ -165,10 +165,10 @@ function ProjectBuilderController( $scope ){
     */
     function init(){
         window.scope = $scope;
-        var promise = DataService.getProjectBuilderData( localStorage.projectKey );
+        let promise = DataService.getProjectBuilderData( localStorage.projectKey );
         promise.success( function( data ){
             console.log( "from server", data );
-            var structure = data.structure;
+            let structure = data.structure;
             if( structure ){
                 $scope.$apply(function(){
                     $scope.domains = structure.domains;
