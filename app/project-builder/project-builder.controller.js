@@ -172,6 +172,7 @@ function ProjectBuilderController( $scope ){
                 $scope.$apply(function(){
                     $scope.domains = structure.domains;
                     $scope.questions = structure.questions;
+                    $scope.project = data.project;
                 });
             }
             /* Display the project name */
