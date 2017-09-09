@@ -164,6 +164,7 @@ function ProjectBuilderController( $scope ){
     * ==========================
     */
     function init(){
+        window.scope = $scope;
         var promise = DataService.getProjectBuilderData( localStorage.projectKey );
         promise.success( function( data ){
             console.log( "from server", data );
