@@ -207,8 +207,8 @@
     function http(config) {
         config['url'] = API_BASE_PATH + config['url'];
         config['headers'] = {
-            "Authorization": "Bearer " + AuthService.getToken // token here
-            () };
+            "Authorization": "Bearer " + AuthService.getToken() // token here
+        };
         config['statusCode'] = {
             500: reportError,
             401: handleUnauthorized
