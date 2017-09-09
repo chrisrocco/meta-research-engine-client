@@ -176,9 +176,6 @@ function ProjectBuilderController( $scope ){
                     $scope.project = data.project;
                 });
             }
-            /* Display the project name */
-            var spanElement = document.getElementById("project-name");
-            spanElement.innerHTML = data.projectName;
             renderTree();
         });
 
