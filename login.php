@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Research Study Encoding System">
-    <meta name="author" content="Chris Rocco">
+    <?php require 'assets/partials/meta-includes.html'; ?>
     <title>Login | Big Data UAB</title>
     <?php require 'assets/partials/css-includes.html'; ?>
 </head>
 <body class="animsition page-login-v3 layout-full">
-<!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
+<?php require 'assets/partials/IE-check.html'; ?>
 <!-- Page -->
 <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
     <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
         <div class="panel">
             <div class="panel-body">
                 <div class="brand">
-                    <img class="brand-img" src="/assets/images/UAB-logo.png" width="100%" alt="UAB Research Coder">
+                    <img class="brand-img" src="/assets/images/UAB-logo.png" style="width: 100%" alt="UAB Research Coder">
                 </div>
                 <form action="#" onsubmit="return login()">
                     <div class="form-group form-material floating" data-plugin="formMaterial">
@@ -44,9 +37,9 @@
                 <p>Still no account? Please go to <a href="/register.php">Sign up</a></p>
             </div>
         </div>
-        <?php require 'assets/partials/footer.html'; ?>
     </div>
 </div>
+<?php require 'assets/partials/footer.html'; ?>
 <!-- End Page -->
 <?php require 'assets/partials/js-includes.html'; ?>
 <script src="/assets/examples/js/login.js"></script>
