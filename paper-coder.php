@@ -111,79 +111,43 @@
     <bd-editor></bd-editor>
 </div>
 <!-- End Page -->
-<!-- Footer -->
 <?php require 'assets/partials/footer.html'; ?>
-<!-- Core  -->
-<script src="..\assets/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-<script src="..\assets/vendor/jquery/jquery.js"></script>
-<script src="..\assets/vendor/tether/tether.js"></script>
-<script src="..\assets/vendor/bootstrap/bootstrap.js"></script>
-<script src="..\assets/vendor/animsition/animsition.js"></script>
-<script src="..\assets/vendor/mousewheel/jquery.mousewheel.js"></script>
-<script src="..\assets/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-<script src="..\assets/vendor/asscrollable/jquery-asScrollable.js"></script>
-<!-- Plugins -->
-<script src="..\assets/vendor/switchery/switchery.min.js"></script>
-<script src="..\assets/vendor/intro-js/intro.js"></script>
-<script src="..\assets/vendor/screenfull/screenfull.js"></script>
-<script src="..\assets/vendor/slidepanel/jquery-slidePanel.js"></script>
-<script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-<script src="..\assets/vendor/webui-popover/jquery.webui-popover.min.js"></script>
-<script src="..\assets/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
+<?php require 'assets/partials/js-includes.html'; ?>
+
+<script src="/assets/vendor/webui-popover/jquery.webui-popover.min.js"></script>
+<script src="/assets/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="..\assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
-<script src="..\assets/vendor/jquery-asRange/jquery-asRange.js"></script>
-<script src="..\assets/vendor/pace/pace.min.js"></script>
-<script src="..\assets/vendor/bootstrap-select/bootstrap-select.js"></script>
-<script src="..\assets/vendor/multi-select/jquery.multi-select.js"></script>
-<!-- Scripts -->
-<script src="..\assets/js/State.js"></script>
-<script src="..\assets/js/Component.js"></script>
-<script src="..\assets/js/Plugin.js"></script>
-<script src="..\assets/js/Base.js"></script>
-<script src="..\assets/js/Config.js"></script>
-<script src="..\assets/js/URLs.js"></script>
-<script src="..\assets/js/Section/Menubar.js"></script>
-<script src="..\assets/js/Section/Sidebar.js"></script>
-<script src="..\assets/js/Section/PageAside.js"></script>
-<script src="..\assets/js/Plugin/menu.js"></script>
-<!-- Providers -->
-<script src="..\assets/js/AuthService.js"></script>
-<script src="..\assets/js/DataService.js"></script>
-<script src="..\assets/js/ApplicationService.js"></script>
-<!-- Config -->
-<script src="..\assets/js/config/colors.js"></script>
-<script src="..\assets/js/config/tour.js"></script>
-<script>
-    Config.set('assets', '..\assets');
-</script>
-<!-- Page -->
-<script src="..\assets/js/Site.js"></script>
-<script src="..\assets/js/Plugin/asscrollable.js"></script>
-<script src="..\assets/js/Plugin/slidepanel.js"></script>
-<script src="..\assets/js/Plugin/switchery.js"></script>
-<script src="..\assets/js/Plugin/ionrangeslider.js"></script>
-<script src="..\assets/js/Plugin/panel.js"></script>
-<script src="..\assets/js/Plugin/bootstrap-select.js"></script>
-<script src="..\assets/js/Plugin/multi-select.js"></script>
-<script src="..\assets/examples/js/paper-coder.js"></script>
-<script src="../app/paper-coder/paper-coder.module.js"></script>
-<script src="../app/paper-coder/editor/editor.service.js"></script>
-<script src="../app/paper-coder/editor/editor.directive.js"></script>
-<script src="../app/paper-coder/domain/domain.directive.js"></script>
-<script src="../app/paper-coder/branch/branch.directive.js"></script>
-<script src="../app/paper-coder/field/field.directive.js"></script>
-<script src="../app/paper-coder/inputs/input.text.directive.js"></script>
-<script src="../app/paper-coder/inputs/input.number.directive.js"></script>
-<script src="../app/paper-coder/inputs/input.boolean.directive.js"></script>
-<script src="../app/paper-coder/inputs/input.select.directive.js"></script>
-<script src="../app/paper-coder/inputs/input.multiselect.directive.js"></script>
-<script src="../app/paper-coder/inputs/input.range.directive.js"></script>
-<script src="../app/paper-coder/paper-coder.service.js"></script>
-<script src="../app/paper-coder/paper-coder.controller.js"></script>
+<script src="/assets/vendor/bootstrap-sweetalert/sweetalert.js"></script>
+<script src="/assets/vendor/jquery-asRange/jquery-asRange.js"></script>
+<script src="/assets/vendor/pace/pace.min.js"></script>
+<script src="/assets/vendor/bootstrap-select/bootstrap-select.js"></script>
+<script src="/assets/vendor/multi-select/jquery.multi-select.js"></script>
+<script src="/assets/js/Plugin/ionrangeslider.js"></script>
+<script src="/assets/js/Plugin/panel.js"></script>
+<script src="/assets/js/Plugin/bootstrap-select.js"></script>
+<script src="/assets/js/Plugin/multi-select.js"></script>
+
+<script src="/app/paper-coder/paper-coder.module.js"></script>
+<script src="/app/paper-coder/editor/editor.service.js"></script>
+<script src="/app/paper-coder/editor/editor.directive.js"></script>
+<script src="/app/paper-coder/domain/domain.directive.js"></script>
+<script src="/app/paper-coder/branch/branch.directive.js"></script>
+<script src="/app/paper-coder/field/field.directive.js"></script>
+
+<script src="/app/paper-coder/inputs/input.text.directive.js"></script>
+<script src="/app/paper-coder/inputs/input.number.directive.js"></script>
+<script src="/app/paper-coder/inputs/input.boolean.directive.js"></script>
+<script src="/app/paper-coder/inputs/input.select.directive.js"></script>
+<script src="/app/paper-coder/inputs/input.multiselect.directive.js"></script>
+<script src="/app/paper-coder/inputs/input.range.directive.js"></script>
+
+<script src="/app/paper-coder/paper-coder.service.js"></script>
+<script src="/app/paper-coder/paper-coder.controller.js"></script>
+
 <script>
     (function (document, window, $) {
         $(document).ready(function () {
+            Site.run();
             ApplicationService.renderSession();
         });
     })(document, window, jQuery);
