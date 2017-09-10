@@ -4,6 +4,7 @@
     <?php require 'assets/partials/meta-includes.html'; ?>
     <title>Register | Big Data UAB</title>
     <?php require 'assets/partials/css-includes.html'; ?>
+    <link rel="stylesheet" href="/assets/examples/css/pages/register-v3.css">
 </head>
 <body class="animsition page-register-v3 layout-full">
 <?php require 'assets/partials/IE-check.html'; ?>
