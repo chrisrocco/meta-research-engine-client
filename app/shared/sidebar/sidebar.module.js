@@ -26,11 +26,11 @@ angular.module("mre.sidebar", [])
             toggleSidebar: toggle
         }
     })
-    .directive("sidebar", function(){
+    .directive("sidebar", function(authService){
         return {
             templateUrl: 'app/shared/sidebar/sidebar.html',
             controller: function($scope){
-
+                Object.assign($scope, authService)
             },
             controllerAs: "sidebarCtrl"
         }

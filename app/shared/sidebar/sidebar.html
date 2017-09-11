@@ -1,7 +1,7 @@
 <div class="site-menubar">
     <div class="site-menubar-header">
         <div class="cover overlay">
-            <img class="cover-image" src="/assets/examples/images/dashboard-header.jpg"
+            <img class="cover-image" ng-src="{{userImage()}}"
                  alt="...">
             <div class="overlay-panel vertical-align overlay-background">
                 <div class="vertical-align-middle">
@@ -10,10 +10,10 @@
                     </a>
                     <div class="site-menubar-info">
                         <h5 class="site-menubar-user">
-                            <span class="bdFirstName"></span> &nbsp;
-                            <span class="bdLastName"></span>
+                            <span>{{userName()}}</span> &nbsp;
+                            <span></span>
                         </h5>
-                        <p class="bdEmail site-menubar-email">[email]</p>
+                        <p class="site-menubar-email">{{userEmail()}}</p>
                     </div>
                 </div>
             </div>

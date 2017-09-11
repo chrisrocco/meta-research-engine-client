@@ -6,35 +6,39 @@
     <title>Test page | Big Data UAB</title>
     <?php require 'assets/partials/css-includes.html'; ?>
 
+    <!-- PAGES
+    ================= -->
+    <!-- Assignments -->
+    <link rel="stylesheet" href="/assets/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="/assets/vendor/chartist/chartist.css">
+    <link rel="stylesheet" href="/assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="/assets/vendor/jquery-selective/jquery-selective.css">
+    <link rel="stylesheet" href="/assets/examples/css/assignments2.css">
+
+    <!-- ANGULAR
+    ================= -->
+    <!-- external -->
     <script src="/node_modules/angular/angular.min.js"></script>
     <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- services -->
+    <script src="/app/shared/services/auth/auth.module.js"></script>
+    <!-- shared -->
     <script src="/app/shared/sidebar/sidebar.module.js"></script>
     <script src="/app/shared/navbar/navbar.module.js"></script>
     <script src="/app/shared/footer/footer.module.js"></script>
+    <!-- Pages -->
+    <script src="/app/assignments/assignments.module.js"></script>
+    <script src="/app/assignments/assignments.controller.js"></script>
     <script src="/app/app.js"></script>
-
-    <script>
-        angular.module("mre")
-            .controller("testController", function($scope){
-                this.testing = "Test Page Definitely Works!";
-            });
-    </script>
 </head>
 <body ng-app="mre">
 <?php require 'assets/partials/IE-check.html'; ?>
 
 <navbar></navbar>
 <sidebar></sidebar>
-
 <ui-view></ui-view>
-<!-- Page -->
-<div class="page full-width" ng-controller="testController as $ctrl">
-    <div class="page-content">
-        <h3>{{$ctrl.testing}}</h3>
-    </div>
-</div>
-<!-- Footer -->
 <mre-footer></mre-footer>
+
 <?php require 'assets/partials/js-includes.html'; ?>
 
 <script>
