@@ -172,11 +172,9 @@
 <script src="/assets/vendor/jquery-selective/jquery-selective.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        Site.run();
-    });
     (function (document, window, $) {
         $(document).ready(function () {
+            Site.run();
             ApplicationService.renderSession();
         });
     })(document, window, jQuery);

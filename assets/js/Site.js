@@ -203,7 +203,7 @@
       key: 'setupMenubar',
       value: function setupMenubar() {
         /* we're gonna do this the angular way */
-        return; // noop
+        // return; // noop
           // booooooo
         var _this2 = this;
 
