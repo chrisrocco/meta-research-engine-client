@@ -7,8 +7,10 @@
     <?php require 'assets/partials/css-includes.html'; ?>
 
     <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/app/shared/sidebar/sidebar.module.js"></script>
     <script src="/app/shared/navbar/navbar.module.js"></script>
+    <script src="/app/shared/footer/footer.module.js"></script>
     <script src="/app/app.js"></script>
 
     <script>
@@ -18,18 +20,21 @@
             });
     </script>
 </head>
-<body ng-app="mre" ng-controller="testController as $ctrl">
+<body ng-app="mre">
 <?php require 'assets/partials/IE-check.html'; ?>
+
 <navbar></navbar>
 <sidebar></sidebar>
+
+<ui-view></ui-view>
 <!-- Page -->
-<div class="page full-width" >
+<div class="page full-width" ng-controller="testController as $ctrl">
     <div class="page-content">
         <h3>{{$ctrl.testing}}</h3>
     </div>
 </div>
 <!-- Footer -->
-<?php require 'assets/partials/footer.html'; ?>
+<mre-footer></mre-footer>
 <?php require 'assets/partials/js-includes.html'; ?>
 
 <script>
