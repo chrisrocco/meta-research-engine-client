@@ -17,5 +17,11 @@
   "author": {
     "name": "chrisrocco",
     "url": "http://chrisroc.co"
+  },
+  "scripts": {
+    "serve": "php -S localhost:8080"
+  },
+  "dependencies": {
+    "angular": "^1.6.6"
   }
 }

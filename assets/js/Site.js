@@ -202,6 +202,9 @@
     }, {
       key: 'setupMenubar',
       value: function setupMenubar() {
+        /* we're gonna do this the angular way */
+        return; // noop
+          // booooooo
         var _this2 = this;
 
         (0, _jquery2.default)(document).on('click', '[data-toggle="menubar"]', function () {
