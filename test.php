@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="/assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
     <link rel="stylesheet" href="/assets/vendor/jquery-selective/jquery-selective.css">
     <link rel="stylesheet" href="/assets/examples/css/assignments2.css">
+    <!-- Project Center -->
+    <link rel="stylesheet" href="/assets/vendor/jquery-selective/jquery-selective.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap-sweetalert/sweetalert.css">
+    <link rel="stylesheet" href="/assets/examples/css/apps/projects.css">
 
     <!-- ANGULAR
     ================= -->
@@ -29,6 +33,9 @@
     <!-- Pages -->
     <script src="/app/assignments/assignments.module.js"></script>
     <script src="/app/assignments/assignments.controller.js"></script>
+    <script src="/app/project-center/project-center.module.js"></script>
+    <script src="/app/project-center/project-center.controller.js"></script>
+    <!-- main -->
     <script src="/app/app.js"></script>
 </head>
 <body ng-app="mre">

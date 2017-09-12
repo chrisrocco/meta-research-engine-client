@@ -8,7 +8,8 @@ let app = angular.module("mre", [
     "mre.navbar",
     "mre.footer",
     /* pages */
-    "assignments"
+    "assignments",
+    "project-center"
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -23,6 +24,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controllerAs: "assCtrl",
             onEnter: function(){
                 $("body").attr("class", "app-work");
+            }
+        })
+        .state('project-center', {
+            url: '/project-center',
+            templateUrl: "app/project-center/project-center.html",
+            controller: "ProjectCenterController",
+            onEnter: function(){
+                $("body").attr("class", "app-projects");
             }
         })
 
