@@ -61,7 +61,7 @@
             $("#passwordInput").val()
         ).then(
             function () {
-                window.location = "assignments.php";
+                window.location = "index.html";
             },
             function fail(response) {
                 console.log("fail", response);

@@ -11,33 +11,11 @@ function PaperCoderController($scope, $sce, paperCoderService) {
     $scope.newBranch = paperCoderService.newBranch;
     $scope.calculateCompletion = paperCoderService.calculateCompletion;
     $scope.toggleComplete = function(){
-        if( $scope.assignment.done == true ){
-            swal({
-                title: "Still Working?",
-                text: "We'll hold off on using your data.",
-                type: "warning",
-                showCancelButton: false,
-                confirmButtonClass: "btn-success",
-                confirmButtonText: 'OK',
-                closeOnConfirm: false
-            });
-        }
-        if( $scope.assignment.done == false ){
-            swal({
-                title: "Assignment Complete!",
-                text: "We'll put your data to good use!",
-                type: "success",
-                showCancelButton: false,
-                confirmButtonClass: "btn-success",
-                confirmButtonText: 'OK',
-                closeOnConfirm: false
-            });
-        }
-
         paperCoderService.toggleComplete();
+        DataService.putAssignment( $scope.assignment );
     };
     $scope.save = function( silent ){
-        if( silent == true ){
+        if( silent === true ){
 
         } else {
             swal({
@@ -51,6 +29,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             });
         }
 
+        console.log($scope.assignment);
         var p = DataService.putAssignment( $scope.assignment );
         p.success( function( res ){
             console.log( "from server: ", res);
@@ -92,7 +71,6 @@ function PaperCoderController($scope, $sce, paperCoderService) {
         console.log( "Data from server", data );
 
         /* Initialize Data */
-        data.assignment.done == "true" ? data.assignment.done = true : data.assignment.done = false ;
         data.assignment.completion = parseFloat( data.assignment.completion );
 
         // NULL encoding? -> Initialize a blank one: add all project questions in the assignment's encoding. load the structure into activity as a global.

@@ -14,8 +14,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="brand">
-                    <img class="brand-img" src="/assets/images/UAB-logo.png" width="100%" alt="UAB Research Coder">
-                    <!--<h2 class="brand-text font-size-18">Big Data</h2>-->
+                    <img class="brand-img" src="/assets/images/UAB-logo.png" style="width: 100%" alt="UAB Research Coder">
                 </div>
                 <form action="#" onsubmit="return register()">
                     <div class="form-group form-material floating" data-plugin="formMaterial">
