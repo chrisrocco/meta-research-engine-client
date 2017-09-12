@@ -22,13 +22,13 @@
     <div class="site-menubar-body">
         <div>
             <ul class="site-menu" data-plugin="menu">
-                <li ng-if="authService.isLoggedIn()" class="site-menu-item ">
+                <li ng-if="authService.getUser().role === 'manager'" class="site-menu-item ">
                     <a ui-sref="project-center">
                         <i class="site-menu-icon wb-layout"></i>
                         <span class="site-menu-title"> Project Center </span>
                     </a>
                 </li>
-                <li ng-if="authService.isLoggedIn()" class="site-menu-item">
+                <li ng-if="authService.getUser().role === 'manager'" class="site-menu-item">
                     <a ui-sref="codebook">
                         <i class="site-menu-icon wb-book"></i>
                         <span class="site-menu-title">Code Book</span>
