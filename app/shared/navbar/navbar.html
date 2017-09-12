@@ -4,22 +4,7 @@
 
     <div class="navbar-header">
         <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-                data-toggle="menubar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="hamburger-bar"></span>
-        </button>
-        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-                data-toggle="menubar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="hamburger-bar"></span>
-        </button>
-        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-                data-toggle="menubar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="hamburger-bar"></span>
-        </button>
-        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-                data-toggle="menubar">
+                ng-click="sidebar.toggleSidebar()">
             <span class="sr-only">Toggle navigation</span>
             <span class="hamburger-bar"></span>
         </button>
@@ -30,11 +15,6 @@
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
             <img class="navbar-brand-logo" src="/assets/images/logo.png" title="Remark">
         </div>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
-                data-toggle="collapse">
-            <span class="sr-only">Toggle Search</span>
-            <i class="icon wb-search" aria-hidden="true"></i>
-        </button>
     </div>
 
     <div class="navbar-container container-fluid">
@@ -43,7 +23,7 @@
             <!-- Navbar Toolbar -->
             <ul class="nav navbar-toolbar">
                 <li class="nav-item hidden-float" >
-                    <a ng-click="toggleSidebar()" class="nav-link" href role="button">
+                    <a ng-click="sidebar.toggleSidebar()" class="nav-link" href role="button">
                         <i class="icon hamburger hamburger-arrow-left">
                             <span class="sr-only">Toggle menubar</span>
                             <span class="hamburger-bar"></span>
@@ -55,12 +35,12 @@
                         <span class="sr-only">Toggle fullscreen</span>
                     </a>
                 </li>
-                <li class="nav-item hidden-float">
-                    <a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
-                       role="button">
-                        <span class="sr-only">Toggle Search</span>
-                    </a>
-                </li>
+                <!--<li class="nav-item hidden-float">-->
+                    <!--<a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"-->
+                       <!--role="button">-->
+                        <!--<span class="sr-only">Toggle Search</span>-->
+                    <!--</a>-->
+                <!--</li>-->
             </ul>
             <!-- End Navbar Toolbar -->
 

@@ -1,11 +1,9 @@
-angular.module("mre.navbar", ['mre.sidebar', 'ui.router'])
-    .directive("navbar", function(sidebarService, $state){
+angular.module("mre.navbar", ['mre.sidebar'])
+    .directive("navbar", function(sidebarService){
         return {
             templateUrl: 'app/shared/navbar/navbar.html',
             controller: function($scope){
-                Object.assign($scope, sidebarService);
-
-                $scope.state = $state;
+                $scope.sidebar = sidebarService;
             },
             controllerAs: "sidebarCtrl"
         }

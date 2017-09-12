@@ -1,7 +1,7 @@
 <div class="site-menubar">
     <div class="site-menubar-header">
         <div class="cover overlay">
-            <img class="cover-image" ng-src="{{userImage()}}"
+            <img class="cover-image" src="/assets/photos/placeholder.png"
                  alt="...">
             <div class="overlay-panel vertical-align overlay-background">
                 <div class="vertical-align-middle">
@@ -10,10 +10,10 @@
                     </a>
                     <div class="site-menubar-info">
                         <h5 class="site-menubar-user">
-                            <span>{{authService.userName()}}</span> &nbsp;
+                            <span>{{authService.getUser().first_name+" "+authService.getUser().last_name}}</span> &nbsp;
                             <span></span>
                         </h5>
-                        <p class="site-menubar-email">{{authService.userEmail()}}</p>
+                        <p class="site-menubar-email">{{authService.getUser().email}}</p>
                     </div>
                 </div>
             </div>
