@@ -11,7 +11,8 @@ let app = angular.module("mre", [
     "assignments",
     "project-center",
     "project-builder",
-    "manage-project"
+    "manage-project",
+    "codebook"
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -45,6 +46,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/project-manage',
             templateUrl: "app/manage-project/project-manage.html",
             controller: "ManageProjectController"
+        })
+        .state('codebook', {
+            url: '/codebook',
+            templateUrl: "app/codebook/codebook.html",
+            controller: "CodebookController",
+            onEnter: function(){
+                $("body").attr("class", "page-faq")
+            }
         })
 
 });
