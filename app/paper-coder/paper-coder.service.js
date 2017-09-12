@@ -4,7 +4,14 @@ angular
 
 function paperCoderService() {
 
-    var assignment = defaultModel;
+    var assignment = {
+        done: false,
+        completion: 0,
+        encoding: {
+            constants: [],
+            branches:  [[]]
+        }
+    };
 
     var service = {
         toggleScope: toggleScope,
@@ -137,14 +144,3 @@ function paperCoderService() {
         return assignment;
     }
 }
-
-
-
-const defaultModel = {
-    done: false,
-    completion: 0,
-    encoding: {
-        constants: [],
-        branches:  [[]]
-    }
-};

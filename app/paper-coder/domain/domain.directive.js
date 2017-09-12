@@ -24,7 +24,7 @@ function BigDataDomain(paperCoderService) {
             $scope.hasLivingQuestions = false;
 
             setTimeout ( function(){
-                $element.find(".nametag").webuiPopover({
+                $($element).find(".nametag").webuiPopover({
                     content: $scope.domain.tooltip,
                     trigger:'hover',
                     placement:'right',

@@ -2,7 +2,7 @@ angular
     .module('paper-coder')
     .directive('bdField', BigDataField);
 
-BigDataField.$inject = ['paper-coder.service', 'editor.service', '$compile']
+BigDataField.$inject = ['paper-coder.service', 'editor.service', '$compile'];
 function BigDataField(paperCoderService, editorService, $compile) {
     return {
         restrict: 'E',
@@ -24,20 +24,20 @@ function BigDataField(paperCoderService, editorService, $compile) {
                 setTimeout ( function(){
                     if( $scope.inputObject ){
                         // enable tooltip
-                        $element.find(".questionTooltip").webuiPopover({
+                        $($element).find(".questionTooltip").webuiPopover({
                             content: $scope.questionMetaData.tooltip,
                             trigger:'hover',
                             placement:'right',
                             title: $scope.questionMetaData.name
                         });
-                        $element.removeAttr('title');
+                        $($element).removeAttr('title');
                         // render form
                         var tag = "bd-input-"+$scope.questionMetaData.type;
                         var dr = "<"+tag+" bind='inputObject.data' meta='questionMetaData' >"
                             + "</"+tag+">";
-                        $element.find(".inputOutlet").empty();
+                        $($element).find(".inputOutlet").empty();
                         var elem = angular.element(dr);
-                        angular.element( $element.find(".inputOutlet") )
+                        angular.element( $($element).find(".inputOutlet") )
                             .append( elem );
                         $compile(elem)($scope, undefined, {transcludeControllers: $ctrl});
                     }

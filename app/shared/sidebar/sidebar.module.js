@@ -1,9 +1,9 @@
 angular.module("mre.sidebar", [])
-    .constant("SIDEBAR_OPEN", "site-menubar-fixed site-menubar-open")
-    .constant("SIDEBAR_CLOSED", "site-menubar-hide")
-    .service("sidebarService", function(SIDEBAR_OPEN, SIDEBAR_CLOSED){
+    .service("sidebarService", function(){
 
         let $el = $("body");
+        let SIDEBAR_OPEN = "site-menubar-fixed site-menubar-open";
+        let SIDEBAR_CLOSED = "site-menubar-hide";
 
         function open(){
             $el.addClass(SIDEBAR_OPEN);
@@ -30,7 +30,7 @@ angular.module("mre.sidebar", [])
         return {
             templateUrl: 'app/shared/sidebar/sidebar.html',
             controller: function($scope){
-                Object.assign($scope, authService)
+                $scope.authService = authService;
             },
             controllerAs: "sidebarCtrl"
         }

@@ -12,7 +12,8 @@ let app = angular.module("mre", [
     "project-center",
     "project-builder",
     "manage-project",
-    "codebook"
+    "codebook",
+    "paper-coder"
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -28,6 +29,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             onEnter: function(){
                 $("body").attr("class", "app-work");
             }
+        })
+        .state('paper-coder', {
+            url: '/paper-coder',
+            templateUrl: "app/paper-coder/paper-coder.html",
+            controller: "PaperCoderController"
         })
         .state('project-center', {
             url: '/project-center',

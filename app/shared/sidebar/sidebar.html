@@ -10,10 +10,10 @@
                     </a>
                     <div class="site-menubar-info">
                         <h5 class="site-menubar-user">
-                            <span>{{userName()}}</span> &nbsp;
+                            <span>{{authService.userName()}}</span> &nbsp;
                             <span></span>
                         </h5>
-                        <p class="site-menubar-email">{{userEmail()}}</p>
+                        <p class="site-menubar-email">{{authService.userEmail()}}</p>
                     </div>
                 </div>
             </div>
@@ -22,13 +22,13 @@
     <div class="site-menubar-body">
         <div>
             <ul class="site-menu" data-plugin="menu">
-                <li class="bdManagerOnly site-menu-item ">
+                <li ng-if="authService.isLoggedIn()" class="site-menu-item ">
                     <a ui-sref="project-center">
                         <i class="site-menu-icon wb-layout"></i>
                         <span class="site-menu-title"> Project Center </span>
                     </a>
                 </li>
-                <li class="site-menu-item ">
+                <li ng-if="authService.isLoggedIn()" class="site-menu-item">
                     <a ui-sref="codebook">
                         <i class="site-menu-icon wb-book"></i>
                         <span class="site-menu-title">Code Book</span>
