@@ -33,7 +33,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('paper-coder', {
             url: '/paper-coder',
             templateUrl: "app/paper-coder/paper-coder.html",
-            controller: "PaperCoderController"
+            controller: "PaperCoderController",
+            onEnter: function () {
+                $("body").attr("class", "");
+            }
         })
         .state('project-center', {
             url: '/project-center',
@@ -46,12 +49,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('project-builder', {
             url: '/project-builder',
             templateUrl: "app/project-builder/project-builder.html",
-            controller: "ProjectBuilderController"
+            controller: "ProjectBuilderController",
+            onEnter: function () {
+                $("body").attr("class", "");
+            }
         })
         .state('project-manage', {
             url: '/project-manage',
             templateUrl: "app/manage-project/project-manage.html",
-            controller: "ManageProjectController"
+            controller: "ManageProjectController",
+            onEnter: function () {
+                $("body").attr("class", "");
+            }
         })
         .state('codebook', {
             url: '/codebook',
