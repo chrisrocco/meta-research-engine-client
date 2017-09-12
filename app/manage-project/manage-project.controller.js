@@ -16,6 +16,7 @@ function ManageProjectController ( $scope ){
         window.location = "report.html";
     }
     function init(){
+        $("#pmcidList").tokenfield();
         initDropify();
         var p = DataService.loadManageProject( localStorage.projectKey );
         p.success( function( data ){

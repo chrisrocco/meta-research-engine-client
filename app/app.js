@@ -10,7 +10,8 @@ let app = angular.module("mre", [
     /* pages */
     "assignments",
     "project-center",
-    "project-builder"
+    "project-builder",
+    "manage-project"
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -39,6 +40,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/project-builder',
             templateUrl: "app/project-builder/project-builder.html",
             controller: "ProjectBuilderController"
+        })
+        .state('project-manage', {
+            url: '/project-manage',
+            templateUrl: "app/manage-project/project-manage.html",
+            controller: "ManageProjectController"
         })
 
 });

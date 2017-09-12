@@ -1,0 +1,181 @@
+<div class="page" >
+    <div class="page-header">
+        <h1 class="page-title">Managing
+            <span data-projectname></span>
+        </h1>
+        {[{test}]}
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="project-center.html">Projects</a></li>
+            <li class="breadcrumb-item active">
+                <span ng-bind="project.name"></span>
+            </li>
+        </ol>
+        <div class="page-header-actions">
+            <a class="btn btn-sm btn-default btn-outline btn-round" href="#" target="_blank">
+                <i class="icon wb-link" aria-hidden="true"></i>
+                <span class="hidden-sm-down">Official Website</span>
+            </a>
+        </div>
+    </div>
+    <div class="page-content container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Panel Custom filter UI -->
+                <div class="panel">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"> Paper Pool </h3>
+                    </header>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Paper Title</th>
+                                <th>Assignment Count</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="row in tableRows">
+                                <td class="work-status">
+                                    <span ng-if="row.status == 'active'" class="badge badge-primary"> Active </span>
+                                    <span ng-if="row.status == 'pending'" class="badge badge-warning"> Pending </span>
+                                    <span ng-if="row.status == 'conflicted'"
+                                          class="badge badge-danger"> Conflict </span>
+                                    <span ng-if="row.status == 'clean'" class="badge badge-primary"> Clean </span>
+                                    <span ng-if="row.status == 'complete'" class="badge badge-success"> Complete </span>
+                                    <span ng-if="row.status == 'ready'" class="badge badge-warning"> Ready </span>
+                                </td>
+                                <td class="subject">
+                                    <div class="table-content">
+                                        <p class="blue-grey-500">
+                                            <span ng-bind="row.title"></span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td class="work-status">
+                      <span class="badge badge-default">
+                        <span ng-bind="row.assignmentCount"></span>
+                      </span>
+                                </td>
+                                <td class="subject">
+                                    <button ng-click="loadReport( row )" type="button"
+                                            class="btn btn-sm btn-animate btn-animate-vertical btn-primary"
+                                            ng-disabled="(row.status=='active' || row.status=='pending')">
+                        <span><i class="icon wb-file" aria-hidden="true"></i> View Report
+                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table id="papersTable" class="table table-hover" data-paging="true" data-sorting="true">
+                            <thead>
+                            <tr>
+                                <th data-name="title" data-title="Paper Title"> Paper Title</th>
+                                <th data-name="desc"> Description</th>
+                                <th data-name="assignments" data-breakpoints="xs">Assignment Count</th>
+                                <th data-name="status"> Status</th>
+                            </tr>
+                            </thead>
+                            <tbody id="templateOutlet">
+                            <template id="paperTemplate">
+                                <tr>
+                                    <td data-title> [PMC-ID]</td>
+                                    <td data-desc> [Article Title]</td>
+                                    <td data-assignmentCount> [Number of Assignments]</td>
+                                    <td data-status>
+                                    </td>
+                                </tr>
+                            </template>
+                            <template id="bd-active">
+                                <span class="badge badge-table badge-primary"> Active </span>
+                            </template>
+                            <template id="bd-pending">
+                                <span class="badge badge-table badge-warning"> Pending </span>
+                            </template>
+                            <template id="bd-conflicted">
+                                <span class="badge badge-table badge-danger"> Conflicted </span>
+                            </template>
+                            <template id="bd-complete">
+                                <span class="badge badge-table badge-success"> Complete </span>
+                            </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Custom filter UI -->
+            </div>
+            <div class="col-lg-4">
+                <!-- Panel Custom filter UI -->
+                <div class="panel">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"> Upload Papers to Project </h3>
+                    </header>
+                    <div class="panel-body">
+                        <!-- Example height -->
+                        <div class="example-wrap">
+                            <h4 class="example-title">Upload a .csv with columns: Title, Description, Embedding URL</h4>
+                            <div class="example">
+                                <form id="paperUploadForm" onsubmit="return submitPaperUploadForm()"
+                                      enctype="multipart/form-data"
+                                      action="#">
+                                    <input type="file" id="papersCSV" data-allowed-file-extensions="csv"/>
+                                    <br>
+                                    <button class="btn btn-block btn-primary" type="submit"> Upload Articles</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example height -->
+                    </div>
+                </div>
+                <!-- End Custom filter UI -->
+                <div class="panel">
+                    <header class="panel-heading">
+                        <h3 class="panel-title"> Find Publishing by PMC-ID </h3>
+                    </header>
+                    <div class="panel-body">
+                        <!-- Example height -->
+                        <div class="example-wrap">
+                            <h4 class="example-title">Enter PMC-ID's delimited by commas, and we'll look them up for
+                                you!
+                            </h4>
+                            <div class="example">
+                                <input id="pmcidList" type="text" class="form-control"/>
+                                <br/>
+                                <button onclick="findPapersHandler()" class="btn btn-block btn-primary" type="submit">
+                                    Find Papers
+                                </button>
+                            </div>
+                        </div>
+                        <!-- End Example height -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Upload Preview Modal -->
+        <div class="modal fade modal-primary" id="uploadPreviewModal" aria-hidden="true"
+             aria-labelledby="uploadPreviewModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">If everything looks ok, press confirm!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="uploadPreviewTable" class="table table-hover dataTable table-striped w-full"
+                               width="100%"></table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button onclick="doUpload()" type="button" class="btn btn-primary">Confirm!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
+</div>

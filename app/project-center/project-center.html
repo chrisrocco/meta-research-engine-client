@@ -19,11 +19,11 @@
                                     class="overlay-panel overlay-background overlay-fade text-center vertical-align">
                                 <div class="btn-group">
                                     <div class="dropdown float-left">
-                                        <button type="button" class="btn btn-icon btn-pure btn-default" title="Setting">
-                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                        <button type="button" class="btn btn-icon btn-pure btn-default" title="Edit Project">
+                                            <i class="icon wb-edit"></i>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" ui-sref="project-builder" ng-click="localStorage.projectKey = project._key">Edit Questions</a>
+                                            <a class="dropdown-item" ui-sref="project-builder">Edit Questions</a>
                                             <a class="dropdown-item" ng-click="openForkProject(project)"
                                                href="javascript:void(0)">Fork Project</a>
                                         </div>
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button ng-click="openProjectManager(project)" type="button"
+                                <button ui-sref="project-manage" type="button"
                                         class="btn btn-outline btn-default project-button">
                                     View Project
                                 </button>
