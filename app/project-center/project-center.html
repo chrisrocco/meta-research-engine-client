@@ -2,7 +2,7 @@
     <div class="page-header">
         <h1 class="page-title">Project Center</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a ui-sref="assignments">Home</a></li>
             <li class="breadcrumb-item active">You are Here</li>
         </ol>
     </div>
@@ -23,8 +23,7 @@
                                             <i class="icon wb-edit" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" ng-click="openProjectBuilder(project)"
-                                               href="javascript:void(0)">Edit Questions</a>
+                                            <a class="dropdown-item" ui-sref="project-builder" ng-click="localStorage.projectKey = project._key">Edit Questions</a>
                                             <a class="dropdown-item" ng-click="openForkProject(project)"
                                                href="javascript:void(0)">Fork Project</a>
                                         </div>
