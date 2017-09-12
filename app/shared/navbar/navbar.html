@@ -1,4 +1,5 @@
 <nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega"
+     ng-if="state.name !== 'login'"
      role="navigation">
 
     <div class="navbar-header">
@@ -84,7 +85,7 @@
                                                                                               aria-hidden="true"></i>
                             Profile</a>
                         <div class="dropdown-divider" role="presentation"></div>
-                        <a class="dropdown-item" href="javascript:AuthService.logout(); window.location='login.html'"
+                        <a class="dropdown-item" href="javascript:AuthService.logout(); window.location='login.php'"
                            role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
                     </div>
                 </li>

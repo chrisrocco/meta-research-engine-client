@@ -70,5 +70,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 $("body").attr("class", "page-faq")
             }
         })
+        .state("login", {
+            url: "/login",
+            templateUrl: "app/login/login.html",
+            controller: "loginController"
+        })
 
 });
