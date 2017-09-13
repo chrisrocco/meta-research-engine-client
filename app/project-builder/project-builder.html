@@ -1,8 +1,9 @@
 <div class="page">
     <div class="page-header">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Edit Projects</li>
+            <li class="breadcrumb-item"><a ui-sref="assignments">Home</a></li>
+            <li class="breadcrumb-item active"><a ui-sref="project-center">Projects</a></li>
+            <li class="breadcrumb-item active" ng-bind="project.name"></li>
         </ol>
         <h1 class="page-title">You are editing:
             <a href="javascript:void(0)"> {[{project.name}]} </a></h1>

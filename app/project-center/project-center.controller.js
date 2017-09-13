@@ -4,8 +4,8 @@
 angular.module("project-center")
     .controller("ProjectCenterController", ProjectCenterController);
 
-ProjectCenterController.$inject = ['$scope'];
-function ProjectCenterController( $scope ){
+ProjectCenterController.$inject = ['$scope', '$state'];
+function ProjectCenterController( $scope, $state ){
     init();
 
     // Data Models
@@ -24,11 +24,13 @@ function ProjectCenterController( $scope ){
     /*-----------------------------------------------------------------*/
     function openProjectBuilder( project ){
         localStorage.projectKey = project._key;
-        window.location = "project-builder.html";
+        // window.location = "project-builder.html";
+        $state.go("project-builder");
     }
     function openProjectManager( project ){
         localStorage.projectKey = project._key;
-        window.location = "manage-project.html";
+        // window.location = "manage-project.html";
+        $state.go("project-manage");
     }
     function openForkProject( project ){
         forking = project;

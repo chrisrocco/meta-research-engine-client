@@ -3,7 +3,6 @@
         <h1 class="page-title">Project Center</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a ui-sref="assignments">Home</a></li>
-            <li class="breadcrumb-item active">You are Here</li>
         </ol>
     </div>
     <div class="page-content">
@@ -23,7 +22,7 @@
                                             <i class="icon wb-edit"></i>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" ui-sref="project-builder">Edit Questions</a>
+                                            <a class="dropdown-item" ng-click="openProjectBuilder(project)">Edit Questions</a>
                                             <a class="dropdown-item" ng-click="openForkProject(project)"
                                                href="javascript:void(0)">Fork Project</a>
                                         </div>
@@ -38,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button ui-sref="project-manage" type="button"
+                                <button ng-click="openProjectManager(project)" type="button"
                                         class="btn btn-outline btn-default project-button">
                                     View Project
                                 </button>

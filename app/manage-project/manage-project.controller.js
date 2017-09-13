@@ -13,7 +13,7 @@ function ManageProjectController ( $scope ){
     function loadReport( paper ){
         localStorage.paperKey = paper.key;
         // console.log( paper );
-        window.location = "report.html";
+        window.location = "report.php";
     }
     function init(){
         $("#pmcidList").tokenfield();
