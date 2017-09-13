@@ -55,6 +55,8 @@ function BigDataField(paperCoderService, editorService, $compile) {
              * Tells the editor service to load this field input object
              */
             function editMe() {
+                // we might want this later?
+                return;
                 $scope.inputObject = $ctrl.getInput($scope.questionMetaData._key);
                 editorService.setView($scope.questionMetaData, $scope.inputObject);
             }
