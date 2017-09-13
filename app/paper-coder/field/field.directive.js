@@ -66,8 +66,7 @@ function BigDataField(paperCoderService, editorService, $compile) {
             * @returns {boolean}
             */
             function isAlive() {
-                var alive = $ctrl.isAlive($scope.questionMetaData._key);
-                return alive;
+                return $ctrl.isAlive($scope.questionMetaData._key);
             }
 
             /**
