@@ -9,8 +9,7 @@
     <meta name="description" content="Research Study Encoding System">
     <meta name="author" content="Chris Rocco">
     <title>Research Coder UAB</title>
-    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-    <link rel="shortcut icon" href="/assets/images/favicon.ico?v=2">
+    <link rel="shortcut icon" href="favicon.png?v=4">
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap-extend.min.css">
@@ -106,6 +105,7 @@
     <script src="/app/shared/navbar/navbar.module.js"></script>
     <script src="/app/shared/footer/footer.module.js"></script>
     <!-- Pages -->
+    <script src="/app/login/login.module.js"></script>
     <script src="/app/assignments/assignments.module.js"></script>
     <script src="/app/assignments/assignments.controller.js"></script>
     <script src="/app/project-center/project-center.module.js"></script>
@@ -258,7 +258,7 @@
 
             let color = "blue";
             switch(window._env.mode){
-                case "development": color = "green"; break;
+                case "development": color = "uab"; break;
                 case "production": color = "blue"; break;
             }
             $('head').append('<link rel="stylesheet" href="/assets/skins/'+color+'.css" />')

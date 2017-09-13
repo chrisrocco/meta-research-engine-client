@@ -1,5 +1,5 @@
 <nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega"
-     ng-if="state.name !== 'login'"
+     ng-hide="$state.$current.hideNavbar"
      role="navigation">
 
     <div class="navbar-header">
@@ -10,10 +10,10 @@
         </button>
         <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
                 data-toggle="collapse">
-            <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+            <i class="icon wb-more-horizontal"></i>
         </button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-            <img class="navbar-brand-logo" src="/assets/images/logo.png" title="Remark">
+            <img class="navbar-brand-logo" src="/assets/images/UAB-logo-white.png" title="Research Coder">
         </div>
     </div>
 
@@ -22,8 +22,8 @@
         <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
             <!-- Navbar Toolbar -->
             <ul class="nav navbar-toolbar">
-                <li class="nav-item hidden-float" >
-                    <a ng-click="sidebar.toggleSidebar()" class="nav-link" href role="button">
+                <li class="nav-item hidden-float">
+                    <a ng-click="sidebar.toggleSidebar()" class="nav-link" href>
                         <i class="icon hamburger hamburger-arrow-left">
                             <span class="sr-only">Toggle menubar</span>
                             <span class="hamburger-bar"></span>
@@ -31,15 +31,15 @@
                     </a>
                 </li>
                 <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-                    <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
+                    <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href>
                         <span class="sr-only">Toggle fullscreen</span>
                     </a>
                 </li>
                 <!--<li class="nav-item hidden-float">-->
-                    <!--<a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"-->
-                       <!--role="button">-->
-                        <!--<span class="sr-only">Toggle Search</span>-->
-                    <!--</a>-->
+                <!--<a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"-->
+                <!--role="button">-->
+                <!--<span class="sr-only">Toggle Search</span>-->
+                <!--</a>-->
                 <!--</li>-->
             </ul>
             <!-- End Navbar Toolbar -->
@@ -47,26 +47,25 @@
             <!-- Navbar Toolbar Right -->
             <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:ApplicationService.joinStudy()" title="Join Research Project" role="button">
+                    <a class="nav-link" ng-click="joinStudy()" href title="Join Research Project">
                         Join Project &nbsp;
-                        <i class="icon wb-plus" aria-hidden="true"></i>
+                        <i class="icon wb-plus"></i>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
-                       data-animation="scale-up" role="button">
+                    <a class="nav-link navbar-avatar" data-toggle="dropdown" href aria-expanded="false"
+                       data-animation="scale-up">
             <span class="avatar avatar-online">
-              <img src="/assets/avatars/6.png" alt="...">
+              <img src="/assets/avatars/6.png">
               <i></i>
             </span>
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user"
-                                                                                              aria-hidden="true"></i>
+                        <a class="dropdown-item" href role="menuitem"><i class="icon wb-user"></i>
                             Profile</a>
                         <div class="dropdown-divider" role="presentation"></div>
-                        <a class="dropdown-item" href="javascript:AuthService.logout(); window.location='login.php'"
-                           role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                        <a ng-click="logout()" class="dropdown-item" href
+                           role="menuitem"><i class="icon wb-power"></i> Logout</a>
                     </div>
                 </li>
             </ul>
@@ -74,7 +73,7 @@
 
             <div class="navbar-brand navbar-brand-center">
                 <a ui-sref="assignments">
-                    <img class="navbar-brand-logo" src="/assets/images/UAB-logo-white.png" title="Remark">
+                    <img class="navbar-brand-logo" src="/assets/images/UAB-logo-white.png" title="Research Coder">
                 </a>
             </div>
         </div>
@@ -85,8 +84,8 @@
             <form role="search">
                 <div class="form-group">
                     <div class="input-search">
-                        <i class="input-search-icon wb-search" aria-hidden="true"></i>
-                        <input type="text" class="form-control" name="site-search" placeholder="Search...">
+                        <i class="input-search-icon wb-search"></i>
+                        <input class="form-control" name="site-search" placeholder="Search...">
                         <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
                                 data-toggle="collapse" aria-label="Close"></button>
                     </div>

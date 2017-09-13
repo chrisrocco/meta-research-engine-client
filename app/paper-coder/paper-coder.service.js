@@ -93,7 +93,10 @@ function paperCoderService() {
         if( !assignment ) return 0;
 
         var encoding = assignment.encoding;
-        var totalInputs = encoding.constants.length + ( encoding.branches.length * encoding.branches[0].length );
+        var totalInputs = encoding.constants.length;
+        encoding.branches.forEach(function(branch){
+
+        });
         var filledInputs = 0;
 
         /* Rocco Algorithm */
@@ -117,14 +120,11 @@ function paperCoderService() {
         return completion;
 
         function isFilled(input){
-            if( input.data.value ){
-                return input.data.value !== "";
-            }
-            if( input.data.rangeMin && input.data.rangeMin ){
-                return input.data.rangeMin !== "" &&
-                    input.data.rangeMin !== ""
-            }
-            return false;
+            var data = input.data;
+
+            return data.value
+                    || ( data.randMin && data.rangeMax )
+                    || data.notReported;
         }
     }
 

@@ -8,6 +8,7 @@ let app = angular.module("mre", [
     "mre.navbar",
     "mre.footer",
     /* pages */
+    "mre.login",
     "assignments",
     "project-center",
     "project-builder",
@@ -73,7 +74,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state("login", {
             url: "/login",
             templateUrl: "app/login/login.html",
-            controller: "loginController"
+            controller: "loginController",
+            onEnter: function(){
+                $("body").attr("class", "page-login-v3 layout-full");
+            },
+            hideNavbar: true
         })
 
 });

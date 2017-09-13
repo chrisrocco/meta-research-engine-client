@@ -33,7 +33,7 @@
                         </div>
                         <a class="float-right" href="/forgot-password.php">Forgot password?</a>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign in</button>
+                    <button class="btn btn-primary btn-block btn-lg mt-40">Sign in</button>
                 </form>
                 <p>Still no account? Please go to <a href="/register.php">Sign up</a></p>
             </div>
