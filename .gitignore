@@ -37,3 +37,4 @@ Thumbs.db
 bower_components
 node_modules
 /env.js
+/_recycling/
