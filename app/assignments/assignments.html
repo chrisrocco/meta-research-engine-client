@@ -86,7 +86,7 @@
                             </div>
                         </td>
                         <td class="subject">
-                            <button ui-sref="paper-coder" type="button"
+                            <button ng-click="loadPaperCoder(row.assignment)" type="button"
                                     class="btn btn-animate btn-animate-vertical btn-primary">
                     <span><i class="icon wb-play" aria-hidden="true"></i> Continue
                     </span>
@@ -110,7 +110,7 @@
                 <form class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span>×</span>
                         </button>
                         <h4 class="modal-title" id="moreAssignmentsLabel">Request More Assignments</h4>
                     </div>

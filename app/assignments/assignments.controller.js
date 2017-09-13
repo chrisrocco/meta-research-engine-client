@@ -2,8 +2,8 @@
 angular.module("assignments")
     .controller("AssignmentsController", AssignmentsController);
 
-AssignmentsController.$inject = [ '$scope' ];
-function AssignmentsController ( $scope ){
+AssignmentsController.$inject = [ '$scope', '$state' ];
+function AssignmentsController ( $scope, $state ){
     $scope.tableRows = [];
     $scope.myProjects = DEFAULT_MODELS.myProjects;
     $scope.assignFromProject = $scope.myProjects[0];
@@ -16,11 +16,13 @@ function AssignmentsController ( $scope ){
 
     function loadConflictResolution( assignment ){
         localStorage.assignmentKey = assignment._key;
-        window.location = "conflict-resolution.html";
+        window.location = "conflict-resolution.php";
+        // $state.go("conflict-resolution");
     }
     function loadPaperCoder( assignment ){
         localStorage.assignmentKey = assignment._key;
-        window.location = "paper-coder.html";
+        $state.go("paper-coder");
+        // window.location = "paper-coder.html";
     }
     function getMoreAssignments( confirm ){
         if( confirm === true ){
