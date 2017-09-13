@@ -15,7 +15,7 @@ let app = angular.module("mre", [
     "codebook",
     "paper-coder"
 ]);
-
+app.constant("ENV", window._env);
 app.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/assignments');

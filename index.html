@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
 <head>
+    <script src="env.js"></script>
     <meta charset="utf-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,6 +40,7 @@
     <script>
         Breakpoints();
     </script>
+
 
     <!-- PAGES
     ================= -->
@@ -253,6 +255,13 @@
         $(document).ready(function () {
             Site.run();
             ApplicationService.renderSession();
+
+            let color = "blue";
+            switch(window._env.mode){
+                case "development": color = "green"; break;
+                case "production": color = "blue"; break;
+            }
+            $('head').append('<link rel="stylesheet" href="/assets/skins/'+color+'.css" />')
         });
     })(document, window, jQuery);
 </script>
