@@ -28,24 +28,11 @@
         urls['login'] = urls['api'] + "/users/login";
         urls['register'] = urls['api'] + "/users/register";
         urls['renew'] = urls['api'] + "/renewToken";
-        urls['resetPasswordCallback'] = "https://www.youtube.com/watch?v=xfr64zoBTAQ";
     }
 
     function getUrl(name) {
         return urls[name];
     }
 
-    /* Development */
-    function localhost() {
-        localStorage.hostOverride = "http://localhost:8080";
-        window.location.reload();
-    }
-    function defaulthost() {
-        delete localStorage.hostOverride;
-        window.location.reload();
-    }
-
     exports.getUrl = getUrl;
-    exports.localhost = localhost;
-    exports.defaulthost = defaulthost;
 });
