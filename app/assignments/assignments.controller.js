@@ -16,8 +16,8 @@ function AssignmentsController ( $scope, $state ){
 
     function loadConflictResolution( assignment ){
         localStorage.assignmentKey = assignment._key;
-        window.location = "conflict-resolution.php";
-        // $state.go("conflict-resolution");
+        // window.location = "conflict-resolution.php";
+        $state.go("conflictResolution");
     }
     function loadPaperCoder( assignment ){
         localStorage.assignmentKey = assignment._key;

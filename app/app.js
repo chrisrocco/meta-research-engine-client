@@ -17,6 +17,7 @@ let app = angular.module("mre", [
     "manage-project",
     "codebook",
     "paper-coder",
-    "report"
+    "report",
+    "conflict-resolution"
 ]);
 app.constant("ENV", window._env);

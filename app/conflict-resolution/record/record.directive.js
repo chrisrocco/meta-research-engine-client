@@ -3,7 +3,7 @@
  */
 angular
     .module('conflict-resolution')
-    .directive('bdRecord', Record);
+    .directive('bdConflictRecord', Record);
 
 function Record() {
     return {

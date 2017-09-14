@@ -1,0 +1,96 @@
+<div class="page" >
+    <div class="page-header">
+        <h1 class="page-title"> Resolving Conflicts </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a ui-sref="assignments">Home</a></li>
+                <li class="breadcrumb-item"><a ui-sref="assignments">Assignments</a></li>
+                <li class="breadcrumb-item active">Resolve Conflicts</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="panel is-collapse">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="padding-right: 20%"> {[{paper.title}]}</h3>
+                <div class="panel-actions">
+                    <div class="dropdown">
+                        <a class="panel-action" data-toggle="dropdown" href="#" aria-expanded="false"><i
+                                class="icon wb-settings" aria-hidden="true"></i></a>
+                        <div class="dropdown-menu dropdown-menu-bullet" role="menu">
+                            <a ng-click="popOut( paper )" class="dropdown-item" href="javascript:void(0)"
+                               role="menuitem"><i class="icon wb-flag" aria-hidden="true"></i> Pop Out</a>
+                        </div>
+                    </div>
+                    <a class="panel-action icon wb-minus" data-toggle="panel-collapse" aria-expanded="true"
+                       aria-hidden="true"></a>
+                    <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                {[{paper.description}]}
+                <iframe ng-src="{[{paper.url}]}" width="100%" height="700px"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <bd-conflict-record ng-repeat="record in paper.masterEncoding" record="record" asUser="assignment._key"
+                       editable="true" ng-if="record.responses.length > 1"></bd-conflict-record>
+            <!--<div ng-repeat="masterRecord in paper.masterEncoding"
+                     ng-if="masterRecord.responses.length > 1"
+                     class="col-md-6">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Responses to <span ng-bind="masterRecord.question.name"></span>:
+                                <span class="panel-desc"><span ng-bind="masterRecord.question.question"></span></span>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="example-wrap">
+                                <div class="example">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" data-role="content">
+                                            <thead class="bg-blue-grey-100">
+                                            <tr>
+                                                <th>
+                                                    Data
+                                                </th>
+                                                <th>
+                                                    Responders
+                                                </th>
+                                                <th> Agree</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="response in masterRecord.responses"
+                                                ng-class="{ 'me': isMyResponse( response ) }">
+                                                <td>
+                                                    <span ng-bind="response.data.value"></span>
+                                                </td>
+                                                <td>
+                                                    <img ng-repeat="assignmentKey in response.users"
+                                                         class="mr-10 avatar avatar-sm" src="../assets/avatars/7.png"
+                                                         data-toggle="tooltip"
+                                                         data-original-title="{[{assignmentKey}]}" data-container="body"
+                                                         title="">
+                                                </td>
+                                                <td>
+                                                    <button ng-click="iAgree( masterRecord.question, response )"
+                                                            ng-if="( ! isMyResponse( response ) )"
+                                                            type="button"
+                                                            class="btn btn-animate btn-animate-side btn-success">
+                                                        <span><i class="icon wb-thumb-up"
+                                                                 aria-hidden="true"></i>Agree</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+        </div>
+    </div>
+</div>

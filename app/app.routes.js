@@ -98,5 +98,13 @@ angular.module("mre")
                     $("body").attr("class", "");
                 }
             })
+            .state("conflictResolution", {
+                url: "/conflictResolution",
+                templateUrl: "app/conflict-resolution/conflictResolution.html",
+                controller: "ConflictResolutionController",
+                onEnter: function(){
+                    $("body").attr("class", "");
+                }
+            })
 
     });
