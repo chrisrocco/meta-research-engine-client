@@ -1,6 +1,7 @@
 let app = angular.module("mre", [
     /* external */
     "ui.router",
+    "pageslide-directive",
     /* services */
     "mre.auth",
     /* shared */

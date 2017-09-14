@@ -1,6 +1,6 @@
 
 angular.module("assignments")
-    .controller("AssignmentsController", AssignmentsController);
+    .controller("AssignmentsController", AssignmentsController)
 
 AssignmentsController.$inject = [ '$scope', '$state' ];
 function AssignmentsController ( $scope, $state ){

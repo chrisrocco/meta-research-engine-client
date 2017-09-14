@@ -140,4 +140,18 @@ function PaperCoderController($scope, $sce, paperCoderService) {
 
         }
     }
+
+
+    $scope.toggleSidePanel = toggleSidePanel;
+    $scope.sidePanelOpen = false;
+    function toggleSidePanel() {
+        $scope.sidePanelOpen = !$scope.sidePanelOpen;
+    }
+    document.onkeydown = function(e){
+        var evtobj = window.event? event : e;
+        if (evtobj.ctrlKey && evtobj.keyCode === 32){
+            toggleSidePanel();
+            $scope.$apply();
+        }
+    }
 }
