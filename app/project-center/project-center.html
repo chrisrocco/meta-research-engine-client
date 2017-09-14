@@ -10,10 +10,10 @@
             <ul id="project-ul" class="blocks blocks-100 blocks-xxl-5 blocks-lg-4 blocks-md-3 blocks-sm-2"
                 data-plugin="animateList" data-child=">li">
                 <!-- Dynamically Populated -->
-                <li ng-repeat="project in projects">
-                    <div class="panel">
+                <li ng-repeat="project in projects track by $index">
+                    <div class="panel" ng-style="{'z-index': ((projects.length - $index)*2)}">
                         <figure class="overlay overlay-hover animation-hover">
-                            <img class="caption-figure overlay-figure" src="..\assets/photos/placeholder.png">
+                            <img class="caption-figure overlay-figure" src="/assets/photos/placeholder.png">
                             <figcaption
                                     class="overlay-panel overlay-background overlay-fade text-center vertical-align">
                                 <div class="btn-group">
