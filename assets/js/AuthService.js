@@ -17,12 +17,7 @@
         value: true
     });
     exports.getToken = exports.getUser = exports.isLoggedIn = exports.logout = exports.renew = exports.register = exports.login = undefined;
-    var URLs = babelHelpers.interopRequireWildcard(_URLs);
 
-
-    // var TOKEN_PROVIDER = URLs.getUrl("login");
-    // var REGISTER = URLs.getUrl("register");
-    // var RENEW = URLs.getUrl("renew");
     var TOKEN_PROVIDER = window._env.loginURL;
     var REGISTER = window._env.registerURL;
     var RENEW = window._env.renewURL;

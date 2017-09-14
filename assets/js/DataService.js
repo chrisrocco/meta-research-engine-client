@@ -17,12 +17,10 @@
         value: true
     });
     exports.forkProject = exports.moreAssignmentsPlease = exports.handleUnauthorized = exports.reportError = exports.makeProjectOwner = exports.uploadPapersByID = exports.uploadPapersCSV = exports.postResetPassword = exports.postForgotPassword = exports.postProjectEnrollments = exports.postProjectStructure = exports.getProjectBuilderData = exports.postProject = exports.getProjectsData = exports.getUsersAssignments = exports.putAssignment = exports.getAssignment = exports.http = exports.loadReport = exports.loadConflictResolution = exports.loadAssignments = exports.loadCodeBook = exports.loadPaperCoder = exports.loadManageProject = undefined;
-    var URLs = babelHelpers.interopRequireWildcard(_URLs);
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
-
-    // var API_BASE_PATH = URLs.getUrl('api');
     var API_BASE_PATH = window._env.serverURL;
+    var CALLBACK_RESET_PASSWORD = window._env.callbacks.resetPassword;
 
     function forkProject(projectKey, newName, newDescription) {
         return http({
@@ -124,7 +122,7 @@
             method: "POST",
             data: {
                 "email": email,
-                "callback": URLs.getUrl("resetPasswordCallback")
+                "callback": CALLBACK_RESET_PASSWORD
             }
         });
     }

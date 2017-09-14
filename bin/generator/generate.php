@@ -11,6 +11,11 @@ const APP = "app";
  *          /<activity>.html
  * */
 
+if(!isset($argv[1])){
+    echo "Invalid Input";
+    exit();
+}
+
 $activity = $argv[1];
 /* load templates */
 $module = str_replace("{{activity}}", $activity, file_get_contents(__DIR__ . '/_module.js'));

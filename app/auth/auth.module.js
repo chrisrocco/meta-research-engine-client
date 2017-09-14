@@ -95,7 +95,7 @@ angular.module("auth", [])
                         closeOnConfirm: false
                     },
                     function(){
-                        window.location = "login.html"
+                        $state.go("auth.login");
                     })
             });
             promise.error( function( res ){
