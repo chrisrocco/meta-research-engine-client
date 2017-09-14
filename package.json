@@ -20,7 +20,7 @@
   },
   "scripts": {
     "serve": "php -S localhost:8080",
-    "generate": "php ./bin/generator/g.php",
+    "generate": "php ./bin/generator/generate.php",
     "g": "npm run generate"
   },
   "dependencies": {

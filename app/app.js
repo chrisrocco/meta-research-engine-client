@@ -10,6 +10,7 @@ let app = angular.module("mre", [
     /* pages */
     "auth",
     "forgot-password",
+    "resetPassword",
     "assignments",
     "project-center",
     "project-builder",
