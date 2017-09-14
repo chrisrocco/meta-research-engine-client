@@ -239,7 +239,7 @@
     function handleUnauthorized(err) {
         // The server is not appending the 'Access-Control-Allow-Origin' header into the response, preventing me from reading the status code.
         // window.location = window.location.hostname;
-        window.location = "login.php";
+        alert("Your session has expired. Please login again.");
     }
 
     exports.loadManageProject = loadManageProject;

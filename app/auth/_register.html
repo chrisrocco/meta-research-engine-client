@@ -1,0 +1,20 @@
+<form ng-submit="register()">
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input ng-model="registerForm.name" class="form-control" id="name"/>
+        <label class="floating-label">Full Name</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input ng-model="registerForm.email" type="email" class="form-control" id="email"/>
+        <label class="floating-label">Email</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input ng-model="registerForm.password" type="password" class="form-control" id="password"/>
+        <label class="floating-label">Password</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input ng-model="registerForm.passwordConfirm" type="password" class="form-control" id="confirmPassword"/>
+        <label class="floating-label">Re-enter Password</label>
+    </div>
+    <button class="btn btn-primary btn-block btn-lg mt-40">Sign up</button>
+</form>
+<p>Have an account? Please go to <a href ui-sref="auth.login">Login</a></p>

@@ -16,7 +16,7 @@ angular.module("mre.navbar", ['mre.sidebar'])
                 }
                 function logout(){
                     AuthService.logout();
-                    $state.go("login");
+                    $state.go("auth.login");
                 }
             },
             controllerAs: "sidebarCtrl"

@@ -8,7 +8,7 @@ let app = angular.module("mre", [
     "mre.navbar",
     "mre.footer",
     /* pages */
-    "mre.login",
+    "auth",
     "assignments",
     "project-center",
     "project-builder",
@@ -71,13 +71,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 $("body").attr("class", "page-faq")
             }
         })
-        .state("login", {
-            url: "/login",
-            templateUrl: "app/login/login.html",
-            controller: "loginController",
+        .state("auth", {
+            url: "/auth",
+            templateUrl: "app/auth/auth.html",
+            controller: "authController",
             onEnter: function(){
                 $("body").attr("class", "page-login-v3 layout-full");
-            },
+            }
+        })
+        .state("auth.login", {
+            url: "/login",
+            templateUrl: "app/auth/_login.html",
+            hideNavbar: true
+        })
+        .state("auth.register", {
+            url: "/register",
+            templateUrl: "app/auth/_register.html",
             hideNavbar: true
         })
 

@@ -1,0 +1,19 @@
+<form ng-submit="login()">
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input ng-model="loginForm.email" type="email" class="form-control" name="email" id="emailInput"/>
+        <label class="floating-label">Email</label>
+    </div>
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input ng-model="loginForm.password" type="password" class="form-control" name="password" id="passwordInput"/>
+        <label class="floating-label">Password</label>
+    </div>
+    <div class="form-group clearfix">
+        <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
+            <input type="checkbox" id="inputCheckbox" name="remember">
+            <label for="inputCheckbox">Remember me</label>
+        </div>
+        <a class="float-right" href="/forgot-password.php">Forgot password?</a>
+    </div>
+    <button class="btn btn-primary btn-block btn-lg mt-40">Sign in</button>
+</form>
+<p>No account? Please go to <a href ui-sref="auth.register">Register</a></p>
