@@ -302,7 +302,7 @@ function ProjectBuilderController( $scope ){
             extractQuestions( $('#multiselectInput'), questionObject.options );
         }
 
-        form.parent.value   =   "";
+        // form.parent.value   =   "";
         form.name.value     =   "";
         form.question.value =   "";
         form.tooltip.value  =   "";
