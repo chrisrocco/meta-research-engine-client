@@ -186,7 +186,7 @@ function ProjectBuilderController( $scope ){
         $("#editQuestionModal").on('hidden.bs.modal', function () {
             refresh()
         });
-        $("#multipleChoiceInput").tokenfield();
+        $(".tokenfield").tokenfield();
     }
     function refresh(){
         renderTree();
@@ -304,7 +304,11 @@ function ProjectBuilderController( $scope ){
         }
         if( type == "multiselect" ){
             questionObject.options = [];
+            var $el = $('#multiselectInput');
             extractQuestions( $('#multiselectInput'), questionObject.options );
+            $el.tokenfield('destroy');
+            $el.val("");
+            $el.tokenfield();
         }
 
         // form.parent.value   =   "";
