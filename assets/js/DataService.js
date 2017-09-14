@@ -21,7 +21,8 @@
     var AuthService = babelHelpers.interopRequireWildcard(_AuthService);
 
 
-    var API_BASE_PATH = URLs.getUrl('api');
+    // var API_BASE_PATH = URLs.getUrl('api');
+    var API_BASE_PATH = window._env.serverURL;
 
     function forkProject(projectKey, newName, newDescription) {
         return http({

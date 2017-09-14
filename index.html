@@ -253,16 +253,14 @@
         $(document).ready(function () {
             Site.run();
             ApplicationService.renderSession();
-
             /* setting site-wide styles */
-            let skin = "uab";
-            switch(window._env.mode){
-                case "development": skin = "blue"; break;
-                case "production": skin = "uab"; break;
-            }
-            $('head').append('<link rel="stylesheet" href="/assets/skins/'+skin+'.css" />')
+            applySkin(window._env.skin);
         });
     })(document, window, jQuery);
+
+    function applySkin(skin){
+        $('head').append('<link rel="stylesheet" href="/assets/skins/'+skin+'.css" />')
+    }
 </script>
 </body>
 </html>
