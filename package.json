@@ -19,7 +19,9 @@
     "url": "http://chrisroc.co"
   },
   "scripts": {
-    "serve": "php -S localhost:8080"
+    "serve": "php -S localhost:8080",
+    "generate": "php ./bin/generator/g.php",
+    "g": "npm run generate"
   },
   "dependencies": {
     "angular": "^1.6.6",
