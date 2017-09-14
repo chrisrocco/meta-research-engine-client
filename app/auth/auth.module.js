@@ -16,7 +16,7 @@ angular.module("auth", [])
             ).then(
                 afterLogin,
                 function fail(response) {
-                    console.log("fail", response);
+
                     var data = response.responseJSON;
                     data.reason = data.reason.toUpperCase();
 

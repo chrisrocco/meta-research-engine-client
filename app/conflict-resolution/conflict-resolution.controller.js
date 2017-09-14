@@ -11,7 +11,7 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
 
     $scope.isMyResponse     =   isMyResponse;
     $scope.iAgree           =   function( question, response ){
-        console.log( "user (assignment key) ", $scope.assignment._key, " wants to change his answer on ", question, " to agree with ", response );
+
         TransactionService.addTransaction( question._key, response.data );
 
         swal({
@@ -24,11 +24,11 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
         },
         function(){
             // TODO - dont immediately resolve
-            console.log( "before resolve", $scope.assignment );
+
             TransactionService.resolve();
-            console.log( "after resolve", $scope.assignment );
+
             DataService.putAssignment( $scope.assignment ).then( function(res){
-                console.log( "from server: ", res);
+
                 swal({
                     title: "All Good!",
                     text: "Your assignment has been updated with the new response!",
@@ -63,10 +63,10 @@ function ConflictResolutionController( $scope, $sce, TransactionService ){
             });
             TransactionService.startTransaction( $scope.assignment );
 
-            console.log( "loaded activity: ", data );
+
         });
         p.error( function( err ){
-            console.log( "error loading activity: ", err );
+
         });
     }
 

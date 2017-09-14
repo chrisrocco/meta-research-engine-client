@@ -146,7 +146,7 @@ function ProjectBuilderController( $scope ){
             });
     }
     function handleEditDomain( domain ){
-        console.log( "editing", domain );
+
         $scope.modalDomain = domain;
         $("#editDomainModal").modal("show");
     }
@@ -168,7 +168,7 @@ function ProjectBuilderController( $scope ){
         window.scope = $scope;
         let promise = DataService.getProjectBuilderData( localStorage.projectKey );
         promise.success( function( data ){
-            console.log( "from server", data );
+
             let structure = data.structure;
             if( structure ){
                 $scope.$apply(function(){
@@ -235,7 +235,7 @@ function ProjectBuilderController( $scope ){
         };
         var promise = DataService.postProjectStructure( localStorage.projectKey, req );
         promise.success( function( res ){
-            console.log( "saved!", res );
+
         });
         promise.error(function(err){
             alert("Something went wrong :(");

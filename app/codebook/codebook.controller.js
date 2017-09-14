@@ -27,7 +27,7 @@ function CodebookController( $scope ){
                 $scope.projects = data;
                 $scope.selectedProject = $scope.projects[0];
             });
-            console.log( data );
+
         });
     }
 }

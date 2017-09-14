@@ -95,7 +95,7 @@ function ProjectCenterController( $scope, $state ){
                 confirmButtonText: 'OK :(',
                 closeOnConfirm: false
             });
-            console.log( "Error: ", err );
+
         });
     }
 
@@ -122,7 +122,7 @@ function ProjectCenterController( $scope, $state ){
                 }
                 var promise = DataService.makeProjectOwner( project._key, inputValue );
                 promise.success( function( res ){
-                    console.log( "Success", res );
+
                     swal({
                         title: "Authorization Granted!",
                         text: "User " + res.newOwner + " now has access to " + res.projectName,
@@ -134,7 +134,7 @@ function ProjectCenterController( $scope, $state ){
                     });
                 });
                 promise.fail( function (res) {
-                    console.log( "Fail", res );
+
 
                     if( res.status === 400 ){
                         if( res.responseJSON.status === "NO_USER"){
@@ -179,7 +179,7 @@ function ProjectCenterController( $scope, $state ){
     function init(){
         var p = DataService.getProjectsData();
         p.success(function (data) {
-            console.log("from server angular", data);
+
             $scope.$apply(function(){
                 $scope.projects = data.projects;
             });

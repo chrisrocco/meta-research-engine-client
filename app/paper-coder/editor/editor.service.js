@@ -23,8 +23,8 @@ function EditorService() {
     function setView(fieldBinding, inputBinding){
         fieldObject = fieldBinding;
         inputObject = inputBinding;
-        console.log("Viewing Object: ", fieldObject);
-        console.log("Binded Input: ", inputObject);
+
+
         observer.notify();
     }
     function getInput(){

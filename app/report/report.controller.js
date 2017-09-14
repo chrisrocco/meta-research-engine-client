@@ -12,10 +12,10 @@ function ReportController( $scope ) {
             $scope.$apply( function(){
                 $scope.paper = data.paper;
             });
-            console.log( "loaded paper: ", $scope.paper );
+
         });
         p.error( function( err ){
-            console.log( "error loading activity: ", err );
+
         });
     }
 }

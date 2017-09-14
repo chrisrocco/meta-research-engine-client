@@ -29,10 +29,10 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             });
         }
 
-        console.log($scope.assignment);
+
         var p = DataService.putAssignment( $scope.assignment );
         p.success( function( res ){
-            console.log( "from server: ", res);
+
             swal({
                 title: "Work Saved!",
                 text: "Your work has been uploaded to the database!",
@@ -53,7 +53,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
                 confirmButtonText: 'OK',
                 closeOnConfirm: false
             });
-            console.log( err );
+
         })
     };
     $scope.popOut = function( paperObject ){
@@ -68,7 +68,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
 
     var p = DataService.loadPaperCoder( localStorage.assignmentKey );
     p.success( function(data){
-        console.log( "Data from server", data );
+
 
         /* Initialize Data */
         data.assignment.completion = parseFloat( data.assignment.completion );
@@ -81,7 +81,7 @@ function PaperCoderController($scope, $sce, paperCoderService) {
             };
             addToAssignment( encoding, data.questions );
             data.assignment.encoding = encoding;
-            console.log( data.assignment );
+
         }
 
         // If constants property was removed during the encoding / decoding

@@ -28,7 +28,7 @@ function ManageProjectController ( $scope, $state ){
             });
         });
         p.error( function( err ){
-            console.log( "error loading activity", err );
+
             swal({
                 title: "Opps...",
                 text: "Something went wrong loading the activity",
@@ -63,7 +63,7 @@ function submitPaperUploadForm(  ) {
 
     Papa.parse(file, {
         complete: function(results) {
-            console.log("Finished:", results.data);
+
             renderUploadPreview( results.data );
         }
     });
@@ -100,7 +100,7 @@ function doUpload(  ){
         }, function(){
             window.location.reload();
         });
-        console.log("success from server", data);
+
     });
     promise.error( function( response ) {
         var badColumns = "columnCountError";
@@ -143,7 +143,7 @@ function doUpload(  ){
                 });
                 break;
         }
-        console.log("fail from server", error);
+
     });
 }
 function findPapersHandler(){
@@ -191,7 +191,7 @@ function findPapersHandler(){
             closeOnConfirm: false
         });
     });
-    console.log( "PMC ID's", ids );
+
 }
 
 var previewingPaperData;

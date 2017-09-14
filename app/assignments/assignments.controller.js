@@ -29,7 +29,7 @@ function AssignmentsController ( $scope, $state ){
             var myKey = AuthService.getUser()._key;
             var howMany = $scope.howManyAssignments;
             var projectKey = $scope.assignFromProject._key;
-            console.log( myKey, howMany, projectKey );
+
             var p = DataService.moreAssignmentsPlease( myKey, projectKey, howMany );
             p.success( function( res ){
                 swal({
@@ -63,7 +63,7 @@ function AssignmentsController ( $scope, $state ){
     function init(){
         var p = DataService.loadAssignments( AuthService.getUser()['_key'] );
         p.success( function( data ){
-            console.log( "loaded data", data );
+
             data = data[0];
             $scope.$apply( function(){
                 $scope.tableRows = data.assignments;
@@ -99,7 +99,7 @@ function AssignmentsController ( $scope, $state ){
 
         } );
         p.fail( function( err ){
-            console.log( "could not load activity", err );
+
         } );
     }
 }

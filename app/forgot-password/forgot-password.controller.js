@@ -19,7 +19,7 @@ angular.module("forgot-password")
                     function () {
                         $state.go("auth.login");
                     });
-                console.log("server response", res);
+
             });
             promise.error(function (res) {
                 if (res.status == 404) {
@@ -43,7 +43,7 @@ angular.module("forgot-password")
                     confirmButtonText: 'OK',
                     closeOnConfirm: false
                 });
-                console.log("fail from server", res);
+
             });
         }
 
