@@ -7,9 +7,9 @@
         </div>
     </div>
     <div class="page-header">
-        <h1 class="page-title">{[{assignment.title}]}</h1>
+        <h1 class="page-title">{[{paper.title}]}</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a ui-sref="assignments">Home</a></li>
+            <li class="breadcrumb-item"><a ui-sref="assignments">Assignments</a></li>
             <li class="breadcrumb-item active">Paper Coder</li>
         </ol>
     </div>
@@ -40,11 +40,7 @@
                     <i class="icon wb-thumb-down"></i>
                     Mark as Incomplete
                 </button>
-                <button ng-click="toggleSidePanel()" type="button"
-                        class="btn btn-animate btn-primary pull-right">
-                    <i class="icon wb-add-file"></i>
-                    Toggle Paper View
-                </button>
+                <p class="float-right" style="font-size: medium">Press ctrl+space to open the paper view!</p>
             </div>
         </div>
         <div class="row">
