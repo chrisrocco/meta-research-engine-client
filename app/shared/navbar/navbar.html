@@ -1,6 +1,5 @@
 <nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega"
-     ng-hide="$state.$current.hideNavbar"
-     role="navigation">
+     ng-hide="$state.$current.hideNavbar">
 
     <div class="navbar-header">
         <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
@@ -61,9 +60,12 @@
             </span>
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href role="menuitem"><i class="icon wb-user"></i>
-                            Profile</a>
+                        <!--<a class="dropdown-item" href role="menuitem">
+                            <i class="icon wb-user"></i>
+                            Profile
+                        </a>
                         <div class="dropdown-divider" role="presentation"></div>
+                        -->
                         <a ng-click="logout()" class="dropdown-item" href
                            role="menuitem"><i class="icon wb-power"></i> Logout</a>
                     </div>

@@ -1,5 +1,12 @@
 (function(){
     window._env = {
-        "mode": "development"
+        "skin": "uab",
+        "serverURL": "https://researchcoder.com/api",
+        "loginURL": "https://researchcoder.com/api/users/login",
+        "registerURL": "https://researchcoder.com/api/users/register",
+        "renewURL": "https://researchcoder.com/api/renewToken",
+        "callbacks": {
+            "resetPassword": "https://researchcoder.com/reset-password.html"
+        }
     };
 })();
