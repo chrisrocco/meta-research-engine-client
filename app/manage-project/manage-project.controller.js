@@ -1,8 +1,8 @@
 angular.module("manage-project")
     .controller("ManageProjectController", ManageProjectController);
 
-ManageProjectController.$inject = [ '$scope' ];
-function ManageProjectController ( $scope ){
+ManageProjectController.$inject = [ '$scope', '$state' ];
+function ManageProjectController ( $scope, $state ){
     $scope.tableRows = [];
     $scope.project = null;
 
@@ -12,8 +12,8 @@ function ManageProjectController ( $scope ){
 
     function loadReport( paper ){
         localStorage.paperKey = paper.key;
-        // console.log( paper );
-        window.location = "report.php";
+        // window.location = "report.php";
+        $state.go("report");
     }
     function init(){
         $("#pmcidList").tokenfield();

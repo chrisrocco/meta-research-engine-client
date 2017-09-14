@@ -81,5 +81,13 @@ angular.module("mre")
                     $("body").attr("class", "page-forgot-password layout-full");
                 }
             })
+            .state("report", {
+                url: "/report",
+                templateUrl: "app/report/report.html",
+                controller: "ReportController",
+                onEnter: function(){
+                    $("body").attr("class", "");
+                }
+            })
 
     });

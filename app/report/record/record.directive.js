@@ -8,7 +8,6 @@ angular
 function Record() {
     return {
         restrict: 'E',
-        require: "^bdReport",
         replace: true,
         scope: {
             record: "=record"

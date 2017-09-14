@@ -1,3 +1,17 @@
-<div ng-transclude class="row">
-
+<div class="page" ng-app="report" ng-controller="ReportController">
+    <div class="page-header">
+        <h1 class="page-title"> Report </h1>
+        <div class="page-header-actions">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a ui-sref="assignments">Home</a></li>
+                <li class="breadcrumb-item"><a ui-sref="project-center">Projects</a></li>
+                <li class="breadcrumb-item">Report</li>
+            </ol>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <bd-record ng-repeat="record in paper.masterEncoding" record="record" editable="false"></bd-record>
+        </div>
+    </div>
 </div>
