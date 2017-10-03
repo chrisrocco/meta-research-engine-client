@@ -1,11 +1,11 @@
 
 angular.module("assignments")
-    .controller("AssignmentsController", AssignmentsController)
+    .controller("AssignmentsController", AssignmentsController);
 
-AssignmentsController.$inject = [ '$scope', '$state' ];
-function AssignmentsController ( $scope, $state ){
+AssignmentsController.$inject = [ '$scope', '$state', 'authService'];
+function AssignmentsController ( $scope, $state, authService ){
     $scope.tableRows = [];
-    $scope.myProjects = DEFAULT_MODELS.myProjects;
+    $scope.myProjects = [];
     $scope.assignFromProject = $scope.myProjects[0];
     $scope.howManyAssignments = 1;
     init();
@@ -26,7 +26,7 @@ function AssignmentsController ( $scope, $state ){
     }
     function getMoreAssignments( confirm ){
         if( confirm === true ){
-            var myKey = AuthService.getUser()._key;
+            var myKey = authService.getUser()._key;
             var howMany = $scope.howManyAssignments;
             var projectKey = $scope.assignFromProject._key;
 
@@ -61,7 +61,7 @@ function AssignmentsController ( $scope, $state ){
     }
 
     function init(){
-        var p = DataService.loadAssignments( AuthService.getUser()['_key'] );
+        var p = DataService.loadAssignments( authService.getUser()['_key'] );
         p.success( function( data ){
 
             data = data[0];
@@ -103,12 +103,3 @@ function AssignmentsController ( $scope, $state ){
         } );
     }
 }
-
-const DEFAULT_MODELS = {
-    myProjects: [
-        {
-            "_key": 123,
-            "name": "Loading Projects..."
-        }
-    ]
-};
