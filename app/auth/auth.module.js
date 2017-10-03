@@ -1,5 +1,5 @@
 angular.module("auth", [])
-    .controller("authController", function($scope, $state){
+    .controller("authController", function($scope, $state, authService){
         let afterLogin = function(){
             return $state.go("assignments");
         };
@@ -10,7 +10,7 @@ angular.module("auth", [])
         $scope.register = register;
 
         function login() {
-            AuthService.login(
+            authService.login(
                 $scope.loginForm.email,
                 $scope.loginForm.password
             ).then(
@@ -83,7 +83,7 @@ angular.module("auth", [])
                 return false;
             }
 
-            var promise = AuthService.register( firstName, lastName, email, password );
+            var promise = authService.register( firstName, lastName, email, password );
             promise.success( function( res ){
                 swal({
                         title: "Registration Successful!",

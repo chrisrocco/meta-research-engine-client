@@ -35,7 +35,6 @@
         });
         return p;
     }
-
     function register(firstName, lastName, email, password) {
         return $.ajax({
             url: REGISTER,
@@ -48,7 +47,6 @@
             }
         });
     }
-
     function renew() {
         $.ajax({
             url: RENEW,
@@ -61,7 +59,6 @@
             localStorage['api_token'] = res.token;
         });
     }
-
     function logout() {
         delete localStorage['api_token'];
         // delete localStorage['user'];
